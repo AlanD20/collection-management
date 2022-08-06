@@ -13,14 +13,13 @@ return new class extends Migration
    */
   public function up()
   {
-    Schema::create('collections', function (Blueprint $table) {
+    Schema::create('details', function (Blueprint $table) {
       $table->id();
-      $table->foreignId('user_id')->constrained('users', 'id');
-      $table->foreignId('category_id')->constrained('categories', 'id');
-      $table->string('name');
-      $table->longText('description');
-      $table->string('thumbnail')->nullable();
-      $table->json('fields')->nullable();
+      $table->foreignId('user_id')->constrained('users', 'id')->onDelete('cascade');
+      $table->boolean('block')->default(false);
+      $table->boolean('admin')->default(false);
+      $table->string('theme')->default('light');
+      $table->string('locale')->default('en');
       $table->timestamps();
     });
   }
@@ -32,6 +31,6 @@ return new class extends Migration
    */
   public function down()
   {
-    Schema::dropIfExists('collections');
+    Schema::dropIfExists('details');
   }
 };

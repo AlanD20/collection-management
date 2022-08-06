@@ -5,17 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Role extends Model
+class Detail extends Model
 {
   use HasFactory;
 
-  protected $table = 'roles';
+  protected $table = 'details';
   protected $primaryKey = 'id';
   protected $with = [];
 
   protected $fillable = [
     'block',
-    'admin'
+    'admin',
+    'locale',
+    'theme'
   ];
 
   // Date conversion

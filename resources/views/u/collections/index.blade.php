@@ -1,5 +1,7 @@
 <x-app-layout>
 
-  ALL COLLECTIONS
+  <x-page-layout>
+    <x-page.top-bar route="u.collections.create" />
+  </x-page-layout>
 
 </x-app-layout>

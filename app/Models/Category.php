@@ -5,19 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Collection extends Model
+class Category extends Model
 {
   use HasFactory;
 
-  protected $table = 'collections';
+  protected $table = 'categories';
   protected $primaryKey = 'id';
   protected $with = [];
 
   protected $fillable = [
-    'name',
-    'description',
-    'category',
-    'thumbnail',
+    'name'
   ];
 
   // Date conversion
@@ -32,12 +29,8 @@ class Collection extends Model
   // Default values
   protected $attributes = [];
 
-  public function items()
+  public function collections()
   {
-    return $this->hasMany(Item::class, 'collection_id', 'id');
-  }
-  public function category()
-  {
-    return $this->hasOne(Category::class, 'collection_id', 'id');
+    return $this->belongsToMany(Collection::class);
   }
 }

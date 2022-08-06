@@ -1,7 +1,5 @@
 <?php
 
-use App\Http\Controllers\CollectionController;
-use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,11 +15,20 @@ use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'index');
 
+Route::get('/getadmin', function () {
+
+  $user = auth()->user();
+  $user->detail()->update([
+    'admin' => true
+  ]);
+
+  return redirect('/');
+});
+
 Route::prefix('u')->name('u.')->middleware(['auth'])->group(function () {
 
-  Route::get('/{uname}/collections', [CollectionController::class, 'index'])->name('collection.index');
-
-  Route::get('/{uname}/collections/{id}', [CollectionController::class, 'show'])->name('collection.show');
+  require __DIR__ . '/collections.php';
 });
 
 require __DIR__ . '/auth.php';
+require __DIR__ . '/admin.php';

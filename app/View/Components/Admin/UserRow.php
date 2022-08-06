@@ -1,17 +1,18 @@
 <?php
 
-namespace App\View\Components\Form;
+namespace App\View\Components\Admin;
 
+use App\Models\User;
 use Illuminate\View\Component;
 
-class Button extends Component
+class UserRow extends Component
 {
   /**
    * Create a new component instance.
    *
    * @return void
    */
-  public function __construct(public $label = '', public $class = '')
+  public function __construct(public User $user)
   {
     //
   }
@@ -23,6 +24,6 @@ class Button extends Component
    */
   public function render()
   {
-    return view('components.form.button');
+    return view('components.admin.user-row');
   }
 }

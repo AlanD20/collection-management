@@ -1,17 +1,17 @@
 <?php
 
-namespace App\View\Components\Form;
+namespace App\View\Components\Page;
 
 use Illuminate\View\Component;
 
-class Button extends Component
+class TitleText extends Component
 {
   /**
    * Create a new component instance.
    *
    * @return void
    */
-  public function __construct(public $label = '', public $class = '')
+  public function __construct(public $class = '')
   {
     //
   }
@@ -23,6 +23,6 @@ class Button extends Component
    */
   public function render()
   {
-    return view('components.form.button');
+    return view('components.page.title-text');
   }
 }

@@ -1,4 +1,4 @@
-<div class="w-[45ch]">
+<div class="w-full px-20" {{$attributes}}>
 
   {{$slot}}
 </div>

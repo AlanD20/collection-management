@@ -41,9 +41,9 @@ class User extends Authenticatable
    */
   protected $casts = [];
 
-  public function role()
+  public function detail()
   {
-    return $this->hasOne(Role::class, 'user_id', 'id');
+    return $this->hasOne(Detail::class, 'user_id', 'id');
   }
   public function collections()
   {
