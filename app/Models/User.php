@@ -19,6 +19,7 @@ class User extends Authenticatable
    */
   protected $fillable = [
     'name',
+    'username',
     'email',
     'password',
   ];
@@ -38,9 +39,7 @@ class User extends Authenticatable
    *
    * @var array<string, string>
    */
-  protected $casts = [
-    'email_verified_at' => 'datetime',
-  ];
+  protected $casts = [];
 
   public function role()
   {
@@ -57,5 +56,9 @@ class User extends Authenticatable
   public function comments()
   {
     return $this->hasMany(Comment::class, 'user_id', 'id');
+  }
+  public function getRouteKeyName()
+  {
+    return 'username';
   }
 }

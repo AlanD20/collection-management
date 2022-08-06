@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CollectionController;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Route;
 
@@ -14,12 +15,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-  return view('welcome');
-});
+Route::view('/', 'index');
 
-Route::get('/dashboard', function () {
-  return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::prefix('u')->name('u.')->middleware(['auth'])->group(function () {
+
+  Route::get('/{uname}/collections', [CollectionController::class, 'index'])->name('collection.index');
+
+  Route::get('/{uname}/collections/{id}', [CollectionController::class, 'show'])->name('collection.show');
+});
 
 require __DIR__ . '/auth.php';

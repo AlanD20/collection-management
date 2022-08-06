@@ -24,7 +24,7 @@
 #### Everyone:
 - Search including tag search.
 - View items.
-- Comments, likes are unavailable.
+- Can not post comments, likes, but they are viewable by everyone.
 
 #### Auth Users:
 - Manage its own items.
