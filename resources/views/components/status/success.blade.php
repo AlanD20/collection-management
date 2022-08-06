@@ -6,6 +6,6 @@
 
 <script>
   const alertTimeout = setTimeout(() => {
-    document.querySelector('.alert-status').remove();
+    document.querySelector('.alert-status')?.remove();
   }, 2000);
 </script>

@@ -1,4 +1,4 @@
-<x-admin-page-layout type="users">
+<x-admin-page-layout type='categories'>
 
   <div class="overflow-x-auto flex flex-col gap-4 w-full">
     <table class="table w-full">
@@ -16,12 +16,12 @@
       </thead>
       <tbody>
 
-        @foreach ($users as $user)
+        {{-- @foreach ($users as $user)
         <x-admin.user-row :user="$user" />
-        @endforeach
+        @endforeach --}}
 
       </tbody>
     </table>
-    {{$users->links()}}
+    {{-- {{$users->links()}} --}}
   </div>
 </x-admin-page-layout>

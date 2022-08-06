@@ -1,11 +1,7 @@
-<x-app-layout>
+<x-admin-page-layout>
 
-  <div class="tabs tabs-boxed mb-8">
-    <a class="tab tab-lg tab-active">Manage Users</a>
-    <a class="tab tab-lg">Manage Categories</a>
-  </div>
+  <x-page.title-text>
+    Admin Dashboard
+  </x-page.title-text>
 
-  <x-status.success />
-
-  @include('admin.users.index')
-</x-app-layout>
+</x-admin-page-layout>

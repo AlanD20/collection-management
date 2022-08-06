@@ -12,7 +12,7 @@ class AdminUserController extends Controller
 
     $users = User::with('detail')->paginate(7);
 
-    return view('admin.index', compact('users'));
+    return view('admin.users.index', compact('users'));
   }
 
   public function promote(int $id)
