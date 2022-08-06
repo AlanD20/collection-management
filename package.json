@@ -7,7 +7,10 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "format": "prettier --write resources/ts resources/views"
+    "format": "prettier --write resources/ts resources/views",
+    "a": "php artisan",
+    "serve": "php artisan serve",
+    "cache:clear": "php artisan clear && php artisan clear-compiled && php artisan config:clear && php artisan cache:clear && php artisan view:clear && php artisan route:clear && php artisan optimize && composer dump-autoload -o"
   },
   "devDependencies": {
     "@tailwindcss/forms": "^0.5.2",

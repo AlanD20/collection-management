@@ -4,7 +4,6 @@
 
 
 ## Main Goals:
-- Personal Collection Management
 - A collection may have many items.
 - Single item.
 - Each item supports tags.
@@ -59,6 +58,11 @@
 - Custom fields with types chosen by the user.
 - Adding more than 3 custom fields.
 - Exporting a collection to a CSV File.
+
+
+### Packages:
+
+- [Laravel-Markdown](https://github.com/GrahamCampbell/Laravel-Markdown)
 
 ## License
 
