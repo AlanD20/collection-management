@@ -1,26 +1,33 @@
 {
-    "name": "collection-management",
-    "description": "A personal collection management to store your favorite items and categorize them in a collection.",
-    "version": "0.1.0",
-    "license": "MIT",
-    "private": true,
-    "scripts": {
-        "dev": "vite",
-        "build": "vite build",
-        "format": "prettier --write resources/js"
-    },
-    "devDependencies": {
-        "@tailwindcss/forms": "^0.5.2",
-        "alpinejs": "^3.4.2",
-        "autoprefixer": "^10.4.2",
-        "cssnano": "^5.1.12",
-        "daisyui": "^2.20.0",
-        "laravel-vite-plugin": "^0.5.0",
-        "lodash": "^4.17.21",
-        "postcss": "^8.4.6",
-        "prettier": "^2.7.1",
-        "tailwindcss": "^3.1.0",
-        "typescript": "^4.7.4",
-        "vite": "^3.0.0"
-    }
+  "name": "collection-management",
+  "description": "A personal collection management to store your favorite items and categorize them in a collection.",
+  "version": "0.1.0",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "format": "prettier --write resources/ts resources/views"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.18.9",
+    "@babel/preset-env": "^7.18.9",
+    "@babel/preset-typescript": "^7.18.6",
+    "@tailwindcss/forms": "^0.5.2",
+    "@types/node": "^18.6.3",
+    "alpinejs": "^3.4.2",
+    "autoprefixer": "^10.4.2",
+    "cssnano": "^5.1.12",
+    "daisyui": "^2.20.0",
+    "laravel-vite-plugin": "^0.5.0",
+    "lodash": "^4.17.21",
+    "postcss": "^8.4.6",
+    "prettier": "^2.7.1",
+    "tailwindcss": "^3.1.0",
+    "typescript": "^4.7.4",
+    "vite": "^3.0.0"
+  },
+  "dependencies": {
+    "axios": "^0.27.2"
+  }
 }
