@@ -14,7 +14,7 @@
     href="https://cdn.jsdelivr.net/gh/hung1001/font-awesome-pro@4cac1a6/css/all.css" />
 
   <!-- Scripts -->
-  @vite(['resources/css/app.css', 'resources/ts/app.ts'])
+  @vite(['resources/css/app.css', 'resources/src/app.ts'])
 </head>
 
 <body class="font-sans antialiased">

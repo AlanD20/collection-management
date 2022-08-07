@@ -1,5 +1,6 @@
 <?php
 
+use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,6 +24,12 @@ Route::get('/getadmin', function () {
   ]);
 
   return redirect('/');
+});
+
+Route::get('/test', function () {
+
+
+  return Inertia::render('Test');
 });
 
 Route::prefix('u')->name('u.')->middleware(['auth'])->group(function () {

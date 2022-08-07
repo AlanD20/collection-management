@@ -38,6 +38,7 @@ class Kernel extends HttpKernel
       \Illuminate\Routing\Middleware\SubstituteBindings::class,
       // ! Enable for multi language support
       // \App\Http\Middleware\SetDefaultLocale::class,
+      \App\Http\Middleware\HandleInertiaRequests::class,
     ],
 
     'api' => [
