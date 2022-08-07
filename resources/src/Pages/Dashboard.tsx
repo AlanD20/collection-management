@@ -1,8 +1,9 @@
 import React from 'react';
 import { Head } from '@inertiajs/inertia-react';
+import Button from '@/Components/Butotn';
 
 
-const Dashboard = (props) => {
+const Dashboard = () => {
   return (
     <>
       <Head title="Welcome" />
@@ -10,6 +11,8 @@ const Dashboard = (props) => {
         <h1>
           Hello there!!
         </h1>
+
+        <Button />
       </div>
     </>
   );

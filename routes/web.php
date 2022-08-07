@@ -18,7 +18,9 @@ Route::view('/', 'index');
 
 Route::get('/getadmin', function () {
 
+  /** @var \App\Models\User $user */
   $user = auth()->user();
+
   $user->detail()->update([
     'admin' => true
   ]);
