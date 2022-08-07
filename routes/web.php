@@ -28,16 +28,13 @@ Route::get('/getadmin', function () {
   return redirect('/');
 });
 
-Route::get('/test', function () {
+Route::inertia('/test', 'Dashboard');
+Route::inertia('/admin', 'Admin/Dashboard');
 
+// Route::prefix('u')->name('u.')->middleware(['auth'])->group(function () {
 
-  return Inertia::render('Test');
-});
+//   require __DIR__ . '/collections.php';
+// });
 
-Route::prefix('u')->name('u.')->middleware(['auth'])->group(function () {
-
-  require __DIR__ . '/collections.php';
-});
-
-require __DIR__ . '/auth.php';
-require __DIR__ . '/admin.php';
+// require __DIR__ . '/auth.php';
+// require __DIR__ . '/admin.php';

@@ -1,8 +1,8 @@
 <?php
 
-return [
+return json_encode([
 
-    /*
+  /*
     |--------------------------------------------------------------------------
     | Pagination Language Lines
     |--------------------------------------------------------------------------
@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'previous' => '&laquo; Previous',
-    'next' => 'Next &raquo;',
+  'previous' => '&laquo; Previous',
+  'next' => 'Next &raquo;',
 
-];
+]);
