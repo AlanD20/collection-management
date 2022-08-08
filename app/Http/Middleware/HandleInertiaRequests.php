@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use App\Helpers\Locale;
+use App\Http\Resources\UserResource;
 use Inertia\Middleware;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
@@ -45,7 +46,7 @@ class HandleInertiaRequests extends Middleware
 
       // Lazily
       'auth.user' => fn () => $request->user()
-        ? $request->user()->only('id', 'name', 'email')
+        ? new UserResource($request->user())
         : null,
 
       // Locale Translation

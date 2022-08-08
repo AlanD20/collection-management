@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Inertia\Inertia;
 use Illuminate\Http\Request;
 
 class AdminCategoryController extends Controller
@@ -10,6 +11,6 @@ class AdminCategoryController extends Controller
   public function index()
   {
 
-    return view('admin.categories.index');
+    return Inertia::render('Admin/Category/Dashboard');
   }
 }

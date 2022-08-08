@@ -2,17 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class AdminUserController extends Controller
 {
   public function index()
   {
+    $query = User::with('detail')->paginate(7);
+    $users = UserResource::collection($query);
 
-    $users = User::with('detail')->paginate(7);
-
-    return view('admin.users.index', compact('users'));
+    return Inertia::render('Admin/User/Dashboard', compact('users'));
   }
 
   public function promote(int $id)

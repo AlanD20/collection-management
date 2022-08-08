@@ -21,11 +21,11 @@ class UserResource extends JsonResource
     $comments = $this->whenLoaded('comments');
 
     return [
+      ...(new DetailResource($detail))->toArray($request),
       'id' => $this->id,
       'name' => $this->name,
       'username' => $this->username,
       'email' => $this->email,
-      'detail' => new DetailResource($detail),
       'collections' => CollectionResource::collection($collections),
       'likes' => LikeResource::collection($likes),
       'comments' => CommentResource::collection($comments),

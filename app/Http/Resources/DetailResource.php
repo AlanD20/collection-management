@@ -23,8 +23,8 @@ class DetailResource extends JsonResource
       'theme' => $this->theme,
       'locale' => $this->locale,
       'user' => new UserResource($user),
-      'updatedAt' => $this->updated_at,
-      'createdAt' => $this->created_at,
+      // 'updatedAt' => $this->updated_at,
+      // 'createdAt' => $this->created_at,
     ];
   }
 }

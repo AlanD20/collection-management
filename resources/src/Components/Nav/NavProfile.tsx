@@ -1,17 +1,32 @@
+import { UsePage } from '@/@types/global';
+import { Link, usePage } from '@inertiajs/inertia-react';
 import React from 'react';
 
 interface Props {
-  __?: any;
+
 }
 
-const NavProfile = ({ __ }: Props) => {
+const NavProfile = ({ }: Props) => {
+  const $ = usePage<UsePage>().props;
+
+  if (!$.auth || !$.auth.user) {
+    return (
+      <Link href={route('login')} as='button' className="btn">
+        Login
+      </Link>
+    )
+  }
+
+
   return (
     <div className="dropdown dropdown-end">
       <label tabIndex={0} className="btn btn-ghost">
-        <div className="w-10 rounded-full flex items-center gap-4">
+        <div className="rounded-full flex items-center gap-4" >
           <i className="fas fa-user text-3xl"></i>
+          <span className="font-semibold text-sm capitalize">
+            {$.auth.user.username}
+          </span>
         </div>
-        <span className="font-semibold text-xl capitalize">{'USER LOGIN'}</span>
       </label>
 
       <ul
@@ -19,25 +34,39 @@ const NavProfile = ({ __ }: Props) => {
         className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52"
       >
         <li>
-          <a
-            href="{{route('u.collections.index',['uname'=>$uname])}}"
+          <Link
+            href={route('u.collections.index', {
+              'uname': $.auth.user.username
+            })}
+            as="button"
             className="justify-between"
           >
-            __.nav.my_collection
+            {$._.nav.my_collection}
             <span className="badge">New</span>
-          </a>
+          </Link>
         </li>
-        @if ($admin)
-        <li>
-          <a href="{{route('admin.index')}}">Admin Panel</a>
-        </li>
-        @endif
-        <form method="post" action="{{route('logout')}}">
+
+        {$.auth.user.admin &&
           <li>
-            @csrf
-            <button type="submit">__.nav.logout</button>
+            <Link
+              href={route('admin.index')}
+              as='button'
+            >
+              Admin Panel
+            </Link>
           </li>
-        </form>
+        }
+        <li>
+          <Link
+            href={route('logout')}
+            as="button"
+            method='post'
+            replace={true}
+          >
+            {$._.nav.logout}
+          </Link>
+        </li>
+
       </ul>
     </div>
   );

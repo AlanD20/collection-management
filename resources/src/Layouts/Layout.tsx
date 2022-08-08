@@ -2,9 +2,9 @@ import React from 'react';
 import Footer from './Footer';
 import Navigation from './Navigation';
 import { Head } from '@inertiajs/inertia-react';
+import { Children } from '@/@types/global';
 
-interface Props {
-  children?: React.ReactNode | JSX.Element;
+interface Props extends Children {
   title: string;
 }
 

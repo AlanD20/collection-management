@@ -39,12 +39,15 @@ class ExportLang extends Command
     $res = [];
     foreach ($files as $file) {
 
-      if (explode('.', $file)[1] !== 'php') continue;
+      $name = explode('.', $file);
+      if ($name[1] !== 'php') continue;
 
       $filePath = "{$path}/{$locale}/{$file}";
       $data = $this->execPHPFile($filePath);
 
-      $res = array_merge($res, \json_decode($data, true));
+      $res = array_merge($res, [
+        $name[0] => \json_decode($data, true)
+      ]);
     }
     $this->appendToFile($outDir, $res);
   }

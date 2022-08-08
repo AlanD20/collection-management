@@ -1,7 +1,6 @@
 import React from 'react';
-import { Head } from '@inertiajs/inertia-react';
-import Button from '@/Components/Form/Butotn';
 import Layout from '@/Layouts/Layout';
+import { Head } from '@inertiajs/inertia-react';
 
 interface Props {
   auth: {

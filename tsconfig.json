@@ -4,7 +4,7 @@
     "rootDir": "./resources/src",
     "target": "ESNext",
     "module": "ESNext",
-    "lib": ["es2017", "ESNext"],
+    "lib": ["es2017", "ESNext", "DOM", "DOM.Iterable"],
     // stricter type-checking for stronger correctness. Recommended by TS
     "strict": true,
     "allowJs": false,
