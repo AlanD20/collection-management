@@ -1,10 +1,8 @@
-
-
 export type MetaLink = {
   url: string | null;
   label: string;
-  active: boolean
-}
+  active: boolean;
+};
 
 export type MetaPaginator = {
   current_page: number;
@@ -15,10 +13,9 @@ export type MetaPaginator = {
   total: number;
   path: string;
   links: MetaLink[];
-}
+};
 
 export interface Paginator<T> {
-
   data: T;
   links: {
     first: string;

@@ -1,16 +1,16 @@
 import { UsePage } from '@/@types/Global';
 import React, { ChangeEvent } from 'react';
-import Input from '@/Components/Form/Input';
-import Button from '@/Components/Form/Button';
-import Checkbox from '@/Components/Form/Checkbox';
+import Input from '@@/Form/Input';
+import Button from '@@/Form/Button';
+import Checkbox from '@@/Form/Checkbox';
 import { usePage, useForm } from '@inertiajs/inertia-react';
-import SmallPageContainer from '@/Layouts/SmallPageContainer';
-import ButtonLink from '@/Components/Form/ButtonLink';
-import TitleText from '@/Components/Misc/TitleText';
+import PageContainer from '@/Layouts/PageContainer';
+import ButtonLink from '@@/Form/ButtonLink';
+import TitleText from '@@/Misc/TitleText';
 
 const Register = () => {
   const $ = usePage<UsePage>().props;
-  const { post, data, setData, errors, processing } = useForm({
+  const { post, data, setData, processing, reset } = useForm({
     name: '',
     username: '',
     email: '',
@@ -24,6 +24,7 @@ const Register = () => {
 
     post(route('register'), {
       data,
+      onSuccess: () => reset(),
     });
   };
 
@@ -38,7 +39,7 @@ const Register = () => {
           value={data.name}
           className="block mt-1 w-full"
           onChange={(e) => setData('name', e.target.value)}
-          // required
+          required
           autoFocus
         />
         <Input
@@ -49,7 +50,7 @@ const Register = () => {
           autoComplete="username"
           className="block mt-1 w-full"
           onChange={(e) => setData('username', e.target.value)}
-        // required
+          required
         />
         <Input
           type="email"
@@ -59,7 +60,7 @@ const Register = () => {
           autoComplete="username"
           className="block mt-1 w-full"
           onChange={(e) => setData('email', e.target.value)}
-        // required
+          required
         />
         <Input
           type="password"
@@ -69,7 +70,7 @@ const Register = () => {
           autoComplete="new-password"
           className="block mt-1 w-full"
           onChange={(e) => setData('password', e.target.value)}
-        // required
+          required
         />
         <Input
           type="password"
@@ -79,7 +80,7 @@ const Register = () => {
           autoComplete="new-password"
           className="block mt-1 w-full"
           onChange={(e) => setData('password_confirmation', e.target.value)}
-        // required
+          required
         />
         <div className="w-max">
           <Checkbox
@@ -94,7 +95,7 @@ const Register = () => {
           type="submit"
           label={$._.form.register}
           disabled={processing}
-          className="mt-6 ml-auto text-lg"
+          className={`mt-6 ml-auto text-lg ${processing ? 'loading' : ''}`}
         />
       </form>
 
@@ -111,7 +112,8 @@ const Register = () => {
   );
 };
 
-export default SmallPageContainer({
+export default PageContainer({
   component: Register,
   title: 'Register',
+  small: true,
 });

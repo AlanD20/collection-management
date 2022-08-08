@@ -10,9 +10,7 @@ interface Props extends DefProps, InertiaLinkProps {
 const ButtonLink = ({ label, className = '', ...attr }: Props) => {
   return (
     <Link {...attr} className={`btn capitalize flex items-center ${className}`}>
-      {label ?
-        <span>{label}</span> : attr.children
-      }
+      {label ? <span>{label}</span> : attr.children}
     </Link>
   );
 };

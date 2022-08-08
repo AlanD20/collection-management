@@ -5,12 +5,15 @@ import { ComponentWrapper } from '@/@types/Global';
 const PageContainer = ({
   component,
   title,
+  small,
   className = '',
 }: ComponentWrapper) => {
   component.layout = (page: JSX.Element) => {
     return (
       <Layout title={title}>
-        <div className={`w-full px-20 ${className}`}>{page}</div>
+        <div className={`px-20 ${small ? 'w-[45ch]' : 'w-full'} ${className}`}>
+          {page}
+        </div>
       </Layout>
     );
   };

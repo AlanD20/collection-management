@@ -1,4 +1,3 @@
-
 export interface UserInfo {
   id: number;
   admin: boolean;
@@ -16,11 +15,10 @@ export interface User extends UserInfo {
   email: string;
   updatedAt: string;
   createdAt: string;
-  collections: Collection[],
-  likes: Like[],
-  comments: Comment[],
+  collections: Collection[];
+  likes: Like[];
+  comments: Comment[];
 }
-
 
 export interface Category {
   id: number;
@@ -78,4 +76,3 @@ export interface Item {
   updatedAt: string;
   createdAt: string;
 }
-

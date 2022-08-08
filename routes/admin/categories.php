@@ -3,20 +3,21 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminCategoryController;
 
-Route::get('/admin/categories', [AdminCategoryController::class, 'index'])
+Route::get('/categories', [AdminCategoryController::class, 'index'])
   ->name('categories.index');
 
-Route::post('/categories/{id}/promote', [AdminCategoryController::class, 'promote'])
-  ->name('categories.promote');
+Route::get('/categories/create', [AdminCategoryController::class, 'create'])
+  ->name('categories.create');
 
-Route::post('/categories/{id}/demote', [AdminCategoryController::class, 'demote'])
-  ->name('categories.demote');
+Route::post('/categories', [AdminCategoryController::class, 'store'])
+  ->name('categories.store');
 
-Route::post('/categories/{id}/block', [AdminCategoryController::class, 'block'])
-  ->name('categories.block');
 
-Route::post('/categories/{id}/unblock', [AdminCategoryController::class, 'unblock'])
-  ->name('categories.unblock');
+Route::get('/categories/{id}/edit', [AdminCategoryController::class, 'edit'])
+  ->name('categories.edit');
+
+Route::patch('/categories/{id}', [AdminCategoryController::class, 'update'])
+  ->name('categories.update');
 
 Route::delete('/categories/{id}', [AdminCategoryController::class, 'destroy'])
   ->name('categories.destroy');

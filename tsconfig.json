@@ -31,7 +31,8 @@
     "jsx": "react",
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./resources/src/*"]
+      "@/*": ["./resources/src/*"],
+      "@@/*": ["./resources/src/Components/*"]
     }
   },
   "include": ["./resources/src"],

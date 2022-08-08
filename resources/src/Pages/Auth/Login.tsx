@@ -1,16 +1,16 @@
 import { UsePage } from '@/@types/Global';
 import React, { ChangeEvent } from 'react';
-import Input from '@/Components/Form/Input';
-import Button from '@/Components/Form/Button';
-import Checkbox from '@/Components/Form/Checkbox';
+import Input from '@@/Form/Input';
+import Button from '@@/Form/Button';
+import Checkbox from '@@/Form/Checkbox';
 import { usePage, useForm } from '@inertiajs/inertia-react';
-import SmallPageContainer from '@/Layouts/SmallPageContainer';
-import ButtonLink from '@/Components/Form/ButtonLink';
-import TitleText from '@/Components/Misc/TitleText';
+import PageContainer from '@/Layouts/PageContainer';
+import ButtonLink from '@@/Form/ButtonLink';
+import TitleText from '@@/Misc/TitleText';
 
 const Login = () => {
   const $ = usePage<UsePage>().props;
-  const { post, data, setData, errors, processing } = useForm({
+  const { post, data, setData, processing, reset } = useForm({
     username: '',
     password: '',
     remember: false,
@@ -21,6 +21,7 @@ const Login = () => {
 
     post(route('login'), {
       data,
+      onSuccess: () => reset(),
     });
   };
 
@@ -66,14 +67,15 @@ const Login = () => {
         <ButtonLink
           href={route('register')}
           label={$._.form.create_account}
-          className="btn-primary btn-md text-base"
+          className={`mt-6 ml-auto text-lg ${processing ? 'loading' : ''}`}
         />
       </div>
     </>
   );
 };
 
-export default SmallPageContainer({
+export default PageContainer({
   component: Login,
   title: 'Login',
+  small: true,
 });

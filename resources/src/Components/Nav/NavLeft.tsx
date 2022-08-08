@@ -4,7 +4,7 @@ import { UsePage } from '@/@types/Global';
 import { IoIosArrowDown } from 'react-icons/io';
 import { Link, usePage } from '@inertiajs/inertia-react';
 
-interface Props { }
+interface Props {}
 
 const NavLeft = (props: Props) => {
   const $ = usePage<UsePage>().props;
@@ -40,10 +40,11 @@ const NavLeft = (props: Props) => {
               <a className="justify-between">
                 Parent
                 <IoIosArrowDown
-                  className={`${$.auth.user && $.auth.user.locale === 'en'
+                  className={`${
+                    $.auth.user && $.auth.user.locale === 'en'
                       ? '-rotate-90'
                       : 'rotate-90'
-                    }`}
+                  }`}
                 />
               </a>
               <ul className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box">

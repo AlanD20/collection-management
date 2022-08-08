@@ -1,7 +1,7 @@
 import React from 'react';
-import NavLeft from '@/Components/Nav/NavLeft';
-import NavProfile from '@/Components/Nav/NavProfile';
-import NavSearch from '@/Components/Nav/NavSearch';
+import NavLeft from '@@/Nav/NavLeft';
+import NavProfile from '@@/Nav/NavProfile';
+import NavSearch from '@@/Nav/NavSearch';
 
 const Navigation = () => {
   return (

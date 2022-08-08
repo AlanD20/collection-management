@@ -16,6 +16,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': '/resources/src',
+      '@@': '/resources/src/Components',
     },
   },
 });

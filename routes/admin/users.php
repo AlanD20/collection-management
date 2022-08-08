@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminUserController;
 
-Route::get('/admin/users', [AdminUserController::class, 'index'])
+Route::get('/users', [AdminUserController::class, 'index'])
   ->name('users.index');
 
 Route::post('/users/{id}/promote', [AdminUserController::class, 'promote'])

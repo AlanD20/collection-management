@@ -1,21 +1,22 @@
-import React from "react"
-import { User } from "@/@types/Models"
-import ButtonLink from "@/Components/Form/ButtonLink"
-
+import React from 'react';
+import { User } from '@/@types/Models';
+import ButtonLink from '@@/Form/ButtonLink';
 
 interface Props {
-  user: User
+  user: User;
 }
 
 const UserTableRow = ({ user }: Props) => {
   return (
-
     <tr>
       <th>{user.id}</th>
       <td>{user.name}</td>
       <td>{user.username}</td>
       <td>{user.email}</td>
-      <td className={`w-24 capitalize text-center font-semibold text-${user.block ? 'red' : 'green'}-500`}
+      <td
+        className={`w-24 capitalize text-center font-semibold text-${
+          user.block ? 'red' : 'green'
+        }-500`}
       >
         {user.block ? 'blocked' : 'active'}
       </td>
@@ -25,50 +26,54 @@ const UserTableRow = ({ user }: Props) => {
       </td>
 
       <td className="flex gap-6 px-12">
-
         {/* Promote/Demote user */}
         <ButtonLink
-          href={route(
-            `admin.users.${user.admin ? 'demote' : 'promote'}`, {
-            id: user.id
+          href={route(`admin.users.${user.admin ? 'demote' : 'promote'}`, {
+            id: user.id,
           })}
-          method='post'
-          as='button'
+          method="post"
+          as="button"
           preserveScroll={true}
-          className={`min-w-[60px] btn-outline ${user.admin ? 'btn-error' : 'btn-success'}`}
+          className={`min-w-[60px] btn-outline ${
+            user.admin ? 'btn-error' : 'btn-success'
+          }`}
         >
-          <i className={`text-lg fas fa-user-${user.admin ? 'slash' : 'crown'}`}></i>
+          <i
+            className={`text-lg fas fa-user-${user.admin ? 'slash' : 'crown'}`}
+          ></i>
         </ButtonLink>
 
         {/* Block/Unblock user */}
 
         <ButtonLink
-          href={route(
-            `admin.users.${user.block ? 'unblock' : 'block'}`, {
-            id: user.id
+          href={route(`admin.users.${user.block ? 'unblock' : 'block'}`, {
+            id: user.id,
           })}
-          method='post'
-          as='button'
+          method="post"
+          as="button"
           preserveScroll={true}
-          className={`min-w-[60px] btn-outline ${user.block ? 'btn-error' : 'btn-success'}`}
+          className={`min-w-[60px] btn-outline ${
+            user.block ? 'btn-error' : 'btn-success'
+          }`}
         >
-          <i className={`text-lg fas fa-user-${user.block ? 'unlock' : 'lock'}`}></i>
+          <i
+            className={`text-lg fas fa-user-${user.block ? 'unlock' : 'lock'}`}
+          ></i>
         </ButtonLink>
 
         {/* Delete User */}
         <ButtonLink
           href={route('admin.users.destroy', { id: user.id })}
-          method='delete'
-          as='button'
+          method="delete"
+          as="button"
           preserveScroll={true}
           className={`min-w-[60px] btn-outline btn-error`}
         >
           <i className="text-lg fas fa-trash"></i>
-        </ButtonLink >
+        </ButtonLink>
       </td>
     </tr>
-  )
-}
-
+  );
+};
 
 export default UserTableRow;

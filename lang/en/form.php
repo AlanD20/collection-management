@@ -22,6 +22,8 @@ return [
   'register' => "Register",
   'create_account' => "Create An Account",
   'already_registered' => "Already have an account?",
+
   'create' => 'Create',
+  'update' => 'update',
 
 ];

@@ -12,6 +12,7 @@ export type Component = React.ReactComponentElement;
 export type ComponentWrapper = {
   component: Component;
   title: string;
+  small?: boolean;
   className?: string;
 };
 

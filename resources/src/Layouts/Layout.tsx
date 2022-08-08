@@ -3,7 +3,7 @@ import Footer from './Footer';
 import Navigation from './Navigation';
 import { Head } from '@inertiajs/inertia-react';
 import { Children } from '@/@types/Global';
-import Status from '@/Components/Misc/Status';
+import Status from '@@/Misc/Status';
 
 interface Props extends Children {
   title: string;

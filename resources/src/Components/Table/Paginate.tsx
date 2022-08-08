@@ -11,13 +11,13 @@ const Paginate = ({ meta, className }: Props) => {
   const $ = usePage();
 
   return (
-    <div className='w-full flex justify-between items-center px-8'>
+    <div className="w-full flex flex-col sm:flex-row gap-4 justify-between items-center px-8">
       <div>
         <span>
           Showing {meta.from} to {meta.to} of {meta.total} results
         </span>
       </div>
-      <div className="flex gap-2 btn-group">
+      <div className="flex gap-2 btn-group flex-col sm:flex-row">
         {meta?.links &&
           meta.links.map((link, i) => (
             <Link
@@ -26,11 +26,10 @@ const Paginate = ({ meta, className }: Props) => {
               href={link.url as string}
               className={`btn ${link.active ? 'btn-success' : 'btn-outline'}`}
               dangerouslySetInnerHTML={{
-                __html: link.label
+                __html: link.label,
               }}
             />
-          ))
-        }
+          ))}
       </div>
     </div>
   );
