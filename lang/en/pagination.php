@@ -1,6 +1,6 @@
 <?php
 
-return json_encode([
+return [
 
   /*
     |--------------------------------------------------------------------------
@@ -16,4 +16,4 @@ return json_encode([
   'previous' => '&laquo; Previous',
   'next' => 'Next &raquo;',
 
-]);
+];

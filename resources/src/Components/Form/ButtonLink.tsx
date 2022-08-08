@@ -11,7 +11,7 @@ const ButtonLink = ({ label, className = '', ...attr }: Props) => {
   return (
     <Link
       {...attr}
-      className={`btn btn-primary btn-md capitalize flex items-center ${className}`}
+      className={`btn capitalize flex items-center ${className}`}
     >
       <span>{label}</span>
     </Link >

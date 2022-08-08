@@ -1,6 +1,6 @@
 <?php
 
-return json_encode([
+return [
 
   'name' => "Name:",
   'username' => "Username:",
@@ -24,4 +24,4 @@ return json_encode([
   'already_registered' => "Already have an account?",
   'create' => 'Create',
 
-]);
+];

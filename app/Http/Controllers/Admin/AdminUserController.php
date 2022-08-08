@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Http\Resources\UserResource;
+use Inertia\Inertia;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Inertia\Inertia;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\UserResource;
 
 class AdminUserController extends Controller
 {

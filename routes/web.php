@@ -33,6 +33,8 @@ Route::get('/getadmin', function () {
 Route::inertia('/test', 'Dashboard');
 
 
+
+
 Route::prefix('u')->name('u.')->middleware(['auth'])->group(function () {
 
   require __DIR__ . '/collections.php';

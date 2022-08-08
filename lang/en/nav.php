@@ -1,8 +1,8 @@
 <?php
 
-return json_encode([
+return [
 
   'my_collection' => 'My Collections',
   'logout' => 'Logout',
 
-]);
+];

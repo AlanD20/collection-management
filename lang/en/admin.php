@@ -1,6 +1,6 @@
 <?php
 
-return json_encode([
+return [
 
   'user' => [
     'delete' => 'User deleted successfully!',
@@ -11,4 +11,4 @@ return json_encode([
 
   ]
 
-]);
+];

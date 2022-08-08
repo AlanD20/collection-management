@@ -46,7 +46,7 @@ class ExportLang extends Command
       $data = $this->execPHPFile($filePath);
 
       $res = array_merge($res, [
-        $name[0] => \json_decode($data, true)
+        $name[0] => $data
       ]);
     }
     $this->appendToFile($outDir, $res);
@@ -62,11 +62,13 @@ class ExportLang extends Command
     if (!\file_exists($path)) {
       return null;
     }
-    $command = ['php', '-r', "print_r(include('{$path}'));"];
-    $process = (new Process($command));
-    $process->run();
+    // Another way to Execute PHP File
+    // $command = ['php', '-r', "print_r(include('{$path}'));"];
+    // $process = (new Process($command));
+    // $process->run();
+    // return $process->getOutput();
 
-    return $process->getOutput();
+    return include($path);
   }
 
   function appendToFile(string $path, mixed $data): void

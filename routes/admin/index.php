@@ -2,15 +2,14 @@
 
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\AdminController;
 
 
 Route::name('admin.')->middleware(['auth', 'isAdmin'])->group(function () {
 
   // Main admin route
-  Route::get('/admin', function () {
-
-    return Inertia::render('Admin/Dashboard');
-  })->name('index');
+  Route::get('/admin', [AdminController::class, 'index'])
+    ->name('index');
 
   // Users
   require __DIR__ . '/users.php';

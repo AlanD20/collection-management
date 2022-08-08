@@ -6,15 +6,15 @@ interface Props extends DefProps, ButtonHTMLAttributes<HTMLButtonElement> {
   label: string;
 }
 
-const ButtonLink = ({ label, className = '', ...attr }: Props) => {
+const Button = ({ label, className = '', ...attr }: Props) => {
   return (
     <button
       {...attr}
-      className={`btn btn-primary btn-md capitalize flex items-center ${className}`}
+      className={`btn capitalize flex items-center ${className}`}
     >
       <span>{label}</span>
     </button >
 
   );
 };
-export default ButtonLink;
+export default Button;

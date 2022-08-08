@@ -1,8 +1,8 @@
 import { Children, DefProps } from "@/@types/global"
-import React from "react"
+import React, { InputHTMLAttributes } from "react"
 
 
-interface Props extends DefProps, Children {
+interface Props extends DefProps, InputHTMLAttributes<HTMLInputElement> {
   name: string;
   label: string;
   parentClass?: string;
@@ -10,12 +10,13 @@ interface Props extends DefProps, Children {
 }
 
 
-const Checkbox = ({ name, label, children, parentClass = '', labelClass = '', className = '' }: Props
+const Checkbox = ({ name, label, children, parentClass = '', labelClass = '', className = '', ...attr }: Props
 ) => {
   return (
     <label className={`label cursor-pointer flex w-max gap-4 items-center ${parentClass}`}>
 
       <input
+        {...attr}
         type="checkbox"
         name={name}
         className={`checkbox checkbox-primary ${className}`}
