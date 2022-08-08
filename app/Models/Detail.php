@@ -16,8 +16,8 @@ class Detail extends Model
   protected $fillable = [
     'block',
     'admin',
+    'theme',
     'locale',
-    'theme'
   ];
 
   // Date conversion

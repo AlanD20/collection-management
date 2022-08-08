@@ -14,7 +14,7 @@ class Tag extends Model
   protected $with = [];
 
   protected $fillable = [
-    //
+    'name'
   ];
 
   // Date conversion
