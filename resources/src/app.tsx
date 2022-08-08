@@ -12,7 +12,9 @@ createInertiaApp({
   // @ts-ignore
   resolve: async (name) => {
     // const page = resolvePageComponent(`./Pages/${name}.tsx`, import.meta.glob('./Pages/**/*.tsx'));
-    const page = (await import(`./Pages/${name}.tsx`)).default;
+    // @ts-ignore
+    const page = (await resolvePageComponent(`./Pages/${name}.tsx`, import.meta.glob('./Pages/**/*.tsx'))).default;
+
     if (page.layout === undefined) {
       page.layout = Layout.bind(undefined, { title: name });
     }
