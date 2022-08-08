@@ -1,4 +1,4 @@
-import { Children, DefProps } from '@/@types/global';
+import { Children, DefProps } from '@/@types/Global';
 import { InertiaLinkProps, Link } from '@inertiajs/inertia-react';
 import React from 'react';
 
@@ -7,18 +7,16 @@ interface Props extends DefProps, InertiaLinkProps {
   parentClass?: string;
 }
 
-const NavItem = (
-  { label, parentClass = '', className = '', ...attr }: Props
-) => {
-
+const NavItem = ({
+  label,
+  parentClass = '',
+  className = '',
+  ...attr
+}: Props) => {
   return (
     <li className={parentClass}>
-      <Link
-        {...attr}
-        className={className}
-      >
+      <Link {...attr} className={className}>
         {label ? label : attr.children}
-
       </Link>
     </li>
   );

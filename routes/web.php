@@ -35,10 +35,13 @@ Route::inertia('/test', 'Dashboard');
 
 
 
-Route::prefix('u')->name('u.')->middleware(['auth'])->group(function () {
+Route::prefix('u')
+  ->name('u.')
+  ->middleware(['auth'])
+  ->group(function () {
 
-  require __DIR__ . '/collections.php';
-});
+    require __DIR__ . '/collections.php';
+  });
 
 require __DIR__ . '/auth.php';
 require __DIR__ . '/admin/index.php';

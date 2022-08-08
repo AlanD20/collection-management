@@ -1,6 +1,5 @@
-import { DefProps } from '@/@types/global';
+import { DefProps } from '@/@types/Global';
 import React, { ButtonHTMLAttributes } from 'react';
-
 
 interface Props extends DefProps, ButtonHTMLAttributes<HTMLButtonElement> {
   label: string;
@@ -13,8 +12,7 @@ const Button = ({ label, className = '', ...attr }: Props) => {
       className={`btn capitalize flex items-center ${className}`}
     >
       <span>{label}</span>
-    </button >
-
+    </button>
   );
 };
 export default Button;

@@ -1,6 +1,5 @@
-import React from "react"
-import { Children, DefProps } from "@/@types/global"
-
+import React from 'react';
+import { Children, DefProps } from '@/@types/Global';
 
 interface Props extends DefProps, Children {
   label: string;
@@ -13,7 +12,6 @@ const TitleText = ({ label, children, className = '' }: Props) => {
     >
       {label ? label : children}
     </h2>
-
-  )
-}
-export default TitleText
+  );
+};
+export default TitleText;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { AiOutlineSearch } from 'react-icons/ai';
 
-interface Props { }
+interface Props {}
 
 const NavSearch = (props: Props) => {
   return (
@@ -13,9 +13,7 @@ const NavSearch = (props: Props) => {
           className="input input-bordered w-full sm:w-auto"
         />
         <button className="btn btn-square">
-          <AiOutlineSearch
-            className='text-3xl'
-          />
+          <AiOutlineSearch className="text-3xl" />
         </button>
       </div>
     </div>

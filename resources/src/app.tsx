@@ -8,12 +8,18 @@ import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import Layout from './Layouts/Layout';
 
 createInertiaApp({
-  title: (title) => 'PCM - ' + title,
+  title: (title) => `${title} - PCM`,
   // @ts-ignore
   resolve: async (name) => {
     // const page = resolvePageComponent(`./Pages/${name}.tsx`, import.meta.glob('./Pages/**/*.tsx'));
     // @ts-ignore
-    const page = (await resolvePageComponent(`./Pages/${name}.tsx`, import.meta.glob('./Pages/**/*.tsx'))).default;
+    const page = (
+      await resolvePageComponent(
+        `./Pages/${name}.tsx`,
+        import.meta.glob('./Pages/**/*.tsx')
+      )
+      // @ts-ignore
+    ).default;
 
     if (page.layout === undefined) {
       page.layout = Layout.bind(undefined, { title: name });

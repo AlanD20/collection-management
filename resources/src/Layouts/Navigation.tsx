@@ -3,9 +3,7 @@ import NavLeft from '@/Components/Nav/NavLeft';
 import NavProfile from '@/Components/Nav/NavProfile';
 import NavSearch from '@/Components/Nav/NavSearch';
 
-
 const Navigation = () => {
-
   return (
     <>
       <nav className="hidden sm:flex sticky top-0 navbar bg-base-100 py-4 px-8 shadow-md z-50">
@@ -30,4 +28,3 @@ const Navigation = () => {
 };
 
 export default Navigation;
-

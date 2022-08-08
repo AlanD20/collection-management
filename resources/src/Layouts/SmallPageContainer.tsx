@@ -1,21 +1,20 @@
-import React from "react"
-import Layout from "./Layout"
-import { ComponentWrapper } from "@/@types/global"
+import React from 'react';
+import Layout from './Layout';
+import { ComponentWrapper } from '@/@types/Global';
 
 const SmallPageContainer = ({
-  component, title, className = '' }: ComponentWrapper
-) => {
-
+  component,
+  title,
+  className = '',
+}: ComponentWrapper) => {
   component.layout = (page: JSX.Element) => {
     return (
       <Layout title={title}>
-        <div className={`w-[45ch] ${className}`}>
-          {page}
-        </div>
+        <div className={`w-[45ch] ${className}`}>{page}</div>
       </Layout>
-    )
-  }
+    );
+  };
   return component;
-}
+};
 
 export default SmallPageContainer;

@@ -1,6 +1,6 @@
 import React from 'react';
 import NavItem from './NavItem';
-import { UsePage } from '@/@types/global';
+import { UsePage } from '@/@types/Global';
 import { IoIosArrowDown } from 'react-icons/io';
 import { Link, usePage } from '@inertiajs/inertia-react';
 
@@ -34,44 +34,32 @@ const NavLeft = (props: Props) => {
             tabIndex={0}
             className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
           >
-            <NavItem
-              href='#'
-              label="Item 1"
-              as='button'
-            />
+            <NavItem href="#" label="Item 1" as="button" />
 
             <li tabIndex={0}>
               <a className="justify-between">
                 Parent
                 <IoIosArrowDown
-                  className={`${$.auth.user && $.auth.user.locale === 'en' ? '-rotate-90' : 'rotate-90'}`}
+                  className={`${$.auth.user && $.auth.user.locale === 'en'
+                      ? '-rotate-90'
+                      : 'rotate-90'
+                    }`}
                 />
               </a>
               <ul className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box">
-                <NavItem
-                  href='#'
-                  label="Submeni 1"
-                  as='button'
-                />
-                <NavItem
-                  href='#'
-                  label="Submenu 2"
-                  as='button'
-                />
+                <NavItem href="#" label="Submeni 1" as="button" />
+                <NavItem href="#" label="Submenu 2" as="button" />
               </ul>
             </li>
-            <NavItem
-              href='#'
-              label="Item 3"
-              as='button'
-            />
+            <NavItem href="#" label="Item 3" as="button" />
           </ul>
         </div>
 
         <Link
           href={route('index')}
-          as='button'
-          className="btn btn-ghost normal-case text-xl">
+          as="button"
+          className="btn btn-ghost normal-case text-xl"
+        >
           {$.appName}
         </Link>
       </div>
@@ -79,35 +67,19 @@ const NavLeft = (props: Props) => {
       {/* Large Screen */}
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal p-0">
-          <NavItem
-            href='#'
-            label="Item 1"
-            as='button'
-          />
+          <NavItem href="#" label="Item 1" as="button" />
           <li tabIndex={0}>
             <a>
               Parent
               <IoIosArrowDown />
             </a>
             <ul className="menu menu-vertical p-2 shadow bg-base-100">
-              <NavItem
-                href='#'
-                label="Submeni 1"
-                as='button'
-              />
-              <NavItem
-                href='#'
-                label="Submenu 2"
-                as='button'
-              />
+              <NavItem href="#" label="Submeni 1" as="button" />
+              <NavItem href="#" label="Submenu 2" as="button" />
             </ul>
           </li>
 
-          <NavItem
-            href='#'
-            label="Item 3"
-            as='button'
-          />
+          <NavItem href="#" label="Item 3" as="button" />
         </ul>
       </div>
     </>

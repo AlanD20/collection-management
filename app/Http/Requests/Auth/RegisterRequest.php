@@ -31,4 +31,12 @@ class RegisterRequest extends FormRequest
       'tos' => ['required', 'accepted']
     ];
   }
+
+  public function attributes()
+  {
+    return [
+      'email' => 'email address',
+      'tos' => 'terms of service'
+    ];
+  }
 }

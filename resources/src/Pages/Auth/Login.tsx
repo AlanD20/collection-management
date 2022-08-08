@@ -1,38 +1,33 @@
-import { UsePage } from "@/@types/global";
-import React, { ChangeEvent } from "react"
-import Input from "@/Components/Form/Input";
-import Button from "@/Components/Form/Button";
-import Checkbox from "@/Components/Form/Checkbox";
-import { usePage, useForm } from "@inertiajs/inertia-react"
-import SmallPageContainer from "@/Layouts/SmallPageContainer"
-import ButtonLink from "@/Components/Form/ButtonLink";
-import TitleText from "@/Components/Misc/TitleText";
-
+import { UsePage } from '@/@types/Global';
+import React, { ChangeEvent } from 'react';
+import Input from '@/Components/Form/Input';
+import Button from '@/Components/Form/Button';
+import Checkbox from '@/Components/Form/Checkbox';
+import { usePage, useForm } from '@inertiajs/inertia-react';
+import SmallPageContainer from '@/Layouts/SmallPageContainer';
+import ButtonLink from '@/Components/Form/ButtonLink';
+import TitleText from '@/Components/Misc/TitleText';
 
 const Login = () => {
-
   const $ = usePage<UsePage>().props;
   const { post, data, setData, errors, processing } = useForm({
     username: '',
     password: '',
-    remember: false
+    remember: false,
   });
 
   const handleSubmit = (e: ChangeEvent<HTMLFormElement>) => {
-    e.preventDefault()
+    e.preventDefault();
 
     post(route('login'), {
-      data
+      data,
     });
-  }
+  };
 
   return (
     <>
       <TitleText label={$._.form.login} />
-      <form
-        onSubmit={handleSubmit}
-        className="w-full"
-      >
+      <form onSubmit={handleSubmit} className="w-full">
         <Input
           type="text"
           label={$._.form.username}
@@ -40,7 +35,7 @@ const Login = () => {
           value={data.username}
           autoComplete="username"
           className="block mt-1 w-full"
-          onChange={e => setData('username', e.target.value)}
+          onChange={(e) => setData('username', e.target.value)}
           required
           autoFocus
         />
@@ -51,7 +46,7 @@ const Login = () => {
           value={data.password}
           autoComplete="current-password"
           className="block mt-1 w-full"
-          onChange={e => setData('password', e.target.value)}
+          onChange={(e) => setData('password', e.target.value)}
           required
         />
         <div className="w-max">
@@ -59,7 +54,7 @@ const Login = () => {
         </div>
 
         <Button
-          type='submit'
+          type="submit"
           label={$._.form.login}
           disabled={processing}
           className="mt-6 ml-auto text-lg"
@@ -75,10 +70,10 @@ const Login = () => {
         />
       </div>
     </>
-  )
-}
+  );
+};
 
 export default SmallPageContainer({
   component: Login,
-  title: 'Login'
-})
+  title: 'Login',
+});

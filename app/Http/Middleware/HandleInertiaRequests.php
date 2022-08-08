@@ -52,6 +52,9 @@ class HandleInertiaRequests extends Middleware
       // Locale Translation
       '_' => fn () => (new Locale())->getContent(),
 
+      // Status flash
+      'status' => session('status'),
+
     ]);
   }
 }
