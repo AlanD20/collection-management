@@ -11,7 +11,7 @@ const PageContainer = ({
   component.layout = (page: JSX.Element) => {
     return (
       <Layout title={title}>
-        <div className={`px-20 ${small ? 'w-[45ch]' : 'w-full'} ${className}`}>
+        <div className={`px-20 ${small ? 'w-[55ch]' : 'w-full'} ${className}`}>
           {page}
         </div>
       </Layout>

@@ -15,6 +15,7 @@ return [
   'col_description' => 'Description:',
   'col_category' => 'Category:',
   'col_thumbnail' => 'Thumbnail:',
+  'col_field_title' => 'Extra Field Items',
 
   // Buttons
   'login' => "Login",
@@ -23,6 +24,7 @@ return [
   'create_account' => "Create An Account",
   'already_registered' => "Already have an account?",
 
+  'back' => 'Go Back',
   'create' => 'Create',
   'update' => 'update',
 

@@ -16,8 +16,9 @@ class Collection extends Model
   protected $fillable = [
     'name',
     'description',
-    'category',
+    'category_id',
     'thumbnail',
+    'fields'
   ];
 
   // Date conversion
@@ -28,6 +29,11 @@ class Collection extends Model
 
   // Hidden from query
   protected $hidden = [];
+
+  // Casts
+  protected $casts = [
+    'fields' => 'array'
+  ];
 
   // Default values
   protected $attributes = [];

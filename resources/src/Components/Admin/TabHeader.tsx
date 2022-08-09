@@ -1,8 +1,8 @@
 import React from 'react';
-import TabItem from './TabItem';
-import { DefProps, UsePage } from '@/@types/Global';
+import TabItem from '@@/Table/TabItem';
 import ButtonLink from '../Form/ButtonLink';
 import { usePage } from '@inertiajs/inertia-react';
+import { DefProps, UsePage } from '@/@types/Global';
 
 interface Props extends DefProps {
   name: string;

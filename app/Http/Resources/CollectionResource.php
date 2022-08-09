@@ -22,6 +22,7 @@ class CollectionResource extends JsonResource
       'name' => $this->name,
       'description' => $this->description,
       'thumbnail' => $this->thumbnail,
+      'fields' => $this->fields,
       'items' => ItemResource::collection($items),
       'category' => new CategoryResource($category),
       'updatedAt' => $this->updated_at,

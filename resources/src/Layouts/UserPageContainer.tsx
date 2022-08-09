@@ -1,25 +1,22 @@
 import React from 'react';
 import Layout from './Layout';
-import TabHeader from '@@/Admin/TabHeader';
 import { ComponentWrapper } from '@/@types/Global';
 
 interface Props extends ComponentWrapper {
-  name: string;
-  create?: string;
+  header?: React.ReactNode | JSX.Element | JSX.Element[];
 }
 
-const AdminPageContainer = ({
+const UserPageContainer = ({
   component,
   title,
-  name,
+  header,
   small,
-  create,
   className = '',
 }: Props) => {
   component.layout = (page: JSX.Element) => {
     return (
       <Layout title={title}>
-        <TabHeader name={name} create={create} className={className} />
+        {header}
 
         <div className={`${small ? 'w-[45ch]' : 'w-full'}`}>{page}</div>
       </Layout>
@@ -28,4 +25,4 @@ const AdminPageContainer = ({
   return component;
 };
 
-export default AdminPageContainer;
+export default UserPageContainer;

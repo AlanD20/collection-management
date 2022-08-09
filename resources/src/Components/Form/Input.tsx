@@ -1,47 +1,63 @@
 import React from 'react';
 import { DefProps } from '@/@types/Global';
 import { InputHTMLAttributes } from 'react';
-import { usePage } from '@inertiajs/inertia-react';
+import ErrorStatus from '@@/Misc/ErrorStatus';
 
 interface Props extends DefProps, InputHTMLAttributes<HTMLInputElement> {
   type: 'text' | 'textarea' | 'file' | 'password' | 'email';
   name: string;
-  label: string;
+  progress?: any;
+  label?: string;
 }
 
-const Input = ({ type, name, label, className = '', ...attr }: Props) => {
-  const $ = usePage().props.errors;
-  const input = getInputTag(type, name, attr, className);
-
-  let error: string = '';
-  if ($[name] !== undefined) error = $[name];
+const Input = ({
+  type,
+  name,
+  label,
+  progress,
+  className = '',
+  ...attr
+}: Props) => {
+  const input = getInputTag(type, name, attr, progress, className);
 
   return (
     <div className="input-container mb-2 [&+.input-container]:mb-4">
       <label htmlFor={name} className="label capitalize">
         {label}
       </label>
-      {input}
+      <div className="flex w-full gap-2">
+        {input}
+        {attr.required && <span className="text-red-500 text-xl mt-2">*</span>}
+      </div>
 
-      {error && (
-        <div className="mt-2">
-          <span className="ml-4 text-red-500">* {error}</span>
-        </div>
-      )}
+      <ErrorStatus name={name} />
     </div>
   );
 };
 
-function getInputTag(type: string, name: string, attr: any, className = '') {
+function getInputTag(
+  type: string,
+  name: string,
+  attr: any,
+  progress?: any,
+  className = ''
+) {
   if (type === 'file') {
     return (
-      <input
-        {...attr}
-        type={type}
-        name={name}
-        id={name}
-        className={`w-full text-base focus:outline-none focus:border-gray-500 ${className}`}
-      />
+      <>
+        <input
+          {...attr}
+          type={type}
+          name={name}
+          id={name}
+          className={`w-full text-base focus:outline-none focus:border-gray-500 ${className}`}
+        />
+        {progress && (
+          <progress value={progress.percentage} max="100">
+            {progress.percentage}%
+          </progress>
+        )}
+      </>
     );
   } else if (type === 'textarea') {
     return (
@@ -49,6 +65,7 @@ function getInputTag(type: string, name: string, attr: any, className = '') {
         name={name}
         className={`textarea textarea-bordered h-24 border-2 border-solid input-md w-full text-base focus:outline-none
           focus:border-gray-500 ${className}`}
+        {...attr}
       ></textarea>
     );
   } else {

@@ -63,11 +63,11 @@ const Login = () => {
       </form>
       <div className="divider"></div>
 
-      <div className="flex justify-center">
+      <div className="-flex justify-center">
         <ButtonLink
           href={route('register')}
           label={$._.form.create_account}
-          className={`mt-6 ml-auto text-lg ${processing ? 'loading' : ''}`}
+          className={`mt-6 mx-auto text-lg ${processing ? 'loading' : ''}`}
         />
       </div>
     </>

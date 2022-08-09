@@ -1,5 +1,5 @@
 import { DefProps } from '@/@types/Global';
-import { usePage } from '@inertiajs/inertia-react';
+import ErrorStatus from '@@/Misc/ErrorStatus';
 import React, { InputHTMLAttributes } from 'react';
 
 interface Props extends DefProps, InputHTMLAttributes<HTMLInputElement> {
@@ -18,10 +18,6 @@ const Checkbox = ({
   className = '',
   ...attr
 }: Props) => {
-  const $ = usePage().props.errors;
-  let error: string = '';
-  if ($[name] !== undefined) error = $[name];
-
   return (
     <>
       <label
@@ -38,11 +34,8 @@ const Checkbox = ({
           {label ? label : children}
         </span>
       </label>
-      {error && (
-        <div className="mt-2">
-          <span className="ml-4 text-red-500">* {error}</span>
-        </div>
-      )}
+
+      <ErrorStatus name={name} />
     </>
   );
 };

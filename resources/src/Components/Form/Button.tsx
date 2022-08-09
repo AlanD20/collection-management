@@ -2,7 +2,7 @@ import { DefProps } from '@/@types/Global';
 import React, { ButtonHTMLAttributes } from 'react';
 
 interface Props extends DefProps, ButtonHTMLAttributes<HTMLButtonElement> {
-  label: string;
+  label?: string;
 }
 
 const Button = ({ label, className = '', ...attr }: Props) => {
@@ -11,7 +11,7 @@ const Button = ({ label, className = '', ...attr }: Props) => {
       {...attr}
       className={`btn capitalize flex items-center ${className}`}
     >
-      <span>{label}</span>
+      {label ? <span>{label}</span> : attr.children}
     </button>
   );
 };

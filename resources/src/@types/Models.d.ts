@@ -76,3 +76,11 @@ export interface Item {
   updatedAt: string;
   createdAt: string;
 }
+
+export interface CustomField {
+  id: string;
+  label: string;
+  name: string;
+  required: boolean;
+  type: 'single-line' | 'boolean' | 'integer' | 'datetime' | 'multi-line';
+}

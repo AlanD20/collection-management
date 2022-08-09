@@ -35,12 +35,12 @@ Route::inertia('/test', 'Dashboard');
 
 
 
-Route::prefix('u')
+Route::prefix('/u/{uname}')
   ->name('u.')
   ->middleware(['auth'])
   ->group(function () {
 
-    require __DIR__ . '/collections.php';
+    require __DIR__ . '/user/collections.php';
   });
 
 require __DIR__ . '/auth.php';
