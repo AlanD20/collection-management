@@ -11,12 +11,12 @@ interface Props extends Children {
 
 const Layout = ({ children, title }: Props) => {
   return (
-    <div className="min-h-screen flex flex-col items-center relative w-full ">
+    <div className="w-full h-screen flex flex-col items-center relative">
       <Head title={title} />
 
       <Navigation />
 
-      <main className="flex flex-col items-center relative min-w-full min-h-screen bg-gray-100 py-4 px-2 sm:px-8">
+      <main className="h-screen w-full flex flex-col items-center relative bg-gray-100 py-4 px-2 sm:px-8 ">
         {children}
         <Status />
       </main>

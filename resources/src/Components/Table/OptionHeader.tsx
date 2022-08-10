@@ -1,10 +1,10 @@
 import React from 'react';
 
-interface Props {}
+interface Props { }
 
 const OptionHeader = (props: Props) => {
   return (
-    <div className="mt-4 w-full bg-base-100 shadow-lg rounded-lg py-2 px-8">
+    <div className="my-4 w-full bg-base-100 shadow-lg rounded-lg py-2 px-8">
       Sort:
     </div>
   );

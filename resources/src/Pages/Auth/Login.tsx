@@ -58,7 +58,7 @@ const Login = () => {
           type="submit"
           label={$._.form.login}
           disabled={processing}
-          className="mt-6 ml-auto text-lg"
+          className={`mt-6 ml-auto text-lg ${processing ? 'loading' : ''}`}
         />
       </form>
       <div className="divider"></div>
@@ -67,7 +67,7 @@ const Login = () => {
         <ButtonLink
           href={route('register')}
           label={$._.form.create_account}
-          className={`mt-6 mx-auto text-lg ${processing ? 'loading' : ''}`}
+          className="mt-6 mx-auto text-lg"
         />
       </div>
     </>
@@ -75,7 +75,7 @@ const Login = () => {
 };
 
 export default PageContainer({
-  component: Login,
   title: 'Login',
+  body: { component: Login },
   small: true,
 });

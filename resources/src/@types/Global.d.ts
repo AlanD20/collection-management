@@ -1,5 +1,6 @@
 import route from 'ziggy-js';
 import { Page } from '@inertiajs/inertia';
+import { Attributes } from 'react';
 
 export interface UsePage extends Page {
   props: Page.props & {
@@ -7,10 +8,16 @@ export interface UsePage extends Page {
   };
 }
 
-export type Component = React.ReactComponentElement;
+export type ComponentElement = React.ReactComponentElement;
 
-export type ComponentWrapper = {
-  component: Component;
+export type Component = {
+  component: ComponentElement;
+  props?: any;
+};
+
+export type LayoutWrapper = {
+  header?: Component;
+  body: Component;
   title: string;
   small?: boolean;
   className?: string;
@@ -26,5 +33,4 @@ export interface DefProps {
 
 declare global {
   var route: route;
-  declare function usePage<UsePage>();
 }

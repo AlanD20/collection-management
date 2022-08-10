@@ -26,8 +26,6 @@ const CreateCustomField = ({ keyName, data, setData }: Props) => {
     ]);
   };
 
-  useEffect(() => console.log(data), [data]);
-
   return (
     <div className="w-full mb-8">
       <Button type="button" onClick={handleAddField} className="w-full">

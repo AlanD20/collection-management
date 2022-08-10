@@ -1,5 +1,6 @@
 import React from 'react';
 import AdminPageContainer from '@/Layouts/AdminPageContainer';
+import AdminHeader from '@@/Admin/AdminHeader';
 
 interface Props {}
 const Dashboard = (props: Props) => {
@@ -7,7 +8,12 @@ const Dashboard = (props: Props) => {
 };
 
 export default AdminPageContainer({
-  component: Dashboard,
   title: 'Dashboard',
-  name: 'Admin/Dashboard',
+  body: { component: Dashboard },
+  header: {
+    component: AdminHeader,
+    props: {
+      componentName: 'Admin/Dashboard',
+    },
+  },
 });

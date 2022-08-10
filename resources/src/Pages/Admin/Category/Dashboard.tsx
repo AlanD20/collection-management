@@ -6,6 +6,7 @@ import CategoryHead from '@@/Admin/Category/CategoryHead';
 import AdminPageContainer from '@/Layouts/AdminPageContainer';
 import CategoryTableRow from '@@/Admin/Category/CategoryTableRow';
 import CategoryGridCard from '@@/Admin/Category/CategoryGridCard';
+import AdminHeader from '@@/Admin/AdminHeader';
 
 interface Props {
   categories: Paginator<Category[]>;
@@ -39,8 +40,13 @@ const Dashboard = ({ categories }: Props) => {
 };
 
 export default AdminPageContainer({
-  component: Dashboard,
   title: 'Manage Categories',
-  name: 'Admin/Category',
-  create: 'admin.categories.create',
+  body: { component: Dashboard },
+  header: {
+    component: AdminHeader,
+    props: {
+      componentName: 'Admin/Category',
+      create: 'admin.categories.create',
+    },
+  },
 });

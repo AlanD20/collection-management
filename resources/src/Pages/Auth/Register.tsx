@@ -113,7 +113,7 @@ const Register = () => {
 };
 
 export default PageContainer({
-  component: Register,
   title: 'Register',
+  body: { component: Register },
   small: true,
 });

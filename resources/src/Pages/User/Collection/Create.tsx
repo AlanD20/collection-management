@@ -2,9 +2,9 @@ import Input from '@@/Form/Input';
 import Button from '@@/Form/Button';
 import TitleText from '@@/Misc/TitleText';
 import { UsePage } from '@/@types/Global';
-import TabHeader from '@@/User/TabHeader';
+import UserHeader from '@@/User/UserHeader';
 import { Category } from '@/@types/Models';
-import SelectDropDown from '@@/Form/Select';
+import SelectDropDown from '@@/Form/SelectDropDown';
 import React, { ChangeEvent, useMemo } from 'react';
 import UserPageContainer from '@/Layouts/UserPageContainer';
 import { usePage, useForm } from '@inertiajs/inertia-react';
@@ -16,6 +16,7 @@ interface Props {
 
 const Create = ({ categories }: Props) => {
   const $ = usePage<UsePage>().props;
+
   const { post, data, setData, processing, reset, progress } = useForm<{
     [key: string]: any;
   }>({
@@ -31,7 +32,8 @@ const Create = ({ categories }: Props) => {
 
     post(route('u.collections.store'), {
       data,
-      // onSuccess: () => reset(),
+      onSuccess: () => reset(),
+      preserveScroll: true,
     });
   };
 
@@ -64,13 +66,8 @@ const Create = ({ categories }: Props) => {
           name="description"
           value={data.description}
           className="block mt-1 w-full"
-          onChange={(e) => {
-            console.log(e);
-            console.log(data);
-            setData('description', e.target.value)
-          }}
+          onChange={(e) => setData('description', e.target.value)}
           required
-          autoFocus
         />
 
         <SelectDropDown
@@ -89,7 +86,6 @@ const Create = ({ categories }: Props) => {
             setData('thumbnail', e.target.files ? e.target.files[0] : undefined)
           }
           progress={progress}
-          autoFocus
         />
 
         <div className="divider text-lg font-semibold">
@@ -110,8 +106,15 @@ const Create = ({ categories }: Props) => {
 };
 
 export default UserPageContainer({
-  component: Create,
-  header: <TabHeader back={route('u.collections.index')} />,
   title: 'Create Collection',
+  body: { component: Create },
+  header: {
+    component: UserHeader,
+    props: {
+      back: {
+        name: 'u.collections.index'
+      },
+    },
+  },
   small: true,
 });

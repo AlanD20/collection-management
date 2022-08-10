@@ -1,5 +1,6 @@
 import Input from '@@/Form/Input';
 import Button from '@@/Form/Button';
+import AdminHeader from '@@/Admin/AdminHeader';
 import TitleText from '@@/Misc/TitleText';
 import { UsePage } from '@/@types/Global';
 import React, { ChangeEvent } from 'react';
@@ -50,8 +51,13 @@ const Create = () => {
 };
 
 export default AdminPageContainer({
-  component: Create,
   title: 'Create Category',
-  name: 'Admin/Category/Create',
+  body: { component: Create },
+  header: {
+    component: AdminHeader,
+    props: {
+      componentName: 'Admin/Category/Create',
+    },
+  },
   small: true,
 });

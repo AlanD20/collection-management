@@ -6,6 +6,7 @@ import React, { ChangeEvent } from 'react';
 import { usePage, useForm } from '@inertiajs/inertia-react';
 import AdminPageContainer from '@/Layouts/AdminPageContainer';
 import { Category } from '@/@types/Models';
+import AdminHeader from '@@/Admin/AdminHeader';
 
 interface Props {
   category: Category;
@@ -54,8 +55,13 @@ const Edit = ({ category }: Props) => {
 };
 
 export default AdminPageContainer({
-  component: Edit,
   title: 'Edit Category',
-  name: 'Admin/Category/Edit',
+  body: { component: Edit },
+  header: {
+    component: AdminHeader,
+    props: {
+      componentName: 'Admin/Category/Edit',
+    },
+  },
   small: true,
 });

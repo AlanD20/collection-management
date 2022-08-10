@@ -20,7 +20,6 @@ const SelectDropDown = ({ name, label, required, ...attr }: Props) => {
           {...attr}
           className="block mt-1 w-full"
           name={name}
-          autoFocus
           closeMenuOnSelect
         />
         {required && <span className="text-red-500 text-xl mt-2">*</span>}

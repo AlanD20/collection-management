@@ -5,14 +5,15 @@ import { usePage } from '@inertiajs/inertia-react';
 import { DefProps, UsePage } from '@/@types/Global';
 
 interface Props extends DefProps {
-  name: string;
+  componentName: string;
   create?: string;
 }
 
-const TabHeader = ({ name, create, className }: Props) => {
+const AdminHeader = ({ componentName, create, className }: Props) => {
   const $ = usePage<UsePage>().props;
 
-  const subTab = name.endsWith('Create') || name.endsWith('Edit');
+  const subTab =
+    componentName.endsWith('Create') || componentName.endsWith('Edit');
 
   return (
     <div className="w-full flex flex-col md:flex-row justify-start items-center mt-4 mb-8 gap-4">
@@ -20,17 +21,17 @@ const TabHeader = ({ name, create, className }: Props) => {
         <TabItem
           path={route('admin.index')}
           label="Dashboard"
-          active={!subTab && name.startsWith('Admin/Dashboard')}
+          active={!subTab && componentName.startsWith('Admin/Dashboard')}
         />
         <TabItem
           path={route('admin.users.index')}
           label="Manage Users"
-          active={!subTab && name.startsWith('Admin/User')}
+          active={!subTab && componentName.startsWith('Admin/User')}
         />
         <TabItem
           path={route('admin.categories.index')}
           label="Manage Categories"
-          active={!subTab && name.startsWith('Admin/Category')}
+          active={!subTab && componentName.startsWith('Admin/Category')}
         />
       </div>
 
@@ -44,4 +45,4 @@ const TabHeader = ({ name, create, className }: Props) => {
     </div>
   );
 };
-export default TabHeader;
+export default AdminHeader;

@@ -3,7 +3,7 @@ import Button from '@@/Form/Button';
 import Checkbox from '@@/Form/Checkbox';
 import { TiTimes } from 'react-icons/ti';
 import { DefProps } from '@/@types/Global';
-import SelectDropDown from '@@/Form/Select';
+import SelectDropDown from '@@/Form/SelectDropDown';
 import { CustomField } from '@/@types/Models';
 import ErrorStatus from '@@/Misc/ErrorStatus';
 import React, { ChangeEvent, useCallback } from 'react';
@@ -62,23 +62,22 @@ const SingleCustomField = ({
   ) => updateData('required', e.target.checked);
 
   const handleRemoveField = (
-    e: React.MouseEvent<HTMLButtonElement>, field: CustomField
+    e: React.MouseEvent<HTMLButtonElement>,
+    field: CustomField
   ) => {
     const prev = data[keyName] as CustomField[];
     const update = prev.filter((f) => f.id !== field.id);
     setData(keyName, update);
-  }
+  };
 
   return (
     <div className={`w-full my-4 ${className}`}>
       <div className="flex w-full justify-between items-center">
-        <span className='font-semibold'>
-          {`Field #${index + 1}`}
-        </span>
+        <span className="font-semibold">{`Field #${index + 1}`}</span>
         <Button
-          type='button'
+          type="button"
           onClick={(e) => handleRemoveField(e, field)}
-          className='btn-xs btn-outline btn-error'
+          className="btn-xs btn-outline btn-error"
         >
           <TiTimes />
         </Button>

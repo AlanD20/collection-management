@@ -6,12 +6,16 @@ import UserHead from '@@/Admin/User/UserHead';
 import AdminPageContainer from '@/Layouts/AdminPageContainer';
 import UserTableRow from '@@/Admin/User/UserTableRow';
 import UserGridCard from '@@/Admin/User/UserGridCard';
+import AdminHeader from '@@/Admin/AdminHeader';
 
 interface Props {
   users: Paginator<User[]>;
 }
 
 const Dashboard = ({ users }: Props) => {
+  console.log(users);
+
+
   return (
     <div className="overflow-x-auto flex flex-col gap-4 w-full">
       <table className="hidden lg:table table-auto table-zebra">
@@ -35,7 +39,12 @@ const Dashboard = ({ users }: Props) => {
 };
 
 export default AdminPageContainer({
-  component: Dashboard,
   title: 'Manage Users',
-  name: 'Admin/User',
+  body: { component: Dashboard },
+  header: {
+    component: AdminHeader,
+    props: {
+      componentName: 'Admin/User',
+    },
+  },
 });

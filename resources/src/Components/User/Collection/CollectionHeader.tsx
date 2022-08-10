@@ -5,7 +5,7 @@ import OptionHeader from '@@/Table/OptionHeader';
 import { usePage } from '@inertiajs/inertia-react';
 import { DefProps, UsePage } from '@/@types/Global';
 
-interface Props extends DefProps {}
+interface Props extends DefProps { }
 
 const TabHeader = ({ className }: Props) => {
   const $ = usePage<UsePage>().props;
@@ -18,7 +18,7 @@ const TabHeader = ({ className }: Props) => {
       <div className={`w-full flex justify-center ${className}`}>
         {self && (
           <ButtonLink
-            href={route('u.collections.create', $.auth.user.username)}
+            href={route('u.collections.create', { uname: $.uname })}
             label={$._.form.create}
             className="md:ml-auto btn btn-secondary btn-wide text-xl"
           />
