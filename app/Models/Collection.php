@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Traits\FormatDefaults;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Collection extends Model
 {
-  use HasFactory;
+  use HasFactory, FormatDefaults;
 
   protected $table = 'collections';
   protected $primaryKey = 'id';
@@ -44,6 +45,6 @@ class Collection extends Model
   }
   public function category()
   {
-    return $this->hasOne(Category::class, 'collection_id', 'id');
+    return $this->hasOne(Category::class, 'id', 'category_id');
   }
 }

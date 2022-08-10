@@ -5,9 +5,11 @@ namespace App\Http\Controllers\Admin;
 use Inertia\Inertia;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Helpers\ThroughPipeline;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\CategoryRequest;
+use App\Http\QueryFilter\SortAdminCategory;
 use App\Http\Resources\CategoryResource;
+use App\Http\Requests\Admin\CategoryRequest;
 
 class AdminCategoryController extends Controller
 {
@@ -15,8 +17,16 @@ class AdminCategoryController extends Controller
 
   public function index()
   {
-    $query = Category::paginate(7);
-    $categories = CategoryResource::collection($query);
+    $query = Category::query();
+
+    $pipe = ThroughPipeline::new()
+      ->query($query)
+      ->through([
+        SortAdminCategory::class
+      ])
+      ->paginate(7);
+
+    $categories = CategoryResource::collection($pipe);
 
     return Inertia::render('Admin/Category/Dashboard', compact('categories'));
   }

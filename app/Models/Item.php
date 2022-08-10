@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Traits\FormatDefaults;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Item extends Model
 {
-  use HasFactory;
+  use HasFactory, FormatDefaults;
 
   protected $table = 'items';
   protected $primaryKey = 'id';

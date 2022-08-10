@@ -21,7 +21,7 @@ class UserResource extends JsonResource
     $comments = $this->whenLoaded('comments');
 
     return [
-      ...(new DetailResource($detail))->toArray($request),
+      $this->mergeWhen($detail, new DetailResource($detail)),
       'id' => $this->id,
       'name' => $this->name,
       'username' => $this->username,
