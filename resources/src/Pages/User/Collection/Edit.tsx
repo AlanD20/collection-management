@@ -3,35 +3,41 @@ import Button from '@@/Form/Button';
 import TitleText from '@@/Misc/TitleText';
 import { UsePage } from '@/@types/Global';
 import UserHeader from '@@/User/UserHeader';
-import { Category } from '@/@types/Models';
 import SelectDropDown from '@@/Form/SelectDropDown';
 import React, { ChangeEvent, useMemo } from 'react';
+import { Category, Collection } from '@/@types/Models';
 import UserPageContainer from '@/Layouts/UserPageContainer';
 import { usePage, useForm } from '@inertiajs/inertia-react';
 import CreateCustomField from '@@/User/Collection/CreateCustomField';
 
 interface Props {
+  collection: Collection;
   categories: Category[];
 }
 
-const Create = ({ categories }: Props) => {
+const Edit = ({ collection, categories }: Props) => {
+
   const { params } = usePage<UsePage>().props;
 
+  console.log(collection);
 
-  const { post, data, setData, processing, reset, progress } = useForm<{
+  const { patch, data, setData, processing, reset, progress } = useForm<{
     [key: string]: any;
   }>({
-    name: '',
-    description: '',
-    category_id: null,
+    name: collection.name,
+    description: collection.description,
+    category_id: collection.category.id,
     thumbnail: undefined,
-    fields: [],
+    fields: collection.fields,
   });
 
   const handleSubmit = (e: ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    post(route('u.collections.store', { uname: params.uname }), {
+    patch(route('u.collections.update', {
+      uname: params.uname,
+      col_id: params.col_id
+    }), {
       data,
       onSuccess: () => reset(),
       preserveScroll: true,
@@ -49,7 +55,7 @@ const Create = ({ categories }: Props) => {
 
   return (
     <>
-      <TitleText label={__('model.create_title', {
+      <TitleText label={__('model.update_title', {
         model: 'Collection'
       })} />
       <form onSubmit={handleSubmit} className="form-control gap-4 w-full">
@@ -77,6 +83,7 @@ const Create = ({ categories }: Props) => {
           name="category_id"
           label={__('form.col_category')}
           options={CategoryList}
+          defaultInputValue={collection.category.name}
           onChange={(e: any) => setData('category_id', e.value)}
         />
 
@@ -99,7 +106,7 @@ const Create = ({ categories }: Props) => {
 
         <Button
           type="submit"
-          label={__('form.create')}
+          label={__('form.update')}
           disabled={processing}
           className={`mt-6 ml-auto text-lg ${processing ? 'loading' : ''}`}
         />
@@ -109,8 +116,8 @@ const Create = ({ categories }: Props) => {
 };
 
 export default UserPageContainer({
-  title: 'Create Collection',
-  body: { component: Create },
+  title: 'Edit Collection',
+  body: { component: Edit },
   header: {
     component: UserHeader,
     props: {

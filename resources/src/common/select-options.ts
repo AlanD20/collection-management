@@ -1,5 +1,13 @@
 import { SelectOption } from '@/@types/Global';
 
+export const CUSTOM_FIELD_TYPES_SP = [
+  { value: 'text', label: 'Single-line' },
+  { value: 'textarea', label: 'Multi-line' },
+  { value: 'number', label: 'Integer' },
+  { value: 'checkbox', label: 'Boolean' },
+  { value: 'datetime', label: 'Date & Time' },
+];
+
 export const U_COLLECTIONS_SP: SelectOption[] = [
   { value: 'asc-created_at', label: 'Oldest Collection Created' },
   { value: 'desc-created_at', label: 'Newest Collection Created' },
@@ -12,3 +20,4 @@ export const U_COLLECTIONS_SP: SelectOption[] = [
   { value: 'asc-category', label: 'Category By Ascending' },
   { value: 'desc-category', label: 'Category By Descending' },
 ];
+

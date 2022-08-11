@@ -7,6 +7,7 @@ import { CustomField } from '@/@types/Models';
 import ErrorStatus from '@@/Misc/ErrorStatus';
 import SelectDropDown from '@@/Form/SelectDropDown';
 import React, { ChangeEvent, useCallback } from 'react';
+import { CUSTOM_FIELD_TYPES_SP } from '@/common/select-options';
 
 interface Props extends DefProps {
   field: CustomField;
@@ -16,13 +17,7 @@ interface Props extends DefProps {
   setData: any;
 }
 
-const TypeList = [
-  { value: 'text', label: 'Single-line' },
-  { value: 'textarea', label: 'Multi-line' },
-  { value: 'number', label: 'Integer' },
-  { value: 'checkbox', label: 'Boolean' },
-  { value: 'datetime', label: 'Date & Time' },
-];
+
 
 const SingleCustomField = ({
   field,
@@ -70,6 +65,10 @@ const SingleCustomField = ({
     setData(keyName, update);
   };
 
+  const getLabel = (value: string) =>
+    CUSTOM_FIELD_TYPES_SP.find(sp => sp.value === value);
+
+
   return (
     <div className={`w-full my-4 ${className}`}>
       <div className="flex w-full justify-between items-center">
@@ -98,7 +97,8 @@ const SingleCustomField = ({
       />
       <SelectDropDown
         name={`${field.id}.field.select`}
-        options={TypeList}
+        options={CUSTOM_FIELD_TYPES_SP}
+        defaultInputValue={getLabel(field.type)?.label}
         onChange={(e) => handleTypeInput(e, field)}
       />
       <Checkbox

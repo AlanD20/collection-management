@@ -4,7 +4,7 @@ namespace App\Http\Requests\User;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreCollectionRequest extends FormRequest
+class CollectionRequest extends FormRequest
 {
   /**
    * Determine if the user is authorized to make this request.
@@ -40,6 +40,7 @@ class StoreCollectionRequest extends FormRequest
       'fields.*.label' => ['required', 'string'],
       'fields.*.name' => ['required', 'string'],
       'fields.*.type' => ['required', 'string'],
+      'fields.*.required' => ['required', 'boolean'],
     ];
   }
 

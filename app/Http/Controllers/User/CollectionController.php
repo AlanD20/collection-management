@@ -11,10 +11,7 @@ use App\Http\Resources\{
   CollectionResource,
   CategoryResource
 };
-use App\Http\Requests\User\{
-  StoreCollectionRequest,
-  UpdateCollectionRequest
-};
+use App\Http\Requests\User\CollectionRequest;
 use App\Http\QueryFilters\Sorting\SortCollection;
 use App\Http\QueryFilters\Filtering\FilterCollection;
 
@@ -65,7 +62,7 @@ class CollectionController extends Controller
     return Inertia::render('User/Collection/Create', compact('categories'));
   }
 
-  public function store(StoreCollectionRequest $request, User $uname)
+  public function store(CollectionRequest $request, User $uname)
   {
     $this->authorize('view', $uname);
 
@@ -82,12 +79,13 @@ class CollectionController extends Controller
     $this->authorize('view', $col_id);
 
     $col_id->load('category');
-    $category = new CollectionResource($col_id);
+    $collection = new CollectionResource($col_id);
+    $categories = CategoryResource::collection(Category::all());
 
-    return Inertia::render('User/Collection/Edit', \compact('category'));
+    return Inertia::render('User/Collection/Edit', \compact('collection', 'categories'));
   }
 
-  public function update(UpdateCollectionRequest $request, string $uname, Collection $col_id)
+  public function update(CollectionRequest $request, string $uname, Collection $col_id)
   {
     $this->authorize('update', $col_id);
 

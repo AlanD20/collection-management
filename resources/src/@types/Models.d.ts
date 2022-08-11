@@ -46,6 +46,7 @@ export interface Collection {
   category: Category;
   updatedAt: string;
   createdAt: string;
+  fields: CustomField[]
 }
 
 export interface Comment {

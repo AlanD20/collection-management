@@ -11,7 +11,6 @@ interface Props extends DefProps {
 
 const UserCollectionCard = ({ collection, className = '' }: Props) => {
   const { params, ...$ } = usePage<UsePage>().props;
-  console.log(params);
 
   return (
     <div
@@ -33,6 +32,16 @@ const UserCollectionCard = ({ collection, className = '' }: Props) => {
         </div>
         <p>{collection.description}</p>
         <div className="card-actions justify-end">
+          <ButtonLink
+            href={route('u.collections.edit', {
+              uname: params.uname,
+              col_id: collection.id,
+            })}
+            as="button"
+            className="btn-secondary text-base"
+          >
+            Edit
+          </ButtonLink>
           <ButtonLink
             href={route('u.collections.show', {
               uname: params.uname,
