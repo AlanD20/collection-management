@@ -35,7 +35,7 @@ class StoreCollectionRequest extends FormRequest
         'mimetypes:image/jpeg,image/png',
         'mimes:jpg,png',
       ],
-      'fields' => ['sometimes', 'required', 'array'],
+      'fields' => ['present', 'nullable', 'array'],
       'fields.*.id' => ['required', 'string'],
       'fields.*.label' => ['required', 'string'],
       'fields.*.name' => ['required', 'string'],

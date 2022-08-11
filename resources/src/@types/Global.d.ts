@@ -3,7 +3,10 @@ import { Attributes } from 'react';
 import { Page } from '@inertiajs/inertia';
 import { UserWithoutRelation } from './Models';
 
-export type HelperTranslate = (key: string) => string;
+export type AnyKey = { [key: string]: any }
+
+export type HelperTranslate =
+  (key: string, replace?: AnyKey) => string;
 
 export type StatusProp = {
   success: string;
@@ -22,6 +25,7 @@ export type ParamsProp = {
 export interface PageProps<> {
   appName: string;
   locale: string;
+  theme: string;
   auth: {
     user: UserWithoutRelation;
   };

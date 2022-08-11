@@ -5,7 +5,7 @@ import { usePage } from '@inertiajs/inertia-react';
 import { DefProps, UsePage } from '@/@types/Global';
 import UserCollectionOptions from '@@/User/Collection/UserCollectionOptions';
 
-interface Props extends DefProps {}
+interface Props extends DefProps { }
 
 const UserCollectionHeader = ({ className }: Props) => {
   const {
@@ -18,7 +18,9 @@ const UserCollectionHeader = ({ className }: Props) => {
 
   return (
     <>
-      <TitleText label={__('user.collection.title')} />
+      <TitleText label={__('model.title', {
+        model: `${params.uname}'s Collection`
+      })} />
       <div className={`w-full flex justify-center ${className}`}>
         {self && (
           <ButtonLink

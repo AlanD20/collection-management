@@ -11,6 +11,7 @@ interface Props extends DefProps {
 
 const UserCollectionCard = ({ collection, className = '' }: Props) => {
   const { params, ...$ } = usePage<UsePage>().props;
+  console.log(params);
 
   return (
     <div

@@ -51,7 +51,9 @@ const Create = ({ uname, categories }: Props) => {
 
   return (
     <>
-      <TitleText label={__('user.collection.create_title')} />
+      <TitleText label={__('model.create_title', {
+        model: 'Collection'
+      })} />
       <form onSubmit={handleSubmit} className="form-control gap-4 w-full">
         <Input
           type="text"

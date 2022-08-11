@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\User\CollectionController;
+use App\Models\Collection;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\User\CollectionController;
 
 
 Route::name('collections.')->group(function () {

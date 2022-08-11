@@ -11,7 +11,7 @@ interface Props extends Children {
 }
 
 const Layout = ({ children, title }: Props) => {
-  const $ = usePage<UsePage>().props.auth.user;
+  const $ = usePage<UsePage>().props;
   const pref = prefStore((state) => state);
 
   useEffect(() => pref.setLocale($.locale), [pref.locale]);

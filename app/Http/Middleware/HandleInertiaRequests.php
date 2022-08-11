@@ -50,7 +50,8 @@ class HandleInertiaRequests extends Middleware
         : null,
 
       // Locale Translation
-      'locale' => fn () => $request->user()->detail->locale,
+      'locale' => fn () => $request->user()->detail->locale ?? 'en',
+      'theme' => fn () => $request->user()->detail->theme ?? 'light',
       // '_' => fn () => (new Locale())->getContent(),
 
       // Status flash
@@ -61,7 +62,7 @@ class HandleInertiaRequests extends Middleware
       ],
 
       'params' => [
-        'uname' => $request->route('uname'),
+        'uname' => $request->route('uname') instanceof \App\Models\User ? $request->route('uname')->username : $request->route('uname'),
         'category_id' => $request->route('category_id'),
         'user_id' => $request->route('user_id'),
         'col_id' => $request->route('col_id'),
