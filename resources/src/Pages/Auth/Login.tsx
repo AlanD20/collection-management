@@ -22,16 +22,17 @@ const Login = () => {
     post(route('login'), {
       data,
       onSuccess: () => reset(),
+      onError: () => reset('password'),
     });
   };
 
   return (
     <>
-      <TitleText label={$._.form.login} />
+      <TitleText label={__('form.login')} />
       <form onSubmit={handleSubmit} className="w-full">
         <Input
           type="text"
-          label={$._.form.username}
+          label={__('form.username')}
           name="username"
           value={data.username}
           autoComplete="username"
@@ -43,7 +44,7 @@ const Login = () => {
         <Input
           type="password"
           name="password"
-          label={$._.form.password}
+          label={__('form.password')}
           value={data.password}
           autoComplete="current-password"
           className="block mt-1 w-full"
@@ -51,12 +52,12 @@ const Login = () => {
           required
         />
         <div className="w-max">
-          <Checkbox name="remember" label={$._.form.remember} />
+          <Checkbox name="remember" label={__('form.remember')} />
         </div>
 
         <Button
           type="submit"
-          label={$._.form.login}
+          label={__('form.login')}
           disabled={processing}
           className={`mt-6 ml-auto text-lg ${processing ? 'loading' : ''}`}
         />
@@ -66,7 +67,7 @@ const Login = () => {
       <div className="-flex justify-center">
         <ButtonLink
           href={route('register')}
-          label={$._.form.create_account}
+          label={__('form.create_account')}
           className="mt-6 mx-auto text-lg"
         />
       </div>

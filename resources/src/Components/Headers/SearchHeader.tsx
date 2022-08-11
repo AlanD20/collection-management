@@ -10,11 +10,7 @@ interface Props extends DefProps {
   params?: object;
 }
 
-const SearchHeader = ({
-  routeName,
-  params = {},
-  className = '',
-}: Props) => {
+const SearchHeader = ({ routeName, params = {}, className = '' }: Props) => {
   const handleSearchInput = debounce((e: ChangeEvent<HTMLInputElement>) => {
     Inertia.get(
       route(routeName, {
@@ -38,7 +34,7 @@ const SearchHeader = ({
         name="q"
         onChange={handleSearchInput}
         placeholder="Search..."
-        className="w-[40ch]"
+        className={`w-full md:w-[40ch] ${className}`}
       />
     </div>
   );

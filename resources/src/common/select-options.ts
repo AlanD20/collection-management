@@ -1,5 +1,4 @@
-import { SelectOption } from "@/@types/Global";
-
+import { SelectOption } from '@/@types/Global';
 
 export const U_COLLECTIONS_SP: SelectOption[] = [
   { value: 'asc-created_at', label: 'Oldest Collection Created' },

@@ -21,7 +21,7 @@ use App\Http\QueryFilters\Sorting\SortCollection;
 class CollectionController extends Controller
 {
 
-  public function index(Request $request, string $uname)
+  public function index(Request $request)
   {
 
     $query = Collection::query()
@@ -43,15 +43,15 @@ class CollectionController extends Controller
 
     $collections = CollectionResource::collection($pipe);
 
-    return Inertia::render('User/Collection/Dashboard', compact('collections', 'uname'));
+    return Inertia::render('User/Collection/Dashboard', compact('collections'));
   }
 
-  public function show(Request $request, string $username,  int $id)
+  public function show(Request $request,  string $uname, int $id)
   {
     $query = Collection::with('category')->findOrFail($id);
     $collection = new CollectionResource($query);
 
-    return Inertia::render('User/Collection/Show', compact('username', 'id'));
+    return Inertia::render('User/Collection/Show', compact('collection'));
   }
 
   public function create()
@@ -88,7 +88,7 @@ class CollectionController extends Controller
     return back()->with('success', __('user.collection.update'));
   }
 
-  public function destroy(Request $request, string $uname, int $id)
+  public function destroy(string $uname, int $id)
   {
     Collection::findOrFail($id)->delete();
 

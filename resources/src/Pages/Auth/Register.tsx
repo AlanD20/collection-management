@@ -25,16 +25,17 @@ const Register = () => {
     post(route('register'), {
       data,
       onSuccess: () => reset(),
+      onError: () => reset('password', 'password_confirmation'),
     });
   };
 
   return (
     <>
-      <TitleText label={$._.form.create_account} />
+      <TitleText label={__('form.create_account')} />
       <form onSubmit={handleSubmit} className="w-full">
         <Input
           type="text"
-          label={$._.form.name}
+          label={__('form.name')}
           name="name"
           value={data.name}
           className="block mt-1 w-full"
@@ -44,7 +45,7 @@ const Register = () => {
         />
         <Input
           type="text"
-          label={$._.form.username}
+          label={__('form.username')}
           name="username"
           value={data.username}
           autoComplete="username"
@@ -54,7 +55,7 @@ const Register = () => {
         />
         <Input
           type="email"
-          label={$._.form.email}
+          label={__('form.email')}
           name="email"
           value={data.email}
           autoComplete="username"
@@ -65,7 +66,7 @@ const Register = () => {
         <Input
           type="password"
           name="password"
-          label={$._.form.password}
+          label={__('form.password')}
           value={data.password}
           autoComplete="new-password"
           className="block mt-1 w-full"
@@ -75,7 +76,7 @@ const Register = () => {
         <Input
           type="password"
           name="password_confirmation"
-          label={$._.form.password_confirm}
+          label={__('form.password_confirm')}
           value={data.password_confirmation}
           autoComplete="new-password"
           className="block mt-1 w-full"
@@ -86,14 +87,14 @@ const Register = () => {
           <Checkbox
             required
             name="tos"
-            label={$._.form.tos}
+            label={__('form.tos')}
             onChange={(e) => setData('tos', e.target.checked)}
           />
         </div>
 
         <Button
           type="submit"
-          label={$._.form.register}
+          label={__('form.register')}
           disabled={processing}
           className={`mt-6 ml-auto text-lg ${processing ? 'loading' : ''}`}
         />
@@ -104,7 +105,7 @@ const Register = () => {
       <div className="flex justify-center">
         <ButtonLink
           href={route('login')}
-          label={$._.form.already_registered}
+          label={__('form.already_registered')}
           className="btn-link bnt-md underline text-sm text-gray-600 hover:text-gray-900"
         />
       </div>

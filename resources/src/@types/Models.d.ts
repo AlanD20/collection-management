@@ -2,8 +2,17 @@ export interface UserInfo {
   id: number;
   admin: boolean;
   block: boolean;
-  theme: boolean;
-  locale: boolean;
+  theme: string;
+  locale: string;
+  updatedAt: string;
+  createdAt: string;
+}
+
+export interface UserWithoutRelation extends UserInfo {
+  id: number;
+  name: string;
+  username: string;
+  email: string;
   updatedAt: string;
   createdAt: string;
 }

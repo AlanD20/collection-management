@@ -6,7 +6,7 @@ use App\Helpers\Locale;
 use App\Http\Resources\UserResource;
 use Inertia\Middleware;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Str;
 
 class HandleInertiaRequests extends Middleware
 {
@@ -50,13 +50,23 @@ class HandleInertiaRequests extends Middleware
         : null,
 
       // Locale Translation
-      '_' => fn () => (new Locale())->getContent(),
+      'locale' => fn () => $request->user()->detail->locale,
+      // '_' => fn () => (new Locale())->getContent(),
 
       // Status flash
       'status' => [
         'success' => fn () => session('success'),
         'error' => fn () => session('error'),
+        'ts' => fn () => time(),
       ],
+
+      'params' => [
+        'uname' => $request->route('uname'),
+        'category_id' => $request->route('category_id'),
+        'user_id' => $request->route('user_id'),
+        'col_id' => $request->route('col_id'),
+        'item_id' => $request->route('item_id'),
+      ]
 
     ]);
   }

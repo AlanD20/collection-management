@@ -39,7 +39,7 @@ const AdminHeader = ({ componentName, create, className }: Props) => {
         <ButtonLink
           href={route(create)}
           className="md:ml-auto btn btn-secondary btn-wide text-xl"
-          label={$._.form.create}
+          label={__('form.create')}
         />
       )}
     </div>

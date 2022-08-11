@@ -11,11 +11,14 @@ import { usePage, useForm } from '@inertiajs/inertia-react';
 import CreateCustomField from '@@/User/Collection/CreateCustomField';
 
 interface Props {
+  uname: string;
   categories: Category[];
 }
 
-const Create = ({ categories }: Props) => {
-  const $ = usePage<UsePage>().props;
+const Create = ({ uname, categories }: Props) => {
+  const { params } = usePage<UsePage>().props;
+
+  console.log(__('admin.user.create_title'));
 
   const { post, data, setData, processing, reset, progress } = useForm<{
     [key: string]: any;
@@ -30,7 +33,7 @@ const Create = ({ categories }: Props) => {
   const handleSubmit = (e: ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    post(route('u.collections.store'), {
+    post(route('u.collections.store', { uname: params.uname }), {
       data,
       onSuccess: () => reset(),
       preserveScroll: true,
@@ -48,11 +51,11 @@ const Create = ({ categories }: Props) => {
 
   return (
     <>
-      <TitleText label={$._.user.collection.create_title} />
+      <TitleText label={__('user.collection.create_title')} />
       <form onSubmit={handleSubmit} className="form-control gap-4 w-full">
         <Input
           type="text"
-          label={$._.form.col_name}
+          label={__('form.col_name')}
           name="name"
           value={data.name}
           className="block mt-1 w-full"
@@ -62,7 +65,7 @@ const Create = ({ categories }: Props) => {
         />
         <Input
           type="textarea"
-          label={$._.form.col_description}
+          label={__('form.col_description')}
           name="description"
           value={data.description}
           className="block mt-1 w-full"
@@ -72,14 +75,14 @@ const Create = ({ categories }: Props) => {
 
         <SelectDropDown
           name="category_id"
-          label={$._.form.col_category}
+          label={__('form.col_category')}
           options={CategoryList}
           onChange={(e: any) => setData('category_id', e.value)}
         />
 
         <Input
           type="file"
-          label={$._.form.col_thumbnail}
+          label={__('form.col_thumbnail')}
           name="thumbnail"
           className="block mt-1 w-full"
           onChange={(e) =>
@@ -89,14 +92,14 @@ const Create = ({ categories }: Props) => {
         />
 
         <div className="divider text-lg font-semibold">
-          {$._.form.col_field_title}
+          {__('form.col_field_title')}
         </div>
 
         <CreateCustomField keyName="fields" data={data} setData={setData} />
 
         <Button
           type="submit"
-          label={$._.form.create}
+          label={__('form.create')}
           disabled={processing}
           className={`mt-6 ml-auto text-lg ${processing ? 'loading' : ''}`}
         />

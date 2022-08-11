@@ -18,6 +18,10 @@ Route::get('/', function () {
   return Inertia::render('Home');
 })->name('index');
 
+Route::get('/getstatus', function () {
+  return back()->with('success', 'Testing a status message!');
+})->name('getstatus');
+
 Route::get('/getadmin', function () {
 
   /** @var \App\Models\User $user */

@@ -38,7 +38,7 @@ const NavProfile = ({}: Props) => {
             as="button"
             className="justify-between"
           >
-            {$._.nav.my_collection}
+            {__('nav.my_collection')}
             <span className="badge">New</span>
           </Link>
         </li>
@@ -52,7 +52,7 @@ const NavProfile = ({}: Props) => {
         )}
         <li>
           <Link href={route('logout')} as="button" method="post" replace={true}>
-            {$._.nav.logout}
+            {__('nav.logout')}
           </Link>
         </li>
       </ul>

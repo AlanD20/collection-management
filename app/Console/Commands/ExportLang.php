@@ -35,7 +35,7 @@ class ExportLang extends Command
       scandir("{$path}/{$locale}"),
       array('..', '.')
     );
-    $outDir = "{$path}/{$locale}.json";
+    // $outDir = "{$path}/{$locale}.json";
     $res = [];
     foreach ($files as $file) {
 
@@ -49,12 +49,19 @@ class ExportLang extends Command
         $name[0] => $data
       ]);
     }
+    $outDir = $this->getOutputPath();
     $this->appendToFile($outDir, $res);
   }
 
   function getLangPath()
   {
     return app_path("../lang");
+  }
+
+  function getOutputPath()
+  {
+    $locale = $this->argument('locale');
+    return app_path("../resources/src/common/{$locale}.json");
   }
 
   function execPHPFile(string $path)

@@ -21,7 +21,7 @@ const UserHeader = ({ back }: Props) => {
           className="text-xl gap-4"
         >
           <IoIosArrowBack />
-          <span className="capitalize">{$._.form.back}</span>
+          <span className="capitalize">{__('form.back')}</span>
         </ButtonLink>
       )}
     </div>

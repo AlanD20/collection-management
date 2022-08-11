@@ -1,3 +1,5 @@
+// @ts-nocheck
+import './bootstrap';
 import '../css/app.css';
 
 import React from 'react';
@@ -9,18 +11,13 @@ import Layout from './Layouts/Layout';
 
 createInertiaApp({
   title: (title) => `${title} - PCM`,
-  // @ts-ignore
   resolve: async (name) => {
-    // const page = resolvePageComponent(`./Pages/${name}.tsx`, import.meta.glob('./Pages/**/*.tsx'));
-    // @ts-ignore
-    const page =
-      // @ts-ignore
-      (
-        await resolvePageComponent(
-          `./Pages/${name}.tsx`,
-          import.meta.glob('./Pages/**/*.tsx')
-        )
-      ).default;
+    const page = (
+      await resolvePageComponent(
+        `./Pages/${name}.tsx`,
+        import.meta.glob('./Pages/**/*.tsx')
+      )
+    ).default;
 
     if (page.layout === undefined) {
       page.layout = Layout.bind(undefined, { title: name });

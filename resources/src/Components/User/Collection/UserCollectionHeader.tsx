@@ -8,18 +8,24 @@ import UserCollectionOptions from '@@/User/Collection/UserCollectionOptions';
 interface Props extends DefProps {}
 
 const UserCollectionHeader = ({ className }: Props) => {
-  const $ = usePage<UsePage>().props;
+  const {
+    auth: { user },
+    params,
+    ...$
+  } = usePage<UsePage>().props;
 
-  const self = $.auth.user.username === $.uname || $.auth.user.admin;
+  const self = user.username === params.uname || user.admin;
 
   return (
     <>
-      <TitleText label={$._.user.collection.title} />
+      <TitleText label={__('user.collection.title')} />
       <div className={`w-full flex justify-center ${className}`}>
         {self && (
           <ButtonLink
-            href={route('u.collections.create', { uname: $.uname })}
-            label={$._.form.create}
+            href={route('u.collections.create', {
+              uname: params.uname,
+            })}
+            label={__('form.create')}
             className="md:ml-auto btn btn-secondary btn-wide text-xl"
           />
         )}

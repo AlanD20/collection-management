@@ -28,11 +28,11 @@ const Edit = ({ category }: Props) => {
 
   return (
     <>
-      <TitleText label={$._.admin.category.update_title} />
+      <TitleText label={__('admin.category.update_title')} />
       <form onSubmit={handleSubmit} className="w-full">
         <Input
           type="text"
-          label={$._.form.name}
+          label={__('form.name')}
           name="username"
           value={data.name}
           className="block mt-1 w-full"
@@ -43,7 +43,7 @@ const Edit = ({ category }: Props) => {
 
         <Button
           type="submit"
-          label={$._.form.update}
+          label={__('form.update')}
           disabled={processing}
           className={`mt-6 ml-auto text-lg ${processing ? 'loading' : ''}`}
         />

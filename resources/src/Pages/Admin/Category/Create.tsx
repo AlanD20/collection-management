@@ -24,11 +24,11 @@ const Create = () => {
 
   return (
     <>
-      <TitleText label={$._.admin.category.create_title} />
+      <TitleText label={__('admin.category.create_title')} />
       <form onSubmit={handleSubmit} className="w-full">
         <Input
           type="text"
-          label={$._.form.name}
+          label={__('form.name')}
           name="username"
           value={data.name}
           className="block mt-1 w-full"
@@ -39,7 +39,7 @@ const Create = () => {
 
         <Button
           type="submit"
-          label={$._.form.create}
+          label={__('form.create')}
           disabled={processing}
           className={`mt-6 ml-auto text-lg ${processing ? 'loading' : ''}`}
         />

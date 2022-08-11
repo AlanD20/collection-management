@@ -10,11 +10,11 @@ interface Props extends DefProps {
 }
 
 const UserCollectionCard = ({ collection, className = '' }: Props) => {
-  const $ = usePage<UsePage>().props;
+  const { params, ...$ } = usePage<UsePage>().props;
 
   return (
     <div
-      className={`card card-compact lg:card-normal min-w-[250px] w-[500px] bg-base-100 shadow-xl ${className}`}
+      className={`card card-compact lg:card-normal min-w-[250px] w-[400px] bg-base-100 shadow-xl ${className}`}
     >
       <figure>
         <img src={collection.thumbnail ?? PH_THUMBNAIL} alt={collection.name} />
@@ -34,8 +34,8 @@ const UserCollectionCard = ({ collection, className = '' }: Props) => {
         <div className="card-actions justify-end">
           <ButtonLink
             href={route('u.collections.show', {
-              uname: $.auth.user.username,
-              id: collection.id,
+              uname: params.uname,
+              col_id: collection.id,
             })}
             as="button"
             className="btn-accent text-base"

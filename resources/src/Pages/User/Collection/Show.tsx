@@ -1,32 +1,30 @@
 import React from 'react';
+import { UsePage } from '@/@types/Global';
 import { Collection } from '@/@types/Models';
-import { Paginator } from '@/@types/Response';
+import { usePage } from '@inertiajs/inertia-react';
 import UserPageContainer from '@/Layouts/UserPageContainer';
-import CollectionHeader from '@@/User/Collection/CollectionHeader';
-import CollectionHead from '@@/--Trash_Bin--/User/CollectionHead';
-import CollectionTableRow from '@@/User/Collection/CollectionTableRow';
+import UserCollectionCard from '@@/User/Collection/UserCollectionCard';
 
 interface Props {
-  uname: string;
-  collections: Paginator<Collection[]>;
+  collection: Collection;
 }
 
-const Show = ({ uname, collections }: Props) => {
-  console.log(collections);
+const Show = ({ collection }: Props) => {
+  const { params } = usePage<UsePage>().props;
+
+  console.log(collection);
 
   return (
     <div>
       <h1>THIS IS INSIDE THE COLLECTION</h1>
+      <UserCollectionCard collection={collection} />
     </div>
   );
 };
 
 export default UserPageContainer({
-  title: 'User Collection',
+  title: 'Single Collection',
   body: {
     component: Show,
-  },
-  header: {
-    component: CollectionHeader,
   },
 });

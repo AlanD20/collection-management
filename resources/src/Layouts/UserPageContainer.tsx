@@ -12,13 +12,14 @@ const UserPageContainer = ({
   body.component.layout = (page: ComponentElement) => {
     return (
       <Layout title={title}>
-        {React.createElement(header?.component, header?.props)}
+        {header && React.createElement(header.component, header.props)}
 
         <div className={`${small ? 'w-[45ch]' : 'w-full'} ${className}`}>
-          {React.createElement(body.component, {
-            ...page.props,
-            ...body.props,
-          })}
+          {body &&
+            React.createElement(body.component, {
+              ...page.props,
+              ...body.props,
+            })}
         </div>
       </Layout>
     );

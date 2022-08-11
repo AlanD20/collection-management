@@ -1,19 +1,20 @@
 import React from 'react';
+import ButtonLink from '@@/Form/ButtonLink';
 import { Collection } from '@/@types/Models';
 import { Paginator } from '@/@types/Response';
+import PaginationLinks from '@@/Table/PaginationLinks';
 import UserPageContainer from '@/Layouts/UserPageContainer';
 import UserCollectionHeader from '@@/User/Collection/UserCollectionHeader';
 import UserCollectionCard from '@@/User/Collection/UserCollectionCard';
-import PaginationLinks from '@@/Table/PaginationLinks';
 
 interface Props {
-  uname: string;
   collections: Paginator<Collection[]>;
 }
 
-const Dashboard = ({ uname, collections }: Props) => {
+const Dashboard = ({ collections }: Props) => {
   return (
     <div className="w-full flex justify-center items-start gap-8 flex-wrap p-8">
+      <ButtonLink label="tesssss" href={route('stat')} as="button" />
       {collections &&
         collections.data.length > 0 &&
         collections.data.map((col) => (

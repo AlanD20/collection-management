@@ -1,15 +1,22 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Footer from './Footer';
 import Navigation from './Navigation';
-import { Head } from '@inertiajs/inertia-react';
-import { Children } from '@/@types/Global';
+import { Head, usePage } from '@inertiajs/inertia-react';
+import { Children, UsePage } from '@/@types/Global';
 import AlertStatus from '@@/Misc/AlertStatus';
+import { prefStore } from '@/common/store';
 
 interface Props extends Children {
   title: string;
 }
 
 const Layout = ({ children, title }: Props) => {
+  const $ = usePage<UsePage>().props.auth.user;
+  const pref = prefStore((state) => state);
+
+  useEffect(() => pref.setLocale($.locale), [pref.locale]);
+  useEffect(() => pref.setTheme($.theme), [pref.theme]);
+
   return (
     <div className="w-full min-h-screen flex flex-col items-center relative">
       <Head title={title} />
