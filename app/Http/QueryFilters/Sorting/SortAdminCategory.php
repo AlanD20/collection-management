@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\QueryFilter;
+namespace App\Http\QueryFilters\Sorting;
 
 
-use App\Http\QueryFilter\Base\SortFilter;
+use App\Http\QueryFilters\Base\SortFilter;
 
 class SortAdminCategory extends SortFilter
 {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Category } from '@/@types/Models';
 import { Paginator } from '@/@types/Response';
-import Paginate from '@@/Table/Paginate';
+import PaginationLinks from '@@/Table/PaginationLinks';
 import CategoryHead from '@@/Admin/Category/CategoryHead';
 import AdminPageContainer from '@/Layouts/AdminPageContainer';
 import CategoryTableRow from '@@/Admin/Category/CategoryTableRow';
@@ -34,7 +34,7 @@ const Dashboard = ({ categories }: Props) => {
             <CategoryGridCard key={category.id} category={category} />
           ))}
       </div>
-      <Paginate meta={categories.meta} />
+      <PaginationLinks meta={categories.meta} />
     </div>
   );
 };

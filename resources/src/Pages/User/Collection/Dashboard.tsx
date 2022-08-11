@@ -2,9 +2,9 @@ import React from 'react';
 import { Collection } from '@/@types/Models';
 import { Paginator } from '@/@types/Response';
 import UserPageContainer from '@/Layouts/UserPageContainer';
-import CollectionHeader from '@@/User/Collection/CollectionHeader';
-import CollectionCard from '@@/User/Collection/CollectionCard';
-
+import UserCollectionHeader from '@@/User/Collection/UserCollectionHeader';
+import UserCollectionCard from '@@/User/Collection/UserCollectionCard';
+import PaginationLinks from '@@/Table/PaginationLinks';
 
 interface Props {
   uname: string;
@@ -12,21 +12,14 @@ interface Props {
 }
 
 const Dashboard = ({ uname, collections }: Props) => {
-
-  console.log(collections);
-
   return (
-    <div
-      className="w-full flex justify-center items-start gap-4 flex-wrap [&>*]:grow p-8"
-    >
-      {collections && collections.data.length > 0 &&
-        collections.data.map(col => (
-          <CollectionCard
-            key={col.id}
-            collection={col}
-          />
-        ))
-      }
+    <div className="w-full flex justify-center items-start gap-8 flex-wrap p-8">
+      {collections &&
+        collections.data.length > 0 &&
+        collections.data.map((col) => (
+          <UserCollectionCard key={col.id} collection={col} />
+        ))}
+      <PaginationLinks meta={collections.meta} className="mt-8" />
     </div>
   );
 };
@@ -37,6 +30,6 @@ export default UserPageContainer({
     component: Dashboard,
   },
   header: {
-    component: CollectionHeader,
+    component: UserCollectionHeader,
   },
 });

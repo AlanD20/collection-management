@@ -11,8 +11,8 @@ interface Props extends StateManagerProps {
 
 const SelectDropDown = ({ name, label, required, ...attr }: Props) => {
   return (
-    <div className="w-full">
-      <label htmlFor={name} className="label capitalize">
+    <div className={`w-full flex flex-col justify-center items-start gap-2 ${attr.className}`}>
+      <label htmlFor={name} className="label capitalize whitespace-nowrap">
         {label}
       </label>
       <div className="flex w-full gap-2">

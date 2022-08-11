@@ -21,7 +21,9 @@ const Input = ({
   const input = getInputTag(type, name, attr, progress, className);
 
   return (
-    <div className="input-container mb-2 [&+.input-container]:mb-4">
+    <div
+      className={`flex flex-col justify-center items-start min-w-[10ch] input-container mb-2 [&+.input-container]:mb-4 ${className}`}
+    >
       <label htmlFor={name} className="label capitalize">
         {label}
       </label>
@@ -47,7 +49,7 @@ function getInputTag(
       <>
         <input
           {...attr}
-          type={type}
+          type="file"
           name={name}
           id={name}
           className={`w-full text-base focus:outline-none focus:border-gray-500 ${className}`}

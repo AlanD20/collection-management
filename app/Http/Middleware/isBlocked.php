@@ -4,8 +4,9 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class isAdmin
+class isBlocked
 {
   /**
    * Handle an incoming request.
@@ -16,10 +17,13 @@ class isAdmin
    */
   public function handle(Request $request, Closure $next)
   {
-    if ($request->user()->detail->admin) {
-      return $next($request);
+    if ($request->user()->detail->block) {
+      Auth::guard('web')->logout();
+      $request->session()->invalidate();
+      $request->session()->regenerateToken();
+      return redirect()->route('login');
     }
 
-    return redirect()->route('index');
+    return $next($request);
   }
 }

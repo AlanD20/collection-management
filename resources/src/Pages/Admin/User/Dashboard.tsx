@@ -1,7 +1,7 @@
 import React from 'react';
 import { User } from '@/@types/Models';
 import { Paginator } from '@/@types/Response';
-import Paginate from '@@/Table/Paginate';
+import PaginationLinks from '@@/Table/PaginationLinks';
 import UserHead from '@@/Admin/User/UserHead';
 import AdminPageContainer from '@/Layouts/AdminPageContainer';
 import UserTableRow from '@@/Admin/User/UserTableRow';
@@ -14,7 +14,6 @@ interface Props {
 
 const Dashboard = ({ users }: Props) => {
   console.log(users);
-
 
   return (
     <div className="overflow-x-auto flex flex-col gap-4 w-full">
@@ -33,7 +32,7 @@ const Dashboard = ({ users }: Props) => {
           users.data.length > 0 &&
           users.data.map((user) => <UserGridCard key={user.id} user={user} />)}
       </div>
-      <Paginate meta={users.meta} />
+      <PaginationLinks meta={users.meta} />
     </div>
   );
 };

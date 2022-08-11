@@ -5,7 +5,7 @@ namespace App\Traits;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 
-trait FormatDefaults
+trait DateDefaultFormat
 {
 
   public function createdAt(): Attribute

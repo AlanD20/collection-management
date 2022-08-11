@@ -1,16 +1,16 @@
 import React from 'react';
 import TitleText from '@@/Misc/TitleText';
 import ButtonLink from '@@/Form/ButtonLink';
-import OptionHeader from '@@/Table/OptionHeader';
 import { usePage } from '@inertiajs/inertia-react';
 import { DefProps, UsePage } from '@/@types/Global';
+import UserCollectionOptions from '@@/User/Collection/UserCollectionOptions';
 
-interface Props extends DefProps { }
+interface Props extends DefProps {}
 
-const TabHeader = ({ className }: Props) => {
+const UserCollectionHeader = ({ className }: Props) => {
   const $ = usePage<UsePage>().props;
 
-  const self = $.auth.user.username === $.uname;
+  const self = $.auth.user.username === $.uname || $.auth.user.admin;
 
   return (
     <>
@@ -24,9 +24,9 @@ const TabHeader = ({ className }: Props) => {
           />
         )}
       </div>
-      <OptionHeader />
+      <UserCollectionOptions />
     </>
   );
 };
 
-export default TabHeader;
+export default UserCollectionHeader;

@@ -53,7 +53,10 @@ class HandleInertiaRequests extends Middleware
       '_' => fn () => (new Locale())->getContent(),
 
       // Status flash
-      'status' => fn () => session('status'),
+      'status' => [
+        'success' => fn () => session('success'),
+        'error' => fn () => session('error'),
+      ],
 
     ]);
   }

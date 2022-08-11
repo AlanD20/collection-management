@@ -7,9 +7,9 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Helpers\ThroughPipeline;
 use App\Http\Controllers\Controller;
-use App\Http\QueryFilter\SortAdminCategory;
 use App\Http\Resources\CategoryResource;
 use App\Http\Requests\Admin\CategoryRequest;
+use App\Http\QueryFilters\Sorting\SortAdminCategory;
 
 class AdminCategoryController extends Controller
 {
@@ -41,7 +41,7 @@ class AdminCategoryController extends Controller
   {
     Category::create($request->validated());
 
-    return back()->with('status', __('admin.category.create'));
+    return back()->with('success', __('admin.category.create'));
   }
 
   public function edit(Request $request, int $id)
@@ -59,13 +59,13 @@ class AdminCategoryController extends Controller
       'name' => $request->safe()->name
     ]);
 
-    return back()->with('status', __('admin.category.update'));
+    return back()->with('success', __('admin.category.update'));
   }
 
   public function destroy(Request $request, int $id)
   {
     Category::findOrFail($id)->delete();
 
-    return back()->with('status', __('admin.category.delete'));
+    return back()->with('success', __('admin.category.delete'));
   }
 }

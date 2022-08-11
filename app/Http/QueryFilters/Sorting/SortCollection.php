@@ -1,16 +1,15 @@
 <?php
 
-namespace App\Http\QueryFilter;
+namespace App\Http\QueryFilters\Sorting;
 
-
-use App\Http\QueryFilter\Base\SortFilter;
+use App\Http\QueryFilters\Base\SortFilter;
 
 class SortCollection extends SortFilter
 {
 
   protected $columns = [
     'id' => 'collections.id',
-    'name' => 'collections.name',
+    'title' => 'collections.name',
     'category' => 'categories.name',
     'created_at' => 'collections.created_at',
     'updated_at' => 'collections.updated_at',

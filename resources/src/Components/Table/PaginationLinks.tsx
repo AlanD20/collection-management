@@ -7,11 +7,13 @@ interface Props extends DefProps {
   meta: MetaPaginator;
 }
 
-const Paginate = ({ meta, className }: Props) => {
+const PaginationLinks = ({ meta, className }: Props) => {
   const $ = usePage();
 
   return (
-    <div className="w-full flex flex-col sm:flex-row gap-4 justify-between items-center px-8">
+    <div
+      className={`w-full flex flex-col sm:flex-row gap-4 justify-between items-center px-8 ${className}`}
+    >
       <div>
         <span>
           Showing {meta.from} to {meta.to} of {meta.total} results
@@ -35,4 +37,4 @@ const Paginate = ({ meta, className }: Props) => {
   );
 };
 
-export default Paginate;
+export default PaginationLinks;

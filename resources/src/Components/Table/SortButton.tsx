@@ -1,7 +1,6 @@
-import { Link } from "@inertiajs/inertia-react";
-import React, { useEffect, useState } from "react"
-import { BiSortDown, BiSortUp } from "react-icons/bi";
-
+import { Link } from '@inertiajs/inertia-react';
+import React, { useEffect, useState } from 'react';
+import { BiSortDown, BiSortUp } from 'react-icons/bi';
 
 interface Props {
   label: string;
@@ -11,13 +10,13 @@ interface Props {
 }
 
 const SortButton = ({ label, name, routeName, params = [] }: Props) => {
-
   const [sort, setSort] = useState<'asc' | 'desc'>('desc');
 
-  const handleSwapSortType = () => setSort(prev => {
-    if (prev === 'asc') return 'desc'
-    return 'asc'
-  })
+  const handleSwapSortType = () =>
+    setSort((prev) => {
+      if (prev === 'asc') return 'desc';
+      return 'asc';
+    });
 
   return (
     <Link
@@ -30,16 +29,16 @@ const SortButton = ({ label, name, routeName, params = [] }: Props) => {
       replace={true}
       preserveState
       preserveScroll
-      className='link no-underline flex items-center gap-2'
+      className="link no-underline flex items-center gap-2"
       onSuccess={handleSwapSortType}
     >
       <span>{label}</span>
-      {sort === 'asc' ?
-        <BiSortDown className="text-lg font-bold" /> :
+      {sort === 'asc' ? (
+        <BiSortDown className="text-lg font-bold" />
+      ) : (
         <BiSortUp className="text-lg font-bold" />
-      }
-
+      )}
     </Link>
-  )
-}
-export default SortButton
+  );
+};
+export default SortButton;

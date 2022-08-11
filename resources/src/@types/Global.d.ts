@@ -3,9 +3,7 @@ import { Page } from '@inertiajs/inertia';
 import { Attributes } from 'react';
 
 export interface UsePage extends Page {
-  props: Page.props & {
-    [key: string]: any;
-  };
+  props: Page.props;
 }
 
 export type ComponentElement = React.ReactComponentElement;
@@ -30,6 +28,11 @@ export interface Children {
 export interface DefProps {
   className?: string;
 }
+
+export type SelectOption = {
+  value: string;
+  label: string;
+};
 
 declare global {
   var route: route;

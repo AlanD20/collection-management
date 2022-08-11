@@ -2,13 +2,13 @@
 
 namespace App\Models;
 
-use App\Traits\FormatDefaults;
+use App\Traits\DateDefaultFormat;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Tag extends Model
 {
-  use HasFactory, FormatDefaults;
+  use HasFactory, DateDefaultFormat;
 
   protected $table = 'tags';
   protected $primaryKey = 'id';

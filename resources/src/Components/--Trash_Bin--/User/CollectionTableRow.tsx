@@ -1,8 +1,8 @@
-import React from "react"
-import { DefProps, UsePage } from "@/@types/Global";
-import { Collection } from "@/@types/Models"
-import { Link, usePage } from "@inertiajs/inertia-react";
-import { Inertia } from "@inertiajs/inertia";
+import React from 'react';
+import { DefProps, UsePage } from '@/@types/Global';
+import { Collection } from '@/@types/Models';
+import { Link, usePage } from '@inertiajs/inertia-react';
+import { Inertia } from '@inertiajs/inertia';
 
 interface Props extends DefProps {
   collection: Collection;
@@ -11,10 +11,13 @@ interface Props extends DefProps {
 const CollectionTableRow = ({ collection, className = '' }: Props) => {
   const $ = usePage<UsePage>().props;
 
-  const handleRowClick = () => Inertia.visit(route('u.collections.show', {
-    uname: $.auth.user.username,
-    id: collection.id
-  }));
+  const handleRowClick = () =>
+    Inertia.visit(
+      route('u.collections.show', {
+        uname: $.auth.user.username,
+        id: collection.id,
+      })
+    );
 
   return (
     <tr
@@ -27,11 +30,8 @@ const CollectionTableRow = ({ collection, className = '' }: Props) => {
       <td>{collection.description}</td>
       <td>{collection.updatedAt}</td>
       <td>{collection.createdAt}</td>
-      <tr
-        className={`hover ${className}`}
-      >
-      </tr>
+      <tr className={`hover ${className}`}></tr>
     </tr>
-  )
-}
-export default CollectionTableRow
+  );
+};
+export default CollectionTableRow;

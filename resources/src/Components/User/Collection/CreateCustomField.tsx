@@ -1,8 +1,8 @@
+import React from 'react';
 import { nanoid } from 'nanoid';
 import Button from '@@/Form/Button';
 import { IoMdAdd } from 'react-icons/io';
 import { CustomField } from '@/@types/Models';
-import React, { ChangeEvent, useEffect } from 'react';
 import SingleCustomField from './SingleCustomField';
 
 interface Props {

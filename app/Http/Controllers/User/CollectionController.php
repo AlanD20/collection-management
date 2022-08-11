@@ -2,19 +2,21 @@
 
 namespace App\Http\Controllers\User;
 
-use App\Helpers\ThroughPipeline;
 use Inertia\Inertia;
-use App\Models\Category;
-use App\Models\Collection;
 use Illuminate\Http\Request;
-use Illuminate\Pipeline\Pipeline;
-use App\Http\QueryFilter\SortCollection;
+use App\Helpers\ThroughPipeline;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\CategoryResource;
-use App\Http\Resources\CollectionResource;
-use App\Http\Requests\User\StoreCollectionRequest;
-use App\Http\Requests\User\UpdateCollectionRequest;
-use Carbon\Carbon;
+use App\Http\QueryFilters\Filtering\FilterCollection;
+use App\Models\{Collection, Category};
+use App\Http\Resources\{
+  CollectionResource,
+  CategoryResource
+};
+use App\Http\Requests\User\{
+  StoreCollectionRequest,
+  UpdateCollectionRequest
+};
+use App\Http\QueryFilters\Sorting\SortCollection;
 
 class CollectionController extends Controller
 {
@@ -34,7 +36,8 @@ class CollectionController extends Controller
     $pipe = ThroughPipeline::new()
       ->query($query)
       ->through([
-        SortCollection::class
+        SortCollection::class,
+        FilterCollection::class
       ])
       ->paginate(7);
 
@@ -64,7 +67,7 @@ class CollectionController extends Controller
     $user = $request->user();
     $user->collections()->create($request->validated());
 
-    return back()->with('status', __('user.collection.create'));
+    return back()->with('success', __('user.collection.create'));
   }
 
   public function edit(Request $request, string $uname, int $id)
@@ -82,13 +85,13 @@ class CollectionController extends Controller
       'name' => $request->safe()->name
     ]);
 
-    return back()->with('status', __('user.collection.update'));
+    return back()->with('success', __('user.collection.update'));
   }
 
   public function destroy(Request $request, string $uname, int $id)
   {
     Collection::findOrFail($id)->delete();
 
-    return back()->with('status', __('user.collection.delete'));
+    return back()->with('success', __('user.collection.delete'));
   }
 }

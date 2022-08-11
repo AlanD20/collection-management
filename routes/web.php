@@ -32,16 +32,6 @@ Route::get('/getadmin', function () {
 
 Route::inertia('/test', 'Dashboard');
 
-
-
-
-Route::prefix('/u/{uname}')
-  ->name('u.')
-  ->middleware(['auth'])
-  ->group(function () {
-
-    require __DIR__ . '/user/collections.php';
-  });
-
 require __DIR__ . '/auth.php';
 require __DIR__ . '/admin/index.php';
+require __DIR__ . '/user/index.php';

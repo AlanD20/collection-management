@@ -15,7 +15,7 @@ const UserHeader = ({ back }: Props) => {
 
   return (
     <div className="w-full flex px-8 py-4">
-      {back &&
+      {back && (
         <ButtonLink
           href={route(back.name, { uname: $.auth.user.username })}
           className="text-xl gap-4"
@@ -23,7 +23,7 @@ const UserHeader = ({ back }: Props) => {
           <IoIosArrowBack />
           <span className="capitalize">{$._.form.back}</span>
         </ButtonLink>
-      }
+      )}
     </div>
   );
 };

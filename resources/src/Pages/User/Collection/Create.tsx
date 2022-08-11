@@ -112,7 +112,7 @@ export default UserPageContainer({
     component: UserHeader,
     props: {
       back: {
-        name: 'u.collections.index'
+        name: 'u.collections.index',
       },
     },
   },
