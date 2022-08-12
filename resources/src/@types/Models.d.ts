@@ -2,8 +2,8 @@ export interface UserInfo {
   id: number;
   admin: boolean;
   block: boolean;
-  theme: string;
-  locale: string;
+  theme: 'light' | 'dark';
+  locale: 'en' | 'ku';
   updatedAt: string;
   createdAt: string;
 }
@@ -46,13 +46,13 @@ export interface Collection {
   category: Category;
   updatedAt: string;
   createdAt: string;
-  fields: CustomField[]
+  fields: CustomField[];
 }
 
 export interface Comment {
   id: number;
   user_id: number;
-  item_id: number;
+  item: number;
   body: string;
   item: Item;
   user: User;

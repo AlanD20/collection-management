@@ -1,9 +1,9 @@
 import Input from '@@/Form/Input';
 import Button from '@@/Form/Button';
-import AdminHeader from '@@/Admin/AdminHeader';
 import TitleText from '@@/Misc/TitleText';
 import { UsePage } from '@/@types/Global';
 import React, { ChangeEvent } from 'react';
+import AdminHeader from '@@/Headers/Admin/AdminHeader';
 import { usePage, useForm } from '@inertiajs/inertia-react';
 import AdminPageContainer from '@/Layouts/AdminPageContainer';
 

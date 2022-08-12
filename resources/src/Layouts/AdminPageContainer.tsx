@@ -1,5 +1,6 @@
 import React from 'react';
 import Layout from './Layout';
+import { AdminHeaderProps } from '@@/Headers/Admin/AdminHeader';
 import { ComponentElement, LayoutWrapper } from '@/@types/Global';
 
 const AdminPageContainer = ({
@@ -8,7 +9,7 @@ const AdminPageContainer = ({
   title,
   small,
   className = '',
-}: LayoutWrapper) => {
+}: LayoutWrapper<AdminHeaderProps>) => {
   body.component.layout = (page: ComponentElement) => {
     return (
       <Layout title={title}>

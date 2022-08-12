@@ -1,12 +1,12 @@
-import { UsePage } from '@/@types/Global';
-import React, { ChangeEvent } from 'react';
 import Input from '@@/Form/Input';
 import Button from '@@/Form/Button';
 import Checkbox from '@@/Form/Checkbox';
-import { usePage, useForm } from '@inertiajs/inertia-react';
-import PageContainer from '@/Layouts/PageContainer';
-import ButtonLink from '@@/Form/ButtonLink';
 import TitleText from '@@/Misc/TitleText';
+import { UsePage } from '@/@types/Global';
+import React, { ChangeEvent } from 'react';
+import ButtonLink from '@@/Form/ButtonLink';
+import PageContainer from '@/Layouts/PageContainer';
+import { usePage, useForm } from '@inertiajs/inertia-react';
 
 const Login = () => {
   const $ = usePage<UsePage>().props;

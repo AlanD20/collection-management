@@ -3,7 +3,7 @@ import Button from '@@/Form/Button';
 import TitleText from '@@/Misc/TitleText';
 import { UsePage } from '@/@types/Global';
 import UserHeader from '@@/User/UserHeader';
-import { Category } from '@/@types/Models';
+import { Category, Tag } from '@/@types/Models';
 import SelectDropDown from '@@/Form/SelectDropDown';
 import React, { ChangeEvent, useMemo } from 'react';
 import UserPageContainer from '@/Layouts/UserPageContainer';
@@ -11,10 +11,10 @@ import { usePage, useForm } from '@inertiajs/inertia-react';
 import CreateCustomField from '@@/User/Collection/CreateCustomField';
 
 interface Props {
-  categories: Category[];
+  tags: Tag[];
 }
 
-const Create = ({ categories }: Props) => {
+const Create = ({ tags }: Props) => {
   const { params } = usePage<UsePage>().props;
 
   const { post, data, setData, processing, reset, progress } = useForm<{
@@ -39,11 +39,11 @@ const Create = ({ categories }: Props) => {
 
   const CategoryList = useMemo(
     () =>
-      categories.map((category) => ({
-        value: category.id,
-        label: category.name,
+      tags.map((tag) => ({
+        value: tag.id,
+        label: tag.name,
       })),
-    [categories]
+    [tags]
   );
 
   return (

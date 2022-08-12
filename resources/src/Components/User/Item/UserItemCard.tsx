@@ -1,41 +1,39 @@
 import React from 'react';
 import ButtonLink from '@@/Form/ButtonLink';
-import { Collection } from '@/@types/Models';
+import { Collection, Item } from '@/@types/Models';
 import { PH_THUMBNAIL } from '@/common/constants';
 import { usePage } from '@inertiajs/inertia-react';
 import { DefProps, UsePage } from '@/@types/Global';
 
 interface Props extends DefProps {
   collection: Collection;
+  item: Item;
 }
 
-const UserCollectionCard = ({ collection, className = '' }: Props) => {
+const UserItemCard = ({ collection, item, className = '' }: Props) => {
   const { params, ...$ } = usePage<UsePage>().props;
 
   return (
     <div
       className={`card card-compact lg:card-normal min-w-[250px] w-[400px] bg-base-100 shadow-xl ${className}`}
     >
-      <figure>
-        <img src={collection.thumbnail ?? PH_THUMBNAIL} alt={collection.name} />
-      </figure>
-      <div className="px-8 pt-4 flex justify-between text-xs italic">
-        <span>Created {collection.createdAt}</span>
-        <span>Updated {collection.updatedAt}</span>
+      <div className="px-8 pt-4 flex justify-between">
+        <span>Created {item.createdAt}</span>
+        <span>Updated {item.updatedAt}</span>
       </div>
-      <div className="card-body !py-4">
+      <div className="card-body">
         <div className="flex flex-col mb-4">
           <h2 className="card-title capitalize font-bold">
-            {`${collection.name} #${collection.id}`}
+            {`${item.name} #${item.id}`}
           </h2>
-          <div className="badge">{collection.category.name}</div>
         </div>
-        <p>{collection.description}</p>
-        <div className="card-actions mt-4 justify-end">
+        <p>{collection.fields[0].label}</p>
+        <div className="card-actions justify-end">
           <ButtonLink
-            href={route('u.collections.edit', {
+            href={route('u.collections.items.edit', {
               uname: params.uname,
-              collection: collection.id,
+              collection: params.collection,
+              item: params.item,
             })}
             as="button"
             className="btn-secondary text-base"
@@ -45,7 +43,8 @@ const UserCollectionCard = ({ collection, className = '' }: Props) => {
           <ButtonLink
             href={route('u.collections.show', {
               uname: params.uname,
-              collection: collection.id,
+              collection: params.collection,
+              item: params.item,
             })}
             as="button"
             className="btn-accent text-base"
@@ -58,4 +57,4 @@ const UserCollectionCard = ({ collection, className = '' }: Props) => {
   );
 };
 
-export default UserCollectionCard;
+export default UserItemCard;

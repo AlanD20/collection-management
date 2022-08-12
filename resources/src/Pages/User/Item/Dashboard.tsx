@@ -1,31 +1,30 @@
 import React from 'react';
-import { Collection } from '@/@types/Models';
+import { Collection, Item } from '@/@types/Models';
 import { Paginator } from '@/@types/Response';
 import EmptyResource from '@@/Misc/EmptyResource';
 import PaginationLinks from '@@/Table/PaginationLinks';
 import UserPageContainer from '@/Layouts/UserPageContainer';
 import UserCollectionHeader from '@@/User/Collection/UserCollectionHeader';
-import UserCollectionCard from '@@/User/Collection/UserCollectionCard';
+import UserItemCard from '@@/User/Item/UserItemCard';
 
 interface Props {
-  collections: Paginator<Collection[]>;
+  collection: Collection;
+  items: Paginator<Item[]>;
 }
 
-const Dashboard = ({ collections }: Props) => {
-  const condition = collections && collections.data.length > 0;
+const Dashboard = ({ collection, items }: Props) => {
+  const condition = items && items.data.length > 0;
 
   return (
     <div className="w-full flex justify-center items-start gap-8 flex-wrap p-8">
-      {!condition && <EmptyResource model="Collection" />}
+      {!condition && <EmptyResource model="Item" />}
 
       {condition &&
-        collections.data.map((col) => (
-          <UserCollectionCard key={col.id} collection={col} />
+        items.data.map((item) => (
+          <UserItemCard key={item.id} item={item} collection={collection} />
         ))}
 
-      {condition && (
-        <PaginationLinks meta={collections.meta} className="mt-8" />
-      )}
+      {condition && <PaginationLinks meta={items.meta} className="mt-8" />}
     </div>
   );
 };

@@ -1,6 +1,6 @@
 import React from 'react';
+import AdminHeader from '@@/Headers/Admin/AdminHeader';
 import AdminPageContainer from '@/Layouts/AdminPageContainer';
-import AdminHeader from '@@/Admin/AdminHeader';
 
 interface Props {}
 const Dashboard = (props: Props) => {

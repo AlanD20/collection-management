@@ -65,7 +65,7 @@ class HandleInertiaRequests extends Middleware
         'uname' => $request->route('uname') instanceof \App\Models\User ? $request->route('uname')->username : $request->route('uname'),
         'category_id' => $request->route('category_id'),
         'user_id' => $request->route('user_id'),
-        'col_id' => $request->route('col_id'),
+        'collection' => $request->route('collection'),
         'item_id' => $request->route('item_id'),
       ]
 

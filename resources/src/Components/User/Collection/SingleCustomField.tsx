@@ -17,8 +17,6 @@ interface Props extends DefProps {
   setData: any;
 }
 
-
-
 const SingleCustomField = ({
   field,
   keyName,
@@ -66,8 +64,7 @@ const SingleCustomField = ({
   };
 
   const getLabel = (value: string) =>
-    CUSTOM_FIELD_TYPES_SP.find(sp => sp.value === value);
-
+    CUSTOM_FIELD_TYPES_SP.find((sp) => sp.value === value);
 
   return (
     <div className={`w-full my-4 ${className}`}>

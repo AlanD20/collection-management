@@ -1,19 +1,20 @@
 import React from 'react';
 import { User } from '@/@types/Models';
 import { Paginator } from '@/@types/Response';
-import PaginationLinks from '@@/Table/PaginationLinks';
 import UserHead from '@@/Admin/User/UserHead';
-import AdminPageContainer from '@/Layouts/AdminPageContainer';
+import AdminHeader from '@@/Headers/Admin/AdminHeader';
 import UserTableRow from '@@/Admin/User/UserTableRow';
 import UserGridCard from '@@/Admin/User/UserGridCard';
-import AdminHeader from '@@/Admin/AdminHeader';
+import PaginationLinks from '@@/Table/PaginationLinks';
+import AdminPageContainer from '@/Layouts/AdminPageContainer';
+import EmptyResource from '@@/Misc/EmptyResource';
 
 interface Props {
   users: Paginator<User[]>;
 }
 
 const Dashboard = ({ users }: Props) => {
-  console.log(users);
+  const condition = users && users.data.length > 0;
 
   return (
     <div className="overflow-x-auto flex flex-col gap-4 w-full">
@@ -32,7 +33,10 @@ const Dashboard = ({ users }: Props) => {
           users.data.length > 0 &&
           users.data.map((user) => <UserGridCard key={user.id} user={user} />)}
       </div>
-      <PaginationLinks meta={users.meta} />
+
+      {!condition && <EmptyResource model="User" />}
+
+      {condition && <PaginationLinks meta={users.meta} />}
     </div>
   );
 };
@@ -44,6 +48,9 @@ export default AdminPageContainer({
     component: AdminHeader,
     props: {
       componentName: 'Admin/User',
+      searchbar: {
+        routeName: 'admin.users.index',
+      },
     },
   },
 });

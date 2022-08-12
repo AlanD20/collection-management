@@ -3,10 +3,9 @@ import { Attributes } from 'react';
 import { Page } from '@inertiajs/inertia';
 import { UserWithoutRelation } from './Models';
 
-export type AnyKey = { [key: string]: any }
+export type AnyKey = { [key: string]: any };
 
-export type HelperTranslate =
-  (key: string, replace?: AnyKey) => string;
+export type HelperTranslate = (key: string, replace?: AnyKey) => string;
 
 export type StatusProp = {
   success: string;
@@ -16,10 +15,10 @@ export type StatusProp = {
 
 export type ParamsProp = {
   uname?: string;
-  category_id?: number;
-  user_id?: number;
-  col_id?: number;
-  item_id?: number;
+  category?: number;
+  user?: number;
+  collection?: number;
+  item?: number;
 };
 
 export interface PageProps<> {
@@ -37,14 +36,14 @@ export type UsePage = Page & Page<PageProps>;
 
 export type ComponentElement = React.ReactComponentElement;
 
-export type Component = {
+export type Component<T = any> = {
   component: ComponentElement;
-  props?: any;
+  props?: T;
 };
 
-export type LayoutWrapper = {
-  header?: Component;
-  body: Component;
+export type LayoutWrapper<H = any, B = any> = {
+  header?: Component<H>;
+  body: Component<B>;
   title: string;
   small?: boolean;
   className?: string;

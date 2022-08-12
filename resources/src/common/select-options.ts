@@ -20,4 +20,3 @@ export const U_COLLECTIONS_SP: SelectOption[] = [
   { value: 'asc-category', label: 'Category By Ascending' },
   { value: 'desc-category', label: 'Category By Descending' },
 ];
-

@@ -1,19 +1,20 @@
 import React from 'react';
 import { Category } from '@/@types/Models';
 import { Paginator } from '@/@types/Response';
+import AdminHeader from '@@/Headers/Admin/AdminHeader';
 import PaginationLinks from '@@/Table/PaginationLinks';
 import CategoryHead from '@@/Admin/Category/CategoryHead';
 import AdminPageContainer from '@/Layouts/AdminPageContainer';
 import CategoryTableRow from '@@/Admin/Category/CategoryTableRow';
 import CategoryGridCard from '@@/Admin/Category/CategoryGridCard';
-import AdminHeader from '@@/Admin/AdminHeader';
+import EmptyResource from '@@/Misc/EmptyResource';
 
 interface Props {
   categories: Paginator<Category[]>;
 }
 
 const Dashboard = ({ categories }: Props) => {
-  console.log(categories);
+  const condition = categories && categories.data.length > 0;
 
   return (
     <div className="overflow-x-auto flex flex-col gap-4 w-full">
@@ -28,13 +29,15 @@ const Dashboard = ({ categories }: Props) => {
         </tbody>
       </table>
       <div className="grid lg:hidden justify-center gap-8 py-4">
-        {categories &&
-          categories.data.length > 0 &&
+        {condition &&
           categories.data.map((category) => (
             <CategoryGridCard key={category.id} category={category} />
           ))}
       </div>
-      <PaginationLinks meta={categories.meta} />
+
+      {!condition && <EmptyResource model="Category" />}
+
+      {condition && <PaginationLinks meta={categories.meta} />}
     </div>
   );
 };
@@ -47,6 +50,9 @@ export default AdminPageContainer({
     props: {
       componentName: 'Admin/Category',
       create: 'admin.categories.create',
+      searchbar: {
+        routeName: 'admin.categories.index',
+      },
     },
   },
 });

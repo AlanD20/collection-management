@@ -7,6 +7,7 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Helpers\ThroughPipeline;
 use App\Http\Controllers\Controller;
+use App\Http\QueryFilters\Filtering\FilterAdminCategory;
 use App\Http\Resources\CategoryResource;
 use App\Http\Requests\Admin\CategoryRequest;
 use App\Http\QueryFilters\Sorting\SortAdminCategory;
@@ -22,7 +23,8 @@ class AdminCategoryController extends Controller
     $pipe = ThroughPipeline::new()
       ->query($query)
       ->through([
-        SortAdminCategory::class
+        SortAdminCategory::class,
+        FilterAdminCategory::class
       ])
       ->paginate(7);
 

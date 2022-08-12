@@ -1,17 +1,24 @@
 import React from 'react';
 import TabItem from '@@/Table/TabItem';
-import ButtonLink from '../Form/ButtonLink';
-import { usePage } from '@inertiajs/inertia-react';
-import { DefProps, UsePage } from '@/@types/Global';
+import { DefProps } from '@/@types/Global';
+import ButtonLink from '../../Form/ButtonLink';
+import SearchHeader from '../SearchHeader';
 
-interface Props extends DefProps {
+export interface AdminHeaderProps extends DefProps {
   componentName: string;
+  searchbar?: {
+    routeName: string;
+    className?: string;
+  };
   create?: string;
 }
 
-const AdminHeader = ({ componentName, create, className }: Props) => {
-  const $ = usePage<UsePage>().props;
-
+const AdminHeader = ({
+  componentName,
+  searchbar,
+  create,
+  className,
+}: AdminHeaderProps) => {
   const subTab =
     componentName.endsWith('Create') || componentName.endsWith('Edit');
 
@@ -35,12 +42,22 @@ const AdminHeader = ({ componentName, create, className }: Props) => {
         />
       </div>
 
-      {create && (
-        <ButtonLink
-          href={route(create)}
-          className="md:ml-auto btn btn-secondary btn-wide text-xl"
-          label={__('form.create')}
-        />
+      {(searchbar || create) && (
+        <div className="flex gap-4 items-center ml-auto">
+          {searchbar && searchbar.routeName && (
+            <SearchHeader
+              routeName={searchbar.routeName}
+              className={`${searchbar.className}`}
+            />
+          )}
+          {create && (
+            <ButtonLink
+              href={route(create)}
+              className="md:ml-auto btn btn-secondary btn-wide text-xl"
+              label={__('form.create')}
+            />
+          )}
+        </div>
       )}
     </div>
   );
