@@ -40,6 +40,11 @@ const AdminHeader = ({
           label="Manage Categories"
           active={!subTab && componentName.startsWith('Admin/Category')}
         />
+        <TabItem
+          path={route('admin.tags.index')}
+          label="Manage Tags"
+          active={!subTab && componentName.startsWith('Admin/Tag')}
+        />
       </div>
 
       {(searchbar || create) && (

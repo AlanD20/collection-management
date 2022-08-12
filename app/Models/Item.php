@@ -44,6 +44,6 @@ class Item extends Model
   }
   public function tags()
   {
-    return $this->hasMany(Tag::class, 'item_id', 'id');
+    return $this->belongsToMany(Tag::class, 'item_tag', 'item_id', 'tag_id');
   }
 }

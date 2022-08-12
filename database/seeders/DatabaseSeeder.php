@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
     ]);
 
     $categories = \App\Models\Category::factory(100)->create()->pluck('id');
+    $tags = \App\Models\Tag::factory(100)->create()->pluck('id');
 
     \App\Models\User::factory(50)->create()
       ->each(function ($user) use ($categories) {

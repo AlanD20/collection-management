@@ -2,7 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
-
+use App\Http\Controllers\Admin\AdminTagController;
+use App\Http\Controllers\Admin\AdminCategoryController;
 
 Route::name('admin.')
   ->middleware(['auth', 'isAdmin', 'isBlocked'])
@@ -17,7 +18,11 @@ Route::name('admin.')
       // Users
       require __DIR__ . '/users.php';
 
-      // Categories
-      require __DIR__ . '/categories.php';
+      Route::resources([
+        '/categories' => AdminCategoryController::class,
+        '/tags' => AdminTagController::class
+      ], [
+        'except' => ['show']
+      ]);
     });
   });
