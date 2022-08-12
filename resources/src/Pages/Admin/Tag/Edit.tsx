@@ -1,40 +1,40 @@
 import Input from '@@/Form/Input';
 import Button from '@@/Form/Button';
 import TitleText from '@@/Misc/TitleText';
-import { Category } from '@/@types/Models';
+import { Tag } from '@/@types/Models';
 import React, { ChangeEvent } from 'react';
 import { useForm } from '@inertiajs/inertia-react';
 import AdminHeader from '@@/Headers/Admin/AdminHeader';
 import AdminPageContainer from '@/Layouts/AdminPageContainer';
 
 interface Props {
-  category: Category;
+  tag: Tag;
 }
 
-const Edit = ({ category }: Props) => {
+const Edit = ({ tag }: Props) => {
 
   const { patch, data, setData, processing } = useForm({
-    name: category.name,
+    name: tag.name,
   });
 
   const handleSubmit = (e: ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    patch(route('admin.categories.update', { id: category.id }), {
+    patch(route('admin.tags.update', { id: tag.id }), {
       data,
     });
   };
 
   return (
     <>
-      <TitleText label={__('mdoel.update_title', {
-        model: 'Category'
+      <TitleText label={__('model.update_title', {
+        model: 'Tag'
       })} />
       <form onSubmit={handleSubmit} className="w-full">
         <Input
           type="text"
           label={__('form.name')}
-          name="username"
+          name="name"
           value={data.name}
           className="block mt-1 w-full"
           onChange={(e) => setData('name', e.target.value)}
@@ -54,12 +54,12 @@ const Edit = ({ category }: Props) => {
 };
 
 export default AdminPageContainer({
-  title: 'Edit Category',
+  title: 'Edit Tag',
   body: { component: Edit },
   header: {
     component: AdminHeader,
     props: {
-      componentName: 'Admin/Category/Edit',
+      componentName: 'Admin/Tag/Edit',
     },
   },
   small: true,

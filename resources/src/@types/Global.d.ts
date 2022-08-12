@@ -16,6 +16,7 @@ export type StatusProp = {
 export type ParamsProp = {
   uname?: string;
   category?: number;
+  tag?: number;
   user?: number;
   collection?: number;
   item?: number;

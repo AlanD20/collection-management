@@ -4,18 +4,21 @@ namespace App\Http\Controllers\Admin;
 
 use Inertia\Inertia;
 use App\Models\Category;
-use Illuminate\Http\Request;
 use App\Helpers\ThroughPipeline;
 use App\Http\Controllers\Controller;
-use App\Http\QueryFilters\Filtering\FilterAdminCategory;
 use App\Http\Resources\CategoryResource;
 use App\Http\Requests\Admin\CategoryRequest;
-use App\Http\QueryFilters\Sorting\SortAdminCategory;
+use App\Http\QueryFilters\Sorting\SortTagCategory;
+use App\Http\QueryFilters\Filtering\FilterTagCategory;
 
 class AdminCategoryController extends Controller
 {
 
-
+  /**
+   * Display a listing of the resource.
+   *
+   * @return \Illuminate\Http\Response
+   */
   public function index()
   {
     $query = Category::query();
@@ -23,8 +26,8 @@ class AdminCategoryController extends Controller
     $pipe = ThroughPipeline::new()
       ->query($query)
       ->through([
-        SortAdminCategory::class,
-        FilterAdminCategory::class
+        SortTagCategory::class,
+        FilterTagCategory::class
       ])
       ->paginate(7);
 
@@ -33,41 +36,76 @@ class AdminCategoryController extends Controller
     return Inertia::render('Admin/Category/Dashboard', compact('categories'));
   }
 
+  /**
+   * Show the form for creating a new resource.
+   *
+   * @return \Illuminate\Http\Response
+   */
   public function create()
   {
 
     return Inertia::render('Admin/Category/Create');
   }
 
+  /**
+   * Store a newly created resource in storage.
+   *
+   * @param  \App\Http\Requests\Admin\CategoryRequest  $request
+   * @return \Illuminate\Http\Response
+   */
   public function store(CategoryRequest $request)
   {
     Category::create($request->validated());
 
-    return back()->with('success', __('admin.category.create'));
+    return back()->with('success', __('model.create', [
+      'model' => 'Category'
+    ]));
   }
 
-  public function edit(Request $request, int $id)
+  /**
+   * Show the form for editing the specified resource.
+   *
+   * @param  \App\Models\Category  $category
+   * @return \Illuminate\Http\Response
+   */
+  public function edit(Category $category)
   {
-    $query = Category::findOrFail($id);
-    $category = new CategoryResource($query);
+    $category = new CategoryResource($category);
 
     return Inertia::render('Admin/Category/Edit', \compact('category'));
   }
 
-  public function update(CategoryRequest $request, int $id)
+  /**
+   * Update the specified resource in storage.
+   *
+   * @param  \App\Http\Requests\CategoryRequest  $request
+   * @param  \App\Models\Category  $category
+   * @return \Illuminate\Http\Response
+   */
+  public function update(CategoryRequest $request, Category $category)
   {
 
-    Category::findOrFail($id)->update([
+    $category->update([
       'name' => $request->safe()->name
     ]);
 
-    return back()->with('success', __('admin.category.update'));
+    return back()->with('success', __('model.update', [
+      'model' => 'Category'
+    ]));
   }
 
-  public function destroy(Request $request, int $id)
+  /**
+   * Remove the specified resource from storage.
+   *
+   * @param  \App\Models\Category  $category
+   * @return \Illuminate\Http\Response
+   */
+  public function destroy(Category $category)
   {
-    Category::findOrFail($id)->delete();
+    $category->delete();
 
-    return back()->with('success', __('admin.category.delete'));
+    return back()->with('success', __('model.delete', [
+      'model' => 'Category'
+    ]));
   }
 }

@@ -39,6 +39,10 @@ class Collection extends Model
   // Default values
   protected $attributes = [];
 
+  public function user()
+  {
+    return $this->belongsTo(User::class, 'user_id', 'id');
+  }
   public function items()
   {
     return $this->hasMany(Item::class, 'collection_id', 'id');

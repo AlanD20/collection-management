@@ -1,40 +1,36 @@
 import Input from '@@/Form/Input';
 import Button from '@@/Form/Button';
 import TitleText from '@@/Misc/TitleText';
-import { Category } from '@/@types/Models';
 import React, { ChangeEvent } from 'react';
 import { useForm } from '@inertiajs/inertia-react';
 import AdminHeader from '@@/Headers/Admin/AdminHeader';
 import AdminPageContainer from '@/Layouts/AdminPageContainer';
 
-interface Props {
-  category: Category;
-}
+const Create = () => {
 
-const Edit = ({ category }: Props) => {
-
-  const { patch, data, setData, processing } = useForm({
-    name: category.name,
+  const { post, data, setData, processing, reset } = useForm({
+    name: '',
   });
 
   const handleSubmit = (e: ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    patch(route('admin.categories.update', { id: category.id }), {
+    post(route('admin.tags.store'), {
       data,
+      onSuccess: () => reset(),
     });
   };
 
   return (
     <>
-      <TitleText label={__('mdoel.update_title', {
-        model: 'Category'
+      <TitleText label={__('model.create_title', {
+        model: 'Tag'
       })} />
       <form onSubmit={handleSubmit} className="w-full">
         <Input
           type="text"
           label={__('form.name')}
-          name="username"
+          name="name"
           value={data.name}
           className="block mt-1 w-full"
           onChange={(e) => setData('name', e.target.value)}
@@ -44,7 +40,7 @@ const Edit = ({ category }: Props) => {
 
         <Button
           type="submit"
-          label={__('form.update')}
+          label={__('form.create')}
           disabled={processing}
           className={`mt-6 ml-auto text-lg ${processing ? 'loading' : ''}`}
         />
@@ -54,12 +50,12 @@ const Edit = ({ category }: Props) => {
 };
 
 export default AdminPageContainer({
-  title: 'Edit Category',
-  body: { component: Edit },
+  title: 'Create Tag',
+  body: { component: Create },
   header: {
     component: AdminHeader,
     props: {
-      componentName: 'Admin/Category/Edit',
+      componentName: 'Admin/Tag/Create',
     },
   },
   small: true,

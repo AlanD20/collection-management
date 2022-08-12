@@ -5,7 +5,7 @@ namespace App\Http\QueryFilters\Sorting;
 
 use App\Http\QueryFilters\Base\SortFilter;
 
-class SortAdminCategory extends SortFilter
+class SortTagCategory extends SortFilter
 {
 
   protected $columns = [

@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Http\QueryFilters\Filtering\FilterAdminUser;
 use App\Http\Resources\UserResource;
 use App\Http\QueryFilters\Sorting\SortAdminUser;
+use App\Models\Collection;
 
 class AdminUserController extends Controller
 {
@@ -37,37 +38,44 @@ class AdminUserController extends Controller
 
   public function promote(int $userId)
   {
-    dd($userId);
-    User::findOrFail($userId)->detail->update(['admin' => true]);
+    User::findOrFail($userId)
+      ->detail
+      ->update(['admin' => true]);
 
-    return back()->with('success', __('admin.user.promote'));
+    return back()->with('success', __('admin.promote'));
   }
 
   public function demote(int $userId)
   {
-    User::findOrFail($userId)->detail->updateOrCreate(['admin' => false]);
+    User::findOrFail($userId)
+      ->detail
+      ->update(['admin' => false]);
 
-    return back()->with('success', __('admin.user.demote'));
+    return back()->with('success', __('admin.demote'));
   }
 
   public function block(int $userId)
   {
-    User::findOrFail($userId)->detail->updateOrCreate(['block' => true]);
+    User::findOrFail($userId)
+      ->detail
+      ->update(['block' => true]);
 
-    return back()->with('success', __('admin.user.block'));
+    return back()->with('success', __('admin.block'));
   }
 
   public function unblock(int $userId)
   {
-    User::findOrFail($userId)->detail->updateOrCreate(['block' => false]);
+    User::findOrFail($userId)
+      ->detail
+      ->update(['block' => false]);
 
-    return back()->with('success', __('admin.user.unblock'));
+    return back()->with('success', __('admin.unblock'));
   }
 
   public function destroy(int $userId)
   {
     User::findOrFail($userId)->delete();
 
-    return back()->with('success', __('admin.user.delete'));
+    return back()->with('success', __('admin.delete'));
   }
 }

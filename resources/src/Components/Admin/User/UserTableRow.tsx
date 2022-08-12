@@ -10,7 +10,6 @@ interface Props {
 
 const UserTableRow = ({ user }: Props) => {
 
-  console.log(user);
 
   return (
     <tr>

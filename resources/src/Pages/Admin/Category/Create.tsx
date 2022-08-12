@@ -1,14 +1,13 @@
 import Input from '@@/Form/Input';
 import Button from '@@/Form/Button';
 import TitleText from '@@/Misc/TitleText';
-import { UsePage } from '@/@types/Global';
 import React, { ChangeEvent } from 'react';
+import { useForm } from '@inertiajs/inertia-react';
 import AdminHeader from '@@/Headers/Admin/AdminHeader';
-import { usePage, useForm } from '@inertiajs/inertia-react';
 import AdminPageContainer from '@/Layouts/AdminPageContainer';
 
 const Create = () => {
-  const $ = usePage<UsePage>().props;
+
   const { post, data, setData, processing, reset } = useForm({
     name: '',
   });
@@ -24,12 +23,14 @@ const Create = () => {
 
   return (
     <>
-      <TitleText label={__('admin.category.create_title')} />
+      <TitleText label={__('model.create_title', {
+        model: 'Category'
+      })} />
       <form onSubmit={handleSubmit} className="w-full">
         <Input
           type="text"
           label={__('form.name')}
-          name="username"
+          name="name"
           value={data.name}
           className="block mt-1 w-full"
           onChange={(e) => setData('name', e.target.value)}

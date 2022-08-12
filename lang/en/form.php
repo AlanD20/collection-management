@@ -24,8 +24,10 @@ return [
   'create_account' => "Create An Account",
   'already_registered' => "Already have an account?",
 
+  'edit' => 'Edit',
   'back' => 'Go Back',
   'create' => 'Create',
-  'update' => 'update',
+  'delete' => 'Delete',
+  'update' => 'Update',
 
 ];

@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\StoreTagRequest;
-use App\Http\Requests\Admin\UpdateTagRequest;
 use App\Models\Tag;
+use Inertia\Inertia;
+use App\Helpers\ThroughPipeline;
+use App\Http\Resources\TagResource;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\TagRequest;
+use App\Http\QueryFilters\Sorting\SortTagCategory;
+use App\Http\QueryFilters\Filtering\FilterTagCategory;
 
 class AdminTagController extends Controller
 {
@@ -16,7 +20,19 @@ class AdminTagController extends Controller
    */
   public function index()
   {
-    //
+    $query = Tag::query();
+
+    $pipe = ThroughPipeline::new()
+      ->query($query)
+      ->through([
+        SortTagCategory::class,
+        FilterTagCategory::class
+      ])
+      ->paginate(7);
+
+    $tags = TagResource::collection($pipe);
+
+    return Inertia::render('Admin/Tag/Dashboard', compact('tags'));
   }
 
   /**
@@ -26,29 +42,22 @@ class AdminTagController extends Controller
    */
   public function create()
   {
-    //
+    return Inertia::render('Admin/Tag/Create');
   }
 
   /**
    * Store a newly created resource in storage.
    *
-   * @param  \App\Http\Requests\StoreTagRequest  $request
+   * @param  \App\Http\Requests\TagRequest  $request
    * @return \Illuminate\Http\Response
    */
-  public function store(StoreTagRequest $request)
+  public function store(TagRequest $request)
   {
-    //
-  }
+    Tag::create($request->validated());
 
-  /**
-   * Display the specified resource.
-   *
-   * @param  \App\Models\Tag  $tag
-   * @return \Illuminate\Http\Response
-   */
-  public function show(Tag $tag)
-  {
-    //
+    return back()->with('success', __('model.create', [
+      'model' => 'Tag'
+    ]));
   }
 
   /**
@@ -59,19 +68,27 @@ class AdminTagController extends Controller
    */
   public function edit(Tag $tag)
   {
-    //
+    $tag = new TagResource($tag);
+
+    return Inertia::render('Admin/Tag/Edit', \compact('tag'));
   }
 
   /**
    * Update the specified resource in storage.
    *
-   * @param  \App\Http\Requests\UpdateTagRequest  $request
+   * @param  \App\Http\Requests\TagRequest  $request
    * @param  \App\Models\Tag  $tag
    * @return \Illuminate\Http\Response
    */
-  public function update(UpdateTagRequest $request, Tag $tag)
+  public function update(TagRequest $request, Tag $tag)
   {
-    //
+    $tag->update([
+      'name' => $request->safe()->name
+    ]);
+
+    return back()->with('success', __('model.update', [
+      'model' => 'Tag'
+    ]));
   }
 
   /**
@@ -82,6 +99,11 @@ class AdminTagController extends Controller
    */
   public function destroy(Tag $tag)
   {
-    //
+    $tag->items()->detach();
+    $tag->delete();
+
+    return back()->with('success', __('model.delete', [
+      'model' => 'Category'
+    ]));
   }
 }
