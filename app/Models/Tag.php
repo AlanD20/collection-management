@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Traits\DateDefaultFormat;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Tag extends Model
@@ -33,5 +34,12 @@ class Tag extends Model
   public function items()
   {
     return $this->belongsToMany(Item::class, 'item_tag', 'tag_id', 'item_id');
+  }
+
+  public function name(): Attribute
+  {
+    return new Attribute(
+      set: fn ($value) => \strtolower($value)
+    );
   }
 }

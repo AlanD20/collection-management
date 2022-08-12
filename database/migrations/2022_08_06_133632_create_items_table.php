@@ -17,6 +17,7 @@ return new class extends Migration
       $table->id();
       $table->foreignId('collection_id')->constrained('collections', 'id')->onDelete('cascade');
       $table->string('name');
+      $table->json('fields')->nullable();
       $table->timestamps();
     });
   }

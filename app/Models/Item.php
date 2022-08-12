@@ -27,6 +27,11 @@ class Item extends Model
   // Hidden from query
   protected $hidden = [];
 
+  // Casts
+  protected $casts = [
+    'fields' => 'array'
+  ];
+
   // Default values
   protected $attributes = [];
 

@@ -1,111 +1,109 @@
 import Input from '@@/Form/Input';
 import Button from '@@/Form/Button';
-import { Tag } from '@/@types/Models';
+import { Collection, Tag } from '@/@types/Models';
 import TitleText from '@@/Misc/TitleText';
 import { UsePage } from '@/@types/Global';
 import SelectDropDown from '@@/Form/SelectDropDown';
-import React, { ChangeEvent, useMemo } from 'react';
+import React, { ChangeEvent, useEffect, useMemo } from 'react';
 import UserHeader from '@@/Headers/User/UserHeaderCompact';
 import UserPageContainer from '@/Layouts/UserPageContainer';
 import { usePage, useForm } from '@inertiajs/inertia-react';
 import CreateCustomField from '@@/User/Collection/CreateCustomField';
+import RenderCustomField from '@@/User/Item/RenderCustomField';
 
 interface Props {
+  collection: Collection;
   tags: Tag[];
 }
 
-const Create = ({ tags }: Props) => {
-  const { params } = usePage<UsePage>().props;
+const Create = ({ collection, tags }: Props) => {
+  const { params, ts } = usePage<UsePage>().props;
 
   const { post, data, setData, processing, reset, progress } = useForm<{
     [key: string]: any;
   }>({
     name: '',
-    description: '',
-    category_id: null,
-    thumbnail: undefined,
-    fields: [],
+    tags: [],
+    fields: collection.fields,
   });
 
   const handleSubmit = (e: ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    post(route('u.collections.store', { uname: params.uname }), {
-      data,
-      onSuccess: () => reset(),
-      preserveScroll: true,
-    });
+    post(
+      route('u.collections.items.store', {
+        uname: params.uname,
+        collection: params.collection,
+      }),
+      {
+        data,
+        onSuccess: () => reset(),
+        preserveScroll: true,
+      }
+    );
   };
 
-  const CategoryList = useMemo(
+  const TagList = useMemo(
     () =>
       tags.map((tag) => ({
         value: tag.id,
         label: tag.name,
       })),
-    [tags]
+    [ts]
   );
 
+  useEffect(() => console.log(data), [data]);
+
   return (
-    <>
-      <TitleText
-        label={__('model.create_title', {
-          model: 'Collection',
-        })}
+    <form onSubmit={handleSubmit} className="form-control gap-4 w-full">
+      <Input
+        type="text"
+        label={__('form.item_name')}
+        name="name"
+        value={data.name}
+        className="block mt-1 w-full"
+        onChange={(e) => setData('name', e.target.value)}
+        required
+        autoFocus
       />
-      <form onSubmit={handleSubmit} className="form-control gap-4 w-full">
-        <Input
-          type="text"
-          label={__('form.col_name')}
-          name="name"
-          value={data.name}
-          className="block mt-1 w-full"
-          onChange={(e) => setData('name', e.target.value)}
-          required
-          autoFocus
-        />
-        <Input
-          type="textarea"
-          label={__('form.col_description')}
-          name="description"
-          value={data.description}
-          className="block mt-1 w-full"
-          onChange={(e) => setData('description', e.target.value)}
-          required
-        />
 
-        <SelectDropDown
-          name="category_id"
-          label={__('form.col_category')}
-          options={CategoryList}
-          onChange={(e: any) => setData('category_id', e.value)}
-        />
+      <SelectDropDown
+        isMulti
+        closeMenuOnSelect={false}
+        name="tags"
+        label={__('form.item_tag')}
+        options={TagList}
+        onChange={(e: any) =>
+          setData(
+            'tags',
+            e.map((s: any) => s.value)
+          )
+        }
+      />
 
-        <Input
-          type="file"
-          label={__('form.col_thumbnail')}
-          name="thumbnail"
-          className="block mt-1 w-full"
-          onChange={(e) =>
-            setData('thumbnail', e.target.files ? e.target.files[0] : undefined)
-          }
-          progress={progress}
-        />
+      <div className="divider text-lg font-semibold">
+        {__('form.item_field_title')}
+      </div>
 
-        <div className="divider text-lg font-semibold">
-          {__('form.col_field_title')}
-        </div>
+      {collection &&
+        collection.fields.length > 0 &&
+        collection.fields.map((field) => (
+          <RenderCustomField
+            key={field.id}
+            keyName="fields"
+            field={field}
+            data={data}
+            setData={setData}
+          />
+        ))}
 
-        <CreateCustomField keyName="fields" data={data} setData={setData} />
-
-        <Button
-          type="submit"
-          label={__('form.create')}
-          disabled={processing}
-          className={`mt-6 ml-auto text-lg ${processing ? 'loading' : ''}`}
-        />
-      </form>
-    </>
+      <Button
+        type="submit"
+        label={__('form.create')}
+        disabled={processing}
+        className={`mt-6 ml-auto text-lg ${processing ? 'loading' : ''}`}
+      />
+    </form>
   );
 };
 

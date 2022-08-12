@@ -42,7 +42,7 @@ const UserCollectionCard = ({ collection, className = '' }: Props) => {
               uname: params.uname,
               collection: collection.id,
             }}
-            hideWhen={self}
+            hideWhen={!self}
           />
           <ViewButtonLink
             routeName="u.collections.show"

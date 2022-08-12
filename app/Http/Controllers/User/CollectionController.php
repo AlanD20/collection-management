@@ -26,7 +26,6 @@ class CollectionController extends Controller
    */
   public function index(User $uname)
   {
-
     $query = Collection::query()
       ->select([
         'collections.*',
@@ -47,7 +46,7 @@ class CollectionController extends Controller
     $pipe->getCollection()
       ->each(function (Collection $collection) {
         $collection->name = Str::limit($collection->name, 20, '...');
-        $collection->description = Str::limit($collection->description, 120, '...');
+        $collection->description = Str::limit($collection->description);
       });
 
     $collections = CollectionResource::collection($pipe);

@@ -3,8 +3,17 @@ import { DefProps } from '@/@types/Global';
 import { InputHTMLAttributes } from 'react';
 import ErrorStatus from '@@/Misc/ErrorStatus';
 
+type InputTypes =
+  | 'text'
+  | 'textarea'
+  | 'file'
+  | 'password'
+  | 'email'
+  | 'number'
+  | 'datetime';
+
 interface Props extends DefProps, InputHTMLAttributes<HTMLInputElement> {
-  type: 'text' | 'textarea' | 'file' | 'password' | 'email';
+  type: InputTypes;
   name: string;
   progress?: any;
   label?: string;
@@ -38,7 +47,7 @@ const Input = ({
 };
 
 function getInputTag(
-  type: string,
+  type: InputTypes,
   name: string,
   attr: any,
   progress?: any,
@@ -70,18 +79,18 @@ function getInputTag(
         {...attr}
       ></textarea>
     );
-  } else {
-    return (
-      <input
-        {...attr}
-        type={type}
-        name={name}
-        id={name}
-        className={`input input-bordered border-2 border-solid input-md w-full text-base focus:outline-none
-    focus:border-gray-500 ${className}`}
-      />
-    );
   }
+
+  return (
+    <input
+      {...attr}
+      type={type}
+      name={name}
+      id={name}
+      className={`input input-bordered border-2 border-solid input-md w-full text-base focus:outline-none
+    focus:border-gray-500 ${className}`}
+    />
+  );
 }
 
 export default Input;

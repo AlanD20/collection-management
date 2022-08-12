@@ -17,6 +17,11 @@ return [
   'col_thumbnail' => 'Thumbnail:',
   'col_field_title' => 'Extra Field Items',
 
+  // Collection Form
+  'item_name' => 'Name:',
+  'item_tag' => 'Tag:',
+  'item_field_title' => 'Custom Field Items',
+
   // Buttons
   'login' => "Login",
   'back' => "Go Back",

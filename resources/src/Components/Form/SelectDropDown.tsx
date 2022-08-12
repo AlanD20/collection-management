@@ -14,15 +14,18 @@ const SelectDropDown = ({ name, label, required, ...attr }: Props) => {
     <div
       className={`w-full flex flex-col justify-center items-start gap-2 ${attr.className}`}
     >
-      <label htmlFor={name} className="label capitalize whitespace-nowrap">
+      <label
+        htmlFor={name}
+        className="label capitalize whitespace-nowrap w-full"
+      >
         {label}
       </label>
-      <div className="flex w-full gap-2">
+      <div className="flex w-[85%] gap-2">
         <Select
-          {...attr}
-          className="block mt-1 w-full"
-          name={name}
           closeMenuOnSelect
+          {...attr}
+          className="block mt-1 w-full md:w-[60ch]"
+          name={name}
         />
         {required && <span className="text-red-500 text-xl mt-2">*</span>}
       </div>

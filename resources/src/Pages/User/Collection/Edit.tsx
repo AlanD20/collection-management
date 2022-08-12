@@ -9,8 +9,6 @@ import UserPageContainer from '@/Layouts/UserPageContainer';
 import { usePage, useForm } from '@inertiajs/inertia-react';
 import UserHeaderCompact from '@@/Headers/User/UserHeaderCompact';
 import CreateCustomField from '@@/User/Collection/CreateCustomField';
-import { paramsStore } from '@/common/store';
-import { getParamsWithKey } from '@/common/helpers';
 
 interface Props {
   collection: Collection;
@@ -19,8 +17,6 @@ interface Props {
 
 const Edit = ({ collection, categories }: Props) => {
   const { params } = usePage<UsePage>().props;
-
-  console.log(collection);
 
   const { patch, data, setData, processing, reset, progress } = useForm<{
     [key: string]: any;

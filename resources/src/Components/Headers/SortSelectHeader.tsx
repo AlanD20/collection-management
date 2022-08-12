@@ -18,7 +18,10 @@ const SortSelectHeader = ({
   className = '',
 }: Props) => {
   const handleOnChange = (newValue: unknown) => {
-    const [sort, order] = (newValue as SelectOption).value.split('-');
+    const [sort, order] = (newValue as SelectOption).value.split('-') as [
+      'asc' | 'desc',
+      string
+    ];
 
     Inertia.get(
       route(routeName, {
@@ -44,7 +47,7 @@ const SortSelectHeader = ({
       name="sort"
       options={options}
       onChange={handleOnChange}
-      className={`w-full min-w-[20ch] md:w-[40ch] !flex-row ${className}`}
+      className={`min-w-[20ch] md:w-[40ch] !flex-row ${className}`}
     />
   );
 };

@@ -848,6 +848,11 @@ daisyui@^2.20.0:
     postcss-js "^4.0.0"
     tailwindcss "^3"
 
+date-fns@^2.29.1:
+  version "2.29.1"
+  resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.29.1.tgz#9667c2615525e552b5135a3116b95b1961456e60"
+  integrity sha512-dlLD5rKaKxpFdnjrs+5azHDFOPEu4ANy/LTh04A1DTzMM7qoajmKCBc8pkKRFT41CNzw+4gQh79X5C+Jq27HAw==
+
 debug@^4.1.0, debug@^4.1.1:
   version "4.3.4"
   resolved "https://registry.yarnpkg.com/debug/-/debug-4.3.4.tgz#1319f6579357f2338d3337d2cdd4914bb5dcc865"
@@ -1740,6 +1745,11 @@ quick-lru@^5.1.1:
   version "5.1.1"
   resolved "https://registry.yarnpkg.com/quick-lru/-/quick-lru-5.1.1.tgz#366493e6b3e42a3a6885e2e99d18f80fb7a8c932"
   integrity sha512-WuyALRjWPDGtt/wzJiadO5AXY+8hZ80hVpe6MyivgraREW751X3SbhRvG3eLKOYN+8VEvqLcf3wdnt44Z4S4SA==
+
+react-day-picker@^8.1.0:
+  version "8.1.0"
+  resolved "https://registry.yarnpkg.com/react-day-picker/-/react-day-picker-8.1.0.tgz#600a39380326efa1f9d470497fe0918da31068a1"
+  integrity sha512-K9HNvnu6dgLFPXTexKab7SsiC9mRTRRob39cQriUUrpWNEj888YuiI+3ZVZ0+Th9P/zd4O1aFNXmz7pk4VJtGQ==
 
 react-dom@^18.2.0:
   version "18.2.0"

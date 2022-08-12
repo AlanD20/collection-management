@@ -87,10 +87,17 @@ export interface Item {
   createdAt: string;
 }
 
+export type CustomFieldTypes =
+  | 'text'
+  | 'textarea'
+  | 'number'
+  | 'checkbox'
+  | 'datetime';
+
 export interface CustomField {
   id: string;
   label: string;
   name: string;
   required: boolean;
-  type: 'single-line' | 'boolean' | 'integer' | 'datetime' | 'multi-line';
+  type: CustomFieldTypes;
 }

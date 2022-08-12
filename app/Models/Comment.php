@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Traits\DateDefaultFormat;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Comment extends Model
@@ -39,5 +40,12 @@ class Comment extends Model
   public function item()
   {
     return $this->belongsTo(Item::class, 'item_id', 'id');
+  }
+
+  public function body(): Attribute
+  {
+    return new Attribute(
+      set: fn ($value) => \strtolower($value)
+    );
   }
 }

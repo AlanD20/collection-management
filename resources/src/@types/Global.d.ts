@@ -20,6 +20,11 @@ export interface ParamsProp {
   item?: number | null;
 }
 
+export type QueryParams = {
+  sort?: 'asc' | 'desc';
+  order_by?: string;
+  q?: string;
+};
 export type KeyParamsProps = keyof ParamsProp;
 
 export interface PageProps {
@@ -75,7 +80,7 @@ export type HelperTranslate = (key: string, replace?: AnyKey) => string;
 export type _has = <T>(obj: T, key: keyof T) => T[keyof T] | null;
 
 declare global {
-  var route: route;
+  var route: (name: string, params?: ParamsProp & QueryParams) => string;
   var __: HelperTranslate;
   var _has: _has;
 

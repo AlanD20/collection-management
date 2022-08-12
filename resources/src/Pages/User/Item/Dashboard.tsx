@@ -30,7 +30,7 @@ const Dashboard = ({ collection, items }: Props) => {
 };
 
 export default UserPageContainer({
-  tabTitle: ":uname's Collection Items",
+  tabTitle: 'Collection Items',
   body: {
     component: Dashboard,
   },

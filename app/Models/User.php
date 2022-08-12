@@ -68,4 +68,23 @@ class User extends Authenticatable
   {
     return 'username';
   }
+
+  public function name(): Attribute
+  {
+    return new Attribute(
+      set: fn ($value) => \strtolower($value)
+    );
+  }
+  public function username(): Attribute
+  {
+    return new Attribute(
+      set: fn ($value) => \strtolower($value)
+    );
+  }
+  public function email(): Attribute
+  {
+    return new Attribute(
+      set: fn ($value) => \strtolower($value)
+    );
+  }
 }
