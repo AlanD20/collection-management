@@ -43,13 +43,15 @@ const Dashboard = ({ categories }: Props) => {
 };
 
 export default AdminPageContainer({
-  title: 'Manage Categories',
+  tabTitle: 'Manage Categories',
   body: { component: Dashboard },
   header: {
     component: AdminHeader,
     props: {
       componentName: 'Admin/Category',
-      create: 'admin.categories.create',
+      createRoute: {
+        name: 'admin.categories.create',
+      },
       searchbar: {
         routeName: 'admin.categories.index',
       },

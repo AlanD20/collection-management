@@ -1,18 +1,19 @@
 import React from 'react';
 import { Inertia } from '@inertiajs/inertia';
-import { DefProps, SelectOption } from '@/@types/Global';
 import { getQueryAsObj } from '@/common/helpers';
 import SelectDropDown from '@@/Form/SelectDropDown';
+import { DefProps, ParamsProp, SelectOption } from '@/@types/Global';
 
 interface Props extends DefProps {
   options: SelectOption[];
   routeName: string;
-  params?: object;
+  params?: ParamsProp;
 }
 
 const SortSelectHeader = ({
   routeName,
   options,
+  hideWhen = false,
   params = {},
   className = '',
 }: Props) => {
@@ -34,6 +35,8 @@ const SortSelectHeader = ({
       }
     );
   };
+
+  if (hideWhen) return null;
 
   return (
     <SelectDropDown

@@ -1,11 +1,11 @@
 import React from 'react';
-import { Collection, Item } from '@/@types/Models';
 import { Paginator } from '@/@types/Response';
 import EmptyResource from '@@/Misc/EmptyResource';
+import { Collection, Item } from '@/@types/Models';
+import UserHeader from '@@/Headers/User/UserHeader';
+import UserItemCard from '@@/User/Item/UserItemCard';
 import PaginationLinks from '@@/Table/PaginationLinks';
 import UserPageContainer from '@/Layouts/UserPageContainer';
-import UserCollectionHeader from '@@/User/Collection/UserCollectionHeader';
-import UserItemCard from '@@/User/Item/UserItemCard';
 
 interface Props {
   collection: Collection;
@@ -30,11 +30,22 @@ const Dashboard = ({ collection, items }: Props) => {
 };
 
 export default UserPageContainer({
-  title: 'User Collection',
+  tabTitle: ":uname's Collection Items",
   body: {
     component: Dashboard,
   },
   header: {
-    component: UserCollectionHeader,
+    component: UserHeader,
+    props: {
+      title: ":uname's Collection Items",
+      optionRoute: {
+        name: 'u.collections.items.index',
+        params: ['uname', 'collection'],
+      },
+      createRoute: {
+        name: 'u.collections.items.create',
+        params: ['uname', 'collection'],
+      },
+    },
   },
 });

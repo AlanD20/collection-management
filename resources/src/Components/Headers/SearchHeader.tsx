@@ -1,16 +1,21 @@
 import Input from '@@/Form/Input';
 import debounce from 'lodash/debounce';
-import { DefProps } from '@/@types/Global';
+import { DefProps, ParamsProp } from '@/@types/Global';
 import { getQueryAsObj } from '../../common/helpers';
 import React, { ChangeEvent } from 'react';
 import { Inertia } from '@inertiajs/inertia';
 
 interface Props extends DefProps {
   routeName: string;
-  params?: object;
+  params?: ParamsProp;
 }
 
-const SearchHeader = ({ routeName, params = {}, className = '' }: Props) => {
+const SearchHeader = ({
+  routeName,
+  hideWhen = false,
+  params = {},
+  className = '',
+}: Props) => {
   const handleSearchInput = debounce((e: ChangeEvent<HTMLInputElement>) => {
     Inertia.get(
       route(routeName, {
@@ -26,6 +31,8 @@ const SearchHeader = ({ routeName, params = {}, className = '' }: Props) => {
       }
     );
   });
+
+  if (hideWhen) return null;
 
   return (
     <div className={`flex items-center ${className}`}>

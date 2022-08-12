@@ -6,13 +6,13 @@ import { ComponentElement, LayoutWrapper } from '@/@types/Global';
 const AdminPageContainer = ({
   body,
   header,
-  title,
+  tabTitle,
   small,
   className = '',
 }: LayoutWrapper<AdminHeaderProps>) => {
   body.component.layout = (page: ComponentElement) => {
     return (
-      <Layout title={title}>
+      <Layout title={tabTitle}>
         {React.createElement(header?.component, header?.props)}
 
         <div className={`${small ? 'w-[45ch]' : 'w-full'} ${className}`}>

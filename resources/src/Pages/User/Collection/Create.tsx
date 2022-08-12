@@ -2,13 +2,13 @@ import Input from '@@/Form/Input';
 import Button from '@@/Form/Button';
 import TitleText from '@@/Misc/TitleText';
 import { UsePage } from '@/@types/Global';
-import UserHeader from '@@/User/UserHeader';
 import { Category } from '@/@types/Models';
 import SelectDropDown from '@@/Form/SelectDropDown';
 import React, { ChangeEvent, useMemo } from 'react';
 import UserPageContainer from '@/Layouts/UserPageContainer';
 import { usePage, useForm } from '@inertiajs/inertia-react';
 import CreateCustomField from '@@/User/Collection/CreateCustomField';
+import UserHeaderCompact from '@@/Headers/User/UserHeaderCompact';
 
 interface Props {
   categories: Category[];
@@ -110,13 +110,15 @@ const Create = ({ categories }: Props) => {
 };
 
 export default UserPageContainer({
-  title: 'Create Collection',
+  tabTitle: 'Create Collection',
   body: { component: Create },
   header: {
-    component: UserHeader,
+    component: UserHeaderCompact,
     props: {
-      back: {
+      title: ":uname's Collection Item",
+      backRoute: {
         name: 'u.collections.index',
+        params: ['uname'],
       },
     },
   },

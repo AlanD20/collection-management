@@ -1,10 +1,10 @@
 import React from 'react';
 import { Category } from '@/@types/Models';
-import ButtonLink from '@@/Form/ButtonLink';
 import EditButtonLink from '@@/Form/Action/EditButtonLink';
 import DeleteButtonLink from '@@/Form/Action/DeleteButtonLink';
+import { DefProps } from '@/@types/Global';
 
-interface Props {
+interface Props extends DefProps {
   category: Category;
 }
 
@@ -23,11 +23,11 @@ const CategoryGridCard = ({ category }: Props) => {
 
           <div className="mt-4 card-actions flex gap-6 px-12">
             <EditButtonLink
-              routeName='admin.categories.edit'
+              routeName="admin.categories.edit"
               params={{ category: category.id }}
             />
             <DeleteButtonLink
-              routeName='admin.categories.destroy'
+              routeName="admin.categories.destroy"
               params={{ category: category.id }}
             />
           </div>

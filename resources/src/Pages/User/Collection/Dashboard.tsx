@@ -2,9 +2,9 @@ import React from 'react';
 import { Collection } from '@/@types/Models';
 import { Paginator } from '@/@types/Response';
 import EmptyResource from '@@/Misc/EmptyResource';
+import UserHeader from '@@/Headers/User/UserHeader';
 import PaginationLinks from '@@/Table/PaginationLinks';
 import UserPageContainer from '@/Layouts/UserPageContainer';
-import UserCollectionHeader from '@@/User/Collection/UserCollectionHeader';
 import UserCollectionCard from '@@/User/Collection/UserCollectionCard';
 
 interface Props {
@@ -31,11 +31,22 @@ const Dashboard = ({ collections }: Props) => {
 };
 
 export default UserPageContainer({
-  title: 'User Collection',
+  tabTitle: 'User Collection',
   body: {
     component: Dashboard,
   },
   header: {
-    component: UserCollectionHeader,
+    component: UserHeader,
+    props: {
+      title: ":uname's Collection",
+      optionRoute: {
+        name: 'u.collections.index',
+        params: ['uname'],
+      },
+      createRoute: {
+        name: 'u.collections.create',
+        params: ['uname'],
+      },
+    },
   },
 });

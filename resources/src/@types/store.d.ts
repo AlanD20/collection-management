@@ -1,4 +1,4 @@
-import { StatusProp } from './Global';
+import { ParamsProp, StatusProp } from './Global';
 
 export interface PrefStore {
   locale: string;
@@ -16,4 +16,9 @@ export type SetStatusParam = {
 export interface AlertStore extends StatusProp {
   setStatus: (status: StatusParam) => void;
   clearStatus: () => void;
+}
+
+export interface ParamsStore {
+  params: ParamsProp;
+  setParams: (params: ParamsProp) => void;
 }

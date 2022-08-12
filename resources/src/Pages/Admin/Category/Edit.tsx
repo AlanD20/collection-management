@@ -12,7 +12,6 @@ interface Props {
 }
 
 const Edit = ({ category }: Props) => {
-
   const { patch, data, setData, processing } = useForm({
     name: category.name,
   });
@@ -27,9 +26,11 @@ const Edit = ({ category }: Props) => {
 
   return (
     <>
-      <TitleText label={__('mdoel.update_title', {
-        model: 'Category'
-      })} />
+      <TitleText
+        label={__('mdoel.edit_title', {
+          model: 'Category',
+        })}
+      />
       <form onSubmit={handleSubmit} className="w-full">
         <Input
           type="text"
@@ -54,7 +55,7 @@ const Edit = ({ category }: Props) => {
 };
 
 export default AdminPageContainer({
-  title: 'Edit Category',
+  tabTitle: 'Edit Category',
   body: { component: Edit },
   header: {
     component: AdminHeader,

@@ -8,7 +8,7 @@ const Dashboard = (props: Props) => {
 };
 
 export default AdminPageContainer({
-  title: 'Dashboard',
+  tabTitle: 'Dashboard',
   body: { component: Dashboard },
   header: {
     component: AdminHeader,

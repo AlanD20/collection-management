@@ -15,11 +15,11 @@ const CategoryTableRow = ({ category }: Props) => {
       <td>{category.name}</td>
       <td className="flex gap-6 px-12">
         <EditButtonLink
-          routeName='admin.categories.edit'
+          routeName="admin.categories.edit"
           params={{ category: category.id }}
         />
         <DeleteButtonLink
-          routeName='admin.categories.destroy'
+          routeName="admin.categories.destroy"
           params={{ category: category.id }}
         />
       </td>

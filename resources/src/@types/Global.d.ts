@@ -5,24 +5,24 @@ import { UserWithoutRelation } from './Models';
 
 export type AnyKey = { [key: string]: any };
 
-export type HelperTranslate = (key: string, replace?: AnyKey) => string;
-
 export type StatusProp = {
   success: string;
   error: string;
   ts: number;
 };
 
-export type ParamsProp = {
-  uname?: string;
-  category?: number;
-  tag?: number;
-  user?: number;
-  collection?: number;
-  item?: number;
-};
+export interface ParamsProp {
+  uname?: string | null;
+  category?: number | null;
+  tag?: number | null;
+  user?: number | null;
+  collection?: number | null;
+  item?: number | null;
+}
 
-export interface PageProps<> {
+export type KeyParamsProps = keyof ParamsProp;
+
+export interface PageProps {
   appName: string;
   locale: string;
   theme: string;
@@ -31,7 +31,14 @@ export interface PageProps<> {
   };
   status: StatusProp;
   params: ParamsProp;
+  ts: number;
 }
+
+export type RouteType = {
+  name: string;
+  params?: KeyParamsProps[];
+  hidden?: boolean;
+};
 
 export type UsePage = Page & Page<PageProps>;
 
@@ -45,7 +52,7 @@ export type Component<T = any> = {
 export type LayoutWrapper<H = any, B = any> = {
   header?: Component<H>;
   body: Component<B>;
-  title: string;
+  tabTitle: string;
   small?: boolean;
   className?: string;
 };
@@ -56,6 +63,7 @@ export interface Children {
 
 export interface DefProps {
   className?: string;
+  hideWhen?: boolean | string | number | null;
 }
 
 export type SelectOption = {
@@ -63,10 +71,16 @@ export type SelectOption = {
   label: string;
 };
 
+export type HelperTranslate = (key: string, replace?: AnyKey) => string;
+export type _has = <T>(obj: T, key: keyof T) => T[keyof T] | null;
+
 declare global {
   var route: route;
   var __: HelperTranslate;
+  var _has: _has;
+
   interface Window {
     __: HelperTranslate;
+    _has: _has;
   }
 }

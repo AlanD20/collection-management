@@ -1,13 +1,13 @@
 import React from 'react';
-import { DefProps, ParamsProp } from '@/@types/Global';
 import ButtonLink from '@@/Form/ButtonLink';
+import { DefProps, ParamsProp } from '@/@types/Global';
 
 interface Props extends DefProps {
   routeName: string;
   params: ParamsProp;
 }
 
-const DeleteButtonLink = ({
+const ViewButtonLink = ({
   routeName,
   params = {},
   hideWhen = false,
@@ -18,15 +18,13 @@ const DeleteButtonLink = ({
   return (
     <ButtonLink
       href={route(routeName, params)}
-      method="delete"
       as="button"
-      replace={true}
       preserveScroll={true}
-      className={`min-w-[60px] btn-error btn-outline font-bold text-base ${className}`}
+      className={`btn-accent font-bold text-base ${className}`}
     >
-      {__('form.delete')}
+      {__('form.view')}
     </ButtonLink>
   );
 };
 
-export default DeleteButtonLink;
+export default ViewButtonLink;

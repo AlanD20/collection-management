@@ -1,14 +1,15 @@
 import React from 'react';
 import ButtonLink from '@@/Form/ButtonLink';
+import { ParamsProp } from '@/@types/Global';
 
 interface Props {
-  userId: number;
+  params: ParamsProp;
 }
 
-const DeleteUser = ({ userId }: Props) => {
+const DeleteUser = ({ params }: Props) => {
   return (
     <ButtonLink
-      href={route('admin.users.destroy', { id: userId })}
+      href={route('admin.users.destroy', params)}
       method="delete"
       as="button"
       preserveScroll={true}

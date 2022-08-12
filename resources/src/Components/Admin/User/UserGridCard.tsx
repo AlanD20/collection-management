@@ -31,8 +31,9 @@ const UserGridCard = ({ user }: Props) => {
           <div className="flex gap-4  capitalize">
             <span className="font-bold">Status:</span>
             <span
-              className={`capitalize font-semibold text-${user.block ? 'red' : 'green'
-                }-500`}
+              className={`capitalize font-semibold text-${
+                user.block ? 'red' : 'green'
+              }-500`}
             >
               {user.block ? 'blocked' : 'active'}
             </span>
@@ -47,9 +48,9 @@ const UserGridCard = ({ user }: Props) => {
           </div>
 
           <div className="mt-4 card-actions flex gap-6 px-12">
-            <GrantPermission userId={user.id} isAdmin={user.admin} />
-            <BlockUser userId={user.id} isBlocked={user.block} />
-            <DeleteUser userId={user.id} />
+            <GrantPermission params={{ user: user.id }} isAdmin={user.admin} />
+            <BlockUser params={{ user: user.id }} isBlocked={user.block} />
+            <DeleteUser params={{ user: user.id }} />
           </div>
         </div>
       </div>

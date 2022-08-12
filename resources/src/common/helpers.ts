@@ -1,3 +1,5 @@
+import { KeyParamsProps, ParamsProp } from '@/@types/Global';
+
 export const getQueryAsObj = () => {
   let params = {};
   new URLSearchParams(window.location.search).forEach((value, key) => {
@@ -7,4 +9,19 @@ export const getQueryAsObj = () => {
     };
   });
   return params;
+};
+
+export const getParamsWithKey = (
+  params: ParamsProp,
+  keys?: KeyParamsProps[]
+) => {
+  return !keys
+    ? {}
+    : keys.reduce(
+        (prev, cur) => ({
+          ...prev,
+          [cur]: params[cur],
+        }),
+        {}
+      );
 };

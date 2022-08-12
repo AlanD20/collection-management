@@ -4,13 +4,13 @@ import { ComponentElement, LayoutWrapper } from '@/@types/Global';
 
 const PageContainer = ({
   body,
-  title,
+  tabTitle,
   small,
   className = '',
 }: LayoutWrapper) => {
   body.component.layout = (page: ComponentElement) => {
     return (
-      <Layout title={title}>
+      <Layout title={tabTitle}>
         <div className={`px-20 ${small ? 'w-[55ch]' : 'w-full'} ${className}`}>
           {React.createElement(body.component, {
             ...page.props,

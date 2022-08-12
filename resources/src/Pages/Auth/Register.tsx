@@ -114,7 +114,7 @@ const Register = () => {
 };
 
 export default PageContainer({
-  title: 'Register',
+  tabTitle: 'Register',
   body: { component: Register },
   small: true,
 });

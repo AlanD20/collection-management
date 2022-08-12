@@ -1,13 +1,14 @@
 import React from 'react';
-import { DefProps, ParamsProp } from '@/@types/Global';
 import ButtonLink from '@@/Form/ButtonLink';
+import { DefProps, ParamsProp } from '@/@types/Global';
+import { IoIosArrowBack } from 'react-icons/io';
 
 interface Props extends DefProps {
   routeName: string;
   params: ParamsProp;
 }
 
-const DeleteButtonLink = ({
+const BackButtonLink = ({
   routeName,
   params = {},
   hideWhen = false,
@@ -18,15 +19,14 @@ const DeleteButtonLink = ({
   return (
     <ButtonLink
       href={route(routeName, params)}
-      method="delete"
       as="button"
-      replace={true}
       preserveScroll={true}
-      className={`min-w-[60px] btn-error btn-outline font-bold text-base ${className}`}
+      className={`text-xl gap-4 font-bold ${className}`}
     >
-      {__('form.delete')}
+      <IoIosArrowBack />
+      <span className="capitalize">{__('form.back')}</span>
     </ButtonLink>
   );
 };
 
-export default DeleteButtonLink;
+export default BackButtonLink;

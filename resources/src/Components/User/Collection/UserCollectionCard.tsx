@@ -1,16 +1,20 @@
 import React from 'react';
-import ButtonLink from '@@/Form/ButtonLink';
+import useAuth from '@/hooks/useAuth';
 import { Collection } from '@/@types/Models';
 import { PH_THUMBNAIL } from '@/common/constants';
 import { usePage } from '@inertiajs/inertia-react';
 import { DefProps, UsePage } from '@/@types/Global';
+import EditButtonLink from '@@/Form/Action/EditButtonLink';
+import ViewButtonLink from '@@/Form/Action/ViewButtonLink';
 
 interface Props extends DefProps {
   collection: Collection;
 }
 
 const UserCollectionCard = ({ collection, className = '' }: Props) => {
-  const { params, ...$ } = usePage<UsePage>().props;
+  const { params } = usePage<UsePage>().props;
+
+  const { self } = useAuth();
 
   return (
     <div
@@ -32,26 +36,21 @@ const UserCollectionCard = ({ collection, className = '' }: Props) => {
         </div>
         <p>{collection.description}</p>
         <div className="card-actions mt-4 justify-end">
-          <ButtonLink
-            href={route('u.collections.edit', {
+          <EditButtonLink
+            routeName="u.collections.edit"
+            params={{
               uname: params.uname,
               collection: collection.id,
-            })}
-            as="button"
-            className="btn-secondary text-base"
-          >
-            Edit
-          </ButtonLink>
-          <ButtonLink
-            href={route('u.collections.show', {
+            }}
+            hideWhen={self}
+          />
+          <ViewButtonLink
+            routeName="u.collections.show"
+            params={{
               uname: params.uname,
               collection: collection.id,
-            })}
-            as="button"
-            className="btn-accent text-base"
-          >
-            View
-          </ButtonLink>
+            }}
+          />
         </div>
       </div>
     </div>

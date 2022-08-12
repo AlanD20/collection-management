@@ -2,10 +2,10 @@ import Input from '@@/Form/Input';
 import Button from '@@/Form/Button';
 import TitleText from '@@/Misc/TitleText';
 import { UsePage } from '@/@types/Global';
-import UserHeader from '@@/User/UserHeader';
 import SelectDropDown from '@@/Form/SelectDropDown';
 import React, { ChangeEvent, useMemo } from 'react';
 import { Category, Collection } from '@/@types/Models';
+import UserHeader from '@@/Headers/User/UserHeaderCompact';
 import UserPageContainer from '@/Layouts/UserPageContainer';
 import { usePage, useForm } from '@inertiajs/inertia-react';
 import CreateCustomField from '@@/User/Collection/CreateCustomField';
@@ -58,7 +58,7 @@ const Edit = ({ collection, categories }: Props) => {
   return (
     <>
       <TitleText
-        label={__('model.update_title', {
+        label={__('model.edit_title', {
           model: 'Collection',
         })}
       />
@@ -120,12 +120,13 @@ const Edit = ({ collection, categories }: Props) => {
 };
 
 export default UserPageContainer({
-  title: 'Edit Collection',
+  tabTitle: 'Edit Item',
   body: { component: Edit },
   header: {
     component: UserHeader,
     props: {
-      back: {
+      title: 'Edit Item',
+      backRoute: {
         name: 'u.collections.index',
       },
     },

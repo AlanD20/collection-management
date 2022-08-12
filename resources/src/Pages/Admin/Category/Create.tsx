@@ -7,7 +7,6 @@ import AdminHeader from '@@/Headers/Admin/AdminHeader';
 import AdminPageContainer from '@/Layouts/AdminPageContainer';
 
 const Create = () => {
-
   const { post, data, setData, processing, reset } = useForm({
     name: '',
   });
@@ -23,9 +22,11 @@ const Create = () => {
 
   return (
     <>
-      <TitleText label={__('model.create_title', {
-        model: 'Category'
-      })} />
+      <TitleText
+        label={__('model.create_title', {
+          model: 'Category',
+        })}
+      />
       <form onSubmit={handleSubmit} className="w-full">
         <Input
           type="text"
@@ -52,7 +53,7 @@ const Create = () => {
 };
 
 export default AdminPageContainer({
-  title: 'Create Category',
+  tabTitle: 'Create Category',
   body: { component: Create },
   header: {
     component: AdminHeader,

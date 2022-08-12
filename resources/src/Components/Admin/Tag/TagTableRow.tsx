@@ -13,12 +13,9 @@ const TagTableRow = ({ tag }: Props) => {
       <th className="w-[10ch]">{tag.id}</th>
       <td>{tag.name}</td>
       <td className="flex gap-6 px-12">
-        <EditButtonLink
-          routeName='admin.tags.edit'
-          params={{ tag: tag.id }}
-        />
+        <EditButtonLink routeName="admin.tags.edit" params={{ tag: tag.id }} />
         <DeleteButtonLink
-          routeName='admin.tags.destroy'
+          routeName="admin.tags.destroy"
           params={{ tag: tag.id }}
         />
       </td>

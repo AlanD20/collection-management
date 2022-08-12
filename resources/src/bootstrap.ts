@@ -1,5 +1,6 @@
 import en from '@/common/en.json';
 import _get from 'lodash/get';
+import _has from 'lodash/has';
 import { prefStore } from '@/common/store';
 
 window.__ = (key, replace) => {
@@ -13,5 +14,7 @@ window.__ = (key, replace) => {
 
   return translate;
 };
+
+window._has = (obj, key) => (_has(obj, 'hidden') ? obj[key] : null);
 
 export {};

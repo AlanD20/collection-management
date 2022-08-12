@@ -9,8 +9,6 @@ interface Props {
 }
 
 const UserTableRow = ({ user }: Props) => {
-
-
   return (
     <tr>
       <th>{user.id}</th>
@@ -18,8 +16,9 @@ const UserTableRow = ({ user }: Props) => {
       <td>{user.username}</td>
       <td>{user.email}</td>
       <td
-        className={`w-24 capitalize text-center font-semibold text-${user.block ? 'red' : 'green'
-          }-500`}
+        className={`w-24 capitalize text-center font-semibold text-${
+          user.block ? 'red' : 'green'
+        }-500`}
       >
         {user.block ? 'blocked' : 'active'}
       </td>
@@ -29,9 +28,9 @@ const UserTableRow = ({ user }: Props) => {
       </td>
 
       <td className="flex gap-6 px-12">
-        <GrantPermission userId={user.id} isAdmin={user.admin} />
-        <BlockUser userId={user.id} isBlocked={user.block} />
-        <DeleteUser userId={user.id} />
+        <GrantPermission params={{ user: user.id }} isAdmin={user.admin} />
+        <BlockUser params={{ user: user.id }} isBlocked={user.block} />
+        <DeleteUser params={{ user: user.id }} />
       </td>
     </tr>
   );

@@ -22,11 +22,11 @@ const TagGridCard = ({ tag }: Props) => {
 
           <div className="mt-4 card-actions flex gap-6 px-12">
             <EditButtonLink
-              routeName='admin.tags.edit'
+              routeName="admin.tags.edit"
               params={{ tag: tag.id }}
             />
             <DeleteButtonLink
-              routeName='admin.tags.destroy'
+              routeName="admin.tags.destroy"
               params={{ tag: tag.id }}
             />
           </div>

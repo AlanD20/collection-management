@@ -2,11 +2,10 @@
 
 namespace App\Http\Middleware;
 
-use App\Helpers\Locale;
-use App\Http\Resources\UserResource;
 use Inertia\Middleware;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Str;
+use App\Http\Resources\UserResource;
+use App\Models\{User, Category, Collection, Item};
 
 class HandleInertiaRequests extends Middleware
 {
@@ -58,17 +57,31 @@ class HandleInertiaRequests extends Middleware
       'status' => [
         'success' => fn () => session('success'),
         'error' => fn () => session('error'),
-        'ts' => fn () => time(),
       ],
 
       'params' => [
-        'uname' => $request->route('uname') instanceof \App\Models\User ? $request->route('uname')->username : $request->route('uname'),
-        'category_id' => $request->route('category_id'),
-        'user_id' => $request->route('user_id'),
-        'collection' => $request->route('collection'),
-        'item_id' => $request->route('item_id'),
-      ]
+        'uname' => $this->getRoute('uname'),
+        'category' => $this->getRoute('category'),
+        'user' => $this->getRoute('user'),
+        'collection' => $this->getRoute('collection'),
+        'item' => $this->getRoute('item'),
+      ],
+      'ts' => fn () => time(),
 
     ]);
+  }
+
+  function getRoute(string $name)
+  {
+    $route = request()->route($name);
+    if (!$route) return null;
+
+    $isString =  $route && gettype($route) === 'string';
+
+    if ($name === 'uname') {
+      return $isString ? $route : $route->username;
+    }
+
+    return  $isString ? (int)$route : $route->id;
   }
 }

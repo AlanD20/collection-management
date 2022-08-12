@@ -1,14 +1,20 @@
-import React from "react"
-import { DefProps, ParamsProp } from "@/@types/Global"
-import ButtonLink from "@@/Form/ButtonLink"
-
+import React from 'react';
+import { DefProps, ParamsProp } from '@/@types/Global';
+import ButtonLink from '@@/Form/ButtonLink';
 
 interface Props extends DefProps {
   routeName: string;
   params: ParamsProp;
 }
 
-const EditButtonLink = ({ routeName, params, className = '' }: Props) => {
+const EditButtonLink = ({
+  routeName,
+  params = {},
+  hideWhen = false,
+  className = '',
+}: Props) => {
+  if (hideWhen) return null;
+
   return (
     <ButtonLink
       href={route(routeName, params)}
@@ -18,7 +24,7 @@ const EditButtonLink = ({ routeName, params, className = '' }: Props) => {
     >
       {__('form.edit')}
     </ButtonLink>
-  )
-}
+  );
+};
 
-export default EditButtonLink
+export default EditButtonLink;

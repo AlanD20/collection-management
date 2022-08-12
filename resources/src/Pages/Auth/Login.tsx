@@ -76,7 +76,7 @@ const Login = () => {
 };
 
 export default PageContainer({
-  title: 'Login',
+  tabTitle: 'Login',
   body: { component: Login },
   small: true,
 });

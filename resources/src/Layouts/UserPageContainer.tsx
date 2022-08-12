@@ -1,17 +1,19 @@
 import React from 'react';
 import Layout from './Layout';
+import { UserHeaderProps } from '@@/Headers/User/UserHeader';
 import { ComponentElement, LayoutWrapper } from '@/@types/Global';
+import { UserHeaderCompactProps } from '@@/Headers/User/UserHeaderCompact';
 
 const UserPageContainer = ({
   header,
   body,
-  title,
+  tabTitle,
   small,
   className = '',
-}: LayoutWrapper) => {
+}: LayoutWrapper<UserHeaderProps | UserHeaderCompactProps>) => {
   body.component.layout = (page: ComponentElement) => {
     return (
-      <Layout title={title}>
+      <Layout title={tabTitle}>
         {header && React.createElement(header.component, header.props)}
 
         <div className={`${small ? 'w-[45ch]' : 'w-full'} ${className}`}>

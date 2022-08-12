@@ -12,7 +12,6 @@ interface Props {
 }
 
 const Edit = ({ tag }: Props) => {
-
   const { patch, data, setData, processing } = useForm({
     name: tag.name,
   });
@@ -27,9 +26,11 @@ const Edit = ({ tag }: Props) => {
 
   return (
     <>
-      <TitleText label={__('model.update_title', {
-        model: 'Tag'
-      })} />
+      <TitleText
+        label={__('model.edit_title', {
+          model: 'Tag',
+        })}
+      />
       <form onSubmit={handleSubmit} className="w-full">
         <Input
           type="text"
@@ -54,7 +55,7 @@ const Edit = ({ tag }: Props) => {
 };
 
 export default AdminPageContainer({
-  title: 'Edit Tag',
+  tabTitle: 'Edit Tag',
   body: { component: Edit },
   header: {
     component: AdminHeader,

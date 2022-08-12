@@ -4,7 +4,7 @@ import { usePage } from '@inertiajs/inertia-react';
 import { alertStore } from '@/common/store';
 
 const AlertStatus = () => {
-  const $ = usePage<UsePage>().props.status;
+  const { status: $, ts } = usePage<UsePage>().props;
 
   const status = alertStore((state) => state);
 
@@ -15,7 +15,7 @@ const AlertStatus = () => {
       timer = setTimeout(() => status.clearStatus(), 2000);
     }
     return () => void clearTimeout(timer);
-  }, [$.ts]);
+  }, [ts]);
 
   if (!status.error && !status.success) return null;
 

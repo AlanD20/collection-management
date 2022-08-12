@@ -23,16 +23,12 @@ const Dashboard = ({ tags }: Props) => {
         <tbody>
           {tags &&
             tags.data.length > 0 &&
-            tags.data.map((tag) => (
-              <TagTableRow key={tag.id} tag={tag} />
-            ))}
+            tags.data.map((tag) => <TagTableRow key={tag.id} tag={tag} />)}
         </tbody>
       </table>
       <div className="grid lg:hidden justify-center gap-8 py-4">
         {condition &&
-          tags.data.map((tag) => (
-            <TagGridCard key={tag.id} tag={tag} />
-          ))}
+          tags.data.map((tag) => <TagGridCard key={tag.id} tag={tag} />)}
       </div>
 
       {!condition && <EmptyResource model="Tag" />}
@@ -43,13 +39,15 @@ const Dashboard = ({ tags }: Props) => {
 };
 
 export default AdminPageContainer({
-  title: 'Manage Tags',
+  tabTitle: 'Manage Tags',
   body: { component: Dashboard },
   header: {
     component: AdminHeader,
     props: {
       componentName: 'Admin/Tag',
-      create: 'admin.tags.create',
+      createRoute: {
+        name: 'admin.tags.create',
+      },
       searchbar: {
         routeName: 'admin.tags.index',
       },

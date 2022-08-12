@@ -1,17 +1,16 @@
 import React from 'react';
 import ButtonLink from '@@/Form/ButtonLink';
+import { ParamsProp } from '@/@types/Global';
 
 interface Props {
   isAdmin: boolean;
-  userId: number;
+  params: ParamsProp;
 }
 
-const GrantPermission = ({ userId, isAdmin }: Props) => {
+const GrantPermission = ({ params = {}, isAdmin }: Props) => {
   return (
     <ButtonLink
-      href={route(`admin.users.${isAdmin ? 'demote' : 'promote'}`, {
-        id: userId,
-      })}
+      href={route(`admin.users.${isAdmin ? 'demote' : 'promote'}`, params)}
       method="post"
       as="button"
       preserveScroll={true}

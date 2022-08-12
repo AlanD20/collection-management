@@ -42,7 +42,7 @@ const Dashboard = ({ users }: Props) => {
 };
 
 export default AdminPageContainer({
-  title: 'Manage Users',
+  tabTitle: 'Manage Users',
   body: { component: Dashboard },
   header: {
     component: AdminHeader,

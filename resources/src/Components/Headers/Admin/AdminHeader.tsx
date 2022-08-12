@@ -1,6 +1,6 @@
 import React from 'react';
 import TabItem from '@@/Table/TabItem';
-import { DefProps } from '@/@types/Global';
+import { DefProps, RouteType } from '@/@types/Global';
 import ButtonLink from '../../Form/ButtonLink';
 import SearchHeader from '../SearchHeader';
 
@@ -10,13 +10,13 @@ export interface AdminHeaderProps extends DefProps {
     routeName: string;
     className?: string;
   };
-  create?: string;
+  createRoute?: RouteType;
 }
 
 const AdminHeader = ({
   componentName,
   searchbar,
-  create,
+  createRoute,
   className,
 }: AdminHeaderProps) => {
   const subTab =
@@ -47,7 +47,7 @@ const AdminHeader = ({
         />
       </div>
 
-      {(searchbar || create) && (
+      {(searchbar || !createRoute?.hidden) && (
         <div className="flex gap-4 items-center ml-auto">
           {searchbar && searchbar.routeName && (
             <SearchHeader
@@ -55,9 +55,9 @@ const AdminHeader = ({
               className={`${searchbar.className}`}
             />
           )}
-          {create && (
+          {createRoute?.name && (
             <ButtonLink
-              href={route(create)}
+              href={route(createRoute?.name)}
               className="md:ml-auto btn btn-secondary btn-wide text-xl"
               label={__('form.create')}
             />
