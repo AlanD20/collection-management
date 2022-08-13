@@ -62,6 +62,8 @@ export interface Comment {
 
 export interface Like {
   id: number;
+  itemId: number;
+  userId: number;
   item: Item;
   user: User;
   updatedAt: string;
@@ -83,6 +85,7 @@ export interface Item {
   likes: Likes[];
   comments: Comments[];
   tags: Tags[];
+  fields: CustomField[];
   updatedAt: string;
   createdAt: string;
 }
@@ -100,4 +103,5 @@ export interface CustomField {
   name: string;
   required: boolean;
   type: CustomFieldTypes;
+  value?: any;
 }

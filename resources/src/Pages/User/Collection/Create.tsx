@@ -33,7 +33,6 @@ const Create = ({ categories }: Props) => {
     post(route('u.collections.store', { uname: params.uname }), {
       data,
       onSuccess: () => reset(),
-      preserveScroll: true,
     });
   };
 

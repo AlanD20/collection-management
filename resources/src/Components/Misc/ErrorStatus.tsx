@@ -9,6 +9,7 @@ const ErrorStatus = ({ name }: Props) => {
   const $ = usePage().props.errors;
 
   let error: string = '';
+
   if ($[name] !== undefined) error = $[name];
 
   return (

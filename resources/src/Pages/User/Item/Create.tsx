@@ -1,14 +1,12 @@
 import Input from '@@/Form/Input';
 import Button from '@@/Form/Button';
-import { Collection, Tag } from '@/@types/Models';
-import TitleText from '@@/Misc/TitleText';
 import { UsePage } from '@/@types/Global';
+import { Collection, Tag } from '@/@types/Models';
+import React, { ChangeEvent, useMemo } from 'react';
 import SelectDropDown from '@@/Form/SelectDropDown';
-import React, { ChangeEvent, useEffect, useMemo } from 'react';
-import UserHeader from '@@/Headers/User/UserHeaderCompact';
+import UserHeaderCompact from '@@/Headers/User/UserHeaderCompact';
 import UserPageContainer from '@/Layouts/UserPageContainer';
 import { usePage, useForm } from '@inertiajs/inertia-react';
-import CreateCustomField from '@@/User/Collection/CreateCustomField';
 import RenderCustomField from '@@/User/Item/RenderCustomField';
 
 interface Props {
@@ -19,7 +17,7 @@ interface Props {
 const Create = ({ collection, tags }: Props) => {
   const { params, ts } = usePage<UsePage>().props;
 
-  const { post, data, setData, processing, reset, progress } = useForm<{
+  const { post, data, setData, processing, reset } = useForm<{
     [key: string]: any;
   }>({
     name: '',
@@ -38,7 +36,6 @@ const Create = ({ collection, tags }: Props) => {
       {
         data,
         onSuccess: () => reset(),
-        preserveScroll: true,
       }
     );
   };
@@ -51,8 +48,6 @@ const Create = ({ collection, tags }: Props) => {
       })),
     [ts]
   );
-
-  useEffect(() => console.log(data), [data]);
 
   return (
     <form onSubmit={handleSubmit} className="form-control gap-4 w-full">
@@ -87,9 +82,10 @@ const Create = ({ collection, tags }: Props) => {
 
       {collection &&
         collection.fields.length > 0 &&
-        collection.fields.map((field) => (
+        collection.fields.map((field, index) => (
           <RenderCustomField
             key={field.id}
+            index={index}
             keyName="fields"
             field={field}
             data={data}
@@ -111,7 +107,7 @@ export default UserPageContainer({
   tabTitle: 'Create Item',
   body: { component: Create },
   header: {
-    component: UserHeader,
+    component: UserHeaderCompact,
     props: {
       title: 'Create Item',
       backRoute: {

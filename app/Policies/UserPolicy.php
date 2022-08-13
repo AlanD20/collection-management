@@ -3,24 +3,12 @@
 namespace App\Policies;
 
 use App\Models\User;
+use App\Policies\AdminPolicy;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class UserPolicy
+class UserPolicy extends AdminPolicy
 {
   use HandlesAuthorization;
-
-  /**
-   * Perform pre-authorization checks.
-   *
-   * @param  \App\Models\User  $user
-   * @param  string  $ability
-   * @return void|bool
-   */
-  public function before(User $user, $ability)
-  {
-    if ($user->detail->admin) return true;
-    if ($user->detail->block) return false;
-  }
 
   /**
    * Determine whether the user can view the model.

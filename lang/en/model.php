@@ -2,6 +2,8 @@
 
 return [
 
+  'like' => ':model liked',
+  'unlike' => ':model unliked',
   'title' => ':models',
   'empty' => ':model is empty!',
   'create_title' => 'Create :model',

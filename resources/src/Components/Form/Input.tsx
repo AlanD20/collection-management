@@ -33,13 +33,14 @@ const Input = ({
     <div
       className={`flex flex-col justify-center items-start min-w-[10ch] input-container mb-2 [&+.input-container]:mb-4 ${className}`}
     >
-      <label htmlFor={name} className="label capitalize">
+      <label htmlFor={name} className="label capitalize flex w-full gap-2">
         {label}
+        {attr.required && (
+          <span className="text-red-500 text-xl mt-2 mr-auto">*</span>
+        )}
       </label>
-      <div className="flex w-full gap-2">
-        {input}
-        {attr.required && <span className="text-red-500 text-xl mt-2">*</span>}
-      </div>
+
+      {input}
 
       <ErrorStatus name={name} />
     </div>

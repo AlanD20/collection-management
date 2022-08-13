@@ -1,121 +1,116 @@
 import Input from '@@/Form/Input';
 import Button from '@@/Form/Button';
-import TitleText from '@@/Misc/TitleText';
 import { UsePage } from '@/@types/Global';
-import SelectDropDown from '@@/Form/SelectDropDown';
 import React, { ChangeEvent, useMemo } from 'react';
-import { Category, Collection } from '@/@types/Models';
-import UserHeader from '@@/Headers/User/UserHeaderCompact';
+import SelectDropDown from '@@/Form/SelectDropDown';
+import { Collection, Item, Tag } from '@/@types/Models';
 import UserPageContainer from '@/Layouts/UserPageContainer';
 import { usePage, useForm } from '@inertiajs/inertia-react';
-import CreateCustomField from '@@/User/Collection/CreateCustomField';
+import RenderCustomField from '@@/User/Item/RenderCustomField';
+import UserHeaderCompact from '@@/Headers/User/UserHeaderCompact';
 
 interface Props {
   collection: Collection;
-  categories: Category[];
+  item: Item;
+  tags: Tag[];
 }
 
-const Edit = ({ collection, categories }: Props) => {
-  const { params } = usePage<UsePage>().props;
+const Edit = ({ collection, item, tags }: Props) => {
+  const { params, ts } = usePage<UsePage>().props;
 
-  console.log(collection);
+  console.log(item, collection, tags);
 
-  const { patch, data, setData, processing, reset, progress } = useForm<{
+  const { patch, data, setData, processing } = useForm<{
     [key: string]: any;
   }>({
-    name: collection.name,
-    description: collection.description,
-    category_id: collection.category.id,
-    thumbnail: undefined,
-    fields: collection.fields,
+    name: item.name,
+    tags: item.tags,
+    fields: item.fields,
   });
 
   const handleSubmit = (e: ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     patch(
-      route('u.collections.update', {
+      route('u.collections.items.update', {
         uname: params.uname,
         collection: params.collection,
+        item: params.item,
       }),
-      {
-        data,
-        onSuccess: () => reset(),
-        preserveScroll: true,
-      }
+      { data }
     );
   };
 
-  const CategoryList = useMemo(
+  const TagList = useMemo(
     () =>
-      categories.map((category) => ({
-        value: category.id,
-        label: category.name,
+      tags.map((tag) => ({
+        value: tag.id,
+        label: tag.name,
       })),
-    [categories]
+    [ts]
+  );
+
+  const DefaultTagList = useMemo(
+    () =>
+      item.tags.map((tag) => ({
+        value: tag.id,
+        label: tag.name,
+      })),
+    [ts]
   );
 
   return (
-    <>
-      <TitleText
-        label={__('model.edit_title', {
-          model: 'Collection',
-        })}
+    <form onSubmit={handleSubmit} className="form-control gap-4 w-full">
+      <Input
+        type="text"
+        label={__('form.item_name')}
+        name="name"
+        value={data.name}
+        className="block mt-1 w-full"
+        onChange={(e) => setData('name', e.target.value)}
+        required
+        autoFocus
       />
-      <form onSubmit={handleSubmit} className="form-control gap-4 w-full">
-        <Input
-          type="text"
-          label={__('form.col_name')}
-          name="name"
-          value={data.name}
-          className="block mt-1 w-full"
-          onChange={(e) => setData('name', e.target.value)}
-          required
-          autoFocus
-        />
-        <Input
-          type="textarea"
-          label={__('form.col_description')}
-          name="description"
-          value={data.description}
-          className="block mt-1 w-full"
-          onChange={(e) => setData('description', e.target.value)}
-          required
-        />
 
-        <SelectDropDown
-          name="category_id"
-          label={__('form.col_category')}
-          options={CategoryList}
-          defaultInputValue={collection.category.name}
-          onChange={(e: any) => setData('category_id', e.value)}
-        />
+      <SelectDropDown
+        isMulti
+        closeMenuOnSelect={false}
+        name="tags"
+        label={__('form.item_tag')}
+        options={TagList}
+        defaultValue={DefaultTagList}
+        onChange={(e: any) =>
+          setData(
+            'tags',
+            e.map((s: any) => s.value)
+          )
+        }
+      />
 
-        <Input
-          type="file"
-          label={__('form.col_thumbnail')}
-          name="thumbnail"
-          className="block mt-1 w-full"
-          onChange={(e) =>
-            setData('thumbnail', e.target.files ? e.target.files[0] : undefined)
-          }
-          progress={progress}
-        />
+      <div className="divider text-lg font-semibold">
+        {__('form.item_field_title')}
+      </div>
 
-        <div className="divider text-lg font-semibold">
-          {__('form.col_field_title')}
-        </div>
+      {collection &&
+        collection.fields.length > 0 &&
+        collection.fields.map((field, index) => (
+          <RenderCustomField
+            key={field.id}
+            index={index}
+            keyName="fields"
+            field={field}
+            data={data}
+            setData={setData}
+          />
+        ))}
 
-        <CreateCustomField keyName="fields" data={data} setData={setData} />
-
-        <Button
-          type="submit"
-          label={__('form.update')}
-          disabled={processing}
-          className={`mt-6 ml-auto text-lg ${processing ? 'loading' : ''}`}
-        />
-      </form>
-    </>
+      <Button
+        type="submit"
+        label={__('form.update')}
+        disabled={processing}
+        className={`mt-6 ml-auto text-lg ${processing ? 'loading' : ''}`}
+      />
+    </form>
   );
 };
 
@@ -123,11 +118,12 @@ export default UserPageContainer({
   tabTitle: 'Edit Item',
   body: { component: Edit },
   header: {
-    component: UserHeader,
+    component: UserHeaderCompact,
     props: {
       title: 'Edit Item',
       backRoute: {
-        name: 'u.collections.index',
+        name: 'u.collections.items.index',
+        params: ['uname', 'collection'],
       },
     },
   },

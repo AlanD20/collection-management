@@ -12,6 +12,8 @@ Route::prefix('/u/{uname}')
 
     Route::resource('/collections', CollectionController::class);
     Route::resource('/collections.items', ItemController::class);
+    Route::get('/collections/{collection}/items/{item}/likes', [ItemController::class, 'like'])
+      ->name('collections.items.likes');
 
     Route::name('collections.')->group(function () {
       // require __DIR__ . '/collections.php';

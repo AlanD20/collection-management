@@ -6,22 +6,9 @@ use App\Models\Collection;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class CollectionPolicy
+class CollectionPolicy extends AdminPolicy
 {
   use HandlesAuthorization;
-
-  /**
-   * Perform pre-authorization checks.
-   *
-   * @param  \App\Models\User  $user
-   * @param  string  $ability
-   * @return void|bool
-   */
-  public function before(User $user, $ability)
-  {
-    if ($user->detail->admin) return true;
-    if ($user->detail->block) return false;
-  }
 
   /**
    * Determine whether the user can view the model.

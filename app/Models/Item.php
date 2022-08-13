@@ -15,7 +15,8 @@ class Item extends Model
   protected $with = [];
 
   protected $fillable = [
-    'name'
+    'name',
+    'fields'
   ];
 
   // Date conversion
@@ -41,7 +42,7 @@ class Item extends Model
   }
   public function likes()
   {
-    return $this->hasMany(Like::class, 'item_id', 'id');
+    return $this->belongsToMany(User::class, 'likes', 'item_id', 'user_id');
   }
   public function comments()
   {

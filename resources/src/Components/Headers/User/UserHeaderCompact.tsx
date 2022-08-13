@@ -17,12 +17,14 @@ const UserHeaderCompact = ({ title, backRoute }: UserHeaderCompactProps) => {
 
   return (
     <>
-      <TitleText label={parsedTitle} />
-      <div className="flex w-full items-center px-12 pt-8">
-        <BackButtonLink
-          routeName={backRoute.name}
-          params={getParamsWithKey(params, backRoute.params)}
-        />
+      <TitleText label={parsedTitle} className="mx-auto" />
+      <div className="flex w-full gap-4 flex-col md:flex-row py-2 px-8">
+        {backRoute && !backRoute.hidden && (
+          <BackButtonLink
+            routeName={backRoute.name}
+            params={getParamsWithKey(params, backRoute.params)}
+          />
+        )}
       </div>
     </>
   );

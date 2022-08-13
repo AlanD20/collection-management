@@ -6,6 +6,7 @@ import { usePage } from '@inertiajs/inertia-react';
 import { DefProps, UsePage } from '@/@types/Global';
 import EditButtonLink from '@@/Form/Action/EditButtonLink';
 import ViewButtonLink from '@@/Form/Action/ViewButtonLink';
+import DeleteButtonLink from '@@/Form/Action/DeleteButtonLink';
 
 interface Props extends DefProps {
   collection: Collection;
@@ -36,6 +37,14 @@ const UserCollectionCard = ({ collection, className = '' }: Props) => {
         </div>
         <p>{collection.description}</p>
         <div className="card-actions mt-4 justify-end">
+          <DeleteButtonLink
+            routeName="u.collections.destroy"
+            params={{
+              uname: params.uname,
+              collection: collection.id,
+            }}
+            hideWhen={!self}
+          />
           <EditButtonLink
             routeName="u.collections.edit"
             params={{

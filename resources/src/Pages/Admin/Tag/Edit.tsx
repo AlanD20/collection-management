@@ -19,9 +19,7 @@ const Edit = ({ tag }: Props) => {
   const handleSubmit = (e: ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    patch(route('admin.tags.update', { id: tag.id }), {
-      data,
-    });
+    patch(route('admin.tags.update', { tag: tag.id }), { data });
   };
 
   return (

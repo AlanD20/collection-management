@@ -19,9 +19,12 @@ const Edit = ({ category }: Props) => {
   const handleSubmit = (e: ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    patch(route('admin.categories.update', { id: category.id }), {
-      data,
-    });
+    patch(
+      route('admin.categories.update', {
+        category: category.id,
+      }),
+      { data }
+    );
   };
 
   return (

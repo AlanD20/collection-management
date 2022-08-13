@@ -9,17 +9,20 @@ import useReplaceParamsKey from '@/hooks/useParseParams';
 import { U_COLLECTIONS_SP } from '@/common/select-options';
 import CreateButtonLink from '@@/Form/Action/CreateButtonLink';
 import { DefProps, RouteType, UsePage } from '@/@types/Global';
+import BackButtonLink from '@@/Form/Action/BackButtonLink';
 
 export interface UserHeaderProps extends DefProps {
   title: string;
   optionRoute: RouteType;
   createRoute: RouteType;
+  backRoute?: RouteType;
   noHeaderBar?: boolean;
 }
 
 const UserHeader = ({
   optionRoute,
   createRoute,
+  backRoute,
   noHeaderBar,
   title,
 }: UserHeaderProps) => {
@@ -28,7 +31,18 @@ const UserHeader = ({
 
   return (
     <>
-      <TitleText label={parsedTitle} />
+      <TitleText
+        label={parsedTitle}
+        // className="mx-auto"
+      />
+      <div className="flex w-full gap-4 flex-col md:flex-row py-2 px-8">
+        {backRoute && !backRoute.hidden && (
+          <BackButtonLink
+            routeName={backRoute.name}
+            params={getParamsWithKey(params, backRoute.params)}
+          />
+        )}
+      </div>
       <HeaderBar hideWhen={noHeaderBar}>
         <SortSelectHeader
           hideWhen={optionRoute.hidden}

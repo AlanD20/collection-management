@@ -27,12 +27,19 @@ class DatabaseSeeder extends Seeder
     $tags = \App\Models\Tag::factory(100)->create()->pluck('id');
 
     \App\Models\User::factory(50)->create()
-      ->each(function ($user) use ($categories) {
-        \App\Models\Collection::factory(5)->create([
+      ->each(function ($user) use ($categories, $tags) {
+        $cols = \App\Models\Collection::factory(5)->create([
           'user_id' => $user->id,
           'category_id' => fake()->randomElement($categories)
-        ]);
+        ])->pluck('id');
+        \App\Models\Item::factory(5)->create([
+          'collection_id' => collect($cols)->random(),
+        ])->each(function ($item) use ($tags) {
+          $item->tags()->attach(collect($tags)->random(5)->all());
+        });
       });
+
+
 
 
     // \App\Models\User::factory()->create([

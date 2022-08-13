@@ -21,7 +21,7 @@ const Checkbox = ({
   return (
     <>
       <label
-        className={`label cursor-pointer flex w-max gap-4 items-center ${parentClass}`}
+        className={`label cursor-pointer flex w-max gap-4 items-center capitalize ${parentClass}`}
       >
         <input
           {...attr}
@@ -30,8 +30,13 @@ const Checkbox = ({
           className={`checkbox checkbox-primary ${className}`}
         />
 
-        <span className={`label-text ${labelClass}`}>
+        <span
+          className={`label-text capitalize flex w-full gap-2 items-center ${labelClass}`}
+        >
           {label ? label : children}
+          {attr.required && (
+            <span className="text-red-500 text-xl mt-2">*</span>
+          )}
         </span>
       </label>
 

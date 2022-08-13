@@ -7,13 +7,13 @@ use Illuminate\Support\Str;
 use App\Helpers\ThroughPipeline;
 use App\Http\Controllers\Controller;
 use App\Models\{User, Collection, Category};
-use App\Http\Resources\{
-  CollectionResource,
-  CategoryResource
-};
 use App\Http\Requests\User\CollectionRequest;
 use App\Http\QueryFilters\Sorting\SortCollection;
 use App\Http\QueryFilters\Filtering\FilterCollection;
+use App\Http\Resources\{
+  CollectionResource,
+  CategoryResource,
+};
 
 class CollectionController extends Controller
 {
@@ -61,17 +61,13 @@ class CollectionController extends Controller
    * @param  int $collection
    * @return \Illuminate\Http\Response
    */
-  public function show(User $uname, int $collection)
+  public function show(string $uname, int $collection)
   {
 
-    $query = Collection::query()
-      ->with('category')
-      ->where('user_id', $uname->id)
-      ->findOrFail($collection);
-    $collection = new CollectionResource($query);
-    $items = $collection->items()->paginate(7);
-
-    return Inertia::render('User/Item/Dashboard', compact('collection', 'items'));
+    return redirect()->route('u.collections.items.index', [
+      'uname' => $uname,
+      'collection' => $collection,
+    ]);
   }
 
   public function create(User $uname)
@@ -135,9 +131,7 @@ class CollectionController extends Controller
 
     $this->authorize('update', $collection);
 
-    $collection->update([
-      'name' => $request->safe()->name
-    ]);
+    $collection->update($request->validated());
 
     return back()->with('success', __('model.update', [
       'model' => 'Collection'

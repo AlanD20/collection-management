@@ -22,6 +22,7 @@ class ItemResource extends JsonResource
     return [
       'id' => $this->id,
       'name' => $this->name,
+      'fields' => $this->fields,
       'collection' => new collectionResource($collection),
       'likes' => LikeResource::collection($likes),
       'comments' => CommentResource::collection($comments),

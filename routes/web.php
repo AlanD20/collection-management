@@ -38,4 +38,7 @@ Route::inertia('/test', 'Dashboard');
 
 require __DIR__ . '/auth.php';
 require __DIR__ . '/admin/index.php';
-require __DIR__ . '/user/index.php';
+require __DIR__ . '/users/index.php';
+
+
+Route::fallback(fn () => redirect()->route('index'));
