@@ -1,18 +1,19 @@
 import React from 'react';
 import TitleText from '@@/Misc/TitleText';
+import { UsePage } from '@/@types/Response';
 import { usePage } from '@inertiajs/inertia-react';
-import { DefProps, ParamsProp, RouteType, UsePage } from '@/@types/Global';
+import { getParamsWithKey } from '@/common/helpers';
 import useReplaceParamsKey from '@/hooks/useParseParams';
 import BackButtonLink from '@@/Form/Action/BackButtonLink';
-import { getParamsWithKey } from '@/common/helpers';
+import { DefProps, PageTitle, RouteType } from '@/@types/Global';
 
 export interface UserHeaderCompactProps extends DefProps {
-  title: string;
+  title: PageTitle;
   backRoute: RouteType;
 }
 
 const UserHeaderCompact = ({ title, backRoute }: UserHeaderCompactProps) => {
-  const parsedTitle = useReplaceParamsKey('uname', title);
+  const parsedTitle = useReplaceParamsKey(title);
   const { params } = usePage<UsePage>().props;
 
   return (

@@ -2,12 +2,12 @@ import React from 'react';
 import { User } from '@/@types/Models';
 import { Paginator } from '@/@types/Response';
 import UserHead from '@@/Admin/User/UserHead';
-import AdminHeader from '@@/Headers/Admin/AdminHeader';
+import EmptyResource from '@@/Misc/EmptyResource';
 import UserTableRow from '@@/Admin/User/UserTableRow';
 import UserGridCard from '@@/Admin/User/UserGridCard';
+import AdminHeader from '@@/Headers/Admin/AdminHeader';
 import PaginationLinks from '@@/Table/PaginationLinks';
 import AdminPageContainer from '@/Layouts/AdminPageContainer';
-import EmptyResource from '@@/Misc/EmptyResource';
 
 interface Props {
   users: Paginator<User[]>;

@@ -2,9 +2,9 @@ import Input from '@@/Form/Input';
 import Button from '@@/Form/Button';
 import Checkbox from '@@/Form/Checkbox';
 import TitleText from '@@/Misc/TitleText';
-import { UsePage } from '@/@types/Global';
 import React, { ChangeEvent } from 'react';
 import ButtonLink from '@@/Form/ButtonLink';
+import { UsePage } from '@/@types/Response';
 import PageContainer from '@/Layouts/PageContainer';
 import { usePage, useForm } from '@inertiajs/inertia-react';
 

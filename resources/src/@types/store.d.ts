@@ -1,4 +1,4 @@
-import { ParamsProp, StatusProp } from './Global';
+import { ParamsProp, StatusProp } from './Response';
 
 export interface PrefStore {
   locale: string;

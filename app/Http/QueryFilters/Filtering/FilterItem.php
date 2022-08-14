@@ -11,8 +11,14 @@ class FilterItem extends Filter
   public function applyFilter($builder)
   {
     $value = $this->getQueryValue();
+    if (!$value) return $builder;
+
     return $builder->where(function ($query) use ($value) {
-      $query->where('items.name', 'like', "%{$value}%");
+      $query
+        ->Where('items.name', 'like', "%$value%")
+        ->orWhereHas('tags', function ($query) use ($value) {
+          $query->where('name', 'like', "%$value%");
+        });
     });
   }
 }

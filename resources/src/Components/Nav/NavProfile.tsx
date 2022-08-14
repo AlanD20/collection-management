@@ -1,11 +1,12 @@
-import { UsePage } from '@/@types/Global';
-import { Link, usePage } from '@inertiajs/inertia-react';
 import React from 'react';
+import { UsePage } from '@/@types/Response';
+import { Link, usePage } from '@inertiajs/inertia-react';
 
-interface Props {}
+interface Props { }
 
-const NavProfile = ({}: Props) => {
+const NavProfile = ({ }: Props) => {
   const $ = usePage<UsePage>().props;
+
 
   if (!$.auth || !$.auth.user) {
     return (

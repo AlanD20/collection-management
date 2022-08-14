@@ -1,7 +1,6 @@
 import Input from '@@/Form/Input';
 import Button from '@@/Form/Button';
-import TitleText from '@@/Misc/TitleText';
-import { UsePage } from '@/@types/Global';
+import { UsePage } from '@/@types/Response';
 import SelectDropDown from '@@/Form/SelectDropDown';
 import React, { ChangeEvent, useMemo } from 'react';
 import { Category, Collection } from '@/@types/Models';
@@ -112,7 +111,10 @@ export default UserPageContainer({
   header: {
     component: UserHeaderCompact,
     props: {
-      title: "Edit :uname's Collection",
+      title: {
+        text: "Edit :uname's Collection",
+        param: "uname",
+      },
       backRoute: {
         name: 'u.collections.index',
         params: ['uname'],

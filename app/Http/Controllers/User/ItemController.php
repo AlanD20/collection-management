@@ -13,7 +13,7 @@ use App\Http\Requests\User\ItemRequest;
 use App\Http\Resources\CollectionResource;
 use App\Http\QueryFilters\Sorting\SortItem;
 use App\Http\QueryFilters\Filtering\FilterItem;
-
+use App\Http\Resources\UserResource;
 
 class ItemController extends Controller
 {
@@ -35,6 +35,7 @@ class ItemController extends Controller
 
     $queryItems = Item::query()
       ->with('tags')
+      ->withCount('likes', 'comments')
       ->where('collection_id', $collection);
 
     $pipeItems = ThroughPipeline::new()
@@ -46,6 +47,7 @@ class ItemController extends Controller
       ->paginate(7);
 
     $likes = $this->getUserLikes($pipeItems->getCollection());
+
 
     $items = ItemResource::collection($pipeItems);
     $collection = new CollectionResource($queryCollection);
@@ -96,12 +98,32 @@ class ItemController extends Controller
   /**
    * Display the specified resource.
    *
-   * @param  int  $id
+   * @param  \App\Models\User  $uname
+   * @param  int  $collection
+   * @param  int  $item
    * @return \Illuminate\Http\Response
    */
-  public function show($id)
+  public function show(User $uname, int $collection, int $item)
   {
-    //
+    $queryCollection = Collection::query()
+      ->with('category')
+      ->where('user_id', $uname->id)
+      ->findOrFail($collection);
+
+    $queryItem = Item::query()
+      ->with('tags', 'comments')
+      ->withCount('likes', 'comments')
+      ->where('collection_id', $collection)
+      ->findOrFail($item);
+
+    $likes = $this->getUserLikes($queryItem);
+    $liked = collect($likes)->contains($queryItem->id);
+
+    $item = new ItemResource($queryItem);
+    $collection = new CollectionResource($queryCollection);
+    $user = new UserResource($uname);
+
+    return Inertia::render('User/Item/Show', compact('collection', 'item', 'liked', 'user'));
   }
 
   /**

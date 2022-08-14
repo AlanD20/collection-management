@@ -2,20 +2,24 @@ import React from 'react';
 import HeaderBar from '../HeaderBar';
 import TitleText from '@@/Misc/TitleText';
 import SearchHeader from '../SearchHeader';
+import { KeyParamsProps, UsePage } from '@/@types/Response';
 import SortSelectHeader from '../SortSelectHeader';
 import { usePage } from '@inertiajs/inertia-react';
 import { getParamsWithKey } from '@/common/helpers';
 import useReplaceParamsKey from '@/hooks/useParseParams';
-import { U_COLLECTIONS_SP } from '@/common/select-options';
-import CreateButtonLink from '@@/Form/Action/CreateButtonLink';
-import { DefProps, RouteType, UsePage } from '@/@types/Global';
 import BackButtonLink from '@@/Form/Action/BackButtonLink';
+import CreateButtonLink from '@@/Form/Action/CreateButtonLink';
+import { DefProps, PageTitle, RouteType, SelectOption } from '@/@types/Global';
 
 export interface UserHeaderProps extends DefProps {
-  title: string;
-  optionRoute: RouteType;
+  title: PageTitle;
+  optionRoute: RouteType & {
+    sortOptions: SelectOption[];
+  };
   createRoute: RouteType;
-  backRoute?: RouteType;
+  backRoute?: RouteType & {
+    prevUrl?: boolean;
+  };
   noHeaderBar?: boolean;
 }
 
@@ -26,19 +30,21 @@ const UserHeader = ({
   noHeaderBar,
   title,
 }: UserHeaderProps) => {
-  const parsedTitle = useReplaceParamsKey('uname', title);
+  const parsedTitle = useReplaceParamsKey(title);
   const { params } = usePage<UsePage>().props;
 
   return (
     <>
       <TitleText
         label={parsedTitle}
-        // className="mx-auto"
+      // className="mx-auto"
       />
       <div className="flex w-full gap-4 flex-col md:flex-row py-2 px-8">
         {backRoute && !backRoute.hidden && (
           <BackButtonLink
-            routeName={backRoute.name}
+            routeName={backRoute.prevUrl ?
+              ':prevUrl' : backRoute.name
+            }
             params={getParamsWithKey(params, backRoute.params)}
           />
         )}
@@ -46,7 +52,7 @@ const UserHeader = ({
       <HeaderBar hideWhen={noHeaderBar}>
         <SortSelectHeader
           hideWhen={optionRoute.hidden}
-          options={U_COLLECTIONS_SP}
+          options={optionRoute.sortOptions}
           routeName={optionRoute.name}
           params={getParamsWithKey(params, optionRoute.params)}
         />

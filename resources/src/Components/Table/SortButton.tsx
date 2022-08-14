@@ -1,5 +1,5 @@
+import React, { useState } from 'react';
 import { Link } from '@inertiajs/inertia-react';
-import React, { useEffect, useState } from 'react';
 import { BiSortDown, BiSortUp } from 'react-icons/bi';
 
 interface Props {

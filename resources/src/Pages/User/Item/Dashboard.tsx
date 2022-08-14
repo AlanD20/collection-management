@@ -1,10 +1,11 @@
 import React from 'react';
 import { Paginator } from '@/@types/Response';
 import EmptyResource from '@@/Misc/EmptyResource';
+import { Collection, Item } from '@/@types/Models';
 import UserHeader from '@@/Headers/User/UserHeader';
+import { U_ITEMS_SP } from '@/common/select-options';
 import UserItemCard from '@@/User/Item/UserItemCard';
 import PaginationLinks from '@@/Table/PaginationLinks';
-import { Collection, Item } from '@/@types/Models';
 import UserPageContainer from '@/Layouts/UserPageContainer';
 
 interface Props {
@@ -27,6 +28,7 @@ const Dashboard = ({ collection, items, likes }: Props) => {
             item={item}
             likes={likes}
             collection={collection}
+            className="hover:translate-y-2 hover:cursor-pointer transition-transform duration-150 ease-out"
           />
         ))}
 
@@ -43,12 +45,16 @@ export default UserPageContainer({
   header: {
     component: UserHeader,
     props: {
-      title: ":uname's Collection Items",
+      title: {
+        text: ":uname's Collection Items",
+        param: 'uname'
+      },
       backRoute: {
         name: 'u.collections.index',
         params: ['uname'],
       },
       optionRoute: {
+        sortOptions: U_ITEMS_SP,
         name: 'u.collections.items.index',
         params: ['uname', 'collection'],
       },

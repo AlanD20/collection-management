@@ -1,5 +1,5 @@
-import SortButton from '@@/Table/SortButton';
 import React from 'react';
+import SortButton from '@@/Table/SortButton';
 
 const UserHead = () => {
   const routeName = 'admin.users.index';

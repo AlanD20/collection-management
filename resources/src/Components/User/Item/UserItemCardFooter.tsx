@@ -1,17 +1,16 @@
-import { UsePage } from '@/@types/Global';
-import { Collection, Item } from '@/@types/Models';
-import DeleteButtonLink from '@@/Form/Action/DeleteButtonLink';
-import EditButtonLink from '@@/Form/Action/EditButtonLink';
-import ViewButtonLink from '@@/Form/Action/ViewButtonLink';
-import { usePage } from '@inertiajs/inertia-react';
 import React from 'react';
+import { Item } from '@/@types/Models';
+import { UsePage } from '@/@types/Response';
+import { usePage } from '@inertiajs/inertia-react';
+import ViewButtonLink from '@@/Form/Action/ViewButtonLink';
+import LikeButtonLink from '@@/Form/Action/LikeButtonLink';
 
 interface Props {
-  collection: Collection;
   item: Item;
+  likes: number[];
 }
 
-const UserItemCardFooter = ({ collection, item }: Props) => {
+const UserItemCardFooter = ({ item, likes }: Props) => {
   const { params } = usePage<UsePage>().props;
 
   return (
@@ -21,29 +20,23 @@ const UserItemCardFooter = ({ collection, item }: Props) => {
         <span>Updated {item.updatedAt}</span>
       </div>
       <div className="flex gap-2 items-center">
-        <DeleteButtonLink
-          routeName="u.collections.items.destroy"
-          params={{
-            uname: params.uname,
-            collection: collection.id,
-            item: item.id,
-          }}
-          hideWhen={!self}
-        />
-        <EditButtonLink
-          routeName="u.collections.items.edit"
-          params={{
-            uname: params.uname,
-            collection: collection.id,
-            item: item.id,
-          }}
-          hideWhen={!self}
-        />
+        <div className="flex gap-2 items-center">
+          {item.likesCount}
+          <LikeButtonLink
+            routeName="u.collections.items.likes"
+            liked={likes.includes(item.id)}
+            params={{
+              uname: params.uname,
+              collection: params.collection,
+              item: item.id,
+            }}
+          />
+        </div>
         <ViewButtonLink
           routeName="u.collections.items.show"
           params={{
             uname: params.uname,
-            collection: collection.id,
+            collection: params.collection,
             item: item.id,
           }}
         />

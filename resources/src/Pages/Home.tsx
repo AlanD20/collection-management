@@ -8,6 +8,6 @@ const Home = (props: Props) => {
 };
 
 export default PageContainer({
-  title: 'Home',
+  tabTitle: 'Home',
   body: { component: Home },
 });

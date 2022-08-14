@@ -43,6 +43,7 @@ export interface Collection {
   description: string;
   thumbnail: string;
   items: Item[];
+  itemsCount: number;
   category: Category;
   updatedAt: string;
   createdAt: string;
@@ -86,6 +87,8 @@ export interface Item {
   comments: Comments[];
   tags: Tags[];
   fields: CustomField[];
+  likesCount: number;
+  commentsCount: number;
   updatedAt: string;
   createdAt: string;
 }

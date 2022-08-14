@@ -1,6 +1,7 @@
 import React from 'react';
+import { DefProps } from '@/@types/Global';
 import ButtonLink from '@@/Form/ButtonLink';
-import { DefProps, ParamsProp } from '@/@types/Global';
+import { ParamsProp } from '@/@types/Response';
 
 interface Props extends DefProps {
   routeName: string;
@@ -9,7 +10,7 @@ interface Props extends DefProps {
 
 const ViewButtonLink = ({
   routeName,
-  params = {},
+  params,
   hideWhen = false,
   className = '',
 }: Props) => {

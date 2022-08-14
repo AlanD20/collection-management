@@ -1,9 +1,10 @@
 import React from 'react';
 import useAuth from '@/hooks/useAuth';
+import { DefProps } from '@/@types/Global';
+import { UsePage } from '@/@types/Response';
 import { Collection } from '@/@types/Models';
 import { PH_THUMBNAIL } from '@/common/constants';
 import { usePage } from '@inertiajs/inertia-react';
-import { DefProps, UsePage } from '@/@types/Global';
 import EditButtonLink from '@@/Form/Action/EditButtonLink';
 import ViewButtonLink from '@@/Form/Action/ViewButtonLink';
 import DeleteButtonLink from '@@/Form/Action/DeleteButtonLink';
@@ -29,6 +30,11 @@ const UserCollectionCard = ({ collection, className = '' }: Props) => {
         <span>Updated {collection.updatedAt}</span>
       </div>
       <div className="card-body !py-4">
+        <div className="flex w-full items-center text-xs capitalize">
+          {__('user.col_item_count', {
+            count: collection.itemsCount ? collection.itemsCount : 0
+          })}
+        </div>
         <div className="flex flex-col mb-4">
           <h2 className="card-title capitalize font-bold">
             {`${collection.name} #${collection.id}`}

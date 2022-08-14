@@ -1,7 +1,7 @@
+import React from 'react';
 import { DefProps } from '@/@types/Global';
 import { MetaPaginator } from '@/@types/Response';
 import { Link, usePage } from '@inertiajs/inertia-react';
-import React from 'react';
 
 interface Props extends DefProps {
   meta: MetaPaginator;

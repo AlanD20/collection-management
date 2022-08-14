@@ -1,13 +1,13 @@
 import React from 'react';
 import { Category } from '@/@types/Models';
 import { Paginator } from '@/@types/Response';
+import EmptyResource from '@@/Misc/EmptyResource';
 import AdminHeader from '@@/Headers/Admin/AdminHeader';
 import PaginationLinks from '@@/Table/PaginationLinks';
 import CategoryHead from '@@/Admin/Category/CategoryHead';
 import AdminPageContainer from '@/Layouts/AdminPageContainer';
 import CategoryTableRow from '@@/Admin/Category/CategoryTableRow';
 import CategoryGridCard from '@@/Admin/Category/CategoryGridCard';
-import EmptyResource from '@@/Misc/EmptyResource';
 
 interface Props {
   categories: Paginator<Category[]>;

@@ -1,6 +1,6 @@
 import React from 'react';
 import ButtonLink from '@@/Form/ButtonLink';
-import { ParamsProp } from '@/@types/Global';
+import { ParamsProp } from '@/@types/Response';
 
 interface Props {
   isBlocked: boolean;

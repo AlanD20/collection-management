@@ -27,6 +27,8 @@ class ItemResource extends JsonResource
       'likes' => LikeResource::collection($likes),
       'comments' => CommentResource::collection($comments),
       'tags' => TagResource::collection($tags),
+      'likesCount' => $this->likes_count,
+      'commentsCount' => $this->comments_count,
       'updatedAt' => $this->updated_at,
       'createdAt' => $this->created_at,
     ];

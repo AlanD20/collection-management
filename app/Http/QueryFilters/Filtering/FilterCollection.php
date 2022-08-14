@@ -16,8 +16,10 @@ class FilterCollection extends Filter
     return $builder->where(function ($query) use ($value) {
       $query
         ->Where('collections.name', 'like', "%$value%")
-        ->orWhere('categories.name', 'like', "%$value%")
-        ->orWhere('collections.description', 'like', "%$value%");
+        ->orWhere('collections.description', 'like', "%$value%")
+        ->orWhereHas('category', function ($query) use ($value) {
+          $query->where('name', 'like', "%$value%");
+        });
     });
   }
 }

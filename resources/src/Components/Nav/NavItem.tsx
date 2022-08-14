@@ -1,6 +1,6 @@
-import { Children, DefProps } from '@/@types/Global';
-import { InertiaLinkProps, Link } from '@inertiajs/inertia-react';
 import React from 'react';
+import { DefProps } from '@/@types/Global';
+import { InertiaLinkProps, Link } from '@inertiajs/inertia-react';
 
 interface Props extends DefProps, InertiaLinkProps {
   label?: string;

@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { UsePage } from '@/@types/Global';
-import { usePage } from '@inertiajs/inertia-react';
+import React, { useEffect } from 'react';
 import { alertStore } from '@/common/store';
+import { UsePage } from '@/@types/Response';
+import { usePage } from '@inertiajs/inertia-react';
 
 const AlertStatus = () => {
   const { status: $, ts } = usePage<UsePage>().props;

@@ -9,8 +9,7 @@ class SortItem extends SortFilter
 
   protected $columns = [
     'id' => 'items.id',
-    'name' => 'items.name',
-    'tags' => 'tags.name',
+    'title' => 'items.name',
     'created_at' => 'items.created_at',
     'updated_at' => 'items.updated_at',
   ];

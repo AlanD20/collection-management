@@ -1,9 +1,10 @@
 import Input from '@@/Form/Input';
 import debounce from 'lodash/debounce';
-import { DefProps, ParamsProp } from '@/@types/Global';
-import { getQueryAsObj } from '../../common/helpers';
+import { DefProps } from '@/@types/Global';
 import React, { ChangeEvent } from 'react';
 import { Inertia } from '@inertiajs/inertia';
+import { ParamsProp } from '@/@types/Response';
+import { getQueryAsObj } from '@/common/helpers';
 
 interface Props extends DefProps {
   routeName: string;

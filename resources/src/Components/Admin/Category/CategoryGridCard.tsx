@@ -1,8 +1,8 @@
 import React from 'react';
+import { DefProps } from '@/@types/Global';
 import { Category } from '@/@types/Models';
 import EditButtonLink from '@@/Form/Action/EditButtonLink';
 import DeleteButtonLink from '@@/Form/Action/DeleteButtonLink';
-import { DefProps } from '@/@types/Global';
 
 interface Props extends DefProps {
   category: Category;

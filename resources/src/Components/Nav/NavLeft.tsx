@@ -1,6 +1,6 @@
 import React from 'react';
 import NavItem from './NavItem';
-import { UsePage } from '@/@types/Global';
+import { UsePage } from '@/@types/Response';
 import { IoIosArrowDown } from 'react-icons/io';
 import { Link, usePage } from '@inertiajs/inertia-react';
 

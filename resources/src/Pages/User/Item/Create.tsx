@@ -1,13 +1,13 @@
 import Input from '@@/Form/Input';
 import Button from '@@/Form/Button';
-import { UsePage } from '@/@types/Global';
+import { UsePage } from '@/@types/Response';
 import { Collection, Tag } from '@/@types/Models';
-import React, { ChangeEvent, useMemo } from 'react';
 import SelectDropDown from '@@/Form/SelectDropDown';
-import UserHeaderCompact from '@@/Headers/User/UserHeaderCompact';
+import React, { ChangeEvent, useMemo } from 'react';
 import UserPageContainer from '@/Layouts/UserPageContainer';
 import { usePage, useForm } from '@inertiajs/inertia-react';
 import RenderCustomField from '@@/User/Item/RenderCustomField';
+import UserHeaderCompact from '@@/Headers/User/UserHeaderCompact';
 
 interface Props {
   collection: Collection;

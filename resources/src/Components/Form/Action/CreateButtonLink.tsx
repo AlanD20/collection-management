@@ -1,7 +1,8 @@
 import React from 'react';
-import { DefProps, ParamsProp, UsePage } from '@/@types/Global';
+import { DefProps } from '@/@types/Global';
 import ButtonLink from '@@/Form/ButtonLink';
 import { usePage } from '@inertiajs/inertia-react';
+import { ParamsProp, UsePage } from '@/@types/Response';
 
 interface Props extends DefProps {
   routeName: string;
@@ -10,7 +11,7 @@ interface Props extends DefProps {
 
 const CreateButtonLink = ({
   routeName,
-  params = {},
+  params,
   hideWhen = false,
   className = '',
 }: Props) => {

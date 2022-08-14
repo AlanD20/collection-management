@@ -1,6 +1,6 @@
-import { DefProps } from '@/@types/Global';
 import React from 'react';
 import TitleText from './TitleText';
+import { DefProps } from '@/@types/Global';
 
 interface Props extends DefProps {
   model: string;

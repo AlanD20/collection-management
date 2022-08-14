@@ -27,19 +27,15 @@ class CollectionController extends Controller
   public function index(User $uname)
   {
     $query = Collection::query()
-      ->select([
-        'collections.*',
-        'categories.name AS category.name'
-      ])
-      ->join('categories', 'categories.id', '=', 'collections.category_id')
       ->with('category')
+      ->withCount('items')
       ->where('user_id', $uname->id);
 
     $pipe = ThroughPipeline::new()
       ->query($query)
       ->through([
         SortCollection::class,
-        FilterCollection::class
+        FilterCollection::class,
       ])
       ->paginate(7);
 
@@ -48,6 +44,7 @@ class CollectionController extends Controller
         $collection->name = Str::limit($collection->name, 20, '...');
         $collection->description = Str::limit($collection->description);
       });
+
 
     $collections = CollectionResource::collection($pipe);
 
@@ -90,9 +87,13 @@ class CollectionController extends Controller
   public function store(CollectionRequest $request, User $uname)
   {
 
+    //! UPLOAD THUMBNAIL FILEEE
     $this->authorize('view', $uname);
 
-    $uname->collections()->create($request->validated());
+    $uname->collections()->create([
+      ...$request->validated(),
+      'fields' => $this->slugifyFieldNames($request->safe()->fields)
+    ]);
 
     return back()->with('success', __('model.create', [
       'model' => 'Collection'
@@ -131,7 +132,10 @@ class CollectionController extends Controller
 
     $this->authorize('update', $collection);
 
-    $collection->update($request->validated());
+    $collection->update([
+      ...$request->validated(),
+      'fields' => $this->slugifyFieldNames($request->safe()->fields)
+    ]);
 
     return back()->with('success', __('model.update', [
       'model' => 'Collection'
@@ -155,5 +159,15 @@ class CollectionController extends Controller
     return back()->with('success', __('model.delete', [
       'model' => 'Collection'
     ]));
+  }
+
+  function slugifyFieldNames($fields): array
+  {
+    return collect($fields)
+      ->map(fn ($f) => [
+        ...$f,
+        'name' => Str::slug($f['name'])
+      ])
+      ->all();
   }
 }

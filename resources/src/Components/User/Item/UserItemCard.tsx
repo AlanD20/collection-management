@@ -17,11 +17,11 @@ const UserItemCard = ({ collection, likes, item, className = '' }: Props) => {
       className={`card card-compact lg:card-normal min-w-[350px] w-[500px] bg-base-100 shadow-xl ${className}`}
     >
       <div className="card-body !py-4">
-        <UserItemCardHeader item={item} collection={collection} likes={likes} />
+        <UserItemCardHeader item={item} />
 
         <UserItemCardBody item={item} collection={collection} />
 
-        <UserItemCardFooter item={item} collection={collection} />
+        <UserItemCardFooter item={item} likes={likes} />
       </div>
     </div>
   );

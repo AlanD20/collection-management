@@ -1,7 +1,9 @@
 import React from 'react';
+import { DefProps } from '@/@types/Global';
 import ButtonLink from '@@/Form/ButtonLink';
+import { ParamsProp } from '@/@types/Response';
 import { FaHeart, FaRegHeart } from 'react-icons/fa';
-import { DefProps, ParamsProp } from '@/@types/Global';
+
 
 interface Props extends DefProps {
   routeName: string;
@@ -11,7 +13,7 @@ interface Props extends DefProps {
 
 const LikeButtonLink = ({
   routeName,
-  params = {},
+  params,
   liked = false,
   hideWhen = false,
   className = '',
@@ -29,6 +31,6 @@ const LikeButtonLink = ({
       {liked && <FaHeart className="text-3xl text-error" />}
     </ButtonLink>
   );
-};
+}
 
 export default LikeButtonLink;

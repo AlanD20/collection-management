@@ -2,22 +2,13 @@ import route from 'ziggy-js';
 import { Attributes } from 'react';
 import { Page } from '@inertiajs/inertia';
 import { UserWithoutRelation } from './Models';
+import { KeyParamsProps, ParamsProp } from './Response';
 
 export type AnyKey = { [key: string]: any };
 
-export type StatusProp = {
-  success: string;
-  error: string;
-  ts: number;
-};
-
-export interface ParamsProp {
-  uname?: string | null;
-  category?: number | null;
-  tag?: number | null;
-  user?: number | null;
-  collection?: number | null;
-  item?: number | null;
+export type PageTitle = string | {
+  text: string;
+  param: KeyParamsProps;
 }
 
 export type QueryParams = {
@@ -25,27 +16,12 @@ export type QueryParams = {
   order_by?: string;
   q?: string;
 };
-export type KeyParamsProps = keyof ParamsProp;
-
-export interface PageProps {
-  appName: string;
-  locale: string;
-  theme: string;
-  auth: {
-    user: UserWithoutRelation;
-  };
-  status: StatusProp;
-  params: ParamsProp;
-  ts: number;
-}
 
 export type RouteType = {
   name: string;
   params?: KeyParamsProps[];
   hidden?: boolean;
 };
-
-export type UsePage = Page & Page<PageProps>;
 
 export type ComponentElement = React.ReactComponentElement;
 

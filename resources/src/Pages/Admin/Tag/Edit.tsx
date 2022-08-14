@@ -1,7 +1,7 @@
 import Input from '@@/Form/Input';
 import Button from '@@/Form/Button';
-import TitleText from '@@/Misc/TitleText';
 import { Tag } from '@/@types/Models';
+import TitleText from '@@/Misc/TitleText';
 import React, { ChangeEvent } from 'react';
 import { useForm } from '@inertiajs/inertia-react';
 import AdminHeader from '@@/Headers/Admin/AdminHeader';

@@ -1,8 +1,9 @@
 import React from 'react';
 import { Inertia } from '@inertiajs/inertia';
+import { ParamsProp } from '@/@types/Response';
 import { getQueryAsObj } from '@/common/helpers';
 import SelectDropDown from '@@/Form/SelectDropDown';
-import { DefProps, ParamsProp, SelectOption } from '@/@types/Global';
+import { DefProps, SelectOption } from '@/@types/Global';
 
 interface Props extends DefProps {
   options: SelectOption[];

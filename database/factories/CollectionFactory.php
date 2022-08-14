@@ -21,29 +21,43 @@ class CollectionFactory extends Factory
       'description' => fake()->paragraph(),
       'category_id' => fake()->randomDigit(),
       'thumbnail' => null,
-      'fields' => fake()->randomElement(
-        [[
-          ["id" => "vAnX1Ut", "label" => "Was it fun?", "name" => "fun", "type" => "checkbox", "required" => false]
-        ]],
-        [[
-          ["id" => "yym_3rd", "label" => "journey startd", "name" => "start", "type" => "datetime", "required" => true]
-        ]],
-        [[
-          ["id" => "_qsmnBN", "label" => "Favorite memory\/quote", "name" => "memory", "type" => "textarea", "required" => true]
-        ]],
+      'fields' => [
         [
-          [
-            ["id" => "vAnX1Ut", "label" => "Was it fun?", "name" => "fun", "type" => "checkbox", "required" => false],
-            ["id" => "Z_ZM2fccbfBFO-", "label" => "artist?", "name" => "artist", "type" => "text", "required" => false]
-          ]
+          'required' => true,
+          'id' => 'j9P9YfI9scuWkk',
+          'label' => 'Single line text',
+          'name' => 'single',
+          'type' => 'text',
         ],
-        [[
-          ["id" => "R2XBwLJ6tdd7nX", "label" => "favorite numebr?", "name" => "numerb", "type" => "number", "required" => true]
-        ]],
-        [[
-          ["id" => "ms-UqWC5G1_P39", "label" => "author", "name" => "author", "type" => "text", "required" => true], ["id" => "J0tpVsdBeiY_Bm", "label" => "ISBN", "name" => "isbn", "type" => "number", "required" => true]
-        ]]
-      )
+        [
+          'required' => true,
+          'id' => 'OsEYhJyHRjamMI',
+          'label' => 'This is a multi line text',
+          'name' => 'multi',
+          'type' => 'textarea',
+        ],
+        [
+          'required' => true,
+          'id' => 'zjgQlSRy5bb0ks',
+          'label' => 'Integer/Number',
+          'name' => 'int',
+          'type' => 'number',
+        ],
+        [
+          'required' => true,
+          'id' => 'Lz2Mh93Nzj562i',
+          'label' => 'this is bool',
+          'name' => 'bool',
+          'type' => 'checkbox',
+        ],
+        [
+          'required' => true,
+          'id' => 'AUXHeUCPgh8tSB',
+          'label' => 'This is a date field',
+          'name' => 'date',
+          'type' => 'datetime',
+        ],
+      ]
     ];
   }
 }

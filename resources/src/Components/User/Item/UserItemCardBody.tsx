@@ -1,5 +1,5 @@
 import React from 'react';
-import { UsePage } from '@/@types/Global';
+import { UsePage } from '@/@types/Response';
 import { usePage } from '@inertiajs/inertia-react';
 import { Collection, Item } from '@/@types/Models';
 

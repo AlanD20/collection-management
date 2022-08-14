@@ -29,7 +29,7 @@ return [
   'create_account' => "Create An Account",
   'already_registered' => "Already have an account?",
 
-  'view' => 'View',
+  'view' => 'See More',
   'edit' => 'Edit',
   'back' => 'Go Back',
   'create' => 'Create',

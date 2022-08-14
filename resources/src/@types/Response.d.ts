@@ -1,3 +1,38 @@
+import { Page } from "@inertiajs/inertia";
+import { UserWithoutRelation } from "./Models";
+
+
+export type StatusProp = {
+  success: string;
+  error: string;
+  ts: number;
+};
+
+export interface ParamsProp {
+  uname?: string | null;
+  category?: number | null;
+  tag?: number | null;
+  user?: number | null;
+  collection?: number | null;
+  item?: number | null;
+}
+
+export type KeyParamsProps = keyof ParamsProp;
+
+export interface PageProps {
+  appName: string;
+  locale: string;
+  theme: string;
+  prevUrl: string;
+  auth: {
+    user: UserWithoutRelation;
+  };
+  status: StatusProp;
+  params: ParamsProp;
+  ts: number;
+}
+export type UsePage = Page & Page<PageProps>;
+
 export type MetaLink = {
   url: string | null;
   label: string;

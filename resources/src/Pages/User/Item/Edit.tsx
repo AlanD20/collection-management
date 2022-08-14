@@ -1,30 +1,28 @@
 import Input from '@@/Form/Input';
 import Button from '@@/Form/Button';
-import { UsePage } from '@/@types/Global';
+import { UsePage } from '@/@types/Response';
 import React, { ChangeEvent, useMemo } from 'react';
 import SelectDropDown from '@@/Form/SelectDropDown';
 import { Collection, Item, Tag } from '@/@types/Models';
-import UserPageContainer from '@/Layouts/UserPageContainer';
 import { usePage, useForm } from '@inertiajs/inertia-react';
+import UserPageContainer from '@/Layouts/UserPageContainer';
 import RenderCustomField from '@@/User/Item/RenderCustomField';
 import UserHeaderCompact from '@@/Headers/User/UserHeaderCompact';
 
 interface Props {
-  collection: Collection;
   item: Item;
   tags: Tag[];
+  collection: Collection;
 }
 
 const Edit = ({ collection, item, tags }: Props) => {
   const { params, ts } = usePage<UsePage>().props;
 
-  console.log(item, collection, tags);
-
   const { patch, data, setData, processing } = useForm<{
     [key: string]: any;
   }>({
     name: item.name,
-    tags: item.tags,
+    tags: Array.isArray(item.tags) ? item.tags.map(t => t.id) : [],
     fields: item.fields,
   });
 
@@ -58,6 +56,7 @@ const Edit = ({ collection, item, tags }: Props) => {
       })),
     [ts]
   );
+
 
   return (
     <form onSubmit={handleSubmit} className="form-control gap-4 w-full">
@@ -120,10 +119,13 @@ export default UserPageContainer({
   header: {
     component: UserHeaderCompact,
     props: {
-      title: 'Edit Item',
+      title: {
+        text: "Edit Item #:item",
+        param: 'item'
+      },
       backRoute: {
-        name: 'u.collections.items.index',
-        params: ['uname', 'collection'],
+        name: 'u.collections.items.show',
+        params: ['uname', 'collection', 'item'],
       },
     },
   },

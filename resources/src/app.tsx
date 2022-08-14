@@ -4,11 +4,11 @@ import '../css/app.css';
 import 'react-day-picker/dist/style.css';
 
 import React from 'react';
-import ReactDOM from 'react-dom/client';
-import { createInertiaApp } from '@inertiajs/inertia-react';
-import { InertiaProgress } from '@inertiajs/progress';
-import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import Layout from './Layouts/Layout';
+import ReactDOM from 'react-dom/client';
+import { InertiaProgress } from '@inertiajs/progress';
+import { createInertiaApp } from '@inertiajs/inertia-react';
+import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 
 createInertiaApp({
   title: (title) => `${title} - PCM`,

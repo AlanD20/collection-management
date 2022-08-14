@@ -31,12 +31,17 @@ class DatabaseSeeder extends Seeder
         $cols = \App\Models\Collection::factory(5)->create([
           'user_id' => $user->id,
           'category_id' => fake()->randomElement($categories)
-        ])->pluck('id');
-        \App\Models\Item::factory(5)->create([
-          'collection_id' => collect($cols)->random(),
-        ])->each(function ($item) use ($tags) {
+        ]);
+
+        for ($i = 0; $i < 5; $i++) {
+          $id = collect($cols->pluck('id')->all())->random();
+
+          $item = \App\Models\Item::factory()->create([
+            'collection_id' => $id,
+            'fields' => $cols->where('id', $id)->pluck('fields')->flatten(1)->all(),
+          ]);
           $item->tags()->attach(collect($tags)->random(5)->all());
-        });
+        }
       });
 
 

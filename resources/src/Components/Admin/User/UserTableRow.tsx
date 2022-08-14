@@ -20,7 +20,7 @@ const UserTableRow = ({ user }: Props) => {
           user.block ? 'red' : 'green'
         }-500`}
       >
-        {user.block ? 'blocked' : 'active'}
+        {user.block ? __('user.blocked') : __('user.active')}
       </td>
 
       <td className="w-8 text-center">

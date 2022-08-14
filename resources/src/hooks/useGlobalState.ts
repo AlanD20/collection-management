@@ -1,7 +1,7 @@
-import { UsePage } from '@/@types/Global';
-import { paramsStore, prefStore } from '@/common/store';
-import { usePage } from '@inertiajs/inertia-react';
 import { useEffect } from 'react';
+import { UsePage } from '@/@types/Response';
+import { usePage } from '@inertiajs/inertia-react';
+import { paramsStore, prefStore } from '@/common/store';
 
 interface Props {}
 

@@ -4,6 +4,7 @@ import { Paginator } from '@/@types/Response';
 import EmptyResource from '@@/Misc/EmptyResource';
 import UserHeader from '@@/Headers/User/UserHeader';
 import PaginationLinks from '@@/Table/PaginationLinks';
+import { U_COLLECTIONS_SP } from '@/common/select-options';
 import UserPageContainer from '@/Layouts/UserPageContainer';
 import UserCollectionCard from '@@/User/Collection/UserCollectionCard';
 
@@ -38,8 +39,12 @@ export default UserPageContainer({
   header: {
     component: UserHeader,
     props: {
-      title: ":uname's Collection",
+      title: {
+        text: ":uname's Collection",
+        param: 'uname'
+      },
       optionRoute: {
+        sortOptions: U_COLLECTIONS_SP,
         name: 'u.collections.index',
         params: ['uname'],
       },

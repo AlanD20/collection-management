@@ -60,6 +60,9 @@ class ThroughPipeline
    */
   public function paginate(int $limit)
   {
+    // \Illuminate\Support\Facades\DB::enableQueryLog();
+    // $g = $this->buildQuery()->paginate($limit);
+    // dd(\Illuminate\Support\Facades\DB::getQueryLog());
     return $this->buildQuery()->paginate($limit);
   }
 

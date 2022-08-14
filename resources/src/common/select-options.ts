@@ -19,4 +19,17 @@ export const U_COLLECTIONS_SP: SelectOption[] = [
   { value: 'desc-title', label: 'Title By Descending' },
   { value: 'asc-category', label: 'Category By Ascending' },
   { value: 'desc-category', label: 'Category By Descending' },
+  { value: 'asc-items', label: 'Item Count By Ascending' },
+  { value: 'desc-items', label: 'Item Count By Descending' },
+];
+
+export const U_ITEMS_SP: SelectOption[] = [
+  { value: 'asc-created_at', label: 'Oldest Item Created' },
+  { value: 'desc-created_at', label: 'Newest Item Created' },
+  { value: 'asc-updated_at', label: 'Oldest Item Updated' },
+  { value: 'desc-updated_at', label: 'Newest Item Updated' },
+  { value: 'asc-id', label: 'ID By Low to High' },
+  { value: 'desc-id', label: 'ID By High to Low' },
+  { value: 'asc-title', label: 'Title By Ascending' },
+  { value: 'desc-title', label: 'Title By Descending' },
 ];
