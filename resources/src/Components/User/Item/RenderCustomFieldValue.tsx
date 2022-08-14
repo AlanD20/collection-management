@@ -6,11 +6,7 @@ interface Props extends DefProps {
   field: CustomField;
 }
 
-const RenderCustomFieldValue = ({
-  field,
-  className = '',
-}: Props) => {
-
+const RenderCustomFieldValue = ({ field, className = '' }: Props) => {
   let value;
 
   if (field.type === 'checkbox') {
@@ -18,12 +14,13 @@ const RenderCustomFieldValue = ({
       <div className={`flex gap-4 items-center w-full my-4 ${className}`}>
         <span>{field.label}</span>
         <span>
-          <i className={`text-lg fas fa-${field.value ? 'check' : 'times'}`}></i>
+          <i
+            className={`text-lg fas fa-${field.value ? 'check' : 'times'}`}
+          ></i>
         </span>
       </div>
-    )
+    );
   }
-
 
   return (
     <div className={`flex flex-col gap-2 w-full my-4 ${className}`}>

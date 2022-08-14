@@ -47,7 +47,7 @@ export default UserPageContainer({
     props: {
       title: {
         text: ":uname's Collection Items",
-        param: 'uname'
+        param: 'uname',
       },
       backRoute: {
         name: 'u.collections.index',

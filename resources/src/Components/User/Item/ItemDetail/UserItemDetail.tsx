@@ -13,14 +13,14 @@ interface Props extends DefProps {
 
 const UserItemDetail = ({ collection, liked, item, className = '' }: Props) => {
   return (
-    <div className={`flex flex-col justify-center items-start w-full bg-base-100 shadow-md rounded-md gap-8 p-8 px-12 ${className}`}>
-
+    <div
+      className={`flex flex-col justify-center items-start w-full bg-base-100 shadow-md rounded-md gap-8 p-8 px-12 ${className}`}
+    >
       <ItemDetailHeader item={item} />
 
       <ItemDetailTitle item={item} />
 
       <ItemDetailBody item={item} />
-
     </div>
   );
 };

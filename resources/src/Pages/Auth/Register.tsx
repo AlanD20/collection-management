@@ -9,7 +9,6 @@ import PageContainer from '@/Layouts/PageContainer';
 import { usePage, useForm } from '@inertiajs/inertia-react';
 
 const Register = () => {
-  const $ = usePage<UsePage>().props;
   const { post, data, setData, processing, reset } = useForm({
     name: '',
     username: '',

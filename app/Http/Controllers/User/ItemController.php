@@ -111,7 +111,7 @@ class ItemController extends Controller
       ->findOrFail($collection);
 
     $queryItem = Item::query()
-      ->with('tags', 'comments')
+      ->with('tags', 'comments', 'comments.user')
       ->withCount('likes', 'comments')
       ->where('collection_id', $collection)
       ->findOrFail($item);
@@ -207,6 +207,7 @@ class ItemController extends Controller
    */
   public function like(string $uname, int $collection, int $item)
   {
+
     $arr = request()->user()->likes()->toggle($item)['attached'];
     $message = count($arr) > 0 ? 'like' : 'unlike';
 
@@ -226,6 +227,7 @@ class ItemController extends Controller
 
   function getUserLikes($items)
   {
+    if (!request()->user()) return;
     return request()->user()
       ->likes()
       ->whereIn('item_id', $items->pluck('id')->all())

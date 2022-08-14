@@ -19,5 +19,8 @@ return [
   'col_item_count' => ':count items',
 
   // Comment
-  'comment_section' => 'Comment Section',
+  'comment_section' => 'Comments',
+  'comment_as' => 'Logged in as :user',
+  'comment_login' => 'to post a comment',
+  'no_comment' => 'There is no comment on the item.',
 ];

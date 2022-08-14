@@ -63,13 +63,13 @@ const UserItemCardHeader = ({ item }: Props) => {
         )}
       </div>
       <div className="flex gap-1 w-full items-center flex-wrap">
-        {item.tags && item.tags.length > 0 &&
+        {item.tags &&
+          item.tags.length > 0 &&
           item.tags.map((tag) => (
             <div key={tag.id} className="badge">
               {tag.name}
             </div>
-          ))
-        }
+          ))}
       </div>
     </div>
   );

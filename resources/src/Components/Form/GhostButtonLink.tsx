@@ -1,6 +1,7 @@
 import React from 'react';
+import { DefProps } from '@/@types/Global';
 import ButtonLink from '@@/Form/ButtonLink';
-import { DefProps, ParamsProp } from '@/@types/Global';
+import { ParamsProp } from '@/@types/Response';
 import { InertiaLinkProps } from '@inertiajs/inertia-react';
 
 interface Props extends DefProps, Omit<InertiaLinkProps, 'href'> {

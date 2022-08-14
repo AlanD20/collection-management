@@ -22,6 +22,10 @@ return [
   'item_tag' => 'Tag:',
   'item_field_title' => 'Custom Field Items',
 
+  // Comment
+  'comment_body' => 'Your Comment',
+  'comment_post' => 'Post Comment',
+
   // Buttons
   'login' => "Login",
   'back' => "Go Back",

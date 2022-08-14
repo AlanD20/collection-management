@@ -1,9 +1,9 @@
 import React from 'react';
-import { DefProps } from '@/@types/Global';
+import { Children, DefProps } from '@/@types/Global';
 import ButtonLink from '@@/Form/ButtonLink';
 import { ParamsProp } from '@/@types/Response';
 
-interface Props extends DefProps {
+interface Props extends DefProps, Children {
   routeName: string;
   params: ParamsProp;
 }

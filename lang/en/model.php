@@ -11,6 +11,7 @@ return [
   'create' => ':model created succesfuly',
   'update' => ':model updated succesfuly',
   'delete' => ':model deleted succesfuly',
+  'post' => ':model posted successfully',
 
   'created_at' => 'Created',
   'updated_at' => 'Updated',

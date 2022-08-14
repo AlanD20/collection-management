@@ -17,7 +17,6 @@ const BackButtonLink = ({
 }: Props) => {
   if (hideWhen) return null;
 
-
   return (
     <ButtonLink
       href={route(routeName, params)}

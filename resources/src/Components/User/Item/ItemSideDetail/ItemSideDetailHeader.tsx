@@ -1,7 +1,6 @@
 import React from 'react';
 
 const ItemSideDetailHeader = () => {
-
   return (
     <div className="navbar flex w-full justify-between items-center">
       <div className="flex-1">

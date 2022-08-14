@@ -106,7 +106,7 @@ export default UserPageContainer({
   header: {
     component: UserHeaderCompact,
     props: {
-      title: "Create Collection",
+      title: 'Create Collection',
       backRoute: {
         name: 'u.collections.index',
         params: ['uname'],

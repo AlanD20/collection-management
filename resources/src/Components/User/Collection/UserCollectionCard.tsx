@@ -32,7 +32,7 @@ const UserCollectionCard = ({ collection, className = '' }: Props) => {
       <div className="card-body !py-4">
         <div className="flex w-full items-center text-xs capitalize">
           {__('user.col_item_count', {
-            count: collection.itemsCount ? collection.itemsCount : 0
+            count: collection.itemsCount ? collection.itemsCount : 0,
           })}
         </div>
         <div className="flex flex-col mb-4">

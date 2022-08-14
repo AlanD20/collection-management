@@ -1,11 +1,10 @@
-import React from "react"
-import { Item } from "@/@types/Models";
+import React from 'react';
+import { Item } from '@/@types/Models';
 import { UsePage } from '@/@types/Response';
-import { HiDotsVertical } from "react-icons/hi";
+import { HiDotsVertical } from 'react-icons/hi';
 import { usePage } from '@inertiajs/inertia-react';
-import GhostButtonLink from "@@/Form/GhostButtonLink";
-import { AiOutlineEdit, AiOutlineDelete } from "react-icons/ai";
-
+import GhostButtonLink from '@@/Form/GhostButtonLink';
+import { AiOutlineEdit, AiOutlineDelete } from 'react-icons/ai';
 
 interface Props {
   item: Item;
@@ -17,8 +16,7 @@ const ItemDetailHeader = ({ item }: Props) => {
     auth: { user },
   } = usePage<UsePage>().props;
 
-  const condition = user.username === params.uname || user.admin;
-
+  const condition = user && (user.username === params.uname || user.admin);
 
   return (
     <div className="flex justify-between items-center w-full gap-4">
@@ -71,7 +69,7 @@ const ItemDetailHeader = ({ item }: Props) => {
         </div>
       )}
     </div>
-  )
-}
+  );
+};
 
 export default ItemDetailHeader;

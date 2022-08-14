@@ -1,6 +1,5 @@
-import { Page } from "@inertiajs/inertia";
-import { UserWithoutRelation } from "./Models";
-
+import { Page } from '@inertiajs/inertia';
+import { UserWithoutRelation } from './Models';
 
 export type StatusProp = {
   success: string;
@@ -15,6 +14,7 @@ export interface ParamsProp {
   user?: number | null;
   collection?: number | null;
   item?: number | null;
+  comment?: number | null;
 }
 
 export type KeyParamsProps = keyof ParamsProp;

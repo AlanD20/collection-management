@@ -41,7 +41,7 @@ export default UserPageContainer({
     props: {
       title: {
         text: ":uname's Collection",
-        param: 'uname'
+        param: 'uname',
       },
       optionRoute: {
         sortOptions: U_COLLECTIONS_SP,

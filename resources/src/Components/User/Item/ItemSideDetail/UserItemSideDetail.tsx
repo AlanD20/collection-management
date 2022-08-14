@@ -11,15 +11,10 @@ interface Props extends DefProps {
   liked: boolean;
 }
 
-const UserItemSideDetail = ({
-  user,
-  liked,
-  item,
-  className = '',
-}: Props) => {
+const UserItemSideDetail = ({ user, liked, item, className = '' }: Props) => {
   return (
     <div
-      className={`card card-bordered bg-base-100 shadow-md rounded-md p-4 px-8 w-[64ch] sticky top-32 ${className}`}
+      className={`card card-bordered bg-base-100 shadow-md rounded-md p-4 px-8 w-[64ch] md:sticky top-32 ${className}`}
     >
       <ItemSideDetailHeader />
 

@@ -65,6 +65,7 @@ class HandleInertiaRequests extends Middleware
         'user' => $this->getRoute('user'),
         'collection' => $this->getRoute('collection'),
         'item' => $this->getRoute('item'),
+        'comment' => $this->getRoute('comment'),
       ],
       'prevUrl' => fn () => url()->previous(),
       'ts' => fn () => time(),

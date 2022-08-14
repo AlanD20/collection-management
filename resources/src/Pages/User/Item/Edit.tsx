@@ -22,7 +22,7 @@ const Edit = ({ collection, item, tags }: Props) => {
     [key: string]: any;
   }>({
     name: item.name,
-    tags: Array.isArray(item.tags) ? item.tags.map(t => t.id) : [],
+    tags: Array.isArray(item.tags) ? item.tags.map((t) => t.id) : [],
     fields: item.fields,
   });
 
@@ -56,7 +56,6 @@ const Edit = ({ collection, item, tags }: Props) => {
       })),
     [ts]
   );
-
 
   return (
     <form onSubmit={handleSubmit} className="form-control gap-4 w-full">
@@ -120,8 +119,8 @@ export default UserPageContainer({
     component: UserHeaderCompact,
     props: {
       title: {
-        text: "Edit Item #:item",
-        param: 'item'
+        text: 'Edit Item #:item',
+        param: 'item',
       },
       backRoute: {
         name: 'u.collections.items.show',

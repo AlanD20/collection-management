@@ -6,10 +6,12 @@ import { KeyParamsProps, ParamsProp } from './Response';
 
 export type AnyKey = { [key: string]: any };
 
-export type PageTitle = string | {
-  text: string;
-  param: KeyParamsProps;
-}
+export type PageTitle =
+  | string
+  | {
+      text: string;
+      param: KeyParamsProps;
+    };
 
 export type QueryParams = {
   sort?: 'asc' | 'desc';

@@ -37,14 +37,12 @@ const UserHeader = ({
     <>
       <TitleText
         label={parsedTitle}
-      // className="mx-auto"
+        // className="mx-auto"
       />
       <div className="flex w-full gap-4 flex-col md:flex-row py-2 px-8">
         {backRoute && !backRoute.hidden && (
           <BackButtonLink
-            routeName={backRoute.prevUrl ?
-              ':prevUrl' : backRoute.name
-            }
+            routeName={backRoute.prevUrl ? ':prevUrl' : backRoute.name}
             params={getParamsWithKey(params, backRoute.params)}
           />
         )}
