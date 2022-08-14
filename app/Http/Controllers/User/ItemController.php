@@ -227,7 +227,8 @@ class ItemController extends Controller
 
   function getUserLikes($items)
   {
-    if (!request()->user()) return;
+    if (!request()->user()) return [];
+
     return request()->user()
       ->likes()
       ->whereIn('item_id', $items->pluck('id')->all())

@@ -46,8 +46,6 @@ const Create = () => {
           className={`mt-6 ml-auto text-lg ${processing ? 'loading' : ''}`}
         />
       </form>
-
-      <div className="divider"></div>
     </>
   );
 };

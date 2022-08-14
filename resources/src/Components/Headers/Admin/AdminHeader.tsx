@@ -24,7 +24,7 @@ const AdminHeader = ({
 
   return (
     <div className="w-full flex flex-col md:flex-row justify-start items-center mt-4 mb-8 gap-4">
-      <div className={`tabs tabs-boxed ${className}`}>
+      <div className={`tabs tabs-boxed bg-base-300 ${className}`}>
         <TabItem
           path={route('admin.index')}
           label="Dashboard"

@@ -6,6 +6,9 @@ import { KeyParamsProps, ParamsProp } from './Response';
 
 export type AnyKey = { [key: string]: any };
 
+type ThemeType = 'dracula' | 'emerald';
+type LocalType = 'en' | 'ku';
+
 export type PageTitle =
   | string
   | {

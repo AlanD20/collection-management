@@ -20,7 +20,7 @@ const CreateButtonLink = ({
     ...$
   } = usePage<UsePage>().props;
 
-  const self = user.username === $.params.uname || user.admin;
+  const self = user && (user.username === $.params.uname || user.admin);
 
   if (!self || hideWhen) return null;
 

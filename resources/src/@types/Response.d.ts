@@ -1,4 +1,5 @@
 import { Page } from '@inertiajs/inertia';
+import { LocalType, ThemeType } from './Global';
 import { UserWithoutRelation } from './Models';
 
 export type StatusProp = {
@@ -21,8 +22,8 @@ export type KeyParamsProps = keyof ParamsProp;
 
 export interface PageProps {
   appName: string;
-  locale: string;
-  theme: string;
+  locale: LocalType;
+  theme: ThemeType;
   prevUrl: string;
   auth: {
     user: UserWithoutRelation;

@@ -19,7 +19,7 @@ const Layout = ({ children, title }: Props) => {
 
       <Navigation />
 
-      <main className="min-h-screen w-full flex flex-col items-center relative bg-gray-100 py-4 px-2 sm:px-8 ">
+      <main className="min-h-screen w-full flex flex-col items-center relative bg-base-200 py-4 px-2 sm:px-8 ">
         {children}
         <AlertStatus />
       </main>
@@ -28,4 +28,5 @@ const Layout = ({ children, title }: Props) => {
     </div>
   );
 };
+
 export default Layout;

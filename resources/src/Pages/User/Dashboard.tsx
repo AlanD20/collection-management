@@ -1,7 +1,35 @@
 import React from 'react';
+import UserPageContainer from '@/Layouts/UserPageContainer';
 
-interface Props {}
-const Dashboard = (props: Props) => {
+const Dashboard = () => {
   return <div>USER Dashboard</div>;
 };
-export default Dashboard;
+
+export default UserPageContainer({
+  tabTitle: 'User',
+  body: {
+    component: Dashboard,
+  },
+  // header: {
+  //   component: UserHeader,
+  //   props: {
+  //     title: {
+  //       text: ":uname's Collection Items",
+  //       param: 'uname',
+  //     },
+  //     backRoute: {
+  //       name: 'u.collections.index',
+  //       params: ['uname'],
+  //     },
+  //     optionRoute: {
+  //       sortOptions: U_ITEMS_SP,
+  //       name: 'u.collections.items.index',
+  //       params: ['uname', 'collection'],
+  //     },
+  //     createRoute: {
+  //       name: 'u.collections.items.create',
+  //       params: ['uname', 'collection'],
+  //     },
+  //   },
+  // },
+});

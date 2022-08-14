@@ -16,7 +16,7 @@ const UserItemCardHeader = ({ item }: Props) => {
     auth: { user },
   } = usePage<UsePage>().props;
 
-  const condition = user.username === params.uname || user.admin;
+  const condition = user && (user.username === params.uname || user.admin);
 
   return (
     <div className="flex flex-col gap-2 mb-4">

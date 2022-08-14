@@ -8,7 +8,7 @@ interface Props extends DefProps {
   active?: boolean;
 }
 
-const TabItem = ({ path, label, active, className }: Props) => {
+const TabItem = ({ path, label, active, className = '' }: Props) => {
   const $ = usePage();
 
   return (

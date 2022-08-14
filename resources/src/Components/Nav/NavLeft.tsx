@@ -2,11 +2,11 @@ import React from 'react';
 import NavItem from './NavItem';
 import { UsePage } from '@/@types/Response';
 import { IoIosArrowDown } from 'react-icons/io';
+import ChangeTheme from '@@/Misc/ChangeTheme';
+import AuthChangeTheme from '@@/Misc/AuthChangeTheme';
 import { Link, usePage } from '@inertiajs/inertia-react';
 
-interface Props {}
-
-const NavLeft = (props: Props) => {
+const NavLeft = () => {
   const $ = usePage<UsePage>().props;
 
   return (
@@ -63,6 +63,7 @@ const NavLeft = (props: Props) => {
         >
           {$.appName}
         </Link>
+        {$.auth.user ? <AuthChangeTheme /> : <ChangeTheme />}
       </div>
 
       {/* Large Screen */}

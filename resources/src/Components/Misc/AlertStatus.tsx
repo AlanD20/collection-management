@@ -10,6 +10,7 @@ const AlertStatus = () => {
 
   useEffect(() => {
     let timer: NodeJS.Timeout;
+    status.clearStatus();
     if ($.error || $.success) {
       status.setStatus($);
       timer = setTimeout(() => status.clearStatus(), 2000);

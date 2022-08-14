@@ -1,11 +1,13 @@
+import { UsePage } from '@/@types/Response';
 import { usePage } from '@inertiajs/inertia-react';
-import { UsePage } from '@/@types/Global';
 
 const useAuth = () => {
   const {
     auth: { user },
     ...$
   } = usePage<UsePage>().props;
+
+  if (!user) return {};
 
   const self = $.params.uname === user.username || user.admin;
 

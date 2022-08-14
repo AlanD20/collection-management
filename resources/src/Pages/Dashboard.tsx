@@ -1,3 +1,4 @@
+import PageContainer from '@/Layouts/PageContainer';
 import React from 'react';
 
 interface Props {
@@ -19,4 +20,7 @@ const Dashboard = (p: Props) => {
   );
 };
 
-export default Dashboard;
+export default PageContainer({
+  tabTitle: 'Home',
+  body: { component: Dashboard },
+});

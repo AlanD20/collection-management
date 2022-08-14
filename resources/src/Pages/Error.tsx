@@ -1,15 +1,16 @@
 import React from 'react';
+import PageContainer from '@/Layouts/PageContainer';
 
 interface Props {
   status: number;
 }
 
-export default function ErrorPage({ status }: Props) {
+const ErrorPage = ({ status }: Props) => {
   const title = {
-    503: '503: Service Unavailable',
-    500: '500: Server Error',
-    404: '404: Page Not Found',
-    403: '403: Forbidden',
+    503: '503 Service Unavailable',
+    500: '500 Server Error',
+    404: '404 Page Not Found',
+    403: '403 Forbidden',
   }[status];
 
   const description = {
@@ -20,9 +21,14 @@ export default function ErrorPage({ status }: Props) {
   }[status];
 
   return (
-    <div>
-      <h1>{title}</h1>
-      <div>{description}</div>
+    <div className="w-full flex flex-col gap-8 px-8 items-center mt-12">
+      <h1 className="text-4xl font-bold">{title}</h1>
+      <p className="text-lg">{description}</p>
     </div>
   );
-}
+};
+
+export default PageContainer({
+  tabTitle: 'Error',
+  body: { component: ErrorPage },
+});

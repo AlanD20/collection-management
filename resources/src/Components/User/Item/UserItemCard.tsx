@@ -11,7 +11,12 @@ interface Props extends DefProps {
   likes: number[];
 }
 
-const UserItemCard = ({ collection, likes, item, className = '' }: Props) => {
+const UserItemCard = ({
+  collection,
+  item,
+  likes = [],
+  className = '',
+}: Props) => {
   return (
     <div
       className={`card card-compact lg:card-normal min-w-[350px] w-[500px] bg-base-100 shadow-xl ${className}`}

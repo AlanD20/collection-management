@@ -14,7 +14,6 @@ interface Props {
 }
 
 const Dashboard = ({ user, item, liked, collection }: Props) => {
-
   return (
     <div className="w-full flex flex-col md:flex-row gap-4 p-4 md:justify-center md:items-start md:gap-8 md:p-8 relative">
       <UserItemSideDetail user={user} item={item} liked={liked} />

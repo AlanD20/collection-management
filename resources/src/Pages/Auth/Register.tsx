@@ -105,7 +105,7 @@ const Register = () => {
         <ButtonLink
           href={route('login')}
           label={__('form.already_registered')}
-          className="btn-link bnt-md underline text-sm text-gray-600 hover:text-gray-900"
+          className="btn-link bnt-md underline text-base text-neutral hover:text-neutral-focus font-bold"
         />
       </div>
     </>

@@ -16,7 +16,8 @@ const SingleComment = ({ comment }: Props) => {
   } = usePage<UsePage>().props;
 
   const condition =
-    user && (user.username === params.uname ||
+    user &&
+    (user.username === params.uname ||
       comment.user.username === user.username ||
       user.admin);
 
