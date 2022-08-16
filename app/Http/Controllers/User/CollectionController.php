@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Helpers\CollectionHelper;
 use Inertia\Inertia;
 use Illuminate\Support\Str;
 use App\Helpers\ThroughPipeline;
@@ -22,7 +23,7 @@ class CollectionController extends Controller
    * Display a listing of the resource.
    *
    * @param  \App\Models\User $user
-   * @return \Illuminate\Http\Response
+   * @return \Inertia\Response
    */
   public function index(User $uname)
   {
@@ -40,10 +41,9 @@ class CollectionController extends Controller
       ->paginate(7);
 
     $pipe->getCollection()
-      ->each(function (Collection $collection) {
-        $collection->name = Str::limit($collection->name, 20, '...');
-        $collection->description = Str::limit($collection->description);
-      });
+      ->each(
+        fn (Collection $collection) => (new CollectionHelper())->truncDesc($collection)
+      );
 
 
     $collections = CollectionResource::collection($pipe);
@@ -56,7 +56,7 @@ class CollectionController extends Controller
    *
    * @param  \App\Models\User $user
    * @param  int $collection
-   * @return \Illuminate\Http\Response
+   * @return \Illuminate\Http\RedirectResponse
    */
   public function show(string $uname, int $collection)
   {
@@ -82,7 +82,7 @@ class CollectionController extends Controller
    *
    * @param  \App\Http\Requests\User\CollectionRequest  $request
    * @param  \App\Models\User $user
-   * @return \Illuminate\Http\Response
+   * @return \Illuminate\Http\RedirectResponse
    */
   public function store(CollectionRequest $request, User $uname)
   {
@@ -90,9 +90,12 @@ class CollectionController extends Controller
     //! UPLOAD THUMBNAIL FILEEE
     $this->authorize('view', $uname);
 
+    $fields =  (new CollectionHelper())
+      ->slugifyFieldNames($request->safe()->fields);
+
     $uname->collections()->create([
       ...$request->validated(),
-      'fields' => $this->slugifyFieldNames($request->safe()->fields)
+      'fields' => $fields
     ]);
 
     return back()->with('success', __('model.create', [
@@ -105,7 +108,7 @@ class CollectionController extends Controller
    *
    * @param  string  $uname
    * @param  \App\Models\Collection  $collection
-   * @return \Illuminate\Http\Response
+   * @return \Inertia\Response
    */
   public function edit(string $uname, Collection $collection)
   {
@@ -125,7 +128,7 @@ class CollectionController extends Controller
    * @param  \App\Http\Requests\User\CollectionRequest  $request
    * @param  string  $uname
    * @param  \App\Models\Collection  $collection
-   * @return \Illuminate\Http\Response
+   * @return \Illuminate\Http\RedirectResponse
    */
   public function update(CollectionRequest $request, string $uname, Collection $collection)
   {
@@ -147,7 +150,7 @@ class CollectionController extends Controller
    *
    * @param  string  $uname
    * @param  \App\Models\Collection  $collection
-   * @return \Illuminate\Http\Response
+   * @return \Illuminate\Http\RedirectResponse
    */
   public function destroy(string $uname, Collection $collection)
   {
@@ -159,15 +162,5 @@ class CollectionController extends Controller
     return back()->with('success', __('model.delete', [
       'model' => 'Collection'
     ]));
-  }
-
-  function slugifyFieldNames($fields): array
-  {
-    return collect($fields)
-      ->map(fn ($f) => [
-        ...$f,
-        'name' => Str::slug($f['name'])
-      ])
-      ->all();
   }
 }

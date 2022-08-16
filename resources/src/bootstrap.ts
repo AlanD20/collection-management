@@ -1,8 +1,6 @@
 import _get from 'lodash/get';
 import _has from 'lodash/has';
 import en from '@/common/en.json';
-import { prefStore } from '@/common/store';
-import { PrefStore } from './@types/store';
 
 window.__ = (key, replace) => {
   let translate: string = _get(en, key);

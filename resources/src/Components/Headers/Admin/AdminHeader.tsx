@@ -23,7 +23,7 @@ const AdminHeader = ({
     componentName.endsWith('Create') || componentName.endsWith('Edit');
 
   return (
-    <div className="w-full flex flex-col md:flex-row justify-start items-center mt-4 mb-8 gap-4">
+    <div className="w-full flex flex-col md:flex-row justify-start items-center lg:justify-between mt-4 mb-8 gap-4">
       <div className={`tabs tabs-boxed bg-base-300 ${className}`}>
         <TabItem
           path={route('admin.index')}
@@ -48,7 +48,7 @@ const AdminHeader = ({
       </div>
 
       {(searchbar || !createRoute?.hidden) && (
-        <div className="flex gap-4 items-center ml-auto">
+        <div className="flex flex-col lg:flex-row gap-4 items-stretch lg:items-center justify-end">
           {searchbar && searchbar.routeName && (
             <SearchHeader
               routeName={searchbar.routeName}
@@ -58,7 +58,7 @@ const AdminHeader = ({
           {createRoute?.name && (
             <ButtonLink
               href={route(createRoute?.name)}
-              className="md:ml-auto btn btn-secondary btn-wide text-xl"
+              className="lg:ml-auto btn btn-secondary btn-wide text-xl"
               label={__('form.create')}
             />
           )}

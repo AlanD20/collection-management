@@ -14,7 +14,7 @@ const Navigation = () => {
           <NavProfile />
         </div>
       </nav>
-      <nav className="flex flex-col sm:hidden sticky top-0 navbar bg-base-100 py-4 px-8 shadow-md z-50 min-h-min">
+      <nav className="flex flex-col sm:hidden sticky top-0 navbar bg-base-100 py-4 px-8 gap-10 shadow-md z-50 min-h-min">
         <div className="w-full flex justify-between">
           <NavLeft />
           <NavProfile />

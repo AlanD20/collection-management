@@ -14,9 +14,11 @@ const UserPageContainer = ({
   body.component.layout = (page: ComponentElement) => {
     return (
       <Layout title={tabTitle}>
-        {header && React.createElement(header.component, header.props)}
+        {// @ts-ignore
+          React.createElement(header?.component, header?.props)
+        }
 
-        <div className={`${small ? 'w-[45ch]' : 'w-full'} ${className}`}>
+        <div className={`${small ? 'lg:w-[45ch]' : 'w-full'} ${className}`}>
           {body &&
             React.createElement(body.component, {
               ...page.props,

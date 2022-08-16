@@ -23,7 +23,7 @@ const ChangeTheme = () => {
 
       <svg
         onClick={() => changeHtml('dracula')}
-        className="swap-on fill-current w-10 h-10"
+        className="swap-on mx-2 fill-current w-10 h-10"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
       >
@@ -32,7 +32,7 @@ const ChangeTheme = () => {
 
       <svg
         onClick={() => changeHtml('emerald')}
-        className="swap-off fill-current w-10 h-10"
+        className="swap-off mx-2 fill-current w-10 h-10"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
       >

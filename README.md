@@ -9,8 +9,8 @@
 - [x] Each item supports tags.
 - [x] Like and comment for each items in the collection.
 - [ ] Must support two languages.
-- [ ] Support two visual themes (dark, light).
-- [ ] Must be responsive.
+- [x] Support two visual themes (dark, light).
+- [x] Must be responsive.
 - [x] Each Collection has
 	- Name.
 	- Description with markdown supported.
@@ -22,7 +22,7 @@
 	- The creator of the collection also specifies the name of the custom fields.
 
 #### Everyone:
-- Search including tag search.
+- [ ] Search including tag search.
 - [x] View items.
 - [x] Can not post comments, likes, but they are viewable by everyone.
 
@@ -39,8 +39,8 @@
 - [x] Promote/demote admin role, even from themselvies.
 
 #### UI:
-- [ ] List of the latest items (name, collections, authors)
-- [ ] List of top 5 largest collection
+- [x] List of the latest items (name, collections, authors)
+- [x] List of top 5 largest collection
 - [ ] Tag search (should work like the search result)
 - [ ] Tags are clickable which shows all the items with the clicked tag.
 - [x] Register/Login form.
@@ -54,10 +54,10 @@
 - [x] When adding tags to the item, it must auto-complete it.			
 
 #### Optionals:
-- Auth via social media.
+- [ ] Auth via social media.
 - [x] Custom fields with types chosen by the user.
 - [x] Adding more than 3 custom fields.
-- Exporting a collection to a CSV File.
+- [ ] Exporting a collection to a CSV File.
 
 
 ### Packages:

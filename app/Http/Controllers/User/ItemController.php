@@ -22,7 +22,7 @@ class ItemController extends Controller
    *
    * @param  \App\Models\User $uname
    * @param  int $collection
-   * @return \Illuminate\Http\Response
+   * @return \Inertia\Response
    */
   public function index(User $uname, int $collection)
   {
@@ -60,7 +60,7 @@ class ItemController extends Controller
    *
    * @param  string $uname
    * @param  \App\Models\Collection $collection
-   * @return \Illuminate\Http\Response
+   * @return \Inertia\Response
    */
   public function create(string $uname, Collection $collection)
   {
@@ -75,7 +75,7 @@ class ItemController extends Controller
    * @param  \App\Http\Requests\User\ItemRequest  $request
    * @param  string  $uname
    * @param  \App\Models\Collection  $collection
-   * @return \Illuminate\Http\Response
+   * @return \Illuminate\Http\RedirectResponse
    */
   public function store(ItemRequest $request, string $uname, Collection $collection)
   {
@@ -101,7 +101,7 @@ class ItemController extends Controller
    * @param  \App\Models\User  $uname
    * @param  int  $collection
    * @param  int  $item
-   * @return \Illuminate\Http\Response
+   * @return \Inertia\Response
    */
   public function show(User $uname, int $collection, int $item)
   {
@@ -132,7 +132,7 @@ class ItemController extends Controller
    * @param  string  $uname
    * @param  \App\Models\Collection  $collection
    * @param  int  $item
-   * @return \Illuminate\Http\Response
+   * @return \Inertia\Response
    */
   public function edit(string $uname, Collection $collection, int $item)
   {
@@ -158,7 +158,7 @@ class ItemController extends Controller
    * @param  string  $uname
    * @param  \App\Models\Collection  $collection
    * @param  \App\Models\Item  $item
-   * @return \Illuminate\Http\Response
+   * @return \Illuminate\Http\RedirectResponse
    */
   public function update(ItemRequest $request, string $uname, Collection $collection, Item $item)
   {
@@ -183,7 +183,7 @@ class ItemController extends Controller
    * @param  string  $uname
    * @param  \App\Models\Collection  $collection
    * @param  \App\Models\Item  $item
-   * @return \Illuminate\Http\Response
+   * @return \Illuminate\Http\RedirectResponse
    */
   public function destroy(string $uname, Collection $collection, Item $item)
   {
@@ -203,7 +203,7 @@ class ItemController extends Controller
    * @param  string  $uname
    * @param  int  $collection
    * @param  int  $item
-   * @return \Illuminate\Http\Response
+   * @return \Illuminate\Http\RedirectResponse
    */
   public function like(string $uname, int $collection, int $item)
   {

@@ -9,11 +9,16 @@ use App\Http\Controllers\Controller;
 use App\Http\QueryFilters\Filtering\FilterAdminUser;
 use App\Http\Resources\UserResource;
 use App\Http\QueryFilters\Sorting\SortAdminUser;
-use App\Models\Collection;
+
 
 class AdminUserController extends Controller
 {
 
+  /**
+   * Display a listing of the resource.
+   *
+   * @return \Inertia\Response
+   */
   public function index()
   {
     $query = User::query()
@@ -36,6 +41,12 @@ class AdminUserController extends Controller
     return Inertia::render('Admin/User/Dashboard', compact('users'));
   }
 
+  /**
+   *
+   *
+   * @param  int $userid
+   * @return \Illuminate\Http\RedirectResponse
+   */
   public function promote(int $userId)
   {
     User::findOrFail($userId)
@@ -45,6 +56,12 @@ class AdminUserController extends Controller
     return back()->with('success', __('admin.promote'));
   }
 
+  /**
+   *
+   *
+   * @param  int $userid
+   * @return \Illuminate\Http\RedirectResponse
+   */
   public function demote(int $userId)
   {
     User::findOrFail($userId)
@@ -54,6 +71,12 @@ class AdminUserController extends Controller
     return back()->with('success', __('admin.demote'));
   }
 
+  /**
+   *
+   *
+   * @param  int $userid
+   * @return \Illuminate\Http\RedirectResponse
+   */
   public function block(int $userId)
   {
     User::findOrFail($userId)
@@ -63,6 +86,12 @@ class AdminUserController extends Controller
     return back()->with('success', __('admin.block'));
   }
 
+  /**
+   *
+   *
+   * @param  int $userid
+   * @return \Illuminate\Http\RedirectResponse
+   */
   public function unblock(int $userId)
   {
     User::findOrFail($userId)
@@ -72,6 +101,12 @@ class AdminUserController extends Controller
     return back()->with('success', __('admin.unblock'));
   }
 
+  /**
+   *
+   *
+   * @param  int $userid
+   * @return \Illuminate\Http\RedirectResponse
+   */
   public function destroy(int $userId)
   {
     User::findOrFail($userId)->delete();

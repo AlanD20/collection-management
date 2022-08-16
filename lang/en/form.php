@@ -38,6 +38,7 @@ return [
   'back' => 'Go Back',
   'create' => 'Create',
   'delete' => 'Delete',
+  'see_more' => 'See More',
   'update' => 'Update',
 
 ];

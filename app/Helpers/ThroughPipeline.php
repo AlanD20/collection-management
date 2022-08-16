@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\Builder;
 class ThroughPipeline
 {
 
-  private const ResourcePath = '\\App\\Http\\Resources\\';
 
   private Builder $query;
   private array $filters;
@@ -18,9 +17,9 @@ class ThroughPipeline
   /**
    * Return a new instance.
    *
-   * @return \App\Helpers\ThroughPipeline
+   * @return ThroughPipeline
    */
-  public static function new()
+  public static function new(): ThroughPipeline
   {
     return new ThroughPipeline();
   }
@@ -28,7 +27,7 @@ class ThroughPipeline
   /**
    * Query to run through pipe lines.
    *
-   * @param \Illuminate\Database\Eloquent\Builder $query
+   * @param Builder $query
    *
    * @return self
    */
@@ -79,9 +78,9 @@ class ThroughPipeline
   /**
    * Builds the pipeline
    *
-   * @return \Illuminate\Database\Eloquent\Builder
+   * @return Builder
    */
-  public function buildQuery()
+  public function buildQuery(): Builder
   {
     return app(Pipeline::class)
       ->send($this->query)

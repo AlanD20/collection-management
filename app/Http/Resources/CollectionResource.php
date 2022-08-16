@@ -16,6 +16,7 @@ class CollectionResource extends JsonResource
   {
     $items = $this->whenLoaded('items');
     $category = $this->whenLoaded('category');
+    $user = $this->whenLoaded('user');
 
     return [
       'id' => $this->id,
@@ -26,6 +27,7 @@ class CollectionResource extends JsonResource
       'itemsCount' => $this->items_count,
       'items' => ItemResource::collection($items),
       'category' => new CategoryResource($category),
+      'user' => new UserResource($user),
       'updatedAt' => $this->updated_at,
       'createdAt' => $this->created_at,
     ];

@@ -11,7 +11,7 @@ class UserController extends Controller
   /**
    * Display a listing of the resource.
    *
-   * @return \Illuminate\Http\Response
+   * @return \Inertia\Response
    */
   public function index()
   {
@@ -42,12 +42,12 @@ class UserController extends Controller
   /**
    * Display the specified resource.
    *
-   * @param  int  $id
+   * @param  string  $uname
    * @return \Illuminate\Http\Response
    */
-  public function show($id)
+  public function show(string $uname)
   {
-    //
+    return Inertia::render('User/Dashboard');
   }
 
   /**

@@ -43,6 +43,7 @@ export interface Collection {
   description: string;
   thumbnail: string;
   items: Item[];
+  user: User;
   itemsCount: number;
   category: Category;
   updatedAt: string;

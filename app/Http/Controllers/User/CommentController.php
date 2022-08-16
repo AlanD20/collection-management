@@ -17,7 +17,7 @@ class CommentController extends Controller
    * @param  \App\Models\User  $uname
    * @param  int  $collection
    * @param  int  $item
-   * @return \Illuminate\Http\Response
+   * @return \Illuminate\Http\RedirectResponse
    */
   public function store(CommentRequest $request, User $uname, int $collection, int $item)
   {
@@ -40,7 +40,7 @@ class CommentController extends Controller
    * @param  int  $collection
    * @param  int  $item
    * @param  \App\Models\Comment  $comment
-   * @return \Illuminate\Http\Response
+   * @return \Illuminate\Http\RedirectResponse
    */
   public function destroy(string $uname, int $collection, int $item, Comment $comment)
   {

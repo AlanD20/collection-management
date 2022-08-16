@@ -38,7 +38,7 @@ class Item extends Model
 
   public function collection()
   {
-    return $this->belongsTo(Item::class, 'collection_id', 'id');
+    return $this->belongsTo(Collection::class, 'collection_id', 'id');
   }
   public function likes()
   {

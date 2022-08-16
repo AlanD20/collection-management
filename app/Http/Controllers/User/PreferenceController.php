@@ -13,7 +13,7 @@ class PreferenceController extends Controller
    * Store locale in storage.
    *
    * @param  \Illuminate\Http\Request  $request
-   * @return \Illuminate\Http\Response
+   * @return \Illuminate\Http\RedirectResponse
    */
   public function locale(Request $request)
   {
@@ -31,7 +31,7 @@ class PreferenceController extends Controller
    * Store theme in storage.
    *
    * @param  \Illuminate\Http\Request  $request
-   * @return \Illuminate\Http\Response
+   * @return \Illuminate\Http\RedirectResponse
    */
   public function theme(Request $request)
   {

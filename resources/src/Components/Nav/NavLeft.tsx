@@ -11,7 +11,7 @@ const NavLeft = () => {
 
   return (
     <>
-      <div className="navbar-start flex-1">
+      <div className="navbar-start flex-1 flex items-center">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
             <svg
@@ -40,11 +40,10 @@ const NavLeft = () => {
               <a className="justify-between">
                 Parent
                 <IoIosArrowDown
-                  className={`${
-                    $.auth.user && $.auth.user.locale === 'en'
-                      ? '-rotate-90'
-                      : 'rotate-90'
-                  }`}
+                  className={`${$.auth.user && $.auth.user.locale === 'en'
+                    ? 'rotate-90'
+                    : '-rotate-90'
+                    }`}
                 />
               </a>
               <ul className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box">

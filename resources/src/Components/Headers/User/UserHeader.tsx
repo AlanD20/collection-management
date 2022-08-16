@@ -37,7 +37,6 @@ const UserHeader = ({
     <>
       <TitleText
         label={parsedTitle}
-        // className="mx-auto"
       />
       <div className="flex w-full gap-4 flex-col md:flex-row py-2 px-8">
         {backRoute && !backRoute.hidden && (
@@ -54,7 +53,7 @@ const UserHeader = ({
           routeName={optionRoute.name}
           params={getParamsWithKey(params, optionRoute.params)}
         />
-        <div className="flex gap-4 items-center">
+        <div className="flex flex-col lg:flex-row gap-4 items-center w-full justify-center lg:justify-end">
           <SearchHeader
             hideWhen={optionRoute.hidden}
             routeName={optionRoute.name}

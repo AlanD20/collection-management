@@ -24,7 +24,7 @@ const SelectDropDown = ({ name, label, required, ...attr }: Props) => {
         <Select
           closeMenuOnSelect
           {...attr}
-          className="[&_*]:text-secondary [&_*]:bg-base-200 block mt-1 w-full md:w-[60ch]"
+          className="[&_*]:text-accent [&_*]:bg-base-100 block mt-1 w-full md:w-[60ch]"
           name={name}
         />
         {required && <span className="text-red-500 text-xl mt-2">*</span>}

@@ -16,7 +16,7 @@ class AdminTagController extends Controller
   /**
    * Display a listing of the resource.
    *
-   * @return \Illuminate\Http\Response
+   * @return \Inertia\Response
    */
   public function index()
   {
@@ -38,7 +38,7 @@ class AdminTagController extends Controller
   /**
    * Show the form for creating a new resource.
    *
-   * @return \Illuminate\Http\Response
+   * @return \Inertia\Response
    */
   public function create()
   {
@@ -49,7 +49,7 @@ class AdminTagController extends Controller
    * Store a newly created resource in storage.
    *
    * @param  \App\Http\Requests\TagRequest  $request
-   * @return \Illuminate\Http\Response
+   * @return \Illuminate\Http\RedirectResponse
    */
   public function store(TagRequest $request)
   {
@@ -64,7 +64,7 @@ class AdminTagController extends Controller
    * Show the form for editing the specified resource.
    *
    * @param  \App\Models\Tag  $tag
-   * @return \Illuminate\Http\Response
+   * @return \Inertia\Response
    */
   public function edit(Tag $tag)
   {
@@ -78,7 +78,7 @@ class AdminTagController extends Controller
    *
    * @param  \App\Http\Requests\TagRequest  $request
    * @param  \App\Models\Tag  $tag
-   * @return \Illuminate\Http\Response
+   * @return \Illuminate\Http\RedirectResponse
    */
   public function update(TagRequest $request, Tag $tag)
   {
@@ -95,7 +95,7 @@ class AdminTagController extends Controller
    * Remove the specified resource from storage.
    *
    * @param  \App\Models\Tag  $tag
-   * @return \Illuminate\Http\Response
+   * @return \Illuminate\Http\RedirectResponse
    */
   public function destroy(Tag $tag)
   {

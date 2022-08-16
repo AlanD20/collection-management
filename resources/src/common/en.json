@@ -37,7 +37,12 @@
     "edit": "Edit",
     "create": "Create",
     "delete": "Delete",
+    "see_more": "See More",
     "update": "Update"
+  },
+  "home": {
+    "latest": "See latest :model",
+    "most_items": "Collections with most items"
   },
   "model": {
     "like": ":model liked",
@@ -49,6 +54,7 @@
     "create": ":model created succesfuly",
     "update": ":model updated succesfuly",
     "delete": ":model deleted succesfuly",
+    "post": ":model posted successfully",
     "created_at": "Created",
     "updated_at": "Updated"
   },
@@ -70,6 +76,8 @@
     "blocked": "Blocked",
     "active": "Active",
     "liked": ":number Liked the item",
+    "locale": "Locale updated sucessfully",
+    "theme": "Theme updated sucessfully",
     "col_owner": "Collection Creator",
     "col_item_count": ":count items",
     "comment_section": "Comments",

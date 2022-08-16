@@ -12,8 +12,8 @@ Route::prefix('/u/{uname}')
   // ->middleware(['auth', 'isBlocked'])
   ->group(function () {
 
-    Route::get('/', [UserController::class, 'index'])
-      ->name('index');
+    Route::get('/', [UserController::class, 'show'])
+      ->name('show');
 
     Route::resources([
       '/collections' => CollectionController::class,

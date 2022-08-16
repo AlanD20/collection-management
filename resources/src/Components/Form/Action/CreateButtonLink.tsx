@@ -28,7 +28,7 @@ const CreateButtonLink = ({
     <ButtonLink
       href={route(routeName, params)}
       as="button"
-      className={`md:ml-auto btn btn-secondary btn-wide text-xl ${className}`}
+      className={`btn btn-secondary btn-wide text-xl ${className}`}
     >
       {__('form.create')}
     </ButtonLink>

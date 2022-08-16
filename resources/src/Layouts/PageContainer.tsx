@@ -11,7 +11,7 @@ const PageContainer = ({
   body.component.layout = (page: ComponentElement) => {
     return (
       <Layout title={tabTitle}>
-        <div className={`px-20 ${small ? 'w-[55ch]' : 'w-full'} ${className}`}>
+        <div className={`px-5 md:px-20 ${small ? 'w-[35ch] md:w-[55ch]' : 'w-full'} ${className}`}>
           {React.createElement(body.component, {
             ...page.props,
             ...body.props,

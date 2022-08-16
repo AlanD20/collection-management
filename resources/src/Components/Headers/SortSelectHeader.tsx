@@ -48,7 +48,7 @@ const SortSelectHeader = ({
       name="sort"
       options={options}
       onChange={handleOnChange}
-      className={`min-w-[20ch] md:w-[40ch] !flex-row ${className}`}
+      className={`mx-auto min-w-[20ch] lg:w-[40ch] lg:!flex-row ${className}`}
     />
   );
 };

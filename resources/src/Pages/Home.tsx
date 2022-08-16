@@ -1,20 +1,33 @@
 import React from 'react';
+import Hero from '@@/Home/Hero';
 import PageContainer from '@/Layouts/PageContainer';
+import LatestItems from '@@/Home/Section/LatestItems';
+import LatestUsers from '@@/Home/Section/LatestUsers';
+import { Collection, Item, User } from '@/@types/Models';
+import LatestCollections from '@@/Home/Section/LatestCollections';
+import LargestCollections from '@@/Home/Section/LargestCollections';
 
-const Home = () => {
+interface Props {
+  latestCollections: Collection[];
+  largestCollections: Collection[];
+  latestUsers: User[];
+  latestItems: Item[];
+}
+
+const Home = ({
+  latestCollections,
+  largestCollections,
+  latestItems,
+  latestUsers,
+}: Props) => {
   return (
-    <div className="hero min-h-screen bg-base-200">
-      <div className="hero-content text-center">
-        <div className="max-w-md">
-          <h1 className="text-5xl font-bold">Hello there</h1>
-          <p className="py-6">
-            Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-            excepturi exercitationem quasi. In deleniti eaque aut repudiandae et
-            a id nisi.
-          </p>
-          <button className="btn btn-primary">Get Started</button>
-        </div>
-      </div>
+    <div>
+      <Hero />
+
+      <LatestCollections collections={latestCollections} />
+      <LatestItems items={latestItems} />
+      <LatestUsers users={latestUsers} />
+      <LargestCollections collections={largestCollections} />
     </div>
   );
 };

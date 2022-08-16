@@ -36,13 +36,13 @@ const SearchHeader = ({
   if (hideWhen) return null;
 
   return (
-    <div className={`flex items-center ${className}`}>
+    <div className={`flex items-center w-full lg:w-auto ${className}`}>
       <Input
         type="text"
         name="q"
         onChange={handleSearchInput}
         placeholder="Search..."
-        className={`w-full md:w-[40ch] ${className}`}
+        className={`w-full justify-center lg:w-[40ch] ${className}`}
       />
     </div>
   );
