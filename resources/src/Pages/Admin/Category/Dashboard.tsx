@@ -8,6 +8,7 @@ import CategoryHead from '@@/Admin/Category/CategoryHead';
 import AdminPageContainer from '@/Layouts/AdminPageContainer';
 import CategoryTableRow from '@@/Admin/Category/CategoryTableRow';
 import CategoryGridCard from '@@/Admin/Category/CategoryGridCard';
+import { ADMIN_CATEGORIES_SP } from '@/common/select-options';
 
 interface Props {
   categories: Paginator<Category[]>;
@@ -54,6 +55,10 @@ export default AdminPageContainer({
       },
       searchbar: {
         routeName: 'admin.categories.index',
+      },
+      sortOption: {
+        routeName: 'admin.categories.index',
+        options: ADMIN_CATEGORIES_SP,
       },
     },
   },

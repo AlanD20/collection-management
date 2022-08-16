@@ -8,6 +8,7 @@ import TagGridCard from '@@/Admin/Tag/TagGridCard';
 import AdminHeader from '@@/Headers/Admin/AdminHeader';
 import PaginationLinks from '@@/Table/PaginationLinks';
 import AdminPageContainer from '@/Layouts/AdminPageContainer';
+import { ADMIN_TAGS_SP } from '@/common/select-options';
 
 interface Props {
   tags: Paginator<Tag[]>;
@@ -50,6 +51,10 @@ export default AdminPageContainer({
       },
       searchbar: {
         routeName: 'admin.tags.index',
+      },
+      sortOption: {
+        routeName: 'admin.tags.index',
+        options: ADMIN_TAGS_SP,
       },
     },
   },

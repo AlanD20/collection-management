@@ -1,9 +1,10 @@
-import React from 'react';
 import { Inertia } from '@inertiajs/inertia';
 import { ParamsProp } from '@/@types/Response';
 import { getQueryAsObj } from '@/common/helpers';
+import React, { useEffect, useState } from 'react';
 import SelectDropDown from '@@/Form/SelectDropDown';
 import { DefProps, SelectOption } from '@/@types/Global';
+import cap from 'lodash/capitalize';
 
 interface Props extends DefProps {
   options: SelectOption[];
@@ -18,6 +19,7 @@ const SortSelectHeader = ({
   params = {},
   className = '',
 }: Props) => {
+
   const handleOnChange = (newValue: unknown) => {
     const [sort, order] = (newValue as SelectOption).value.split('-') as [
       'asc' | 'desc',
@@ -38,6 +40,7 @@ const SortSelectHeader = ({
         replace: true,
       }
     );
+
   };
 
   if (hideWhen) return null;

@@ -31,9 +31,8 @@ const UserGridCard = ({ user }: Props) => {
           <div className="flex gap-4  capitalize">
             <span className="font-bold">Status:</span>
             <span
-              className={`capitalize font-semibold text-${
-                user.block ? 'red' : 'green'
-              }-500`}
+              className={`capitalize font-semibold text-${user.block ? 'red' : 'green'
+                }-500`}
             >
               {user.block ? 'blocked' : 'active'}
             </span>
