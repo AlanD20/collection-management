@@ -28,7 +28,8 @@ class AdminTagController extends Controller
         SortTagCategory::class,
         FilterTagCategory::class
       ])
-      ->paginate(7);
+      ->paginate(7)
+      ->withQueryString();
 
     $tags = TagResource::collection($pipe);
 

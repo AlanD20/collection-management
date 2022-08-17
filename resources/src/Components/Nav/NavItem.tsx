@@ -1,6 +1,6 @@
 import React from 'react';
 import { DefProps } from '@/@types/Global';
-import { InertiaLinkProps, Link } from '@inertiajs/inertia-react';
+import { InertiaLinkProps, Link, usePage } from '@inertiajs/inertia-react';
 
 interface Props extends DefProps, InertiaLinkProps {
   label?: string;
@@ -13,6 +13,7 @@ const NavItem = ({
   className = '',
   ...attr
 }: Props) => {
+
   return (
     <li className={parentClass}>
       <Link {...attr} className={className}>

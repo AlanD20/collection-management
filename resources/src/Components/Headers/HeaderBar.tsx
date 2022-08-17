@@ -1,7 +1,7 @@
 import React from 'react';
 import { Children, DefProps } from '@/@types/Global';
 
-interface Props extends DefProps, Children { }
+interface Props extends DefProps, Children {}
 
 const HeaderBar = ({ children, hideWhen = false, className = '' }: Props) => {
   if (hideWhen) return null;

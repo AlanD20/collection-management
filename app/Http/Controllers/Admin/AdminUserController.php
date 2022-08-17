@@ -8,7 +8,7 @@ use App\Helpers\ThroughPipeline;
 use App\Http\Controllers\Controller;
 use App\Http\QueryFilters\Filtering\FilterAdminUser;
 use App\Http\Resources\UserResource;
-use App\Http\QueryFilters\Sorting\SortAdminUser;
+use App\Http\QueryFilters\Sorting\SortUser;
 
 
 class AdminUserController extends Controller
@@ -31,10 +31,11 @@ class AdminUserController extends Controller
     $pipe = ThroughPipeline::new()
       ->query($query)
       ->through([
-        SortAdminUser::class,
+        SortUser::class,
         FilterAdminUser::class
       ])
-      ->paginate(7);
+      ->paginate(7)
+      ->withQueryString();
 
     $users = UserResource::collection($pipe);
 

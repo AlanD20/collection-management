@@ -18,6 +18,11 @@ export interface ParamsProp {
   comment?: number | null;
 }
 
+export interface SortProps {
+  sort?: 'asc' | 'desc';
+  order_by?: string;
+}
+
 export type KeyParamsProps = keyof ParamsProp;
 
 export interface PageProps {

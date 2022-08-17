@@ -4,16 +4,17 @@ namespace App\Http\Controllers\User;
 
 use Inertia\Inertia;
 use App\Models\Collection;
+use App\Helpers\ItemHelper;
 use App\Helpers\ThroughPipeline;
 use App\Models\{Tag, Item, User};
 use App\Http\Resources\TagResource;
-use App\Http\Resources\ItemResource;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\ItemResource;
+use App\Http\Resources\UserResource;
 use App\Http\Requests\User\ItemRequest;
 use App\Http\Resources\CollectionResource;
 use App\Http\QueryFilters\Sorting\SortItem;
 use App\Http\QueryFilters\Filtering\FilterItem;
-use App\Http\Resources\UserResource;
 
 class ItemController extends Controller
 {
@@ -44,9 +45,10 @@ class ItemController extends Controller
         SortItem::class,
         FilterItem::class
       ])
-      ->paginate(7);
+      ->paginate(7)
+      ->withQueryString();
 
-    $likes = $this->getUserLikes($pipeItems->getCollection());
+    $likes = (new ItemHelper())->getUserLikes($pipeItems->getCollection());
 
 
     $items = ItemResource::collection($pipeItems);
@@ -81,7 +83,7 @@ class ItemController extends Controller
   {
     $this->authorize('view', $collection);
 
-    $fields = $this->filterFields($request->safe()->fields);
+    $fields = (new ItemHelper())->filterFields($request->safe()->fields);
 
     $item = $collection->items()->create([
       ...$request->validated(),
@@ -116,7 +118,7 @@ class ItemController extends Controller
       ->where('collection_id', $collection)
       ->findOrFail($item);
 
-    $likes = $this->getUserLikes($queryItem);
+    $likes = (new ItemHelper())->getUserLikes($queryItem);
     $liked = collect($likes)->contains($queryItem->id);
 
     $item = new ItemResource($queryItem);
@@ -164,7 +166,7 @@ class ItemController extends Controller
   {
     $this->authorize('update', $collection);
 
-    $fields = $this->filterFields($request->safe()->fields);
+    $fields = (new ItemHelper())->filterFields($request->safe()->fields);
 
     $item->update([
       ...$request->validated(),
@@ -214,26 +216,5 @@ class ItemController extends Controller
     return back()->with('success', __("model.{$message}", [
       'model' => 'Item'
     ]));
-  }
-
-  function filterFields($fields): array
-  {
-
-    return collect($fields)
-      ->filter(fn ($f) => \array_key_exists('value', $f))
-      ->values()
-      ->all();
-  }
-
-  function getUserLikes($items)
-  {
-    if (!request()->user()) return [];
-
-    return request()->user()
-      ->likes()
-      ->whereIn('item_id', $items->pluck('id')->all())
-      ->get()
-      ->pluck('id')
-      ->all();
   }
 }

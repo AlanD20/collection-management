@@ -29,7 +29,8 @@ class AdminCategoryController extends Controller
         SortTagCategory::class,
         FilterTagCategory::class
       ])
-      ->paginate(7);
+      ->paginate(7)
+      ->withQueryString();
 
     $categories = CategoryResource::collection($pipe);
 

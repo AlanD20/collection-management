@@ -9,7 +9,9 @@ import { DefProps, PageTitle, RouteType } from '@/@types/Global';
 
 export interface UserHeaderCompactProps extends DefProps {
   title: PageTitle;
-  backRoute: RouteType;
+  backRoute: RouteType & {
+    label?: string;
+  };
 }
 
 const UserHeaderCompact = ({ title, backRoute }: UserHeaderCompactProps) => {
@@ -22,6 +24,7 @@ const UserHeaderCompact = ({ title, backRoute }: UserHeaderCompactProps) => {
       <div className="flex w-full gap-4 flex-col md:flex-row py-2 px-8">
         {backRoute && !backRoute.hidden && (
           <BackButtonLink
+            label={backRoute.label}
             routeName={backRoute.name}
             params={getParamsWithKey(params, backRoute.params)}
           />

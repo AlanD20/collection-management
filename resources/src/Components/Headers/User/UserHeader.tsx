@@ -18,6 +18,7 @@ export interface UserHeaderProps extends DefProps {
   };
   createRoute: RouteType;
   backRoute?: RouteType & {
+    label?: string;
     prevUrl?: boolean;
   };
   noHeaderBar?: boolean;
@@ -35,12 +36,11 @@ const UserHeader = ({
 
   return (
     <>
-      <TitleText
-        label={parsedTitle}
-      />
+      <TitleText label={parsedTitle} />
       <div className="flex w-full gap-4 flex-col md:flex-row py-2 px-8">
         {backRoute && !backRoute.hidden && (
           <BackButtonLink
+            label={backRoute.label}
             routeName={backRoute.prevUrl ? ':prevUrl' : backRoute.name}
             params={getParamsWithKey(params, backRoute.params)}
           />

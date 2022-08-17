@@ -1,17 +1,16 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Main;
 
 use Inertia\Inertia;
 use App\Models\Collection;
-use Illuminate\Support\Str;
+use App\Models\{User, Item};
 use Illuminate\Http\Request;
+use App\Helpers\ThroughPipeline;
 use App\Helpers\CollectionHelper;
+use App\Http\Controllers\Controller;
 use App\Http\Resources\CollectionResource;
-use App\Http\Resources\ItemResource;
-use App\Http\Resources\UserResource;
-use App\Models\Item;
-use App\Models\User;
+use App\Http\Resources\{UserResource, ItemResource};
 
 class HomeController extends Controller
 {
@@ -32,69 +31,34 @@ class HomeController extends Controller
   }
 
   /**
-   * Show the form for creating a new resource.
+   * Display the result resource.
    *
    * @return \Illuminate\Http\Response
    */
-  public function create()
+  public function search(Request $request)
   {
-    //
-  }
+    // $query = Collection::query()
+    //   ->with('category')
+    //   ->withCount('items');
 
-  /**
-   * Store a newly created resource in storage.
-   *
-   * @param  \Illuminate\Http\Request  $request
-   * @return \Illuminate\Http\Response
-   */
-  public function store(Request $request)
-  {
-    //
-  }
+    // $pipe = ThroughPipeline::new()
+    //   ->query($query)
+    //   ->through([
+    //     SortCollection::class,
+    //     FilterCollection::class,
+    //   ])
+    //   ->paginate(7)
+    // ->withQueryString();
 
-  /**
-   * Display the specified resource.
-   *
-   * @param  int  $id
-   * @return \Illuminate\Http\Response
-   */
-  public function show($id)
-  {
-    //
-  }
+    // $pipe->getCollection()
+    //   ->each(
+    //     fn (Collection $collection) => (new CollectionHelper())->truncDesc($collection)
+    //   );
 
-  /**
-   * Show the form for editing the specified resource.
-   *
-   * @param  int  $id
-   * @return \Illuminate\Http\Response
-   */
-  public function edit($id)
-  {
-    //
-  }
 
-  /**
-   * Update the specified resource in storage.
-   *
-   * @param  \Illuminate\Http\Request  $request
-   * @param  int  $id
-   * @return \Illuminate\Http\Response
-   */
-  public function update(Request $request, $id)
-  {
-    //
-  }
+    // $collections = CollectionResource::collection($pipe);
 
-  /**
-   * Remove the specified resource from storage.
-   *
-   * @param  int  $id
-   * @return \Illuminate\Http\Response
-   */
-  public function destroy($id)
-  {
-    //
+    return Inertia::render('Main/SearchResult');
   }
 
   function getLatestCollections()
@@ -123,20 +87,18 @@ class HomeController extends Controller
         fn (Collection $collection) => (new CollectionHelper())->truncDesc($collection, 65)
       );
 
+
     return CollectionResource::collection($query);
   }
 
   function getLatestItems()
   {
     $query = Item::query()
-      ->with([
-        'tags' => fn ($tags) => $tags->take(25)->get(),
-        'collection',
-        'collection.user'
-      ])
+      ->with('tags', 'collection', 'collection.user')
       ->latest('created_at')
-      ->take(5)
-      ->get();
+      ->take(4)
+      ->get()
+      ->each(fn (Item $item) => $item->tags = $item->tags->take(4));
 
     return ItemResource::collection($query);
   }

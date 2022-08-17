@@ -46,7 +46,7 @@ const UserCollectionCard = ({ collection, className = '' }: Props) => {
           <DeleteButtonLink
             routeName="u.collections.destroy"
             params={{
-              uname: params.uname,
+              uname: collection.user.username,
               collection: collection.id,
             }}
             hideWhen={!self}
@@ -54,7 +54,7 @@ const UserCollectionCard = ({ collection, className = '' }: Props) => {
           <EditButtonLink
             routeName="u.collections.edit"
             params={{
-              uname: params.uname,
+              uname: collection.user.username,
               collection: collection.id,
             }}
             hideWhen={!self}
@@ -62,7 +62,7 @@ const UserCollectionCard = ({ collection, className = '' }: Props) => {
           <ViewButtonLink
             routeName="u.collections.show"
             params={{
-              uname: params.uname,
+              uname: collection.user.username,
               collection: collection.id,
             }}
           />

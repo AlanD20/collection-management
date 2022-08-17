@@ -19,7 +19,6 @@ const SortSelectHeader = ({
   params = {},
   className = '',
 }: Props) => {
-
   const handleOnChange = (newValue: unknown) => {
     const [sort, order] = (newValue as SelectOption).value.split('-') as [
       'asc' | 'desc',
@@ -40,7 +39,6 @@ const SortSelectHeader = ({
         replace: true,
       }
     );
-
   };
 
   if (hideWhen) return null;

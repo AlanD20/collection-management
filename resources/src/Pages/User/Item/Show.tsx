@@ -40,6 +40,7 @@ export default UserPageContainer({
         param: 'item',
       },
       backRoute: {
+        label: 'form.back_item',
         name: 'u.collections.items.index',
         params: ['uname', 'collection'],
       },

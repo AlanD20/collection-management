@@ -54,8 +54,8 @@ export default AdminPageContainer({
       },
       sortOption: {
         routeName: 'admin.users.index',
-        options: ADMIN_USERS_SP
-      }
+        options: ADMIN_USERS_SP,
+      },
     },
   },
 });

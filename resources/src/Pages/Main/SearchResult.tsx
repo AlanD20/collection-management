@@ -14,25 +14,16 @@ interface Props {
   latestItems: Item[];
 }
 
-const Home = ({
+const SearchResult = ({
   latestCollections,
   largestCollections,
   latestItems,
   latestUsers,
 }: Props) => {
-  return (
-    <div>
-      <Hero />
-
-      <LargestCollections collections={largestCollections} />
-      <LatestCollections collections={latestCollections} />
-      <LatestItems items={latestItems} />
-      <LatestUsers users={latestUsers} />
-    </div>
-  );
+  return <div>search result here</div>;
 };
 
 export default PageContainer({
-  tabTitle: 'Home',
-  body: { component: Home },
+  tabTitle: 'Search Result',
+  body: { component: SearchResult },
 });

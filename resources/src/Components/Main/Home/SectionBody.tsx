@@ -1,8 +1,7 @@
-import { Children, DefProps } from "@/@types/Global"
-import React from "react"
+import { Children, DefProps } from '@/@types/Global';
+import React from 'react';
 
-interface Props extends DefProps, Children { }
-
+interface Props extends DefProps, Children {}
 
 const SectionBody = ({ children, className = '' }: Props) => {
   return (
@@ -11,7 +10,7 @@ const SectionBody = ({ children, className = '' }: Props) => {
     >
       {children}
     </div>
-  )
-}
+  );
+};
 
 export default SectionBody;

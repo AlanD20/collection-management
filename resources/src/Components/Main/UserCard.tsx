@@ -14,10 +14,10 @@ const UserCard = ({ user, className = '' }: Props) => {
         uname: user.username,
       })}
       as="a"
-      className="hover:translate-y-2 transition-transform duration-150 ease-out rounded-3xl card card-compact lg:card-normal bg-base-100 min-w-[250px] shadow-xl flex-1"
+      className={`hover:translate-y-2 transition-transform duration-150 ease-out rounded-3xl card card-compact lg:card-normal bg-base-100 min-w-[300px] shadow-xl flex-1 ${className}`}
     >
       <div
-        className={`card card-compact lg:card-normal bg-base-100 shadow-xl ${className}`}
+        className={`card card-compact lg:card-normal bg-base-100 shadow-xl`}
       >
         <div className="card-body items-center">
           <h2 className="card-title capitalize font-bold">

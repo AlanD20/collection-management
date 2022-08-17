@@ -28,7 +28,7 @@ class CollectionController extends Controller
   public function index(User $uname)
   {
     $query = Collection::query()
-      ->with('category')
+      ->with('category', 'user')
       ->withCount('items')
       ->where('user_id', $uname->id);
 
@@ -38,7 +38,8 @@ class CollectionController extends Controller
         SortCollection::class,
         FilterCollection::class,
       ])
-      ->paginate(7);
+      ->paginate(7)
+      ->withQueryString();
 
     $pipe->getCollection()
       ->each(

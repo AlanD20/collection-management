@@ -1,12 +1,12 @@
 import React from 'react';
 import { DefProps } from '@/@types/Global';
 import ButtonLink from '@@/Form/ButtonLink';
-import { ParamsProp } from '@/@types/Response';
+import { ParamsProp, SortProps } from '@/@types/Response';
 import { AiOutlineArrowRight } from 'react-icons/ai';
 
 interface Props extends DefProps {
   routeName: string;
-  params?: ParamsProp;
+  params?: ParamsProp & SortProps;
 }
 
 const LikeButtonLink = ({

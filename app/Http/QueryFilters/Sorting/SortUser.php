@@ -4,7 +4,7 @@ namespace App\Http\QueryFilters\Sorting;
 
 use App\Http\QueryFilters\Base\SortFilter;
 
-class SortAdminUser extends SortFilter
+class SortUser extends SortFilter
 {
 
   protected $columns = [

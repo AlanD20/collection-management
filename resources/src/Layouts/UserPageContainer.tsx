@@ -14,7 +14,9 @@ const UserPageContainer = ({
   body.component.layout = (page: ComponentElement) => {
     return (
       <Layout title={tabTitle}>
-        {// @ts-ignore
+
+        {header &&
+          // @ts-ignore
           React.createElement(header?.component, header?.props)
         }
 

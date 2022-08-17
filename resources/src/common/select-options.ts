@@ -60,3 +60,16 @@ export const ADMIN_TAGS_SP: SelectOption[] = [
   { value: 'asc-name', label: 'Name By Ascending' },
   { value: 'desc-name', label: 'Name By Descending' },
 ];
+
+export const MAIN_USERS_SP: SelectOption[] = [
+  { value: 'asc-id', label: 'ID By Low to High' },
+  { value: 'desc-id', label: 'ID By High to Low' },
+  { value: 'asc-name', label: 'Name By Ascending' },
+  { value: 'desc-name', label: 'Name By Descending' },
+  { value: 'asc-username', label: 'Username By Ascending' },
+  { value: 'desc-username', label: 'Username By Descending' },
+  { value: 'asc-created_at', label: 'Oldest Created Account' },
+  { value: 'desc-created_at', label: 'Newest Created Account' },
+  { value: 'asc-updated_at', label: 'Oldest Updated Account' },
+  { value: 'desc-updated_at', label: 'Newest Updated Account' },
+];

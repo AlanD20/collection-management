@@ -7,7 +7,17 @@ import AuthChangeTheme from '@@/Misc/AuthChangeTheme';
 import { Link, usePage } from '@inertiajs/inertia-react';
 
 const NavLeft = () => {
-  const $ = usePage<UsePage>().props;
+
+  const { auth: { user }, appName } = usePage<UsePage>().props;
+  const { url } = usePage();
+
+  const home = url === '/';
+  const collections = url === '/collections';
+  const users = url === '/users';
+  const items = url === '/items';
+
+  const activeItem = (route: boolean) =>
+    (route ? 'btn-ghost btn-active' : '')
 
   return (
     <>
@@ -32,15 +42,38 @@ const NavLeft = () => {
 
           <ul
             tabIndex={0}
-            className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+            className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 gap-2"
           >
-            <NavItem href="#" label="Item 1" as="button" />
+            <NavItem
+              href={route('main.index')}
+              label={__('main.home')}
+              as="button"
+              className={activeItem(home)}
+            />
+            <NavItem
+              href={route('collections.index')}
+              label={__('main.collections')}
+              as="button"
+              className={activeItem(collections)}
+            />
+            <NavItem
+              href={route('users.index')}
+              label={__('main.users')}
+              as="button"
+              className={activeItem(users)}
+            />
+            <NavItem
+              href={route('items.index')}
+              label={__('main.items')}
+              as="button"
+              className={activeItem(items)}
+            />
 
             <li tabIndex={0}>
               <a className="justify-between">
                 Parent
                 <IoIosArrowDown
-                  className={`${$.auth.user && $.auth.user.locale === 'en'
+                  className={`${user && user.locale === 'en'
                     ? 'rotate-90'
                     : '-rotate-90'
                     }`}
@@ -56,19 +89,44 @@ const NavLeft = () => {
         </div>
 
         <Link
-          href={route('index')}
+          href={route('main.index')}
           as="button"
           className="btn btn-ghost normal-case text-xl"
         >
-          {$.appName}
+          {appName}
         </Link>
-        {$.auth.user ? <AuthChangeTheme /> : <ChangeTheme />}
+        {user ? <AuthChangeTheme /> : <ChangeTheme />}
       </div>
 
       {/* Large Screen */}
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal p-0">
-          <NavItem href="#" label="Item 1" as="button" />
+        <ul className="menu menu-horizontal p-0 gap-2">
+
+          <NavItem
+            href={route('main.index')}
+            label={__('main.home')}
+            as="button"
+            className={activeItem(home)}
+          />
+          <NavItem
+            href={route('collections.index')}
+            label={__('main.collections')}
+            as="button"
+            className={activeItem(collections)}
+          />
+          <NavItem
+            href={route('users.index')}
+            label={__('main.users')}
+            as="button"
+            className={activeItem(users)}
+          />
+          <NavItem
+            href={route('items.index')}
+            label={__('main.items')}
+            as="button"
+            className={activeItem(items)}
+          />
+
           <li tabIndex={0}>
             <a>
               Parent

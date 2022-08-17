@@ -29,13 +29,14 @@ return [
   // Buttons
   'login' => "Login",
   'back' => "Go Back",
+  'back_item' => "Back to items",
+  'back_items' => "Back to collection",
   'register' => "Register",
   'create_account' => "Create An Account",
   'already_registered' => "Already have an account?",
 
   'view' => 'See More',
   'edit' => 'Edit',
-  'back' => 'Go Back',
   'create' => 'Create',
   'delete' => 'Delete',
   'see_more' => 'See More',

@@ -5,12 +5,14 @@ import { ParamsProp } from '@/@types/Response';
 import { IoIosArrowBack } from 'react-icons/io';
 
 interface Props extends DefProps {
+  label?: string;
   routeName: string;
   params: ParamsProp;
 }
 
 const BackButtonLink = ({
   routeName,
+  label,
   params,
   hideWhen = false,
   className = '',
@@ -25,7 +27,7 @@ const BackButtonLink = ({
       className={`text-xl gap-4 font-bold ${className} `}
     >
       <IoIosArrowBack />
-      <span className="capitalize">{__('form.back')}</span>
+      <span className="capitalize">{__(label ?? `form.back`)}</span>
     </ButtonLink>
   );
 };

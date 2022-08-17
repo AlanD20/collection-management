@@ -15,7 +15,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [HomeController::class, 'index'])->name('index');
 
 Route::get('/getstatus', function () {
   return back()->with('success', 'Testing a status message!');
@@ -33,11 +32,11 @@ Route::get('/getadmin', function () {
   return redirect('/');
 });
 
-Route::inertia('/test', 'Dashboard');
 
+require __DIR__ . '/main.php';
 require __DIR__ . '/auth.php';
 require __DIR__ . '/admin/index.php';
-require __DIR__ . '/users/index.php';
+require __DIR__ . '/users.php';
 
 
-Route::fallback(fn () => redirect()->route('index'));
+Route::fallback(fn () => redirect()->route('main.index'));

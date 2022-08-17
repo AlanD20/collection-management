@@ -27,7 +27,7 @@ class ThroughPipeline
   /**
    * Query to run through pipe lines.
    *
-   * @param Builder $query
+   * @param  Builder $query
    *
    * @return self
    */
@@ -40,7 +40,7 @@ class ThroughPipeline
   /**
    * Array of filters to send query through
    *
-   * @param array $filters
+   * @param  array $filters
    *
    * @return self
    */
@@ -53,7 +53,7 @@ class ThroughPipeline
   /**
    * Return the result as a paginator instance
    *
-   * @param int $limit
+   * @param  int $limit
    *
    * @return \Illuminate\Pagination\Paginator
    */

@@ -1,9 +1,9 @@
 import React from 'react';
-import UserCard from '../UserCard';
 import { User } from '@/@types/Models';
+import UserCard from '@@/Main/UserCard';
+import SectionBody from '../SectionBody';
 import SectionTitle from '../SectionTitle';
 import EmptyResource from '@@/Misc/EmptyResource';
-import SectionBody from '../SectionBody';
 
 interface Props {
   users: User[];
@@ -15,10 +15,14 @@ const LatestUsers = ({ users }: Props) => {
   return (
     <section className="w-full mb-16 flex flex-col gap-4">
       <SectionTitle
-        title={__('home.latest', {
+        title={__('main.latest', {
           model: 'Users',
         })}
-        routeName="index"
+        routeName="users.index"
+        params={{
+          sort: 'desc',
+          order_by: 'created_at'
+        }}
       />
 
       <SectionBody>

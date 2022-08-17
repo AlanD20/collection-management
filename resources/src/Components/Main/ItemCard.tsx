@@ -1,7 +1,6 @@
 import React from 'react';
-import { DefProps } from '@/@types/Global';
-import { PH_THUMBNAIL } from '@/common/constants';
 import { Item } from '@/@types/Models';
+import { DefProps } from '@/@types/Global';
 import ViewButtonLink from '@@/Form/Action/ViewButtonLink';
 
 interface Props extends DefProps {
@@ -9,9 +8,11 @@ interface Props extends DefProps {
 }
 
 const ItemCard = ({ item, className = '' }: Props) => {
+
+
   return (
     <div
-      className={`card card-compact lg:card-normal min-w-[300px] bg-base-100 shadow-xl h-[400px] ${className}`}
+      className={`card card-compact lg:card-normal min-w-[400px] bg-base-100 shadow-xl h-[225px] max-w-[400px] ${className}`}
     >
       <div className="px-8 pt-4 flex justify-between text-xs italic">
         <span>Created {item.createdAt}</span>
@@ -30,10 +31,9 @@ const ItemCard = ({ item, className = '' }: Props) => {
             ))}
           </div>
         </div>
-        <p>{item.id} descriptions....</p>
         <div className="card-actions mt-4 justify-end">
           <ViewButtonLink
-            routeName="u.collections.show"
+            routeName="u.collections.items.show"
             params={{
               uname: item.collection.user.username,
               collection: item.collection.id,

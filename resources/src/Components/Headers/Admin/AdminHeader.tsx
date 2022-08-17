@@ -55,14 +55,14 @@ const AdminHeader = ({
         />
       </div>
 
-      {sortOption &&
+      {sortOption && (
         <SortSelectHeader
           options={sortOption.options}
           routeName={sortOption.routeName}
           params={sortOption.params}
           className="px-4 z-[999999] w-full md:w-auto lg:hidden"
         />
-      }
+      )}
 
       {(searchbar || !createRoute?.hidden) && (
         <div className="flex flex-col lg:flex-row gap-4 items-stretch lg:items-center justify-end">

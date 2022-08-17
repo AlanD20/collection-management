@@ -1,11 +1,11 @@
-import { ParamsProp } from '@/@types/Response';
-import SeeMoreButtonLink from '@@/Form/Action/SeeMoreButtonLink';
 import React from 'react';
+import { SortProps } from '@/@types/Response';
+import SeeMoreButtonLink from '@@/Form/Action/SeeMoreButtonLink';
 
 interface Props {
   title: string;
   routeName: string;
-  params?: ParamsProp;
+  params?: SortProps;
 }
 
 const SectionTitle = ({ title, routeName, params = {} }: Props) => {
