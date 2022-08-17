@@ -18,7 +18,6 @@ class FilterItemSearch extends Filter
       $query
         ->orWhere('items.name', 'like', "%$value%")
         ->orWhere('items.fields', 'like', "%$value%")
-        // ->dd()
         ->orWhereHas('collection', function ($query) use ($value) {
           $query
             ->where('collections.name', 'like', "%$value%")

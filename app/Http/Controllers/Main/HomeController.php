@@ -53,29 +53,10 @@ class HomeController extends Controller
           'chr' => 3
         ]));
     }
-    $queryItem = Item::query()
-      ->with([
-        'comments',
-        'tags',
-        'likes',
-        'collection',
-        'collection.user',
-        'collection.category'
-      ]);
 
-    $pipeItem = ThroughPipeline::new()
-      ->query($queryItem)
-      ->through([
-        FilterItemSearch::class
-      ])
-      ->get();
-    // ->withQueryString();
+    $items = (new HomeHelper())->queryItems();
+    $users = (new HomeHelper())->queryUsers();
 
-    // $pipeItem->getCollection()
-    $pipeItem->each(fn ($item) => $item->tags = $item->tags->take(3));
-
-    $items = ItemResource::collection($pipeItem);
-
-    return Inertia::render('Main/SearchResult', compact('items'));
+    return Inertia::render('Main/SearchResult', compact('items', 'users'));
   }
 }

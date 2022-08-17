@@ -3,15 +3,61 @@
 
 namespace App\Helpers;
 
-use App\Models\Item;
-use App\Models\User;
-use App\Models\Collection;
-use App\Http\Resources\ItemResource;
-use App\Http\Resources\UserResource;
-use App\Http\Resources\CollectionResource;
+
+use App\Models\{Item, User, Collection};
+use App\Http\Resources\{
+  UserResource,
+  ItemResource,
+  CollectionResource
+};
+use App\Http\QueryFilters\Filtering\{
+  FilterUserSearch,
+  FilterItemSearch
+};
 
 class HomeHelper
 {
+
+  public function queryItems()
+  {
+
+    $query = Item::query()
+      ->with([
+        'comments',
+        'tags',
+        'collection',
+        'collection.user',
+        'collection.category'
+      ]);
+
+    $pipe = ThroughPipeline::new()
+      ->query($query)
+      ->through([
+        FilterItemSearch::class
+      ])
+      ->paginate(5)
+      ->withQueryString();
+
+    $pipe->each(fn ($item) => $item->tags = $item->tags->take(3));
+
+    return ItemResource::collection($pipe);
+  }
+
+  public function queryUsers()
+  {
+
+    $query = User::query();
+
+    $pipe = ThroughPipeline::new()
+      ->query($query)
+      ->through([
+        FilterUserSearch::class
+      ])
+      ->paginate(5)
+      ->withQueryString();
+
+    return UserResource::collection($pipe);
+  }
 
   /**
    * Query latest collections.

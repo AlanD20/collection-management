@@ -1,36 +1,22 @@
 import React from 'react';
-import Hero from '@@/Main/Home/Hero';
+import { Paginator } from '@/@types/Response';
 import PageContainer from '@/Layouts/PageContainer';
 import { Collection, Item, User } from '@/@types/Models';
-import { Paginator } from '@/@types/Response';
-import ItemCard from '@@/Main/Search/ItemCard';
-import PaginationLinks from '@@/Table/PaginationLinks';
+import ItemResult from '@@/Main/Search/Section/ItemResult';
+import UserResult from '@@/Main/Search/Section/UserResult';
 
 interface Props {
   users: Paginator<User[]>;
-  items: Item[];
+  items: Paginator<Item[]>;
   collections: Paginator<Collection[]>;
 }
 
-const SearchResult = ({ users, items, collections, }: Props) => {
-
-  console.log(items);
-  const itemCondition = items && items.length > 0;
+const SearchResult = ({ users, items }: Props) => {
 
   return (
     <div className='flex flex-col gap-4'>
-      <h1 className='font-bold'>
-        TOTAL RESULT IS {items.length}
-      </h1>
-      {/* <PaginationLinks meta={items.meta} /> */}
-      {itemCondition &&
-        items.map(item => (
-          <ItemCard
-            key={item.id}
-            item={item}
-          />
-        ))
-      }
+      <ItemResult items={items} total={items.meta.total} />
+      <UserResult users={users} total={users.meta.total} />
     </div>
   );
 };

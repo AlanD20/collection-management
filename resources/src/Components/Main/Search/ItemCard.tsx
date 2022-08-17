@@ -9,40 +9,18 @@ interface Props {
 
 const ItemCard = ({ item }: Props) => {
   return (
-    <div className="flex flex-col gap-4 bg-base-100 p-4 px-8">
-      <div className="flex flex-col gap-2">
-        <h1 className="text-2xl">collection</h1>
-        <p>id: {item.collection.id}</p>
-        <p>name: {item.collection.name}</p>
-        <p>category : {item.collection.category.name}</p>
-        <p>descr: {item.collection.description}</p>
-      </div>
-      <div className="flex flex-col gap-2">
-        <h1 className="text-2xl">item</h1>
-        <p>id: {item.id}</p>
-        <p>name:{item.name}</p>
-        <h1 className="text-2xl">comment</h1>
-        <ul className="list-disc">
-          {item.comments.length > 0 ? item.comments.map(comment => (
-            <li key={comment.id}>{comment.body}</li>
-          )) :
-            <li className="font-bold">none here</li>}
-        </ul>
-        <h1 className="text-2xl">tags</h1>
-        <ul className="list-disc">
+    <div className="flex flex-col gap-4 p-4 px-8">
+      <div className="flex flex-col gap-2 bg-base-200 p-4 rounded-lg shadow-md">
+        <h3 className="text-2xl capitalize">
+          {`Item #${item.id}`}
+        </h3>
+        <span>{item.name}</span>
+        <h1 className="text-2xl capitalize">tags</h1>
+        <ul className="flex gap-1">
           {item.tags.length > 0 ? item.tags.map(tag => (
-            <li key={tag.id}>{tag.name}</li>
+            <li key={tag.id} className="badge">{tag.name}</li>
           )) :
-            <li className="font-bold">none here</li>
-          }
-        </ul>
-        <h1 className="text-2xl">fields</h1>
-        <ul className="list-disc">
-          {item.fields.length > 0 ? item.fields.map(field => (
-            <li key={field.id}>
-              {field.label} : {field.value}</li>
-          )) :
-            <li className="font-bold">none here</li>
+            <li className="font-bold">No Tags</li>
           }
         </ul>
       </div>
@@ -53,7 +31,8 @@ const ItemCard = ({ item }: Props) => {
           item: item.id
         })}
         className="btn-secondary hover:btn-accent py-4 px-8"
-      >VIEW MORE
+      >
+        {__('main.view_result', { model: 'Item' })}
       </ButtonLink>
     </div>
   )

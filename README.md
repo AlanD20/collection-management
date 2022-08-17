@@ -22,7 +22,7 @@
 	- The creator of the collection also specifies the name of the custom fields.
 
 #### Everyone:
-- [ ] Search including tag search.
+- [x] Search including tag search.
 - [x] View items.
 - [x] Can not post comments, likes, but they are viewable by everyone.
 
@@ -41,15 +41,15 @@
 #### UI:
 - [x] List of the latest items (name, collections, authors)
 - [x] List of top 5 largest collection
-- [ ] Tag search (should work like the search result)
+- [x] Tag search (should work like the search result)
 - [ ] Tags are clickable which shows all the items with the clicked tag.
 - [x] Register/Login form.
 - [x] Each item has comments at the bottom of the item page.
 - [ ] Must support live comments.
 - [x] Likes from users.
 - [x] All pages are accessible from the nav bar.
-- [ ] Search bar.
-- [ ] Search results are links to the items itself, even if the text found in the comment section of the item.
+- [x] Search bar.
+- [x] Search results are links to the items itself, even if the text found in the comment section of the item.
 - [x] Personal page for each user where they can manage their collections and items. Each collection is a clickable link where it goes to the collection page. The page has a table of each items in the collection with sorting/filtering capabilities and managing items in the collection.
 - [x] When adding tags to the item, it must auto-complete it.			
 
