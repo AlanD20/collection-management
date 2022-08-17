@@ -11,4 +11,7 @@ return [
   'collections' => 'Collections',
   'users' => 'Users',
   'items' => 'Items',
+
+  // Search
+  'min_search' => 'Search must be at least :chr characters.',
 ];

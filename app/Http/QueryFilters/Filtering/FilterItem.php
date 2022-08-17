@@ -6,7 +6,7 @@ use App\Http\QueryFilters\Base\Filter;
 
 class FilterItem extends Filter
 {
-  public string $filterName = 'q';
+  public string $filterName = 'query';
 
   public function applyFilter($builder)
   {
@@ -15,7 +15,7 @@ class FilterItem extends Filter
 
     return $builder->where(function ($query) use ($value) {
       $query
-        ->Where('items.name', 'like', "%$value%")
+        ->where('items.name', 'like', "%$value%")
         ->orWhereHas('tags', function ($query) use ($value) {
           $query->where('name', 'like', "%$value%");
         });

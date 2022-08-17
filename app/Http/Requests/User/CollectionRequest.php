@@ -35,7 +35,7 @@ class CollectionRequest extends FormRequest
         'mimetypes:image/jpeg,image/png',
         'mimes:jpg,png',
       ],
-      'fields' => ['present', 'nullable', 'array'],
+      'fields' => ['nullable', 'array'],
       'fields.*.id' => ['required', 'string'],
       'fields.*.label' => ['required', 'string'],
       'fields.*.name' => ['required', 'string'],
@@ -47,6 +47,8 @@ class CollectionRequest extends FormRequest
   public function attributes()
   {
     $attributes = [];
+    if (!$this->fields) return [];
+
     foreach ($this->fields as $key => $value) {
       $num = $key + 1;
       $attributes["fields.{$key}.id"] = "#{$num} ID";

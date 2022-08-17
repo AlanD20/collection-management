@@ -17,29 +17,29 @@ class CollectionFactory extends Factory
   public function definition()
   {
     return [
-      'name' => fake()->jobTitle(),
-      'description' => fake()->paragraph(),
+      'name' => \strtolower(fake()->jobTitle()),
+      'description' => \strtolower(fake()->paragraph()),
       'category_id' => fake()->randomDigit(),
       'thumbnail' => null,
       'fields' => [
         [
           'required' => true,
           'id' => 'j9P9YfI9scuWkk',
-          'label' => 'Single line text',
+          'label' => 'single line text',
           'name' => 'single',
           'type' => 'text',
         ],
         [
           'required' => true,
           'id' => 'OsEYhJyHRjamMI',
-          'label' => 'This is a multi line text',
+          'label' => 'this is a multi line text',
           'name' => 'multi',
           'type' => 'textarea',
         ],
         [
           'required' => true,
           'id' => 'zjgQlSRy5bb0ks',
-          'label' => 'Integer/Number',
+          'label' => 'integer/number',
           'name' => 'int',
           'type' => 'number',
         ],
@@ -53,7 +53,7 @@ class CollectionFactory extends Factory
         [
           'required' => true,
           'id' => 'AUXHeUCPgh8tSB',
-          'label' => 'This is a date field',
+          'label' => 'this is a date field',
           'name' => 'date',
           'type' => 'datetime',
         ],

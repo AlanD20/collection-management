@@ -26,7 +26,7 @@ const SingleComment = ({ comment }: Props) => {
       <div className="flex w-full flex-col md:flex-row md:justify-between items-center md:gap-4">
         <div className="flex items-center gap-2">
           <ButtonLink
-            href={route('u.index', {
+            href={route('u.show', {
               uname: comment.user.username,
             })}
             as="button"

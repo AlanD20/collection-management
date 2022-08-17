@@ -6,7 +6,7 @@ use App\Http\QueryFilters\Base\Filter;
 
 class FilterAdminUser extends Filter
 {
-  public string $filterName = 'q';
+  public string $filterName = 'query';
 
   public function applyFilter($builder)
   {

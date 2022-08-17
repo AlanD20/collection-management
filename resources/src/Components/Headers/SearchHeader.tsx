@@ -22,9 +22,8 @@ const SearchHeader = ({
       route(routeName, {
         ...params,
         ...getQueryAsObj(),
-        q: e.target.value.trim(),
+        query: e.target.value.trim(),
       }),
-      {},
       {
         preserveScroll: true,
         preserveState: true,
@@ -39,7 +38,7 @@ const SearchHeader = ({
     <div className={`flex items-center w-full lg:w-auto ${className}`}>
       <Input
         type="text"
-        name="q"
+        name="query"
         onChange={handleSearchInput}
         placeholder="Search..."
         className={`w-full justify-center lg:w-[40ch] ${className}`}

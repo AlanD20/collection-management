@@ -18,28 +18,28 @@ class ItemFactory extends Factory
   {
     return [
       'collection_id' => 3,
-      'name' => fake()->word(),
+      'name' => \strtolower(fake()->word()),
       'fields' => [
         [
           'required' => true,
           'id' => 'j9P9YfI9scuWkk',
-          'label' => 'Single line text',
+          'label' => 'single line text',
           'name' => 'single',
           'type' => 'text',
-          'value' => fake()->sentence(12),
+          'value' => \strtolower(fake()->sentence(12)),
         ],
         [
           'required' => true,
           'id' => 'OsEYhJyHRjamMI',
-          'label' => 'This is a multi line text',
+          'label' => 'this is a multi line text',
           'name' => 'multi',
           'type' => 'textarea',
-          'value' => fake()->paragraph(7),
+          'value' => \strtolower(fake()->paragraph(7)),
         ],
         [
           'required' => true,
           'id' => 'zjgQlSRy5bb0ks',
-          'label' => 'Integer/Number',
+          'label' => 'integer/number',
           'name' => 'int',
           'type' => 'number',
           'value' => fake()->creditCardNumber(),
@@ -55,7 +55,7 @@ class ItemFactory extends Factory
         [
           'required' => true,
           'id' => 'AUXHeUCPgh8tSB',
-          'label' => 'This is a date field',
+          'label' => 'this is a date field',
           'name' => 'date',
           'type' => 'datetime',
           'value' => fake()->iso8601(),

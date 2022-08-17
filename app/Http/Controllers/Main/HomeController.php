@@ -8,9 +8,17 @@ use App\Models\{User, Item};
 use Illuminate\Http\Request;
 use App\Helpers\ThroughPipeline;
 use App\Helpers\CollectionHelper;
+use App\Helpers\HomeHelper;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CollectionResource;
 use App\Http\Resources\{UserResource, ItemResource};
+use App\Http\QueryFilters\Filtering\{
+  FilterItem,
+  FilterComment,
+  FilterItemSearch,
+  FilterTagCategory
+};
+
 
 class HomeController extends Controller
 {
@@ -21,10 +29,11 @@ class HomeController extends Controller
    */
   public function index()
   {
-    $latestCollections = $this->getLatestCollections();
-    $largestCollections = $this->getLargestCollections();
-    $latestItems = $this->getLatestItems();
-    $latestUsers = $this->getLatestUsers();
+    $homeHelper = new HomeHelper();
+    $latestCollections = $homeHelper->getLatestCollections();
+    $largestCollections = $homeHelper->getLargestCollections();
+    $latestItems = $homeHelper->getLatestItems();
+    $latestUsers = $homeHelper->getLatestUsers();
 
 
     return Inertia::render('Home', compact('latestCollections', 'latestItems', 'latestUsers', 'largestCollections'));
@@ -37,79 +46,36 @@ class HomeController extends Controller
    */
   public function search(Request $request)
   {
-    // $query = Collection::query()
-    //   ->with('category')
-    //   ->withCount('items');
+    if (\strlen($request->query('query')) < 3) {
+      return redirect()
+        ->route('main.index')
+        ->with('error', __('main.min_search', [
+          'chr' => 3
+        ]));
+    }
+    $queryItem = Item::query()
+      ->with([
+        'comments',
+        'tags',
+        'likes',
+        'collection',
+        'collection.user',
+        'collection.category'
+      ]);
 
-    // $pipe = ThroughPipeline::new()
-    //   ->query($query)
-    //   ->through([
-    //     SortCollection::class,
-    //     FilterCollection::class,
-    //   ])
-    //   ->paginate(7)
+    $pipeItem = ThroughPipeline::new()
+      ->query($queryItem)
+      ->through([
+        FilterItemSearch::class
+      ])
+      ->get();
     // ->withQueryString();
 
-    // $pipe->getCollection()
-    //   ->each(
-    //     fn (Collection $collection) => (new CollectionHelper())->truncDesc($collection)
-    //   );
+    // $pipeItem->getCollection()
+    $pipeItem->each(fn ($item) => $item->tags = $item->tags->take(3));
 
+    $items = ItemResource::collection($pipeItem);
 
-    // $collections = CollectionResource::collection($pipe);
-
-    return Inertia::render('Main/SearchResult');
-  }
-
-  function getLatestCollections()
-  {
-    $query = Collection::query()
-      ->with('category', 'user')
-      ->latest('created_at')
-      ->take(5)
-      ->get()
-      ->each(
-        fn (Collection $collection) => (new CollectionHelper())->truncDesc($collection, 65)
-      );
-
-    return CollectionResource::collection($query);
-  }
-
-  function getLargestCollections()
-  {
-    $query = Collection::query()
-      ->with('category', 'user')
-      ->withCount('items')
-      ->orderBy('items_count', 'desc')
-      ->take(5)
-      ->get()
-      ->each(
-        fn (Collection $collection) => (new CollectionHelper())->truncDesc($collection, 65)
-      );
-
-
-    return CollectionResource::collection($query);
-  }
-
-  function getLatestItems()
-  {
-    $query = Item::query()
-      ->with('tags', 'collection', 'collection.user')
-      ->latest('created_at')
-      ->take(4)
-      ->get()
-      ->each(fn (Item $item) => $item->tags = $item->tags->take(4));
-
-    return ItemResource::collection($query);
-  }
-
-  function getLatestUsers()
-  {
-    $query = User::query()
-      ->latest('created_at')
-      ->take(5)
-      ->get();
-
-    return UserResource::collection($query);
+    return Inertia::render('Main/SearchResult', compact('items'));
   }
 }

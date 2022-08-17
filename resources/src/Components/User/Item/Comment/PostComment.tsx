@@ -41,7 +41,6 @@ const PostComment = () => {
         className="block mt-1 w-full"
         onChange={(e) => setData('body', e.target.value)}
         required
-        autoFocus
       />
 
       <div className="flex justify-between items-center w-full mt-6">

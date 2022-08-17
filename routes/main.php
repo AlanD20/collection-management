@@ -19,4 +19,4 @@ Route::get('/items', [ItemController::class, 'index'])
   ->name('items.index');
 
 Route::get('/users', [UserController::class, 'index'])
-  ->name('users.index');
+  ->name('u.index');

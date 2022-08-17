@@ -8,7 +8,7 @@ export type StatusProp = {
   ts: number;
 };
 
-export interface ParamsProp {
+export interface ParamsProp extends SortProps, QueryProps {
   uname?: string | null;
   category?: number | null;
   tag?: number | null;
@@ -21,6 +21,9 @@ export interface ParamsProp {
 export interface SortProps {
   sort?: 'asc' | 'desc';
   order_by?: string;
+}
+export interface QueryProps {
+  query?: string;
 }
 
 export type KeyParamsProps = keyof ParamsProp;

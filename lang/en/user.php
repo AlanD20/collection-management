@@ -26,6 +26,6 @@ return [
   'comment_section' => 'Comments',
   'comment_as' => 'Logged in as :user',
   'comment_login' => 'to post a comment',
-  'no_comment' => 'There is no comment on the item.',
+  'no_comment' => 'There is no comment on the item',
 
 ];

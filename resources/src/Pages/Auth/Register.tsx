@@ -4,9 +4,8 @@ import Checkbox from '@@/Form/Checkbox';
 import TitleText from '@@/Misc/TitleText';
 import React, { ChangeEvent } from 'react';
 import ButtonLink from '@@/Form/ButtonLink';
-import { UsePage } from '@/@types/Response';
 import PageContainer from '@/Layouts/PageContainer';
-import { usePage, useForm } from '@inertiajs/inertia-react';
+import { useForm } from '@inertiajs/inertia-react';
 
 const Register = () => {
   const { post, data, setData, processing, reset } = useForm({

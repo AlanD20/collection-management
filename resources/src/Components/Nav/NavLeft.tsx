@@ -57,7 +57,7 @@ const NavLeft = () => {
               className={activeItem(collections)}
             />
             <NavItem
-              href={route('users.index')}
+              href={route('u.index')}
               label={__('main.users')}
               as="button"
               className={activeItem(users)}
@@ -115,7 +115,7 @@ const NavLeft = () => {
             className={activeItem(collections)}
           />
           <NavItem
-            href={route('users.index')}
+            href={route('u.index')}
             label={__('main.users')}
             as="button"
             className={activeItem(users)}

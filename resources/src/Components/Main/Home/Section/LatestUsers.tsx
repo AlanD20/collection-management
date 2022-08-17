@@ -18,7 +18,7 @@ const LatestUsers = ({ users }: Props) => {
         title={__('main.latest', {
           model: 'Users',
         })}
-        routeName="users.index"
+        routeName="u.index"
         params={{
           sort: 'desc',
           order_by: 'created_at'

@@ -42,7 +42,7 @@ export default PageContainer({
       title: 'Users',
       optionRoute: {
         sortOptions: MAIN_USERS_SP,
-        name: 'users.index',
+        name: 'u.index',
       },
     },
   },

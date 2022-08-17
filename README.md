@@ -47,7 +47,7 @@
 - [x] Each item has comments at the bottom of the item page.
 - [ ] Must support live comments.
 - [x] Likes from users.
-- [ ] All pages are accessible from the nav bar.
+- [x] All pages are accessible from the nav bar.
 - [ ] Search bar.
 - [ ] Search results are links to the items itself, even if the text found in the comment section of the item.
 - [x] Personal page for each user where they can manage their collections and items. Each collection is a clickable link where it goes to the collection page. The page has a table of each items in the collection with sorting/filtering capabilities and managing items in the collection.

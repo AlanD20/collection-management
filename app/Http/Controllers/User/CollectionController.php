@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers\User;
 
-use App\Helpers\CollectionHelper;
 use Inertia\Inertia;
-use Illuminate\Support\Str;
 use App\Helpers\ThroughPipeline;
+use App\Helpers\CollectionHelper;
 use App\Http\Controllers\Controller;
 use App\Models\{User, Collection, Category};
 use App\Http\Requests\User\CollectionRequest;
@@ -15,6 +14,7 @@ use App\Http\Resources\{
   CollectionResource,
   CategoryResource,
 };
+use Illuminate\Support\Facades\Storage;
 
 class CollectionController extends Controller
 {
@@ -88,15 +88,23 @@ class CollectionController extends Controller
   public function store(CollectionRequest $request, User $uname)
   {
 
-    //! UPLOAD THUMBNAIL FILEEE
     $this->authorize('view', $uname);
 
-    $fields =  (new CollectionHelper())
-      ->slugifyFieldNames($request->safe()->fields);
+    $fields =  [];
+    if ($request->has('fields')) {
+      $fields = (new CollectionHelper())
+        ->slugifyFieldNames($request->safe()->fields);
+    }
+
+    $file = null;
+    if ($request->has('thumbnail')) {
+      $file = $request->file('thumbnail')->store('images', 'public');
+    }
 
     $uname->collections()->create([
       ...$request->validated(),
-      'fields' => $fields
+      'fields' => $fields,
+      'thumbnail' => '/uploads/' . $file
     ]);
 
     return back()->with('success', __('model.create', [
@@ -136,9 +144,22 @@ class CollectionController extends Controller
 
     $this->authorize('update', $collection);
 
+    $fields =  [];
+    if ($request->has('fields')) {
+      $fields = (new CollectionHelper())
+        ->slugifyFieldNames($request->safe()->fields);
+    }
+
+    $file = null;
+    if ($request->has('thumbnail')) {
+      Storage::delete($collection->thumbnail);
+      $file = $request->file('thumbnail')->store('images', 'public');
+    }
+
     $collection->update([
       ...$request->validated(),
-      'fields' => $this->slugifyFieldNames($request->safe()->fields)
+      'fields' => $fields,
+      'thumnail' => '/uploads/' . $file
     ]);
 
     return back()->with('success', __('model.update', [

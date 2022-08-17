@@ -2,6 +2,9 @@
 
 namespace App\Helpers;
 
+use App\Models\Item;
+use Illuminate\Support\Collection;
+
 
 class ItemHelper
 {
@@ -12,11 +15,15 @@ class ItemHelper
    * @param  array $fields
    * @return array
    */
-  public  function filterFields($fields): array
+  public  function filterFields(array $fields): array
   {
 
     return collect($fields)
       ->filter(fn ($f) => \array_key_exists('value', $f))
+      ->transform(fn ($f) => [
+        ...$f,
+        'value' => \strtolower($f['value'])
+      ])
       ->values()
       ->all();
   }
@@ -24,10 +31,10 @@ class ItemHelper
   /**
    * Get liked items for current authenticated user.
    *
-   * @param  \Illuminate\Support\Collection $items
+   * @param  Collection|Item $items
    * @return array
    */
-  public function getUserLikes(\Illuminate\Support\Collection $items)
+  public function getUserLikes(Collection|Item $items)
   {
     if (!request()->user()) return [];
 

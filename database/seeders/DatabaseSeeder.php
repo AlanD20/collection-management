@@ -38,7 +38,6 @@ class DatabaseSeeder extends Seeder
 
           $item = \App\Models\Item::factory()->create([
             'collection_id' => $id,
-            'fields' => $cols->where('id', $id)->pluck('fields')->flatten(1)->all(),
           ]);
           $item->tags()->attach(collect($tags)->random(5)->all());
         }

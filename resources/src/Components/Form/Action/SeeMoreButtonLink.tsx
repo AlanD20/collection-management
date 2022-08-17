@@ -6,7 +6,7 @@ import { AiOutlineArrowRight } from 'react-icons/ai';
 
 interface Props extends DefProps {
   routeName: string;
-  params?: ParamsProp & SortProps;
+  params?: ParamsProp;
 }
 
 const LikeButtonLink = ({
