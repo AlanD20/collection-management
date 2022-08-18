@@ -32,14 +32,14 @@ class CollectionController extends Controller
       ->withCount('items')
       ->where('user_id', $uname->id);
 
-    $pipe = ThroughPipeline::new()
-      ->query($query)
-      ->through([
+    $pipe = ThroughPipeline::getPaginatePipe(
+      $query,
+      [
         SortCollection::class,
         FilterCollection::class,
-      ])
-      ->paginate(7)
-      ->withQueryString();
+      ],
+      paginate: 7
+    );
 
     $pipe->getCollection()
       ->each(

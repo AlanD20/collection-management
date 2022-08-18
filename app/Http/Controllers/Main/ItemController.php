@@ -25,13 +25,11 @@ class ItemController extends Controller
       ->withCount('likes', 'comments')
       ->addSelect('items.*');
 
-    $pipe = ThroughPipeline::new()
-      ->query($query)
-      ->through([
-        SortItem::class
-      ])
-      ->paginate(12)
-      ->withQueryString();
+    $pipe = ThroughPipeline::getPaginatePipe(
+      $query,
+      [SortItem::class],
+      paginate: 12
+    );
 
     $pipe->getCollection()
       ->each(fn (Item $item) => $item->tags = $item->tags->take(3));

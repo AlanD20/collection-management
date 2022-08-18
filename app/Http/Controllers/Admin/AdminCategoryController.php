@@ -8,8 +8,11 @@ use App\Helpers\ThroughPipeline;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CategoryResource;
 use App\Http\Requests\Admin\CategoryRequest;
-use App\Http\QueryFilters\Sorting\SortTagCategory;
-use App\Http\QueryFilters\Filtering\FilterTagCategory;
+use App\Http\QueryFilters\{
+  Sorting\SortTagCategory,
+  Filtering\FilterTagCategory
+};
+
 
 class AdminCategoryController extends Controller
 {
@@ -23,14 +26,14 @@ class AdminCategoryController extends Controller
   {
     $query = Category::query();
 
-    $pipe = ThroughPipeline::new()
-      ->query($query)
-      ->through([
+    $pipe = ThroughPipeline::getPaginatePipe(
+      $query,
+      [
         SortTagCategory::class,
         FilterTagCategory::class
-      ])
-      ->paginate(7)
-      ->withQueryString();
+      ],
+      paginate: 7
+    );
 
     $categories = CategoryResource::collection($pipe);
 

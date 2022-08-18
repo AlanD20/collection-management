@@ -22,14 +22,14 @@ class AdminTagController extends Controller
   {
     $query = Tag::query();
 
-    $pipe = ThroughPipeline::new()
-      ->query($query)
-      ->through([
+    $pipe = ThroughPipeline::getPaginatePipe(
+      $query,
+      [
         SortTagCategory::class,
         FilterTagCategory::class
-      ])
-      ->paginate(7)
-      ->withQueryString();
+      ],
+      paginate: 7
+    );
 
     $tags = TagResource::collection($pipe);
 

@@ -18,9 +18,7 @@ const Items = ({ items }: Props) => {
   return (
     <div className="my-4 w-full flex gap-4 flex-wrap ">
       {condition &&
-        items.data.map((item) => (
-          <ItemCard key={item.id} item={item} />
-        ))}
+        items.data.map((item) => <ItemCard key={item.id} item={item} />)}
 
       {!condition && <EmptyResource model="Item" />}
 

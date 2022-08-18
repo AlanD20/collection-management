@@ -1,5 +1,6 @@
 import React from 'react';
 import { Item } from '@/@types/Models';
+import BadgeLink from '@@/Misc/BadgeLink';
 
 interface Props {
   item: Item;
@@ -13,9 +14,7 @@ const ItemDetailTitle = ({ item }: Props) => {
       </div>
       <div className="flex flex-wrap gap-1 w-full">
         {item.tags.map((tag) => (
-          <div key={tag.id} className="badge">
-            {tag.name}
-          </div>
+          <BadgeLink key={tag.id} label={tag.name} query={tag.name} />
         ))}
       </div>
     </div>

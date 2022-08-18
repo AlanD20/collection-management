@@ -25,13 +25,11 @@ class CollectionController extends Controller
       ->withCount('items')
       ->addSelect('collections.*');
 
-    $pipe = ThroughPipeline::new()
-      ->query($query)
-      ->through([
-        SortCollection::class
-      ])
-      ->paginate(12)
-      ->withQueryString();
+    $pipe = ThroughPipeline::getPaginatePipe(
+      $query,
+      [SortCollection::class],
+      paginate: 12
+    );
 
     $pipe->getCollection()
       ->each(

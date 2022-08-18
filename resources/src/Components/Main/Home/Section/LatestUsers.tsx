@@ -21,7 +21,7 @@ const LatestUsers = ({ users }: Props) => {
         routeName="u.index"
         params={{
           sort: 'desc',
-          order_by: 'created_at'
+          order_by: 'created_at',
         }}
       />
 

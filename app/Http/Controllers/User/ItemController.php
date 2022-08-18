@@ -39,17 +39,16 @@ class ItemController extends Controller
       ->withCount('likes', 'comments')
       ->where('collection_id', $collection);
 
-    $pipeItems = ThroughPipeline::new()
-      ->query($queryItems)
-      ->through([
+    $pipeItems = ThroughPipeline::getPaginatePipe(
+      $queryItems,
+      [
         SortItem::class,
         FilterItem::class
-      ])
-      ->paginate(7)
-      ->withQueryString();
+      ],
+      paginate: 7
+    );
 
     $likes = (new ItemHelper())->getUserLikes($pipeItems->getCollection());
-
 
     $items = ItemResource::collection($pipeItems);
     $collection = new CollectionResource($queryCollection);

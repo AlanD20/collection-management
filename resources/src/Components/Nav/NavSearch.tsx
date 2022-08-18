@@ -3,7 +3,6 @@ import { AiOutlineSearch } from 'react-icons/ai';
 import { useForm } from '@inertiajs/inertia-react';
 import ErrorStatus from '@@/Misc/ErrorStatus';
 
-
 const NavSearch = () => {
   const { get, data, setData } = useForm({
     query: '',
@@ -12,23 +11,22 @@ const NavSearch = () => {
   const handleSubmit = (e: ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    get(route('main.search', {
-      query: data.query.trim()
-    }), { preserveState: true });
+    get(
+      route('main.search', {
+        query: data.query.trim(),
+      }),
+      { preserveState: true }
+    );
   };
-
 
   return (
     <div className="form-control w-full sm:w-auto">
-      <form
-        onSubmit={handleSubmit}
-        className="input-group w-full sm:w-auto"
-      >
+      <form onSubmit={handleSubmit} className="input-group w-full sm:w-auto">
         <input
           type="text"
-          name='query'
+          name="query"
           value={data.query}
-          onChange={e => setData('query', e.target.value)}
+          onChange={(e) => setData('query', e.target.value)}
           placeholder="Search..."
           className="input input-bordered w-full sm:w-auto"
         />

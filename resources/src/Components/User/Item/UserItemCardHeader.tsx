@@ -1,5 +1,6 @@
 import React from 'react';
 import { Item } from '@/@types/Models';
+import BadgeLink from '@@/Misc/BadgeLink';
 import { UsePage } from '@/@types/Response';
 import { HiDotsVertical } from 'react-icons/hi';
 import { usePage } from '@inertiajs/inertia-react';
@@ -66,9 +67,7 @@ const UserItemCardHeader = ({ item }: Props) => {
         {item.tags &&
           item.tags.length > 0 &&
           item.tags.map((tag) => (
-            <div key={tag.id} className="badge">
-              {tag.name}
-            </div>
+            <BadgeLink key={tag.id} label={tag.name} query={tag.name} />
           ))}
       </div>
     </div>

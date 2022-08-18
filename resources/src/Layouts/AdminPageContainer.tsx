@@ -13,13 +13,12 @@ const AdminPageContainer = ({
   body.component.layout = (page: ComponentElement) => {
     return (
       <Layout title={tabTitle}>
-        {header &&
-          React.createElement(header?.component, header?.props)
-        }
+        {header && React.createElement(header?.component, header?.props)}
 
         <div
-          className={`${small ? 'w-[35ch] lg:w-[45ch]' : 'w-full'
-            } ${className}`}
+          className={`${
+            small ? 'w-[35ch] lg:w-[45ch]' : 'w-full'
+          } ${className}`}
         >
           {React.createElement(body.component, {
             ...page.props,

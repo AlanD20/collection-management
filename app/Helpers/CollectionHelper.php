@@ -32,7 +32,7 @@ class CollectionHelper
    */
   public function truncDesc(Collection $collection, int $limit = 100)
   {
-    $collection->name = Str::limit($collection->name, 20, '...');
+    $collection->name = Str::limit($collection->name, 12, '...');
     $collection->description = Str::limit($collection->description, $limit, '...');
 
     return $collection;

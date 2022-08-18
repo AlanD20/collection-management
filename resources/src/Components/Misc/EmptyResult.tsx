@@ -8,8 +8,11 @@ interface Props extends DefProps {
 
 const EmptyResult = ({ model }: Props) => {
   return (
-    <div className="mt-12">
-      <TitleText className='text-2xl' label={__('main.empty_result', { model })} />
+    <div className="my-12">
+      <TitleText
+        className="text-2xl"
+        label={__('main.empty_result', { model })}
+      />
     </div>
   );
 };

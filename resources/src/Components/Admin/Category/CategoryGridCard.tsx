@@ -12,8 +12,8 @@ const CategoryGridCard = ({ category }: Props) => {
   return (
     <div className="card p-0 bg-base-100 shadow-xl">
       <div className="indicator">
-        <span className="indicator-item badge badge-primary top-6 right-12 text-lg">
-          #{category.id}
+        <span className="indicator-item badge-primary top-6 right-12 text-lg">
+          {`#${category.id}`}
         </span>
         <div className="card-body">
           <div className="flex flex-col capitalize">

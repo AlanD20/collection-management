@@ -2,7 +2,7 @@ import React from 'react';
 import { Children, DefProps } from '@/@types/Global';
 
 interface Props extends DefProps, Children {
-  label: string;
+  label?: string;
 }
 
 const TitleText = ({ label, children, className = '' }: Props) => {

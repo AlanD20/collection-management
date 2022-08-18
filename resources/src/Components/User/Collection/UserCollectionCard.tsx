@@ -1,5 +1,6 @@
 import React from 'react';
 import useAuth from '@/hooks/useAuth';
+import BadgeLink from '@@/Misc/BadgeLink';
 import { DefProps } from '@/@types/Global';
 import { UsePage } from '@/@types/Response';
 import { Collection } from '@/@types/Models';
@@ -39,7 +40,10 @@ const UserCollectionCard = ({ collection, className = '' }: Props) => {
           <h2 className="card-title capitalize font-bold">
             {`${collection.name} #${collection.id}`}
           </h2>
-          <div className="badge">{collection.category.name}</div>
+          <BadgeLink
+            label={collection.category.name}
+            query={collection.category.name}
+          />
         </div>
         <p>{collection.description}</p>
         <div className="card-actions mt-4 justify-end">

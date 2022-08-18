@@ -19,7 +19,6 @@ class CollectionFactory extends Factory
     return [
       'name' => \strtolower(fake()->jobTitle()),
       'description' => \strtolower(fake()->paragraph()),
-      'category_id' => fake()->randomDigit(),
       'thumbnail' => null,
       'fields' => [
         [

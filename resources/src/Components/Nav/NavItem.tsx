@@ -13,7 +13,6 @@ const NavItem = ({
   className = '',
   ...attr
 }: Props) => {
-
   return (
     <li className={parentClass}>
       <Link {...attr} className={className}>

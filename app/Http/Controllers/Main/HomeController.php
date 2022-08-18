@@ -3,22 +3,10 @@
 namespace App\Http\Controllers\Main;
 
 use Inertia\Inertia;
-use App\Models\Collection;
-use App\Models\{User, Item};
-use Illuminate\Http\Request;
-use App\Helpers\ThroughPipeline;
-use App\Helpers\CollectionHelper;
 use App\Helpers\HomeHelper;
+use App\Helpers\QueryHelper;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\CollectionResource;
-use App\Http\Resources\{UserResource, ItemResource};
-use App\Http\QueryFilters\Filtering\{
-  FilterItem,
-  FilterComment,
-  FilterItemSearch,
-  FilterTagCategory
-};
-
 
 class HomeController extends Controller
 {
@@ -53,10 +41,22 @@ class HomeController extends Controller
           'chr' => 3
         ]));
     }
+    $query = new QueryHelper();
 
-    $items = (new HomeHelper())->queryItems();
-    $users = (new HomeHelper())->queryUsers();
+    $tags = $query->tags();
+    $users = $query->users();
+    $items = $query->items();
+    $comments = $query->comments();
+    $categories = $query->categories();
+    $collections = $query->collections();
 
-    return Inertia::render('Main/SearchResult', compact('items', 'users'));
+    return Inertia::render('Main/SearchResult', compact(
+      'tags',
+      'users',
+      'items',
+      'comments',
+      'categories',
+      'collections',
+    ));
   }
 }

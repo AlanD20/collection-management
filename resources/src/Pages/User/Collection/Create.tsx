@@ -9,7 +9,6 @@ import React, { ChangeEvent, useMemo, useState } from 'react';
 import UserHeaderCompact from '@@/Headers/User/UserHeaderCompact';
 import CreateCustomField from '@@/User/Collection/CreateCustomField';
 
-
 interface Props {
   categories: Category[];
 }
@@ -45,12 +44,6 @@ const Create = ({ categories }: Props) => {
       })),
     [ts]
   );
-
-  const getCategory = (id: number) => CategoryList.find(
-    (category => category.value === id)
-  )?.label
-
-  console.log(selectValue);
 
   return (
     <form onSubmit={handleSubmit} className="form-control gap-4 w-full">

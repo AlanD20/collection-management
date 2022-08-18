@@ -20,7 +20,6 @@ const ViewButtonLink = ({
     <ButtonLink
       href={route(routeName, params)}
       as="button"
-      preserveScroll={true}
       className={`btn-accent font-bold text-base ${className}`}
     >
       {__('form.view')}

@@ -12,7 +12,7 @@ const RenderCustomFieldValue = ({ field, className = '' }: Props) => {
   if (field.type === 'checkbox') {
     return (
       <div className={`flex gap-4 items-center w-full my-4 ${className}`}>
-        <span className='capitalize'>{field.label}</span>
+        <span className="capitalize">{field.label}</span>
         <span>
           <i
             className={`text-lg fas fa-${field.value ? 'check' : 'times'}`}
@@ -24,7 +24,7 @@ const RenderCustomFieldValue = ({ field, className = '' }: Props) => {
 
   return (
     <div className={`flex flex-col gap-2 w-full my-4 ${className}`}>
-      <span className='capitalize'>{field.label}</span>
+      <span className="capitalize">{field.label}</span>
       <p>{field.value}</p>
     </div>
   );

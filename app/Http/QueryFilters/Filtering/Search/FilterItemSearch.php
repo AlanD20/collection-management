@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\QueryFilters\Filtering;
+namespace App\Http\QueryFilters\Filtering\Search;
 
 use App\Http\QueryFilters\Base\Filter;
 
-class FilterUserSearch extends Filter
+class FilterItemSearch extends Filter
 {
 
   public string $filterName = 'query';
@@ -16,8 +16,8 @@ class FilterUserSearch extends Filter
 
     return $builder->where(function ($query) use ($value) {
       $query
-        ->orWhere('users.name', 'like', "%$value%")
-        ->orWhere('users.username', 'like', "%$value%");
+        ->where('items.name', 'like', "%$value%")
+        ->orWhere('items.fields', 'like', "%$value%");
     });
   }
 }

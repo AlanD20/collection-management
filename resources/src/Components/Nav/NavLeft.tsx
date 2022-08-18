@@ -7,8 +7,10 @@ import AuthChangeTheme from '@@/Misc/AuthChangeTheme';
 import { Link, usePage } from '@inertiajs/inertia-react';
 
 const NavLeft = () => {
-
-  const { auth: { user }, appName } = usePage<UsePage>().props;
+  const {
+    auth: { user },
+    appName,
+  } = usePage<UsePage>().props;
   const { url } = usePage();
 
   const home = url === '/';
@@ -16,8 +18,7 @@ const NavLeft = () => {
   const users = url === '/users';
   const items = url === '/items';
 
-  const activeItem = (route: boolean) =>
-    (route ? 'btn-ghost btn-active' : '')
+  const activeItem = (route: boolean) => (route ? 'btn-ghost btn-active' : '');
 
   return (
     <>
@@ -73,10 +74,9 @@ const NavLeft = () => {
               <a className="justify-between">
                 Parent
                 <IoIosArrowDown
-                  className={`${user && user.locale === 'en'
-                    ? 'rotate-90'
-                    : '-rotate-90'
-                    }`}
+                  className={`${
+                    user && user.locale === 'en' ? 'rotate-90' : '-rotate-90'
+                  }`}
                 />
               </a>
               <ul className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box">
@@ -101,7 +101,6 @@ const NavLeft = () => {
       {/* Large Screen */}
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal p-0 gap-2">
-
           <NavItem
             href={route('main.index')}
             label={__('main.home')}

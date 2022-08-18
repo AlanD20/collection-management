@@ -1,5 +1,6 @@
 import React from 'react';
 import { Item } from '@/@types/Models';
+import BadgeLink from '@@/Misc/BadgeLink';
 import { DefProps } from '@/@types/Global';
 import ViewButtonLink from '@@/Form/Action/ViewButtonLink';
 
@@ -8,8 +9,6 @@ interface Props extends DefProps {
 }
 
 const ItemCard = ({ item, className = '' }: Props) => {
-
-
   return (
     <div
       className={`card card-compact lg:card-normal min-w-[400px] bg-base-100 shadow-xl h-[225px] max-w-[400px] ${className}`}
@@ -25,9 +24,7 @@ const ItemCard = ({ item, className = '' }: Props) => {
           </h2>
           <div className="flex w-full gap-1 flex-wrap">
             {item.tags.map((tag) => (
-              <div key={tag.id} className="badge">
-                {tag.name}
-              </div>
+              <BadgeLink label={tag.name} query={tag.name} />
             ))}
           </div>
         </div>

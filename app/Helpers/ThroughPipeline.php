@@ -3,6 +3,7 @@
 namespace App\Helpers;
 
 use Illuminate\Pipeline\Pipeline;
+use App\Http\QueryFilters\Base\Filter;
 use Illuminate\Database\Eloquent\Builder;
 
 
@@ -57,12 +58,12 @@ class ThroughPipeline
    *
    * @return \Illuminate\Pagination\Paginator
    */
-  public function paginate(int $limit)
+  public function paginate(int $limit = 12, string $name = 'page')
   {
     // \Illuminate\Support\Facades\DB::enableQueryLog();
     // $g = $this->buildQuery()->paginate($limit);
     // dd(\Illuminate\Support\Facades\DB::getQueryLog());
-    return $this->buildQuery()->paginate($limit);
+    return $this->buildQuery()->paginate($limit, ['*'], $name);
   }
 
   /**
@@ -73,6 +74,23 @@ class ThroughPipeline
   public function get()
   {
     return $this->buildQuery()->get();
+  }
+
+  /**
+   * Return paginate result with given parameter.
+   *
+   * @param  \Illuminate\Database\Eloquent\Builder $query
+   * @param  array $filter
+   * @param  int $paginate
+   * @return \Illuminate\Pagination\Paginator
+   */
+  public static function getPaginatePipe(Builder $query, array $filters, int $paginate = 5, string $name = 'page')
+  {
+    return self::new()
+      ->query($query)
+      ->through($filters)
+      ->paginate($paginate, $name)
+      ->withQueryString();
   }
 
   /**

@@ -21,13 +21,11 @@ class UserController extends Controller
 
     $query = User::query();
 
-    $pipe = ThroughPipeline::new()
-      ->query($query)
-      ->through([
-        SortUser::class
-      ])
-      ->paginate(25)
-      ->withQueryString();
+    $pipe = ThroughPipeline::getPaginatePipe(
+      $query,
+      [SortUser::class],
+      paginate: 25
+    );
 
     $users = UserResource::collection($pipe);
 

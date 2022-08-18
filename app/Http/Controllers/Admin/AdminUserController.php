@@ -28,14 +28,14 @@ class AdminUserController extends Controller
       ])->join('details', 'details.user_id', '=', 'users.id')
       ->with('detail');
 
-    $pipe = ThroughPipeline::new()
-      ->query($query)
-      ->through([
+    $pipe = ThroughPipeline::getPaginatePipe(
+      $query,
+      [
         SortUser::class,
         FilterAdminUser::class
-      ])
-      ->paginate(7)
-      ->withQueryString();
+      ],
+      paginate: 7
+    );
 
     $users = UserResource::collection($pipe);
 

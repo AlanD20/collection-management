@@ -19,7 +19,7 @@ const LargestCollections = ({ collections }: Props) => {
         routeName="collections.index"
         params={{
           sort: 'desc',
-          order_by: 'items'
+          order_by: 'items',
         }}
       />
 

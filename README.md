@@ -42,7 +42,7 @@
 - [x] List of the latest items (name, collections, authors)
 - [x] List of top 5 largest collection
 - [x] Tag search (should work like the search result)
-- [ ] Tags are clickable which shows all the items with the clicked tag.
+- [x] Tags are clickable which shows all the items with the clicked tag.
 - [x] Register/Login form.
 - [x] Each item has comments at the bottom of the item page.
 - [ ] Must support live comments.

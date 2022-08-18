@@ -19,11 +19,7 @@ const Users = ({ users }: Props) => {
     <div className="my-4 w-full flex gap-4 flex-wrap ">
       {condition &&
         users.data.map((user) => (
-          <UserCard
-            key={user.id}
-            user={user}
-            className="max-w-[25ch]"
-          />
+          <UserCard key={user.id} user={user} className="max-w-[25ch]" />
         ))}
 
       {!condition && <EmptyResource model="User" />}
