@@ -8,6 +8,15 @@ use Illuminate\Http\Request;
 class PreferenceController extends Controller
 {
 
+  /**
+   * Instantiate a new controller instance.
+   *
+   * @return void
+   */
+  public function __construct()
+  {
+    $this->middleware(['auth', 'isBlocked']);
+  }
 
   /**
    * Store locale in storage.

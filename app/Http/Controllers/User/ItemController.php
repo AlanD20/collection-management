@@ -18,6 +18,19 @@ use App\Http\QueryFilters\Filtering\FilterItem;
 
 class ItemController extends Controller
 {
+
+
+  /**
+   * Instantiate a new controller instance.
+   *
+   * @return void
+   */
+  public function __construct()
+  {
+    $this->middleware(['auth', 'isBlocked'])
+      ->except(['index', 'show']);
+  }
+
   /**
    * Display a listing of the resource.
    *

@@ -11,6 +11,16 @@ class CommentController extends Controller
 {
 
   /**
+   * Instantiate a new controller instance.
+   *
+   * @return void
+   */
+  public function __construct()
+  {
+    $this->middleware(['auth', 'isBlocked']);
+  }
+
+  /**
    * Store a newly created resource in storage.
    *
    * @param  \App\Http\Requests\User\CommentRequest  $request

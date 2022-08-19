@@ -45,6 +45,7 @@ export default UserPageContainer({
   header: {
     component: UserHeader,
     props: {
+      itemsHeader: true,
       title: {
         text: ":uname's Collection Items",
         param: 'uname',

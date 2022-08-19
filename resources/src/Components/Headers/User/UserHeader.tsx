@@ -2,7 +2,7 @@ import React from 'react';
 import HeaderBar from '../HeaderBar';
 import TitleText from '@@/Misc/TitleText';
 import SearchHeader from '../SearchHeader';
-import { KeyParamsProps, UsePage } from '@/@types/Response';
+import { UsePage } from '@/@types/Response';
 import SortSelectHeader from '../SortSelectHeader';
 import { usePage } from '@inertiajs/inertia-react';
 import { getParamsWithKey } from '@/common/helpers';
@@ -10,6 +10,7 @@ import useReplaceParamsKey from '@/hooks/useParseParams';
 import BackButtonLink from '@@/Form/Action/BackButtonLink';
 import CreateButtonLink from '@@/Form/Action/CreateButtonLink';
 import { DefProps, PageTitle, RouteType, SelectOption } from '@/@types/Global';
+import ItemsHeader from './ItemsHeader';
 
 export interface UserHeaderProps extends DefProps {
   title: PageTitle;
@@ -21,15 +22,15 @@ export interface UserHeaderProps extends DefProps {
     label?: string;
     prevUrl?: boolean;
   };
-  noHeaderBar?: boolean;
+  itemsHeader: boolean;
 }
 
 const UserHeader = ({
   optionRoute,
   createRoute,
   backRoute,
-  noHeaderBar,
   title,
+  itemsHeader
 }: UserHeaderProps) => {
   const parsedTitle = useReplaceParamsKey(title);
   const { params } = usePage<UsePage>().props;
@@ -37,6 +38,7 @@ const UserHeader = ({
   return (
     <>
       <TitleText label={parsedTitle} />
+      <ItemsHeader hideWhen={!itemsHeader} />
       <div className="flex w-full gap-4 flex-col md:flex-row py-2 px-8">
         {backRoute && !backRoute.hidden && (
           <BackButtonLink
@@ -46,7 +48,7 @@ const UserHeader = ({
           />
         )}
       </div>
-      <HeaderBar hideWhen={noHeaderBar}>
+      <HeaderBar>
         <SortSelectHeader
           hideWhen={optionRoute.hidden}
           options={optionRoute.sortOptions}

@@ -15,6 +15,15 @@ Route::prefix('/u/{uname}')
     Route::get('/', [UserController::class, 'show'])
       ->name('show');
 
+    Route::get('/edit', [UserController::class, 'edit'])
+      ->name('edit');
+
+    Route::patch('/', [UserController::class, 'update'])
+      ->name('update');
+
+    Route::delete('/', [UserController::class, 'destroy'])
+      ->name('destroy');
+
     Route::resources([
       '/collections' => CollectionController::class,
       '/collections.items' => ItemController::class,
