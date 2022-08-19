@@ -74,7 +74,7 @@ const Register = () => {
         <Input
           type="password"
           name="password_confirmation"
-          label={__('form.password_confirm')}
+          label={__('form.password_confirmation')}
           value={data.password_confirmation}
           autoComplete="new-password"
           className="block mt-1 w-full"

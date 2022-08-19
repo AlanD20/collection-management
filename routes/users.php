@@ -18,8 +18,14 @@ Route::prefix('/u/{uname}')
     Route::get('/edit', [UserController::class, 'edit'])
       ->name('edit');
 
+    Route::get('/edit/password', [UserController::class, 'edit_password'])
+      ->name('edit.password');
+
     Route::patch('/', [UserController::class, 'update'])
       ->name('update');
+
+    Route::patch('/password', [UserController::class, 'update_password'])
+      ->name('update.password');
 
     Route::delete('/', [UserController::class, 'destroy'])
       ->name('destroy');

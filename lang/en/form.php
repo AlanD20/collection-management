@@ -5,8 +5,10 @@ return [
   'name' => "Name:",
   'username' => "Username:",
   'email' => "Email:",
+  'current_password' => "Current Password:",
   'password' => "Password:",
-  'password_confirm' => "Confirm Password:",
+  'new_password' => "New Password:",
+  'password_confirmation' => "Confirm Password:",
   'remember' => "Remember me",
   'tos' => "Accept terms of service",
 
@@ -30,6 +32,8 @@ return [
   'login' => "Login",
   'back' => "Go Back",
   'back_item' => "Back to items",
+  'back_profile' => "Back to Profile",
+  'edit_profile' => "Edit Profile",
   'back_items' => "Back to collection",
   'register' => "Register",
   'create_account' => "Create An Account",
@@ -39,7 +43,9 @@ return [
   'edit' => 'Edit',
   'create' => 'Create',
   'delete' => 'Delete',
+  'delete_account' => 'Delete Account',
   'see_more' => 'See More',
   'update' => 'Update',
+  'change_password' => 'Change Password',
 
 ];

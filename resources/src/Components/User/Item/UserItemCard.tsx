@@ -1,6 +1,5 @@
 import React from 'react';
 import { DefProps } from '@/@types/Global';
-import UserItemCardBody from './UserItemCardBody';
 import { Collection, Item } from '@/@types/Models';
 import UserItemCardFooter from './UserItemCardFooter';
 import UserItemCardHeader from './UserItemCardHeader';
@@ -23,8 +22,6 @@ const UserItemCard = ({
     >
       <div className="card-body !py-4">
         <UserItemCardHeader item={item} />
-
-        <UserItemCardBody item={item} collection={collection} />
 
         <UserItemCardFooter item={item} likes={likes} />
       </div>
