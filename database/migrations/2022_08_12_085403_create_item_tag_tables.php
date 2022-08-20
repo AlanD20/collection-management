@@ -15,8 +15,10 @@ return new class extends Migration
   {
     Schema::create('item_tag', function (Blueprint $table) {
       $table->id();
-      $table->foreignId('item_id')->constrained('items', 'id');
-      $table->foreignId('tag_id')->constrained('tags', 'id');
+      $table->foreignId('item_id')->constrained('items', 'id')
+        ->onDelete('cascade');
+      $table->foreignId('tag_id')->constrained('tags', 'id')
+        ->onDelete('cascade');
     });
   }
 

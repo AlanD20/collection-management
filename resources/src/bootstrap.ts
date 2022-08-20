@@ -19,6 +19,7 @@ window.__ = (key, replace) => {
   let translate: string = _get(locale, key);
   if (!replace) return translate;
 
+  console.log(key, Object.keys(replace));
   Object.keys(replace).forEach((key) => {
     translate = translate.replace(`:${key}`, replace[key]);
   });

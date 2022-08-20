@@ -7,13 +7,16 @@ interface Props {
 }
 
 const ItemDetailBody = ({ item }: Props) => {
+
+  const condition = item && item.fields.length > 0;
+
   return (
     <div className="flex flex-col w-full">
-      {item &&
-        item.fields.length > 0 &&
+      {condition &&
         item.fields.map((field) => (
           <RenderCustomFieldValue key={field.id} field={field} />
-        ))}
+        ))
+      }
     </div>
   );
 };

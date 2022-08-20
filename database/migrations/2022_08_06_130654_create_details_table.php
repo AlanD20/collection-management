@@ -15,7 +15,8 @@ return new class extends Migration
   {
     Schema::create('details', function (Blueprint $table) {
       $table->id();
-      $table->foreignId('user_id')->constrained('users', 'id')->onDelete('cascade');
+      $table->foreignId('user_id')->constrained('users', 'id')
+        ->onDelete('cascade');
       $table->boolean('block')->default(false);
       $table->boolean('admin')->default(false);
       $table->string('theme')->default('emerald');

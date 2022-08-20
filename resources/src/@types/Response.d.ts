@@ -12,7 +12,7 @@ export interface ParamsProp extends SortProps, QueryProps {
   uname?: string | null;
   category?: number | null;
   tag?: number | null;
-  user?: number | null;
+  user?: string | null;
   collection?: number | null;
   item?: number | null;
   comment?: number | null;

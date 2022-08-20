@@ -3,15 +3,18 @@ import { Item } from '@/@types/Models';
 import BadgeLink from '@@/Misc/BadgeLink';
 import { DefProps } from '@/@types/Global';
 import ViewButtonLink from '@@/Form/Action/ViewButtonLink';
+import RenderCustomFieldValue from '@@/User/Item/RenderCustomFieldValue';
 
 interface Props extends DefProps {
   item: Item;
 }
 
 const ItemCard = ({ item, className = '' }: Props) => {
+
+  const condition = item && item.fields.length > 0;
   return (
     <div
-      className={`card card-compact lg:card-normal min-w-[400px] bg-base-100 shadow-xl h-[225px] max-w-[400px] ${className}`}
+      className={`card card-compact lg:card-normal min-w-[400px] bg-base-100 shadow-xl h-[525px] max-w-[400px] ${className}`}
     >
       <div className="px-8 pt-4 flex justify-between text-xs italic">
         <span>{`${__('model.created_at')} ${item.createdAt}`}</span>
@@ -27,6 +30,20 @@ const ItemCard = ({ item, className = '' }: Props) => {
               <BadgeLink key={tag.id} label={tag.name} query={tag.name} />
             ))}
           </div>
+        </div>
+        <div className="flex flex-col">
+          {condition &&
+            item.fields.map((field) => {
+              if (field.type === 'textarea') return null;
+              return (
+                <RenderCustomFieldValue
+                  key={field.id}
+                  field={field}
+                  className='my-2'
+                />
+              )
+            })
+          }
         </div>
         <div className="card-actions mt-4 justify-end">
           <ViewButtonLink

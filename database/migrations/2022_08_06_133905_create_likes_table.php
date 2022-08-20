@@ -15,8 +15,10 @@ return new class extends Migration
   {
     Schema::create('likes', function (Blueprint $table) {
       $table->id();
-      $table->foreignId('item_id')->constrained('items', 'id');
-      $table->foreignId('user_id')->constrained('users', 'id');
+      $table->foreignId('item_id')->constrained('items', 'id')
+        ->onDelete('cascade');
+      $table->foreignId('user_id')->constrained('users', 'id')
+        ->onDelete('cascade');
     });
   }
 

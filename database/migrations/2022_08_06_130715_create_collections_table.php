@@ -15,7 +15,8 @@ return new class extends Migration
   {
     Schema::create('collections', function (Blueprint $table) {
       $table->id();
-      $table->foreignId('user_id')->constrained('users', 'id')->onDelete('cascade');
+      $table->foreignId('user_id')->constrained('users', 'id')
+        ->onDelete('cascade');
       $table->foreignId('category_id')->nullable()->constrained('categories', 'id');
       $table->string('name');
       $table->longText('description');

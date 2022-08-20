@@ -24,6 +24,7 @@ const SearchHeader = ({
         ...getQueryAsObj(),
         query: e.target.value.trim(),
       }),
+      {},
       {
         preserveScroll: true,
         preserveState: true,

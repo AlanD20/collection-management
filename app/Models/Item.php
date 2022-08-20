@@ -31,7 +31,7 @@ class Item extends Model
 
   // Casts
   protected $casts = [
-    'fields' => 'array'
+    'fields' => 'array',
   ];
 
   // Default values
@@ -58,6 +58,22 @@ class Item extends Model
   {
     return new Attribute(
       set: fn ($value) => \strtolower($value)
+    );
+  }
+
+  public function fields(): Attribute
+  {
+    return new Attribute(
+      get: fn ($fields) => collect(\json_decode($fields, true))
+        ->transform(
+          fn ($field) =>
+          $field['type'] === 'datetime' ?
+            [
+              ...$field,
+              'value' => \Carbon\Carbon::parse($field['value'])
+                ->format('m-d-Y')
+            ] : $field
+        )->all()
     );
   }
 }

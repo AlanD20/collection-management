@@ -1,7 +1,7 @@
 import React from 'react';
 import { User } from '@/@types/Models';
 import { UsePage } from '@/@types/Response';
-import { usePage } from '@inertiajs/inertia-react';
+import { Link, usePage } from '@inertiajs/inertia-react';
 
 interface Props {
   user: User;
@@ -18,7 +18,12 @@ const ItemSideDetailBody = ({ user }: Props) => {
       </div>
       <div className="flex flex-col w-full gap-2 justify-center">
         <span className="font-bold">{__('user.username')}</span>
-        <span>{user.username}</span>
+        <Link
+          href={route('u.show', { uname: user.username })}
+          className="link link-secondary hover:link-accent"
+        >
+          <span>{user.username}</span>
+        </Link>
       </div>
       <div className="flex flex-col w-full gap-2 justify-center">
         <span className="font-bold">{__('user.email')}</span>
@@ -33,9 +38,9 @@ const ItemSideDetailBody = ({ user }: Props) => {
       <div className="flex w-full gap-2 justify-start">
         <span className="font-bold">{__('user.blocked')}</span>
         <span
-          className={`capitalize text-center font-semibold text-${
-            user.block ? 'red' : 'green'
-          }-700 `}
+          className={`capitalize text-center font-semibold ${
+            user.block ? 'text-red-700' : 'text-green-700'
+          } `}
         >
           {user.block ? __('user.blocked') : __('user.active')}
         </span>

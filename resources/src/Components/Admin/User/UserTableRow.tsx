@@ -24,9 +24,9 @@ const UserTableRow = ({ user }: Props) => {
       </td>
       <td>{user.email}</td>
       <td
-        className={`w-24 capitalize text-center font-semibold text-${
-          user.block ? 'red' : 'green'
-        }-500`}
+        className={`w-24 capitalize text-center font-semibold ${
+          user.block ? 'text-red-500' : 'text-green-500'
+        }`}
       >
         {user.block ? __('user.blocked') : __('user.active')}
       </td>
@@ -36,9 +36,12 @@ const UserTableRow = ({ user }: Props) => {
       </td>
 
       <td className="flex gap-6 px-12">
-        <GrantPermission params={{ user: user.id }} isAdmin={user.admin} />
-        <BlockUser params={{ user: user.id }} isBlocked={user.block} />
-        <DeleteUser params={{ user: user.id }} />
+        <GrantPermission
+          params={{ user: user.username }}
+          isAdmin={user.admin}
+        />
+        <BlockUser params={{ user: user.username }} isBlocked={user.block} />
+        <DeleteUser params={{ user: user.username }} />
       </td>
     </tr>
   );

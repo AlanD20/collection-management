@@ -203,7 +203,6 @@ class ItemController extends Controller
   {
     $this->authorize('delete', $collection);
 
-    $item->tags()->detach();
     $item->delete();
 
     return back()->with('success', __('model.delete', [

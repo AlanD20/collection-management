@@ -30,8 +30,8 @@ const Edit = ({ category }: Props) => {
   return (
     <>
       <TitleText
-        label={__('mdoel.edit_title', {
-          model: 'Category',
+        label={__('model.edit_title', {
+          model: __('model.category'),
         })}
       />
       <form onSubmit={handleSubmit} className="w-full">

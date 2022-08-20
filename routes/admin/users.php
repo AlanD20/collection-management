@@ -6,6 +6,9 @@ use App\Http\Controllers\Admin\AdminUserController;
 Route::get('/users', [AdminUserController::class, 'index'])
   ->name('users.index');
 
+Route::delete('/users/{user}', [AdminUserController::class, 'destroy'])
+  ->name('users.destroy');
+
 Route::post('/users/{user}/promote', [AdminUserController::class, 'promote'])
   ->name('users.promote');
 
@@ -17,6 +20,3 @@ Route::post('/users/{user}/block', [AdminUserController::class, 'block'])
 
 Route::post('/users/{user}/unblock', [AdminUserController::class, 'unblock'])
   ->name('users.unblock');
-
-Route::delete('/users/{user}', [AdminUserController::class, 'destroy'])
-  ->name('users.destroy');

@@ -44,68 +44,60 @@ class AdminUserController extends Controller
 
   /**
    *
-   * @param  int $user
+   * @param  \App\Models\User $user
    * @return \Illuminate\Http\RedirectResponse
    */
-  public function promote(int $user)
+  public function promote(User $user)
   {
-    User::findOrFail($user)
-      ->detail
-      ->update(['admin' => true]);
+    $user->detail->update(['admin' => true]);
 
     return back()->with('success', __('admin.promote'));
   }
 
   /**
    *
-   * @param  int $user
+   * @param  \App\Models\User $user
    * @return \Illuminate\Http\RedirectResponse
    */
-  public function demote(int $user)
+  public function demote(User $user)
   {
-    User::findOrFail($user)
-      ->detail
-      ->update(['admin' => false]);
+    $user->detail->update(['admin' => false]);
 
     return back()->with('success', __('admin.demote'));
   }
 
   /**
    *
-   * @param  int $user
+   * @param  \App\Models\User $user
    * @return \Illuminate\Http\RedirectResponse
    */
-  public function block(int $user)
+  public function block(User $user)
   {
-    User::findOrFail($user)
-      ->detail
-      ->update(['block' => true]);
+    $user->detail->update(['block' => true]);
 
     return back()->with('success', __('admin.block'));
   }
 
   /**
    *
-   * @param  int $user
+   * @param  \App\Models\User $user
    * @return \Illuminate\Http\RedirectResponse
    */
-  public function unblock(int $user)
+  public function unblock(User $user)
   {
-    User::findOrFail($user)
-      ->detail
-      ->update(['block' => false]);
+    $user->detail->update(['block' => false]);
 
     return back()->with('success', __('admin.unblock'));
   }
 
   /**
    *
-   * @param  int $user
+   * @param  \App\Models\User $user
    * @return \Illuminate\Http\RedirectResponse
    */
-  public function destroy(int $user)
+  public function destroy(User $user)
   {
-    User::findOrFail($user)->delete();
+    $user->delete();
 
     return back()->with('success', __('admin.delete'));
   }
