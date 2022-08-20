@@ -17,7 +17,6 @@ const NavSearch = () => {
       { preserveState: true }
     );
   };
-
   return (
     <div className="form-control w-full sm:w-auto">
       <form onSubmit={handleSubmit} className="input-group w-full sm:w-auto">
@@ -26,7 +25,7 @@ const NavSearch = () => {
           name="query"
           value={data.query}
           onChange={(e) => setData('query', e.target.value)}
-          placeholder="Search..."
+          placeholder={__('form.label_search')}
           className="input input-bordered w-full sm:w-auto"
         />
         <button className="btn btn-square">

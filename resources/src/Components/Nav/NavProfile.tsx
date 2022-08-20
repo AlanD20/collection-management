@@ -33,7 +33,11 @@ const NavProfile = ({}: Props) => {
         className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52"
       >
         <li>
-          <Link href={route('u.show', { uname: user.username })} as="button">
+          <Link
+            href={route('u.show', { uname: user.username })}
+            as="button"
+            className="capitalize"
+          >
             {__('main.profile')}
           </Link>
         </li>
@@ -43,7 +47,7 @@ const NavProfile = ({}: Props) => {
               uname: user.username,
             })}
             as="button"
-            className="justify-between"
+            className="justify-between capitalize"
           >
             {__('main.my_collection')}
           </Link>
@@ -51,8 +55,12 @@ const NavProfile = ({}: Props) => {
 
         {user.admin && (
           <li>
-            <Link href={route('admin.index')} as="button">
-              Admin Panel
+            <Link
+              href={route('admin.index')}
+              as="button"
+              className="capitalize"
+            >
+              {__('main.admin_panel')}
               <span className="badge badge-error badge-sm text-white">
                 {__('main.badge_admin')}
               </span>
@@ -60,12 +68,22 @@ const NavProfile = ({}: Props) => {
           </li>
         )}
         <li>
-          <Link href={route('u.edit', { uname: user.username })} as="button">
+          <Link
+            href={route('u.edit', { uname: user.username })}
+            as="button"
+            className="capitalize"
+          >
             {__('main.settings')}
           </Link>
         </li>
         <li>
-          <Link href={route('logout')} as="button" method="post" replace={true}>
+          <Link
+            href={route('logout')}
+            as="button"
+            method="post"
+            replace={true}
+            className="capitalize"
+          >
             {__('main.logout')}
           </Link>
         </li>

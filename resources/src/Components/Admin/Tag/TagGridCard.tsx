@@ -16,7 +16,7 @@ const TagGridCard = ({ tag }: Props) => {
         </span>
         <div className="card-body">
           <div className="flex flex-col capitalize">
-            <span className="font-bold">Name:</span>
+            <span className="font-bold">{__('form.name')}</span>
             <span>{tag.name}</span>
           </div>
 

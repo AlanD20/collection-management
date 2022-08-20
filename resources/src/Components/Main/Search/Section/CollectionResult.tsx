@@ -15,14 +15,14 @@ const CollectionResult = ({ collections }: Props) => {
   return (
     <div className="flex flex-col w-full bg-base-100 p-4 shadow-md rounded-lg">
       {condition && (
-        <div className="flex w-full mb-8">
+        <div className="flex w-full mb-8 flex-wrap">
           {collections.data.map((collection) => (
             <CollectionCard key={collection.id} collection={collection} />
           ))}
         </div>
       )}
 
-      {!condition && <EmptyResult model="collection" />}
+      {!condition && <EmptyResult model={__('model.collection')} />}
 
       {condition && <PaginationLinks meta={collections.meta} />}
     </div>

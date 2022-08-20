@@ -6,9 +6,9 @@ use Inertia\Inertia;
 use App\Models\User;
 use App\Helpers\ThroughPipeline;
 use App\Http\Controllers\Controller;
-use App\Http\QueryFilters\Filtering\FilterAdminUser;
 use App\Http\Resources\UserResource;
 use App\Http\QueryFilters\Sorting\SortUser;
+use App\Http\QueryFilters\Filtering\FilterAdminUser;
 
 
 class AdminUserController extends Controller
@@ -44,13 +44,12 @@ class AdminUserController extends Controller
 
   /**
    *
-   *
-   * @param  int $userid
+   * @param  int $user
    * @return \Illuminate\Http\RedirectResponse
    */
-  public function promote(int $userId)
+  public function promote(int $user)
   {
-    User::findOrFail($userId)
+    User::findOrFail($user)
       ->detail
       ->update(['admin' => true]);
 
@@ -59,13 +58,12 @@ class AdminUserController extends Controller
 
   /**
    *
-   *
-   * @param  int $userid
+   * @param  int $user
    * @return \Illuminate\Http\RedirectResponse
    */
-  public function demote(int $userId)
+  public function demote(int $user)
   {
-    User::findOrFail($userId)
+    User::findOrFail($user)
       ->detail
       ->update(['admin' => false]);
 
@@ -74,13 +72,12 @@ class AdminUserController extends Controller
 
   /**
    *
-   *
-   * @param  int $userid
+   * @param  int $user
    * @return \Illuminate\Http\RedirectResponse
    */
-  public function block(int $userId)
+  public function block(int $user)
   {
-    User::findOrFail($userId)
+    User::findOrFail($user)
       ->detail
       ->update(['block' => true]);
 
@@ -89,13 +86,12 @@ class AdminUserController extends Controller
 
   /**
    *
-   *
-   * @param  int $userid
+   * @param  int $user
    * @return \Illuminate\Http\RedirectResponse
    */
-  public function unblock(int $userId)
+  public function unblock(int $user)
   {
-    User::findOrFail($userId)
+    User::findOrFail($user)
       ->detail
       ->update(['block' => false]);
 
@@ -104,13 +100,12 @@ class AdminUserController extends Controller
 
   /**
    *
-   *
-   * @param  int $userid
+   * @param  int $user
    * @return \Illuminate\Http\RedirectResponse
    */
-  public function destroy(int $userId)
+  public function destroy(int $user)
   {
-    User::findOrFail($userId)->delete();
+    User::findOrFail($user)->delete();
 
     return back()->with('success', __('admin.delete'));
   }

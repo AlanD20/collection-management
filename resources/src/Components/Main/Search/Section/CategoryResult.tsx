@@ -26,7 +26,7 @@ const CategoryResult = ({ collections }: Props) => {
         </div>
       )}
 
-      {!condition && <EmptyResult model="category" />}
+      {!condition && <EmptyResult model={__('model.category')} />}
 
       {condition && <PaginationLinks meta={collections.meta} />}
     </div>

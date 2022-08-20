@@ -1,4 +1,4 @@
-import { KeyParamsProps, ParamsProp } from '@/@types/Global';
+import { KeyParamsProps, ParamsProp } from '@/@types/Response';
 
 export const getQueryAsObj = () => {
   let params = {};

@@ -16,13 +16,13 @@ const Collections = ({ collections }: Props) => {
   const condition = collections && collections.data.length > 0;
 
   return (
-    <div className="my-4 w-full flex gap-4 flex-wrap">
+    <div className="my-4 w-full flex gap-4 flex-wrap justify-center">
       {condition &&
         collections.data.map((collection) => (
           <UserCollectionCard key={collection.id} collection={collection} />
         ))}
 
-      {!condition && <EmptyResource model="Collection" />}
+      {!condition && <EmptyResource model={__('model.collection')} />}
 
       {condition && <PaginationLinks meta={collections.meta} />}
     </div>
@@ -37,7 +37,7 @@ export default PageContainer({
     props: {
       title: 'Collections',
       optionRoute: {
-        sortOptions: U_COLLECTIONS_SP,
+        sortOptions: U_COLLECTIONS_SP(),
         name: 'collections.index',
         params: ['uname'],
       },

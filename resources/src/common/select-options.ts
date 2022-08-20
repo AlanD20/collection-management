@@ -1,75 +1,99 @@
 import { SelectOption } from '@/@types/Global';
 
-export const CUSTOM_FIELD_TYPES_SP = [
-  { value: 'text', label: 'Single-line' },
-  { value: 'textarea', label: 'Multi-line' },
-  { value: 'number', label: 'Integer' },
-  { value: 'checkbox', label: 'Boolean' },
-  { value: 'datetime', label: 'Date & Time' },
+export const CUSTOM_FIELD_TYPES_SP = () => [
+  { value: 'text', label: __('dropdown.text') },
+  { value: 'textarea', label: __('dropdown.textarea') },
+  { value: 'number', label: __('dropdown.number') },
+  { value: 'checkbox', label: __('dropdown.checkbox') },
+  { value: 'datetime', label: __('dropdown.datetime') },
 ];
 
-export const U_COLLECTIONS_SP: SelectOption[] = [
-  { value: 'asc-created_at', label: 'Oldest Collection Created' },
-  { value: 'desc-created_at', label: 'Newest Collection Created' },
-  { value: 'asc-updated_at', label: 'Oldest Collection Updated' },
-  { value: 'desc-updated_at', label: 'Newest Collection Updated' },
-  { value: 'asc-id', label: 'ID By Low to High' },
-  { value: 'desc-id', label: 'ID By High to Low' },
-  { value: 'asc-title', label: 'Title By Ascending' },
-  { value: 'desc-title', label: 'Title By Descending' },
-  { value: 'asc-category', label: 'Category By Ascending' },
-  { value: 'desc-category', label: 'Category By Descending' },
-  { value: 'asc-items', label: 'Item Count By Ascending' },
-  { value: 'desc-items', label: 'Item Count By Descending' },
+export const U_COLLECTIONS_SP: () => SelectOption[] = () => [
+  {
+    value: 'asc-created_at',
+    label: __('dropdown.old_created_col'),
+  },
+  {
+    value: 'desc-created_at',
+    label: __('dropdown.new_created_col'),
+  },
+  {
+    value: 'asc-updated_at',
+    label: __('dropdown.old_updated_col'),
+  },
+  {
+    value: 'desc-updated_at',
+    label: __('dropdown.new_updated_col'),
+  },
+  { value: 'asc-id', label: __('dropdown.low_to_high_id') },
+  { value: 'desc-id', label: __('dropdown.high_to_low_id') },
+  { value: 'asc-title', label: __('dropdown.asc_title') },
+  { value: 'desc-title', label: __('dropdown.desc_title') },
+  { value: 'asc-category', label: __('dropdown.asc_category') },
+  { value: 'desc-category', label: __('dropdown.desc_category') },
+  { value: 'asc-items', label: __('dropdown.asc_item_count') },
+  { value: 'desc-items', label: __('dropdown.desc_item_count') },
 ];
 
-export const U_ITEMS_SP: SelectOption[] = [
-  { value: 'asc-created_at', label: 'Oldest Item Created' },
-  { value: 'desc-created_at', label: 'Newest Item Created' },
-  { value: 'asc-updated_at', label: 'Oldest Item Updated' },
-  { value: 'desc-updated_at', label: 'Newest Item Updated' },
-  { value: 'asc-id', label: 'ID By Low to High' },
-  { value: 'desc-id', label: 'ID By High to Low' },
-  { value: 'asc-title', label: 'Title By Ascending' },
-  { value: 'desc-title', label: 'Title By Descending' },
+export const U_ITEMS_SP: () => SelectOption[] = () => [
+  {
+    value: 'asc-created_at',
+    label: __('dropdown.old_created_item'),
+  },
+  {
+    value: 'desc-created_at',
+    label: __('dropdown.new_created_item'),
+  },
+  {
+    value: 'asc-updated_at',
+    label: __('dropdown.old_updated_item'),
+  },
+  {
+    value: 'desc-updated_at',
+    label: __('dropdown.new_updated_item'),
+  },
+  { value: 'asc-id', label: __('dropdown.low_to_high_id') },
+  { value: 'desc-id', label: __('dropdown.high_to_low_id') },
+  { value: 'asc-title', label: __('dropdown.asc_title') },
+  { value: 'desc-title', label: __('dropdown.desc_title') },
 ];
 
-export const ADMIN_USERS_SP: SelectOption[] = [
-  { value: 'asc-id', label: 'ID By Low to High' },
-  { value: 'desc-id', label: 'ID By High to Low' },
-  { value: 'asc-name', label: 'Name By Ascending' },
-  { value: 'desc-name', label: 'Name By Descending' },
-  { value: 'asc-username', label: 'Username By Ascending' },
-  { value: 'desc-username', label: 'Username By Descending' },
-  { value: 'asc-status', label: 'Status By Ascending' },
-  { value: 'desc-status', label: 'Status By Descending' },
-  { value: 'asc-admin', label: 'Admin By Ascending' },
-  { value: 'desc-admin', label: 'Admin By Descending' },
+export const ADMIN_USERS_SP: () => SelectOption[] = () => [
+  { value: 'asc-id', label: __('dropdown.low_to_high_id') },
+  { value: 'desc-id', label: __('dropdown.high_to_low_id') },
+  { value: 'asc-name', label: __('dropdown.asc_name') },
+  { value: 'desc-name', label: __('dropdown.desc_name') },
+  { value: 'asc-username', label: __('dropdown.asc_username') },
+  { value: 'desc-username', label: __('dropdown.desc_username') },
+  { value: 'asc-status', label: __('dropdown.asc_status') },
+  { value: 'desc-status', label: __('dropdown.desc_status') },
+  { value: 'asc-admin', label: __('dropdown.asc_admin') },
+  { value: 'desc-admin', label: __('dropdown.desc_admin') },
 ];
 
-export const ADMIN_CATEGORIES_SP: SelectOption[] = [
-  { value: 'asc-id', label: 'ID By Low to High' },
-  { value: 'desc-id', label: 'ID By High to Low' },
-  { value: 'asc-name', label: 'Name By Ascending' },
-  { value: 'desc-name', label: 'Name By Descending' },
+export const ADMIN_CATEGORIES_SP: () => SelectOption[] = () => [
+  { value: 'asc-id', label: __('dropdown.low_to_high_id') },
+  { value: 'desc-id', label: __('dropdown.high_to_low_id') },
+  { value: 'asc-name', label: __('dropdown.asc_name') },
+  { value: 'desc-name', label: __('dropdown.desc_name') },
 ];
 
-export const ADMIN_TAGS_SP: SelectOption[] = [
-  { value: 'asc-id', label: 'ID By Low to High' },
-  { value: 'desc-id', label: 'ID By High to Low' },
-  { value: 'asc-name', label: 'Name By Ascending' },
-  { value: 'desc-name', label: 'Name By Descending' },
+export const ADMIN_TAGS_SP: () => SelectOption[] = () => [
+  { value: 'asc-id', label: __('dropdown.low_to_high_id') },
+  { value: 'desc-id', label: __('dropdown.high_to_low_id') },
+  { value: 'asc-name', label: __('dropdown.asc_name') },
+  { value: 'desc-name', label: __('dropdown.desc_name') },
 ];
 
-export const MAIN_USERS_SP: SelectOption[] = [
-  { value: 'asc-id', label: 'ID By Low to High' },
-  { value: 'desc-id', label: 'ID By High to Low' },
-  { value: 'asc-name', label: 'Name By Ascending' },
-  { value: 'desc-name', label: 'Name By Descending' },
-  { value: 'asc-username', label: 'Username By Ascending' },
-  { value: 'desc-username', label: 'Username By Descending' },
-  { value: 'asc-created_at', label: 'Oldest Created Account' },
-  { value: 'desc-created_at', label: 'Newest Created Account' },
-  { value: 'asc-updated_at', label: 'Oldest Updated Account' },
-  { value: 'desc-updated_at', label: 'Newest Updated Account' },
+export const MAIN_USERS_SP: () => SelectOption[] = () => [
+  { value: 'asc-id', label: __('dropdown.low_to_high_id') },
+  { value: 'desc-id', label: __('dropdown.high_to_low_id') },
+  { value: 'asc-name', label: __('dropdown.asc_name') },
+  { value: 'desc-name', label: __('dropdown.desc_name') },
+  { value: 'asc-username', label: __('dropdown.asc_username') },
+  { value: 'desc-username', label: __('dropdown.desc_username') },
+  { value: 'asc-created_at', label: __('dropdown.old_created_acc') },
+  { value: 'desc-created_at', label: __('dropdown.new_created_acc') },
+  { value: 'asc-updated_at', label: __('dropdown.old_updated_acc') },
+  { value: 'desc-updated_at', label: __('dropdown.new_updated_acc') },
 ];

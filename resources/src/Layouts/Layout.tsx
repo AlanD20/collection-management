@@ -4,15 +4,12 @@ import Navigation from './Navigation';
 import { Children } from '@/@types/Global';
 import AlertStatus from '@@/Misc/AlertStatus';
 import { Head } from '@inertiajs/inertia-react';
-import useGlobalState from '@/hooks/useGlobalState';
 
 interface Props extends Children {
   title: string;
 }
 
 const Layout = ({ children, title }: Props) => {
-  useGlobalState();
-
   return (
     <div className="w-full min-h-screen flex flex-col items-center relative">
       <Head title={title} />

@@ -26,6 +26,7 @@ const SelectDropDown = ({ name, label, required, ...attr }: Props) => {
           {...attr}
           className="[&_*]:text-neutral block mt-1 w-full md:w-[60ch]"
           name={name}
+          placeholder={__('form.select')}
         />
         {required && <span className="text-red-500 text-xl mt-2">*</span>}
       </div>

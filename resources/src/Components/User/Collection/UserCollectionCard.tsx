@@ -2,10 +2,8 @@ import React from 'react';
 import useAuth from '@/hooks/useAuth';
 import BadgeLink from '@@/Misc/BadgeLink';
 import { DefProps } from '@/@types/Global';
-import { UsePage } from '@/@types/Response';
 import { Collection } from '@/@types/Models';
 import { PH_THUMBNAIL } from '@/common/constants';
-import { usePage } from '@inertiajs/inertia-react';
 import EditButtonLink from '@@/Form/Action/EditButtonLink';
 import ViewButtonLink from '@@/Form/Action/ViewButtonLink';
 import DeleteButtonLink from '@@/Form/Action/DeleteButtonLink';
@@ -15,8 +13,6 @@ interface Props extends DefProps {
 }
 
 const UserCollectionCard = ({ collection, className = '' }: Props) => {
-  const { params } = usePage<UsePage>().props;
-
   const { self } = useAuth();
 
   return (
@@ -27,8 +23,8 @@ const UserCollectionCard = ({ collection, className = '' }: Props) => {
         <img src={collection.thumbnail ?? PH_THUMBNAIL} alt={collection.name} />
       </figure>
       <div className="px-8 pt-4 flex justify-between text-xs italic">
-        <span>Created {collection.createdAt}</span>
-        <span>Updated {collection.updatedAt}</span>
+        <span>{`${__('model.created_at')} ${collection.createdAt}`}</span>
+        <span>{`${__('model.updated_at')} ${collection.updatedAt}`}</span>
       </div>
       <div className="card-body !py-4">
         <div className="flex w-full items-center text-xs capitalize">

@@ -25,7 +25,7 @@ const ItemCard = ({ item, tags, comments }: Props) => {
         {tags && (
           <div className="flex flex-col gap-1">
             <h1 className="text-2xl capitalize">Tags</h1>
-            <div className="flex gap-1">
+            <div className="flex gap-1 flex-wrap">
               {item.tags.length > 0 ? (
                 item.tags.map((tag) => (
                   <BadgeLink key={tag.id} label={tag.name} query={tag.name} />
@@ -41,7 +41,11 @@ const ItemCard = ({ item, tags, comments }: Props) => {
             <h1 className="text-2xl capitalize">Comments</h1>
             {item.comments.length > 0 ? (
               item.comments.map((comment) => (
-                <SingleComment key={comment.id} comment={comment} />
+                <SingleComment
+                  key={comment.id}
+                  comment={comment}
+                  hideDelete={true}
+                />
               ))
             ) : (
               <p className="font-bold">No Comments</p>

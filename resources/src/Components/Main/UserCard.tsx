@@ -22,8 +22,8 @@ const UserCard = ({ user, className = '' }: Props) => {
             {`${user.username} #${user.id}`}
           </h2>
           <div className="flex flex-col justify-between text-xs italic gap-2">
-            <span>Created {user.createdAt}</span>
-            <span>Updated {user.updatedAt}</span>
+            {`${__('model.created_at')} ${user.createdAt}`}
+            {`${__('model.updated_at')} ${user.updatedAt}`}
           </div>
         </div>
       </div>

@@ -36,7 +36,7 @@ const Dashboard = ({ categories }: Props) => {
           ))}
       </div>
 
-      {!condition && <EmptyResource model="Category" />}
+      {!condition && <EmptyResource model={__('model.category')} />}
 
       {condition && <PaginationLinks meta={categories.meta} />}
     </div>
@@ -58,7 +58,7 @@ export default AdminPageContainer({
       },
       sortOption: {
         routeName: 'admin.categories.index',
-        options: ADMIN_CATEGORIES_SP,
+        options: ADMIN_CATEGORIES_SP(),
       },
     },
   },

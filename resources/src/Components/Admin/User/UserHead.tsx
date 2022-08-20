@@ -11,19 +11,35 @@ const UserHead = () => {
           <SortButton label="#" name="id" routeName={routeName} />
         </th>
         <th>
-          <SortButton label="Name" name="name" routeName={routeName} />
+          <SortButton
+            label={__('form.name')}
+            name="name"
+            routeName={routeName}
+          />
         </th>
         <th>
-          <SortButton label="Username" name="username" routeName={routeName} />
+          <SortButton
+            label={__('form.username')}
+            name="username"
+            routeName={routeName}
+          />
         </th>
         <th>Email</th>
         <th>
-          <SortButton label="Status" name="status" routeName={routeName} />
+          <SortButton
+            label={__('form.status')}
+            name="status"
+            routeName={routeName}
+          />
         </th>
         <th>
-          <SortButton label="Admin" name="admin" routeName={routeName} />
+          <SortButton
+            label={__('form.admin')}
+            name="admin"
+            routeName={routeName}
+          />
         </th>
-        <th className="pl-28">Actions</th>
+        <th className="pl-28">{__('form.btn_action')}</th>
       </tr>
     </thead>
   );

@@ -16,11 +16,11 @@ const Items = ({ items }: Props) => {
   const condition = items && items.data.length > 0;
 
   return (
-    <div className="my-4 w-full flex gap-4 flex-wrap ">
+    <div className="my-4 w-full flex gap-4 flex-wrap justify-center">
       {condition &&
         items.data.map((item) => <ItemCard key={item.id} item={item} />)}
 
-      {!condition && <EmptyResource model="Item" />}
+      {!condition && <EmptyResource model={__('model.item')} />}
 
       {condition && <PaginationLinks meta={items.meta} />}
     </div>
@@ -35,7 +35,7 @@ export default PageContainer({
     props: {
       title: 'Items',
       optionRoute: {
-        sortOptions: U_ITEMS_SP,
+        sortOptions: U_ITEMS_SP(),
         name: 'items.index',
         params: ['uname'],
       },

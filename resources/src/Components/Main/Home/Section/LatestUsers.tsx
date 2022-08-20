@@ -29,7 +29,7 @@ const LatestUsers = ({ users }: Props) => {
         {condition ? (
           users.map((user) => <UserCard key={user.id} user={user} />)
         ) : (
-          <EmptyResource model="User" />
+          <EmptyResource model={__('model.user')} />
         )}
       </SectionBody>
     </section>

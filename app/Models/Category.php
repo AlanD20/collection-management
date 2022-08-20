@@ -32,7 +32,7 @@ class Category extends Model
 
   public function collections()
   {
-    return $this->belongsTo(Collection::class, 'category_id', 'id');
+    return $this->belongsTo(Collection::class, 'id', 'category_id');
   }
 
   public function name(): Attribute

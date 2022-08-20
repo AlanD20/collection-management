@@ -3,7 +3,7 @@ export interface UserInfo {
   admin: boolean;
   block: boolean;
   theme: 'dracula' | 'emerald';
-  locale: 'en' | 'ku';
+  locale: 'en' | 'es';
   updatedAt: string;
   createdAt: string;
 }

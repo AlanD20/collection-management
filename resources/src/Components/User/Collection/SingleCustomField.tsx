@@ -64,12 +64,14 @@ const SingleCustomField = ({
   };
 
   const getLabel = (value: string) =>
-    CUSTOM_FIELD_TYPES_SP.find((sp) => sp.value === value);
+    CUSTOM_FIELD_TYPES_SP().find((sp) => sp.value === value);
 
   return (
     <div className={`w-full my-4 ${className}`}>
       <div className="flex w-full justify-between items-center">
-        <span className="font-semibold">{`Field #${index + 1}`}</span>
+        <span className="font-semibold">
+          {`${__('form.field')} #${index + 1}`}
+        </span>
         <Button
           type="button"
           onClick={(e) => handleRemoveField(e, field)}
@@ -80,26 +82,26 @@ const SingleCustomField = ({
       </div>
       <Input
         type="text"
-        placeholder="Title"
+        placeholder={__('form.title')}
         value={field.label}
         name={`${field.id}.field.label`}
         onChange={(e) => handleTitleInput(e, field)}
       />
       <Input
         type="text"
-        placeholder="Field name"
+        placeholder={__('form.field_name')}
         value={field.name}
         name={`${field.id}.field.name`}
         onChange={(e) => handleNameInput(e, field)}
       />
       <SelectDropDown
         name={`${field.id}.field.select`}
-        options={CUSTOM_FIELD_TYPES_SP}
+        options={CUSTOM_FIELD_TYPES_SP()}
         defaultInputValue={getLabel(field.type)?.label}
         onChange={(e) => handleTypeInput(e, field)}
       />
       <Checkbox
-        label="Required?"
+        label={__('form.required')}
         checked={field.required}
         name={`${field.id}.field.checkbox`}
         onChange={(e) => handleStateInput(e, field)}

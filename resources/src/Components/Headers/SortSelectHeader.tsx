@@ -45,7 +45,7 @@ const SortSelectHeader = ({
 
   return (
     <SelectDropDown
-      label="Sort By:"
+      label={__('form.sort_by')}
       name="sort"
       options={options}
       onChange={handleOnChange}

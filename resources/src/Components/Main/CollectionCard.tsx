@@ -18,8 +18,8 @@ const CollectionCard = ({ collection, className = '' }: Props) => {
         <img src={collection.thumbnail ?? PH_THUMBNAIL} alt={collection.name} />
       </figure>
       <div className="px-8 pt-4 flex justify-between text-xs italic">
-        <span>Created {collection.createdAt}</span>
-        <span>Updated {collection.updatedAt}</span>
+        <span>{`${__('model.created_at')} ${collection.createdAt}`}</span>
+        <span>{`${__('model.updated_at')} ${collection.updatedAt}`}</span>
       </div>
       <div className="card-body !py-4">
         <div className="flex w-full items-center text-xs capitalize">

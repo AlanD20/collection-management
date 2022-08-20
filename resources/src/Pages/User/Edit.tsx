@@ -73,6 +73,7 @@ const Edit = ({ user }: Props) => {
             uname: user.username,
           })}
           method="delete"
+          as="button"
           className={`w-full btn btn-error mt-6 ml-auto text-lg`}
         >
           {__('form.delete_account')}

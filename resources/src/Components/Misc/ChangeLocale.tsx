@@ -7,7 +7,7 @@ const ChangeLocale = () => {
 
   const handleClick = () => {
     changeLocale(locale);
-    window.location.reload();
+    setTimeout(() => window.location.reload(), 0);
   };
 
   const liTag = (
@@ -21,9 +21,7 @@ const ChangeLocale = () => {
       <li tabIndex={0} className="lg:hidden">
         <a className="uppercase">
           {currentLocale}
-          <IoIosArrowDown
-            className={`${currentLocale === 'en' ? '-rotate-90' : 'rotate-90'}`}
-          />
+          <IoIosArrowDown className="-rotate-90" />
         </a>
         <ul
           tabIndex={0}

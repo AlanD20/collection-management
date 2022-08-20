@@ -18,7 +18,7 @@ class PreferenceController extends Controller
   public function locale(Request $request)
   {
     $validated = $request->validate([
-      'locale' => ['required', 'string', 'in:en,ku'],
+      'locale' => ['required', 'string', 'in:en,es'],
     ]);
 
     $locale = $validated['locale'];

@@ -62,7 +62,7 @@ class AdminCategoryController extends Controller
     Category::create($request->validated());
 
     return back()->with('success', __('model.create', [
-      'model' => 'Category'
+      'model' => __('model.category')
     ]));
   }
 
@@ -94,7 +94,7 @@ class AdminCategoryController extends Controller
     ]);
 
     return back()->with('success', __('model.update', [
-      'model' => 'Category'
+      'model' => __('model.category')
     ]));
   }
 
@@ -109,7 +109,7 @@ class AdminCategoryController extends Controller
     $category->delete();
 
     return back()->with('success', __('model.delete', [
-      'model' => 'Category'
+      'model' => __('model.category')
     ]));
   }
 }

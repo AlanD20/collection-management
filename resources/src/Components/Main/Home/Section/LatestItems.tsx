@@ -25,7 +25,7 @@ const LatestItems = ({ items }: Props) => {
         {condition ? (
           items.map((item) => <ItemCard key={item.id} item={item} />)
         ) : (
-          <EmptyResource model="Item" />
+          <EmptyResource model={__('model.item')} />
         )}
       </SectionBody>
     </section>

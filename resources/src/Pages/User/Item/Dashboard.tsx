@@ -19,7 +19,7 @@ const Dashboard = ({ collection, items, likes }: Props) => {
 
   return (
     <div className="w-full flex justify-center items-start gap-8 flex-wrap p-8">
-      {!condition && <EmptyResource model="Item" />}
+      {!condition && <EmptyResource model={__('model.item')} />}
 
       {condition &&
         items.data.map((item) => (
@@ -56,7 +56,7 @@ export default UserPageContainer({
         params: ['uname'],
       },
       optionRoute: {
-        sortOptions: U_ITEMS_SP,
+        sortOptions: U_ITEMS_SP(),
         name: 'u.collections.items.index',
         params: ['uname', 'collection'],
       },

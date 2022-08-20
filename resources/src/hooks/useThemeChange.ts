@@ -1,8 +1,8 @@
-import { useEffect } from 'react';
 import { ThemeType } from '@/@types/Global';
 import { UsePage } from '@/@types/Response';
 import { Inertia } from '@inertiajs/inertia';
 import { usePage } from '@inertiajs/inertia-react';
+import { THEME_STORAGE_KEY } from '@/common/constants';
 
 const useThemeChange = () => {
   const { theme: currentTheme } = usePage<UsePage>().props;
@@ -10,14 +10,10 @@ const useThemeChange = () => {
   const theme: ThemeType = currentTheme === 'emerald' ? 'dracula' : 'emerald';
 
   const changeTheme = (name: ThemeType) => {
+    localStorage.setItem(THEME_STORAGE_KEY, name);
     document.querySelector('html')?.setAttribute('data-theme', name);
     Inertia.post(route('set.theme'), { theme: name });
-    // window.location.reload();
   };
-
-  useEffect(() => {
-    changeTheme(currentTheme as ThemeType);
-  }, []);
 
   return { currentTheme, theme, changeTheme };
 };

@@ -19,8 +19,8 @@ return [
   'total_comments' => 'Total Comments',
 
   // Pref
-  'locale' => 'Locale updated sucessfully',
-  'theme' => 'Theme updated sucessfully',
+  'locale' => 'Language updated successfully',
+  'theme' => 'Theme updated successfully',
 
   // Collection
   'col_owner' => 'Collection Creator',

@@ -6,10 +6,7 @@ const Hero = () => {
       <div className="hero-content text-center">
         <div className="max-w-md">
           <h2 className="text-5xl font-bold">Personal Collection Management</h2>
-          <p className="py-6">
-            Convenient way to store your favorite items and group them in one
-            place for people to watch and comment about them.
-          </p>
+          <p className="py-6">{__('main.moto')}</p>
         </div>
       </div>
     </div>

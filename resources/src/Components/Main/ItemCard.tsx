@@ -14,8 +14,8 @@ const ItemCard = ({ item, className = '' }: Props) => {
       className={`card card-compact lg:card-normal min-w-[400px] bg-base-100 shadow-xl h-[225px] max-w-[400px] ${className}`}
     >
       <div className="px-8 pt-4 flex justify-between text-xs italic">
-        <span>Created {item.createdAt}</span>
-        <span>Updated {item.updatedAt}</span>
+        <span>{`${__('model.created_at')} ${item.createdAt}`}</span>
+        <span>{`${__('model.updated_at')} ${item.updatedAt}`}</span>
       </div>
       <div className="card-body !py-4">
         <div className="flex flex-col mb-4">

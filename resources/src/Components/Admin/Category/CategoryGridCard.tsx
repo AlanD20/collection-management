@@ -17,7 +17,7 @@ const CategoryGridCard = ({ category }: Props) => {
         </span>
         <div className="card-body">
           <div className="flex flex-col capitalize">
-            <span className="font-bold">Name:</span>
+            <span className="font-bold">{__('form.name')}</span>
             <span>{category.name}</span>
           </div>
 

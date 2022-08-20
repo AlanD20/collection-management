@@ -29,7 +29,7 @@ const LargestCollections = ({ collections }: Props) => {
             <CollectionCard key={collection.id} collection={collection} />
           ))
         ) : (
-          <EmptyResource model="Collection" />
+          <EmptyResource model={__('model.collection')} />
         )}
       </SectionBody>
     </section>

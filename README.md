@@ -8,7 +8,7 @@
 - [x] Single item.
 - [x] Each item supports tags.
 - [x] Like and comment for each items in the collection.
-- [ ] Must support two languages.
+- [x] Must support two languages.
 - [x] Support two visual themes (dark, light).
 - [x] Must be responsive.
 - [x] Each Collection has

@@ -16,7 +16,11 @@ const PaginationLinks = ({ meta, className }: Props) => {
     >
       <div>
         <span>
-          Showing {meta.from} to {meta.to} of {meta.total} results
+          {__('pagination.result', {
+            from: meta.from,
+            to: meta.to,
+            total: meta.total,
+          })}
         </span>
       </div>
       <div className="flex gap-2 btn-group flex-col sm:flex-row">

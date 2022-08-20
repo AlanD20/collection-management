@@ -17,19 +17,19 @@ const UserGridCard = ({ user }: Props) => {
         </span>
         <div className="card-body">
           <div className="flex flex-col capitalize">
-            <span className="font-bold">Name:</span>
+            <span className="font-bold">{__('form.name')}</span>
             <span>{user.name}</span>
           </div>
           <div className="flex flex-col capitalize">
-            <span className="font-bold">Username:</span>
+            <span className="font-bold">{__('form.username')}</span>
             <span>{user.username}</span>
           </div>
           <div className="flex flex-col capitalize">
-            <span className="font-bold">Email:</span>
+            <span className="font-bold">{__('form.email')}</span>
             <span>{user.email}</span>
           </div>
           <div className="flex gap-4  capitalize">
-            <span className="font-bold">Status:</span>
+            <span className="font-bold">{__('form.status')}</span>
             <span
               className={`capitalize font-semibold text-${
                 user.block ? 'red' : 'green'
@@ -39,7 +39,7 @@ const UserGridCard = ({ user }: Props) => {
             </span>
           </div>
           <div className="flex gap-4 capitalize">
-            <span className="font-bold">Admin:</span>
+            <span className="font-bold">{__('form.admin')}</span>
             <span className="w-8">
               <i
                 className={`text-lg fas fa-${user.admin ? 'check' : 'times'}`}

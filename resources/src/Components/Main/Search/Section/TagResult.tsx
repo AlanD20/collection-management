@@ -22,7 +22,7 @@ const TagResult = ({ items }: Props) => {
         </div>
       )}
 
-      {!condition && <EmptyResult model="tag item" />}
+      {!condition && <EmptyResult model={__('model.tag')} />}
 
       {condition && <PaginationLinks meta={items.meta} />}
     </div>

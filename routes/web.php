@@ -1,8 +1,6 @@
 <?php
 
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\User\PreferenceController;
-use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 
 /*

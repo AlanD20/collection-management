@@ -32,7 +32,7 @@ const Dashboard = ({ tags }: Props) => {
           tags.data.map((tag) => <TagGridCard key={tag.id} tag={tag} />)}
       </div>
 
-      {!condition && <EmptyResource model="Tag" />}
+      {!condition && <EmptyResource model={__('model.tag')} />}
 
       {condition && <PaginationLinks meta={tags.meta} />}
     </div>
@@ -54,7 +54,7 @@ export default AdminPageContainer({
       },
       sortOption: {
         routeName: 'admin.tags.index',
-        options: ADMIN_TAGS_SP,
+        options: ADMIN_TAGS_SP(),
       },
     },
   },

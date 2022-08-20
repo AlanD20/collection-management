@@ -40,7 +40,7 @@ const SearchHeader = ({
         type="text"
         name="query"
         onChange={handleSearchInput}
-        placeholder="Search..."
+        placeholder={__('form.label_search')}
         className={`w-full justify-center lg:w-[40ch] ${className}`}
       />
     </div>

@@ -15,7 +15,7 @@ const NavItem = ({
 }: Props) => {
   return (
     <li className={parentClass}>
-      <Link {...attr} className={className}>
+      <Link {...attr} className={`capitalize ${className}`}>
         {label ? label : attr.children}
       </Link>
     </li>

@@ -33,8 +33,8 @@ const UserProfile = ({ user, collectionCount, commentCount }: Props) => {
         </div>
 
         <div className="flex gap-12 text-xs italic w-full flex-col md:flex-row items-center md:justify-between">
-          <span>Created {user.createdAt}</span>
-          <span>Updated {user.updatedAt}</span>
+          <span>{`${__('model.created_at')} ${user.createdAt}`}</span>
+          <span>{`${__('model.updated_at')} ${user.updatedAt}`}</span>
         </div>
       </div>
     </div>

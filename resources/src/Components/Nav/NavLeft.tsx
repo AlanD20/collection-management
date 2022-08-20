@@ -72,11 +72,7 @@ const NavLeft = () => {
             <li tabIndex={0}>
               <a>
                 Preferences
-                <IoIosArrowDown
-                  className={`${
-                    currentLocale === 'en' ? '-rotate-90' : 'rotate-90'
-                  }`}
-                />
+                <IoIosArrowDown className="-rotate-90" />
               </a>
               <ul className="menu menu-vertical menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box gap-2">
                 <ChangeLocale />

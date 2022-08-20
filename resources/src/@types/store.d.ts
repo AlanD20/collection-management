@@ -1,10 +1,5 @@
 import { LocalType } from './Global';
-import { ParamsProp, StatusProp } from './Response';
-
-export interface PrefStore {
-  locale: LocalType;
-  setLocale: (locale: LocalType) => void;
-}
+import { StatusProp } from './Response';
 
 export type SetStatusParam = {
   success?: string;
@@ -15,9 +10,4 @@ export type SetStatusParam = {
 export interface AlertStore extends StatusProp {
   setStatus: (status: StatusParam) => void;
   clearStatus: () => void;
-}
-
-export interface ParamsStore {
-  params: ParamsProp;
-  setParams: (params: ParamsProp) => void;
 }

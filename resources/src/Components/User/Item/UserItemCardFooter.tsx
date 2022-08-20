@@ -16,8 +16,8 @@ const UserItemCardFooter = ({ item, likes }: Props) => {
   return (
     <div className="card-actions justify-between">
       <div className="flex flex-col gap-2 text-xs italic">
-        <span>Created {item.createdAt}</span>
-        <span>Updated {item.updatedAt}</span>
+        <span>{`${__('model.created_at')} ${item.createdAt}`}</span>
+        <span>{`${__('model.updated_at')} ${item.updatedAt}`}</span>
       </div>
       <div className="flex gap-2 items-center">
         <div className="flex gap-2 items-center">

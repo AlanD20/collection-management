@@ -16,13 +16,13 @@ const Users = ({ users }: Props) => {
   const condition = users && users.data.length > 0;
 
   return (
-    <div className="my-4 w-full flex gap-4 flex-wrap ">
+    <div className="my-4 w-full flex gap-4 flex-wrap justify-center">
       {condition &&
         users.data.map((user) => (
           <UserCard key={user.id} user={user} className="max-w-[25ch]" />
         ))}
 
-      {!condition && <EmptyResource model="User" />}
+      {!condition && <EmptyResource model={__('model.user')} />}
 
       {condition && <PaginationLinks meta={users.meta} />}
     </div>
@@ -37,7 +37,7 @@ export default PageContainer({
     props: {
       title: 'Users',
       optionRoute: {
-        sortOptions: MAIN_USERS_SP,
+        sortOptions: MAIN_USERS_SP(),
         name: 'u.index',
       },
     },

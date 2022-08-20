@@ -57,7 +57,7 @@ class AdminTagController extends Controller
     Tag::create($request->validated());
 
     return back()->with('success', __('model.create', [
-      'model' => 'Tag'
+      'model' => __('model.tag')
     ]));
   }
 
@@ -88,7 +88,7 @@ class AdminTagController extends Controller
     ]);
 
     return back()->with('success', __('model.update', [
-      'model' => 'Tag'
+      'model' => __('model.tag')
     ]));
   }
 
@@ -104,7 +104,7 @@ class AdminTagController extends Controller
     $tag->delete();
 
     return back()->with('success', __('model.delete', [
-      'model' => 'Category'
+      'model' => __('model.tag')
     ]));
   }
 }

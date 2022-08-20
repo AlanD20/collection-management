@@ -6,6 +6,7 @@ use Inertia\Inertia;
 use App\Helpers\ThroughPipeline;
 use App\Helpers\CollectionHelper;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 use App\Models\{User, Collection, Category};
 use App\Http\Requests\User\CollectionRequest;
 use App\Http\QueryFilters\Sorting\SortCollection;
@@ -14,7 +15,6 @@ use App\Http\Resources\{
   CollectionResource,
   CategoryResource,
 };
-use Illuminate\Support\Facades\Storage;
 
 class CollectionController extends Controller
 {
@@ -119,7 +119,7 @@ class CollectionController extends Controller
     ]);
 
     return back()->with('success', __('model.create', [
-      'model' => 'Collection'
+      'model' => __('model.collection')
     ]));
   }
 
@@ -174,7 +174,7 @@ class CollectionController extends Controller
     ]);
 
     return back()->with('success', __('model.update', [
-      'model' => 'Collection'
+      'model' => __('model.collection')
     ]));
   }
 
@@ -193,7 +193,7 @@ class CollectionController extends Controller
     $collection->delete();
 
     return back()->with('success', __('model.delete', [
-      'model' => 'Collection'
+      'model' => __('model.collection')
     ]));
   }
 }

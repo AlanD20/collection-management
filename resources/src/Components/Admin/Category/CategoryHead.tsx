@@ -11,9 +11,13 @@ const CategoryHead = () => {
           <SortButton label="#" name="id" routeName={routeName} />
         </th>
         <th>
-          <SortButton label="Name" name="name" routeName={routeName} />
+          <SortButton
+            label={__('form.name')}
+            name="name"
+            routeName={routeName}
+          />
         </th>
-        <th className="pl-28">Actions</th>
+        <th className="pl-28">{__('form.btn_action')}</th>
       </tr>
     </thead>
   );

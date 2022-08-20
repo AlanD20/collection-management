@@ -35,7 +35,7 @@ const Dashboard = ({ users }: Props) => {
           users.data.map((user) => <UserGridCard key={user.id} user={user} />)}
       </div>
 
-      {!condition && <EmptyResource model="User" />}
+      {!condition && <EmptyResource model={__('model.user')} />}
 
       {condition && <PaginationLinks meta={users.meta} />}
     </div>
@@ -54,7 +54,7 @@ export default AdminPageContainer({
       },
       sortOption: {
         routeName: 'admin.users.index',
-        options: ADMIN_USERS_SP,
+        options: ADMIN_USERS_SP(),
       },
     },
   },

@@ -39,7 +39,7 @@ const SearchResult = ({
 
       <Collapser
         title={__('main.search_result', {
-          model: 'users',
+          model: __('model.user') + 's',
           count: users.meta.total,
         })}
       >
@@ -48,7 +48,7 @@ const SearchResult = ({
 
       <Collapser
         title={__('main.search_result', {
-          model: 'items',
+          model: __('model.item') + 's',
           count: items.meta.total,
         })}
       >
@@ -57,7 +57,7 @@ const SearchResult = ({
 
       <Collapser
         title={__('main.search_result', {
-          model: 'item tags',
+          model: __('model.tag') + 's',
           count: tags.meta.total,
         })}
       >
@@ -66,7 +66,7 @@ const SearchResult = ({
 
       <Collapser
         title={__('main.search_result', {
-          model: 'comments',
+          model: __('model.comment') + 's',
           count: comments.meta.total,
         })}
       >
@@ -75,7 +75,7 @@ const SearchResult = ({
 
       <Collapser
         title={__('main.search_result', {
-          model: 'collections',
+          model: __('model.collection') + 's',
           count: collections.meta.total,
         })}
       >
@@ -84,7 +84,7 @@ const SearchResult = ({
 
       <Collapser
         title={__('main.search_result', {
-          model: 'categories',
+          model: __('model.category') + 's',
           count: categories.meta.total,
         })}
       >

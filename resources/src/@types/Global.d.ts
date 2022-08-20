@@ -7,7 +7,7 @@ import { KeyParamsProps, ParamsProp } from './Response';
 export type AnyKey = { [key: string]: any };
 
 type ThemeType = 'dracula' | 'emerald';
-type LocalType = 'en' | 'ku';
+type LocalType = 'en' | 'es';
 
 export type PageTitle =
   | string
@@ -64,11 +64,9 @@ declare global {
   var route: (name: string, params?: ParamsProp & QueryParams) => string;
   var __: HelperTranslate;
   var _has: _has;
-  var _locale: () => LocalType;
 
   interface Window {
     __: HelperTranslate;
     _has: _has;
-    _locale: () => LocalType;
   }
 }

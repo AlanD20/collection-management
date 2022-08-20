@@ -13,7 +13,7 @@ return [
     |
     */
 
-  'previous' => '&laquo; پێشوو',
-  'next' => 'دواتر &raquo;',
-
+  'previous' => '&laquo; Previo',
+  'next' => 'Próximo &raquo;',
+  'result' => 'Mostrando :from a :to de :total resultados'
 ];

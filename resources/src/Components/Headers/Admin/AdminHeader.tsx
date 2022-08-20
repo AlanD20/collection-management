@@ -40,17 +40,17 @@ const AdminHeader = ({
         /> */}
         <TabItem
           path={route('admin.users.index')}
-          label="Manage Users"
+          label={__('admin.manage_users')}
           active={!subTab && componentName.startsWith('Admin/User')}
         />
         <TabItem
           path={route('admin.categories.index')}
-          label="Manage Categories"
+          label={__('admin.manage_categories')}
           active={!subTab && componentName.startsWith('Admin/Category')}
         />
         <TabItem
           path={route('admin.tags.index')}
-          label="Manage Tags"
+          label={__('admin.manage_tags')}
           active={!subTab && componentName.startsWith('Admin/Tag')}
         />
       </div>

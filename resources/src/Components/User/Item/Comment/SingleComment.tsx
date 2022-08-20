@@ -7,9 +7,10 @@ import { usePage } from '@inertiajs/inertia-react';
 
 interface Props {
   comment: Comment;
+  hideDelete?: boolean;
 }
 
-const SingleComment = ({ comment }: Props) => {
+const SingleComment = ({ comment, hideDelete }: Props) => {
   const {
     params,
     auth: { user },
@@ -35,7 +36,7 @@ const SingleComment = ({ comment }: Props) => {
           />
           <span className="text-xs italic">{comment.createdAt}</span>
         </div>
-        {condition && (
+        {!hideDelete && condition && (
           <ButtonLink
             href={route('u.collections.items.comments.destroy', {
               uname: params.uname,

@@ -3,8 +3,10 @@
 
 return [
 
+  'moto' => 'A convenient way to store your favorite items and group them in one place for people to watch and comment about them.',
   'latest' => 'See latest :model',
   'most_items' => 'Collections with most items',
+  'footer' => 'Copyright © 2022 - All right reserved',
 
   // navbar
   'home' => 'Home',
@@ -16,6 +18,7 @@ return [
   'settings' => 'Settings',
   'logout' => 'Logout',
   'badge_admin' => 'Admin',
+  'admin_panel' => 'Admin Panel',
 
   // Search
   'min_search' => 'Search must be at least :chr characters.',
