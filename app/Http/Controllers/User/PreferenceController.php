@@ -4,19 +4,10 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 
 class PreferenceController extends Controller
 {
-
-  /**
-   * Instantiate a new controller instance.
-   *
-   * @return void
-   */
-  public function __construct()
-  {
-    $this->middleware(['auth', 'isBlocked']);
-  }
 
   /**
    * Store locale in storage.
@@ -29,9 +20,16 @@ class PreferenceController extends Controller
     $validated = $request->validate([
       'locale' => ['required', 'string', 'in:en,ku'],
     ]);
-    $request->user->detail()->update([
-      'locale' => $validated['locale']
-    ]);
+
+    $locale = $validated['locale'];
+    App::setLocale($locale);
+    $user = $request->user();
+    if ($user) {
+      $user->detail()->update([
+        'locale' => $locale
+      ]);
+    }
+    session()->put('locale', $locale);
 
     return back()->with('status', __('user.locale'));
   }
@@ -47,9 +45,15 @@ class PreferenceController extends Controller
     $validated = $request->validate([
       'theme' => ['required', 'string', 'in:emerald,dracula'],
     ]);
-    $p = $request->user()->detail()->update([
-      'theme' => $validated['theme']
-    ]);
+
+    $theme = $validated['theme'];
+    $user = $request->user();
+    if ($user) {
+      $user->detail()->update([
+        'theme' => $theme
+      ]);
+    }
+    session()->put('theme', $theme);
 
     return back()->with('status', __('user.theme'));
   }

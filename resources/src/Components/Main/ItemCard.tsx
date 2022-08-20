@@ -24,7 +24,7 @@ const ItemCard = ({ item, className = '' }: Props) => {
           </h2>
           <div className="flex w-full gap-1 flex-wrap">
             {item.tags.map((tag) => (
-              <BadgeLink label={tag.name} query={tag.name} />
+              <BadgeLink key={tag.id} label={tag.name} query={tag.name} />
             ))}
           </div>
         </div>

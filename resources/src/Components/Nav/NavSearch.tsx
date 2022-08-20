@@ -1,7 +1,6 @@
 import React, { ChangeEvent } from 'react';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { useForm } from '@inertiajs/inertia-react';
-import ErrorStatus from '@@/Misc/ErrorStatus';
 
 const NavSearch = () => {
   const { get, data, setData } = useForm({
@@ -37,4 +36,5 @@ const NavSearch = () => {
     </div>
   );
 };
+
 export default NavSearch;

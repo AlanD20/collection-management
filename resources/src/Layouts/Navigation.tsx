@@ -8,8 +8,7 @@ const Navigation = () => {
     <>
       <nav className="hidden sm:flex sticky top-0 navbar bg-base-100 py-4 px-8 shadow-md z-50">
         <NavLeft />
-
-        <div className="navbar-end flex-none gap-4">
+        <div className="navbar-end flex-none gap-4 w-max">
           <NavSearch />
           <NavProfile />
         </div>

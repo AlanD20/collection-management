@@ -10,7 +10,7 @@
     "format": "prettier --write resources/src",
     "a": "php artisan",
     "serve": "php artisan serve",
-    "lang": "php artisan lang:export en",
+    "lang": "php artisan lang:export en && php artisan lang:export ku",
     "cache:clear": "php artisan clear && php artisan clear-compiled && php artisan config:clear && php artisan cache:clear && php artisan view:clear && php artisan route:clear && php artisan optimize && composer dump-autoload -o"
   },
   "devDependencies": {

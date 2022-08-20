@@ -5,13 +5,12 @@ import {
   SetStatusParam,
   ParamsStore,
 } from '@/@types/store';
-import { ParamsProp } from '@/@types/Global';
+import { LocalType } from '@/@types/Global';
+import { ParamsProp } from '@/@types/Response';
 
 export const prefStore = create<PrefStore>((set) => ({
   locale: 'en',
-  theme: 'light',
-  setLocale: (locale: string) => set((state) => ({ locale })),
-  setTheme: (theme: string) => set((state) => ({ theme })),
+  setLocale: (locale: LocalType) => set((state) => ({ locale })),
 }));
 
 export const paramsStore = create<ParamsStore>((set) => ({

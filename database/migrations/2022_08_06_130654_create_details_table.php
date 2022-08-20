@@ -18,7 +18,7 @@ return new class extends Migration
       $table->foreignId('user_id')->constrained('users', 'id')->onDelete('cascade');
       $table->boolean('block')->default(false);
       $table->boolean('admin')->default(false);
-      $table->string('theme')->default('light');
+      $table->string('theme')->default('emerald');
       $table->string('locale')->default('en');
       $table->timestamps();
     });

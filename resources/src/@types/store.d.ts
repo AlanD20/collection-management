@@ -1,10 +1,9 @@
+import { LocalType } from './Global';
 import { ParamsProp, StatusProp } from './Response';
 
 export interface PrefStore {
-  locale: string;
-  theme: string;
-  setLocale: (locale: string) => void;
-  setTheme: (theme: string) => void;
+  locale: LocalType;
+  setLocale: (locale: LocalType) => void;
 }
 
 export type SetStatusParam = {

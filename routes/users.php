@@ -1,11 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\User\CollectionController;
-use App\Http\Controllers\User\CommentController;
 use App\Http\Controllers\User\ItemController;
-use App\Http\Controllers\User\PreferenceController;
 use App\Http\Controllers\User\UserController;
+use App\Http\Controllers\User\CommentController;
+use App\Http\Controllers\User\CollectionController;
 
 Route::prefix('/u/{uname}')
   ->name('u.')
@@ -40,16 +39,4 @@ Route::prefix('/u/{uname}')
 
     Route::get('/collections/{collection}/items/{item}/likes', [ItemController::class, 'like'])
       ->name('collections.items.likes');
-  });
-
-
-Route::prefix('/set')
-  ->name('set.')
-  ->middleware(['auth', 'isBlocked'])
-  ->group(function () {
-
-    Route::post('/locale', [PreferenceController::class, 'locale'])
-      ->name('locale');
-    Route::post('/theme', [PreferenceController::class, 'theme'])
-      ->name('theme');
   });

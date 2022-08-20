@@ -1,17 +1,17 @@
 import React from 'react';
 import NavItem from './NavItem';
 import { UsePage } from '@/@types/Response';
-import { IoIosArrowDown } from 'react-icons/io';
 import ChangeTheme from '@@/Misc/ChangeTheme';
-import AuthChangeTheme from '@@/Misc/AuthChangeTheme';
+import ChangeLocale from '@@/Misc/ChangeLocale';
+import { IoIosArrowDown } from 'react-icons/io';
+import useLocalChange from '@/hooks/useLocalChange';
 import { Link, usePage } from '@inertiajs/inertia-react';
 
 const NavLeft = () => {
-  const {
-    auth: { user },
-    appName,
-  } = usePage<UsePage>().props;
+  const { appName } = usePage<UsePage>().props;
   const { url } = usePage();
+
+  const { currentLocale } = useLocalChange();
 
   const home = url === '/';
   const collections = url === '/collections';
@@ -22,7 +22,7 @@ const NavLeft = () => {
 
   return (
     <>
-      <div className="navbar-start flex-1 flex items-center">
+      <div className="navbar-start w-max flex-1 flex items-center">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
             <svg
@@ -69,24 +69,22 @@ const NavLeft = () => {
               as="button"
               className={activeItem(items)}
             />
-
             <li tabIndex={0}>
-              <a className="justify-between">
-                Parent
+              <a>
+                Preferences
                 <IoIosArrowDown
                   className={`${
-                    user && user.locale === 'en' ? 'rotate-90' : '-rotate-90'
+                    currentLocale === 'en' ? '-rotate-90' : 'rotate-90'
                   }`}
                 />
               </a>
-              <ul className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box">
-                <NavItem href="#" label="Submeni 1" as="button" />
-                <NavItem href="#" label="Submenu 2" as="button" />
+              <ul className="menu menu-vertical menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box gap-2">
+                <ChangeLocale />
+                <ChangeTheme />
               </ul>
             </li>
           </ul>
         </div>
-
         <Link
           href={route('main.index')}
           as="button"
@@ -94,11 +92,14 @@ const NavLeft = () => {
         >
           {appName}
         </Link>
-        {user ? <AuthChangeTheme /> : <ChangeTheme />}
+        <div className="gap-4 hidden lg:flex">
+          <ChangeTheme />
+          <ChangeLocale />
+        </div>
       </div>
 
       {/* Large Screen */}
-      <div className="navbar-center hidden lg:flex">
+      <div className="navbar-center hidden lg:flex min-w-max w-1/2 lg:flex-shrink">
         <ul className="menu menu-horizontal p-0 gap-2">
           <NavItem
             href={route('main.index')}
@@ -124,17 +125,6 @@ const NavLeft = () => {
             as="button"
             className={activeItem(items)}
           />
-
-          <li tabIndex={0}>
-            <a>
-              Parent
-              <IoIosArrowDown />
-            </a>
-            <ul className="menu menu-vertical p-2 shadow bg-base-100">
-              <NavItem href="#" label="Submeni 1" as="button" />
-              <NavItem href="#" label="Submenu 2" as="button" />
-            </ul>
-          </li>
         </ul>
       </div>
     </>

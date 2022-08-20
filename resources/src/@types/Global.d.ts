@@ -64,9 +64,11 @@ declare global {
   var route: (name: string, params?: ParamsProp & QueryParams) => string;
   var __: HelperTranslate;
   var _has: _has;
+  var _locale: () => LocalType;
 
   interface Window {
     __: HelperTranslate;
     _has: _has;
+    _locale: () => LocalType;
   }
 }

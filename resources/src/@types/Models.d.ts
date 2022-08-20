@@ -2,7 +2,7 @@ export interface UserInfo {
   id: number;
   admin: boolean;
   block: boolean;
-  theme: 'light' | 'dark';
+  theme: 'dracula' | 'emerald';
   locale: 'en' | 'ku';
   updatedAt: string;
   createdAt: string;

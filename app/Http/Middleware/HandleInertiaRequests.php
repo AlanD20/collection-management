@@ -49,9 +49,8 @@ class HandleInertiaRequests extends Middleware
         : null,
 
       // Locale Translation
-      'locale' => fn () => $request->user()->detail->locale ?? 'en',
-      'theme' => fn () => $request->user()->detail->theme ?? 'light',
-      // '_' => fn () => (new Locale())->getContent(),
+      'locale' => fn () => $request->user()->detail->locale ?? session('locale', 'en'),
+      'theme' => fn () => $request->user()->detail->theme ?? session('theme', 'emerald'),
 
       // Status flash
       'status' => [
