@@ -2,14 +2,20 @@
 
 namespace App\Http\Controllers\User;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\User\UserPasswordRequest;
-use App\Http\Requests\User\UserRequest;
-use App\Http\Resources\UserResource;
-use App\Models\User;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
+use App\Helpers\CollectionHelper;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Hash;
+use App\Http\Controllers\Controller;
+use App\Models\{User, Comment, Collection};
+use App\Http\Requests\User\{
+  UserRequest,
+  UserPasswordRequest
+};
+use App\Http\Resources\{
+  UserResource,
+  CommentResource,
+  CollectionResource,
+};
 
 class UserController extends Controller
 {
@@ -35,7 +41,10 @@ class UserController extends Controller
   {
     $user = new UserResource($uname);
 
-    return Inertia::render('User/Dashboard', compact('user'));
+    $collectionCount = $this->getUserCollections($uname->id);
+    $commentCount = $this->getUserComments($uname->id);
+
+    return Inertia::render('User/Dashboard', compact('user', 'collectionCount', 'commentCount'));
   }
 
   /**
@@ -129,5 +138,23 @@ class UserController extends Controller
       ->with('success', __('model.delete', [
         'model' => 'user'
       ]));
+  }
+
+  function getUserCollections(int $id)
+  {
+
+    $query = Collection::query()
+      ->where('user_id', $id);
+
+    return $query->count();
+  }
+
+  function getUserComments(int $id)
+  {
+
+    $query = Comment::query()
+      ->where('user_id', $id);
+
+    return $query->count();;
   }
 }

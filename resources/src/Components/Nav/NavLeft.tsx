@@ -74,8 +74,9 @@ const NavLeft = () => {
               <a className="justify-between">
                 Parent
                 <IoIosArrowDown
-                  className={`${user && user.locale === 'en' ? 'rotate-90' : '-rotate-90'
-                    }`}
+                  className={`${
+                    user && user.locale === 'en' ? 'rotate-90' : '-rotate-90'
+                  }`}
                 />
               </a>
               <ul className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box">
@@ -134,7 +135,6 @@ const NavLeft = () => {
               <NavItem href="#" label="Submenu 2" as="button" />
             </ul>
           </li>
-
         </ul>
       </div>
     </>

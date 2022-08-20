@@ -14,6 +14,10 @@ return [
   'active' => 'Active',
   'liked' => ':number Liked the item',
 
+
+  'total_collections' => 'Total Collections',
+  'total_comments' => 'Total Comments',
+
   // Pref
   'locale' => 'Locale updated sucessfully',
   'theme' => 'Theme updated sucessfully',

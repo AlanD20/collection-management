@@ -20,9 +20,12 @@ const Edit = ({ user }: Props) => {
   const handleSubmit = (e: ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    patch(route('u.update', {
-      uname: user.username
-    }), { data });
+    patch(
+      route('u.update', {
+        uname: user.username,
+      }),
+      { data }
+    );
   };
 
   return (
@@ -67,7 +70,7 @@ const Edit = ({ user }: Props) => {
         <div className="divider"></div>
         <Link
           href={route('u.destroy', {
-            uname: user.username
+            uname: user.username,
           })}
           method="delete"
           className={`w-full btn btn-error mt-6 ml-auto text-lg`}
@@ -89,8 +92,8 @@ export default UserPageContainer({
       backRoute: {
         label: __('back_profile'),
         name: 'u.update',
-        params: ['uname']
-      }
-    }
+        params: ['uname'],
+      },
+    },
   },
 });

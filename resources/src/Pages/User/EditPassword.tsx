@@ -20,9 +20,12 @@ const EditPassword = ({ user }: Props) => {
   const handleSubmit = (e: ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    patch(route('u.update.password', {
-      uname: user.username
-    }), { data });
+    patch(
+      route('u.update.password', {
+        uname: user.username,
+      }),
+      { data }
+    );
   };
 
   return (
@@ -79,8 +82,8 @@ export default UserPageContainer({
       backRoute: {
         label: __('back_profile'),
         name: 'u.update',
-        params: ['uname']
-      }
-    }
+        params: ['uname'],
+      },
+    },
   },
 });

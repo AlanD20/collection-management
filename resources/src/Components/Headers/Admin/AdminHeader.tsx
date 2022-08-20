@@ -33,11 +33,11 @@ const AdminHeader = ({
   return (
     <div className="w-full flex flex-col lg:flex-row justify-start items-center lg:justify-between mt-4 mb-8 gap-4">
       <div className={`tabs tabs-boxed bg-base-300 ${className}`}>
-        <TabItem
+        {/* <TabItem
           path={route('admin.index')}
           label="Dashboard"
           active={!subTab && componentName.startsWith('Admin/Dashboard')}
-        />
+        /> */}
         <TabItem
           path={route('admin.users.index')}
           label="Manage Users"

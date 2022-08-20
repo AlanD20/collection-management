@@ -43,6 +43,11 @@ export default UserPageContainer({
         text: ":uname's Collection",
         param: 'uname',
       },
+      backRoute: {
+        label: 'form.profile',
+        name: 'u.show',
+        params: ['uname'],
+      },
       optionRoute: {
         sortOptions: U_COLLECTIONS_SP,
         name: 'u.collections.index',

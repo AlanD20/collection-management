@@ -3,17 +3,13 @@
 namespace App\Helpers;
 
 use Illuminate\Pipeline\Pipeline;
-use App\Http\QueryFilters\Base\Filter;
 use Illuminate\Database\Eloquent\Builder;
-
 
 class ThroughPipeline
 {
 
-
   private Builder $query;
   private array $filters;
-
 
   /**
    * Return a new instance.

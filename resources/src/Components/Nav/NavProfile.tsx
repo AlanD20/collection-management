@@ -2,10 +2,12 @@ import React from 'react';
 import { UsePage } from '@/@types/Response';
 import { Link, usePage } from '@inertiajs/inertia-react';
 
-interface Props { }
+interface Props {}
 
-const NavProfile = ({ }: Props) => {
-  const { auth: { user } } = usePage<UsePage>().props;
+const NavProfile = ({}: Props) => {
+  const {
+    auth: { user },
+  } = usePage<UsePage>().props;
 
   if (!user) {
     return (
@@ -32,7 +34,7 @@ const NavProfile = ({ }: Props) => {
       >
         <li>
           <Link href={route('u.show', { uname: user.username })} as="button">
-            {__('nav.profile')}
+            {__('main.profile')}
           </Link>
         </li>
         <li>
@@ -43,7 +45,7 @@ const NavProfile = ({ }: Props) => {
             as="button"
             className="justify-between"
           >
-            {__('nav.my_collection')}
+            {__('main.my_collection')}
           </Link>
         </li>
 
@@ -52,19 +54,19 @@ const NavProfile = ({ }: Props) => {
             <Link href={route('admin.index')} as="button">
               Admin Panel
               <span className="badge badge-error badge-sm text-white">
-                {__('nav.badge_admin')}
+                {__('main.badge_admin')}
               </span>
             </Link>
           </li>
         )}
         <li>
           <Link href={route('u.edit', { uname: user.username })} as="button">
-            {__('nav.settings')}
+            {__('main.settings')}
           </Link>
         </li>
         <li>
           <Link href={route('logout')} as="button" method="post" replace={true}>
-            {__('nav.logout')}
+            {__('main.logout')}
           </Link>
         </li>
       </ul>

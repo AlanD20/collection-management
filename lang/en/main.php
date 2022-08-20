@@ -11,6 +11,11 @@ return [
   'collections' => 'Collections',
   'users' => 'Users',
   'items' => 'Items',
+  'profile' => 'My Profile',
+  'my_collection' => 'My Collections',
+  'settings' => 'Settings',
+  'logout' => 'Logout',
+  'badge_admin' => 'Admin',
 
   // Search
   'min_search' => 'Search must be at least :chr characters.',

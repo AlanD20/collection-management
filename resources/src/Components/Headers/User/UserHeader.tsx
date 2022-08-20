@@ -22,7 +22,7 @@ export interface UserHeaderProps extends DefProps {
     label?: string;
     prevUrl?: boolean;
   };
-  itemsHeader: boolean;
+  itemsHeader?: boolean;
 }
 
 const UserHeader = ({
@@ -30,7 +30,7 @@ const UserHeader = ({
   createRoute,
   backRoute,
   title,
-  itemsHeader
+  itemsHeader,
 }: UserHeaderProps) => {
   const parsedTitle = useReplaceParamsKey(title);
   const { params } = usePage<UsePage>().props;

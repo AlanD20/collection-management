@@ -15,7 +15,6 @@ export interface UserHeaderCompactProps extends DefProps {
 }
 
 const UserHeaderCompact = ({ title, backRoute }: UserHeaderCompactProps) => {
-
   const parsedTitle = useReplaceParamsKey(title);
   const { params } = usePage<UsePage>().props;
 

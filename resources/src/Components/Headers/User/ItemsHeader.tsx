@@ -1,13 +1,12 @@
-import React from "react"
-import { DefProps } from "@/@types/Global";
-import { UsePage } from "@/@types/Response";
-import { usePage } from "@inertiajs/inertia-react";
-import { Collection } from "@/@types/Models";
+import React from 'react';
+import { DefProps } from '@/@types/Global';
+import { UsePage } from '@/@types/Response';
+import { usePage } from '@inertiajs/inertia-react';
+import { Collection } from '@/@types/Models';
 
-interface Props extends DefProps { }
+interface Props extends DefProps {}
 
 const ItemsHeader = ({ hideWhen = false, className = '' }: Props) => {
-
   if (hideWhen) return null;
 
   const props = usePage<UsePage>().props;
@@ -28,7 +27,7 @@ const ItemsHeader = ({ hideWhen = false, className = '' }: Props) => {
       </h4>
       <p>{collection.description}</p>
     </div>
-  )
-}
+  );
+};
 
 export default ItemsHeader;

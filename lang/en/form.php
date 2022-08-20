@@ -29,6 +29,7 @@ return [
   'comment_post' => 'Post Comment',
 
   // Buttons
+  'profile' => "Profile",
   'login' => "Login",
   'back' => "Go Back",
   'back_item' => "Back to items",

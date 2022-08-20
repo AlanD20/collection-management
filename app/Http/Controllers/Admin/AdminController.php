@@ -15,6 +15,7 @@ class AdminController extends Controller
   public function index()
   {
 
-    return Inertia::render('Admin/Dashboard');
+    // return Inertia::render('Admin/Dashboard');
+    return redirect()->route('admin.users.index');
   }
 }
