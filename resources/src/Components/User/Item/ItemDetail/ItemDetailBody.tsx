@@ -7,7 +7,6 @@ interface Props {
 }
 
 const ItemDetailBody = ({ item }: Props) => {
-
   const condition = item && item.fields.length > 0;
 
   return (
@@ -15,8 +14,7 @@ const ItemDetailBody = ({ item }: Props) => {
       {condition &&
         item.fields.map((field) => (
           <RenderCustomFieldValue key={field.id} field={field} />
-        ))
-      }
+        ))}
     </div>
   );
 };

@@ -3,6 +3,8 @@ import { Attributes } from 'react';
 import { Page } from '@inertiajs/inertia';
 import { UserWithoutRelation } from './Models';
 import { KeyParamsProps, ParamsProp } from './Response';
+import Echo from 'laravel-echo';
+import Pusher from 'pusher-js';
 
 export type AnyKey = { [key: string]: any };
 
@@ -64,9 +66,13 @@ declare global {
   var route: (name: string, params?: ParamsProp & QueryParams) => string;
   var __: HelperTranslate;
   var _has: _has;
+  var _Echo: Echo;
+  var _Pusher: Pusher;
 
   interface Window {
     __: HelperTranslate;
     _has: _has;
+    _Echo: Echo;
+    _Pusher: any;
   }
 }

@@ -1,8 +1,19 @@
 import _get from 'lodash/get';
 import _has from 'lodash/has';
+import Pusher from 'pusher-js';
+import Echo from 'laravel-echo';
 import en from '@/common/en.json';
 import es from '@/common/es.json';
 import { LOCALE_STORAGE_KEY, THEME_STORAGE_KEY } from './common/constants';
+
+window._Pusher = Pusher;
+
+window._Echo = new Echo({
+  broadcaster: 'pusher',
+  key: import.meta.env.VITE_PUSHER_APP_KEY,
+  cluster: import.meta.env.VITE_PUSHER_APP_CLUSTER,
+  forceTLS: true,
+});
 
 // Check if object has given key
 window._has = (obj, key) => (_has(obj, 'hidden') ? obj[key] : null);
@@ -19,7 +30,6 @@ window.__ = (key, replace) => {
   let translate: string = _get(locale, key);
   if (!replace) return translate;
 
-  console.log(key, Object.keys(replace));
   Object.keys(replace).forEach((key) => {
     translate = translate.replace(`:${key}`, replace[key]);
   });

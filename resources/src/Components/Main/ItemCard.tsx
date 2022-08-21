@@ -10,7 +10,6 @@ interface Props extends DefProps {
 }
 
 const ItemCard = ({ item, className = '' }: Props) => {
-
   const condition = item && item.fields.length > 0;
   return (
     <div
@@ -39,11 +38,10 @@ const ItemCard = ({ item, className = '' }: Props) => {
                 <RenderCustomFieldValue
                   key={field.id}
                   field={field}
-                  className='my-2'
+                  className="my-2"
                 />
-              )
-            })
-          }
+              );
+            })}
         </div>
         <div className="card-actions mt-4 justify-end">
           <ViewButtonLink

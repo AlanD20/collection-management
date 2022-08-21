@@ -5,15 +5,24 @@ import SingleComment from './SingleComment';
 import { UsePage } from '@/@types/Response';
 import ButtonLink from '@@/Form/ButtonLink';
 import { usePage } from '@inertiajs/inertia-react';
+import useCommentsListener from '@/hooks/useCommentsListener';
 
 interface Props {
   comments: Comment[];
+  itemId: number;
 }
 
-const CommentSection = ({ comments }: Props) => {
+const CommentSection = ({ itemId, comments: _Comments }: Props) => {
   const {
     auth: { user },
   } = usePage<UsePage>().props;
+
+  const { comments } = useCommentsListener({
+    itemId,
+    comments: _Comments,
+  });
+
+  const condition = comments && comments.length > 0;
 
   return (
     <div className="w-full flex flex-col gap-4 bg-base-100/50 p-4 pb-12 shadow-md rounded-md px-8">
@@ -34,7 +43,7 @@ const CommentSection = ({ comments }: Props) => {
         </div>
       )}
 
-      {comments && comments.length > 0 ? (
+      {condition ? (
         comments.map((comment) => (
           <SingleComment key={comment.id} comment={comment} />
         ))

@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Models\User;
+use App\Models\Comment;
+use App\Events\CommentPosted;
+use App\Events\CommentDeleted;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\CommentRequest;
-use App\Models\Comment;
-use App\Models\User;
 
 class CommentController extends Controller
 {
@@ -32,11 +34,14 @@ class CommentController extends Controller
   public function store(CommentRequest $request, User $uname, int $collection, int $item)
   {
 
-    request()->user()->comments()->create([
+    $comment = request()->user()->comments()->create([
       'item_id' => $item,
       'item_user_id' => $uname->id,
       'body' => $request->safe()->body
     ]);
+
+    \broadcast(new CommentPosted($comment->id))
+      ->toOthers();
 
     return back()->with('success', __('model.post', [
       'model' => 'Comment'
@@ -56,7 +61,11 @@ class CommentController extends Controller
   {
     $this->authorize('delete', $comment);
 
+    \broadcast(new CommentDeleted($comment->id))
+      ->toOthers();
+
     $comment->delete();
+
 
     return back()->with('success', __('model.delete', [
       'model' => 'Comment'

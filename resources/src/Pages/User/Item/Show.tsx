@@ -21,7 +21,7 @@ const Dashboard = ({ user, item, liked, collection }: Props) => {
         <UserItemDetail item={item} liked={liked} collection={collection} />
 
         <div className="divider mt-12"></div>
-        <CommentSection comments={item.comments} />
+        <CommentSection itemId={item.id} comments={item.comments} />
       </div>
     </div>
   );

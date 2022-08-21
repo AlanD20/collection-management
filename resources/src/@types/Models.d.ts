@@ -54,7 +54,7 @@ export interface Collection {
 export interface Comment {
   id: number;
   user_id: number;
-  item: number;
+  item_id: number;
   body: string;
   item: Item;
   user: User;

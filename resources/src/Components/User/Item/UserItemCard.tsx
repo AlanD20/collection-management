@@ -17,7 +17,6 @@ const UserItemCard = ({
   likes = [],
   className = '',
 }: Props) => {
-
   const condition = item && item.fields.length > 0;
   return (
     <div
@@ -33,11 +32,10 @@ const UserItemCard = ({
                 <RenderCustomFieldValue
                   key={field.id}
                   field={field}
-                  className='my-2'
+                  className="my-2"
                 />
-              )
-            })
-          }
+              );
+            })}
         </div>
         <UserItemCardFooter item={item} likes={likes} />
       </div>

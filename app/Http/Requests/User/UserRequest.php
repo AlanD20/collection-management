@@ -32,7 +32,8 @@ class UserRequest extends FormRequest
         'string',
         'email',
         'max:255',
-        Rule::unique('users')->ignore($this->user()->id, 'id')
+        // * Ignores incoming email from uniqueness..
+        Rule::unique('users')->ignore($this->email, 'email')
       ],
     ];
   }

@@ -4,22 +4,23 @@
 
 
 ## Main Goals:
-- [x] A collection may have many items.
-- [x] Single item.
+- [x] A collection has many items.
+- [x] Single category has many collections.
 - [x] Each item supports tags.
-- [x] Like and comment for each items in the collection.
+- [x] Single tag belongs to many items.
+- [x] Like and comment for each item in the collection.
 - [x] Must support two languages.
 - [x] Support two visual themes (dark, light).
 - [x] Must be responsive.
 - [x] Each Collection has
-	- Name.
-	- Description with markdown supported.
-	- Topic is a one value from the predefined list, like "Books", "Signs".
-	- Thumbnail to the collection which is an optional field.
+	- [x] Name.
+	- [ ] Description with markdown supported.
+	- [x] Topic is a one value from the predefined list, like "Books", "Signs" (Categories managed by admins).
+	- [x] Thumbnail to the collection which is an optional field.
 - [x] A Collection allows custom fields that each item in the collection must have:
-	- Fixed fields are: id, name, tags.
-	- Custom fields which the creator of the collection may allow are 3 fields of each (integer, string, multi-line, boolean, date).
-	- The creator of the collection also specifies the name of the custom fields.
+	- [x] Fixed fields are: id, name, tags.
+	- [x] Custom fields which the creator of the collection may allow are 3 fields of each (integer, string, multi-line, boolean, date).
+	- [x] The creator of the collection also specifies the name of the custom fields.
 
 #### Everyone:
 - [x] Search including tag search.
@@ -45,7 +46,7 @@
 - [x] Tags are clickable which shows all the items with the clicked tag.
 - [x] Register/Login form.
 - [x] Each item has comments at the bottom of the item page.
-- [ ] Must support live comments.
+- [x] Must support live comments.
 - [x] Likes from users.
 - [x] All pages are accessible from the nav bar.
 - [x] Search bar.
