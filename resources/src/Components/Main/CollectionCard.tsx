@@ -4,6 +4,7 @@ import { DefProps } from '@/@types/Global';
 import { Collection } from '@/@types/Models';
 import { PH_THUMBNAIL } from '@/common/constants';
 import ViewButtonLink from '@@/Form/Action/ViewButtonLink';
+import MDEditor from '@uiw/react-md-editor';
 
 interface Props extends DefProps {
   collection: Collection;
@@ -12,7 +13,7 @@ interface Props extends DefProps {
 const CollectionCard = ({ collection, className = '' }: Props) => {
   return (
     <div
-      className={`card card-compact lg:card-normal bg-base-100 shadow-xl min-w-[300px] flex-1 h-[550px] ${className}`}
+      className={`card card-compact lg:card-normal bg-base-100 shadow-xl min-w-[320px] self-stretch ${className}`}
     >
       <figure>
         <img src={collection.thumbnail ?? PH_THUMBNAIL} alt={collection.name} />
@@ -36,8 +37,8 @@ const CollectionCard = ({ collection, className = '' }: Props) => {
             query={collection.category.name}
           />
         </div>
-        <p>{collection.description}</p>
-        <div className="card-actions mt-4 justify-end">
+        <MDEditor.Markdown source={collection.description} className="my-4" />
+        <div className="card-actions justify-end mt-auto mb-2">
           <ViewButtonLink
             routeName="u.collections.show"
             params={{

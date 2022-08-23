@@ -2,9 +2,9 @@ import React from 'react';
 import TabItem from '@@/Table/TabItem';
 import SearchHeader from '../SearchHeader';
 import ButtonLink from '@@/Form/ButtonLink';
-import { DefProps, RouteType, SelectOption } from '@/@types/Global';
-import SortSelectHeader from '../SortSelectHeader';
 import { ParamsProp } from '@/@types/Response';
+import SortSelectHeader from '../SortSelectHeader';
+import { DefProps, RouteType, SelectOption } from '@/@types/Global';
 
 export interface AdminHeaderProps extends DefProps {
   componentName: string;

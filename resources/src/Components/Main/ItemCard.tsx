@@ -13,7 +13,7 @@ const ItemCard = ({ item, className = '' }: Props) => {
   const condition = item && item.fields.length > 0;
   return (
     <div
-      className={`card card-compact lg:card-normal min-w-[400px] bg-base-100 shadow-xl h-[525px] max-w-[400px] ${className}`}
+      className={`card card-compact lg:card-normal min-w-[300px] bg-base-100 shadow-xl h-[450px] ${className}`}
     >
       <div className="px-8 pt-4 flex justify-between text-xs italic">
         <span>{`${__('model.created_at')} ${item.createdAt}`}</span>
@@ -30,10 +30,11 @@ const ItemCard = ({ item, className = '' }: Props) => {
             ))}
           </div>
         </div>
-        <div className="flex flex-col">
+        <div className="flex flex-col w-[250px] md:max-w-[400px]">
           {condition &&
             item.fields.map((field) => {
               if (field.type === 'textarea') return null;
+              if (field.type === 'text') return null;
               return (
                 <RenderCustomFieldValue
                   key={field.id}
@@ -43,7 +44,7 @@ const ItemCard = ({ item, className = '' }: Props) => {
               );
             })}
         </div>
-        <div className="card-actions mt-4 justify-end">
+        <div className="card-actions justify-end mt-auto mb-4">
           <ViewButtonLink
             routeName="u.collections.items.show"
             params={{

@@ -109,13 +109,13 @@ class CollectionController extends Controller
 
     $file = null;
     if ($request->has('thumbnail')) {
-      $file = $request->file('thumbnail')->store('images', 'public');
+      $file = '/uploads/' . $request->file('thumbnail')->store('images', 'public');
     }
 
     $uname->collections()->create([
       ...$request->validated(),
       'fields' => $fields,
-      'thumbnail' => '/uploads/' . $file
+      'thumbnail' => $file
     ]);
 
     return back()->with('success', __('model.create', [
@@ -164,13 +164,13 @@ class CollectionController extends Controller
     $file = null;
     if ($request->has('thumbnail')) {
       Storage::delete($collection->thumbnail);
-      $file = $request->file('thumbnail')->store('images', 'public');
+      $file = '/uploads/' . $request->file('thumbnail')->store('images', 'public');
     }
 
     $collection->update([
       ...$request->validated(),
       'fields' => $fields,
-      'thumnail' => '/uploads/' . $file
+      'thumnail' =>  $file
     ]);
 
     return back()->with('success', __('model.update', [

@@ -14,7 +14,7 @@ const UserItemCardFooter = ({ item, likes }: Props) => {
   const { params } = usePage<UsePage>().props;
 
   return (
-    <div className="card-actions justify-between">
+    <div className="card-actions justify-between mt-auto mb-4">
       <div className="flex flex-col gap-2 text-xs italic">
         <span>{`${__('model.created_at')} ${item.createdAt}`}</span>
         <span>{`${__('model.updated_at')} ${item.updatedAt}`}</span>

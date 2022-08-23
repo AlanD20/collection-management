@@ -31,8 +31,8 @@ return [
   'asc_category' => 'Category by Ascending',
   'desc_category' => 'Category by Descending',
 
-  'asc_item_count' => 'Item Count by Ascending',
-  'desc_item_count' => 'Item Count by Descending',
+  'asc_item_count' => 'Smallest Collections',
+  'desc_item_count' => 'Largest Collections',
 
   'asc_name' => 'Name by Ascending',
   'desc_name' => 'Name by Descending',

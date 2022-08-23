@@ -2,8 +2,8 @@ import Input from '@@/Form/Input';
 import Button from '@@/Form/Button';
 import { UsePage } from '@/@types/Response';
 import { Collection, Tag } from '@/@types/Models';
+import React, { ChangeEvent, useEffect, useMemo } from 'react';
 import SelectDropDown from '@@/Form/SelectDropDown';
-import React, { ChangeEvent, useMemo } from 'react';
 import UserPageContainer from '@/Layouts/UserPageContainer';
 import { usePage, useForm } from '@inertiajs/inertia-react';
 import RenderCustomField from '@@/User/Item/RenderCustomField';
@@ -17,7 +17,15 @@ interface Props {
 const Create = ({ collection, tags }: Props) => {
   const { params, ts } = usePage<UsePage>().props;
 
-  const { post, data, setData, processing, reset } = useForm<{
+  const {
+    post,
+    data,
+    setData,
+    processing,
+    reset,
+    transform,
+    recentlySuccessful,
+  } = useForm<{
     [key: string]: any;
   }>({
     name: '',
@@ -36,6 +44,8 @@ const Create = ({ collection, tags }: Props) => {
       {
         data,
         onSuccess: () => reset(),
+        preserveState: false,
+        replace: true,
       }
     );
   };
@@ -48,6 +58,8 @@ const Create = ({ collection, tags }: Props) => {
       })),
     [ts]
   );
+
+  console.log(data);
 
   return (
     <form onSubmit={handleSubmit} className="form-control gap-4 w-full">
@@ -109,7 +121,7 @@ export default UserPageContainer({
   header: {
     component: UserHeaderCompact,
     props: {
-      title: 'Create Item',
+      title: 'main.create_item',
       backRoute: {
         name: 'u.collections.items.index',
         params: ['uname', 'collection'],

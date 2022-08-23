@@ -9,9 +9,9 @@ interface Props {
 
 const CategoryTableRow = ({ category }: Props) => {
   return (
-    <tr>
-      <th className="w-[10ch]">{category.id}</th>
-      <td>{category.name}</td>
+    <tr className="text-center">
+      <td className="w-[10ch] font-bold">{category.id}</td>
+      <td className="max-w-max">{category.name}</td>
       <td className="flex gap-6 px-12">
         <EditButtonLink
           routeName="admin.categories.edit"

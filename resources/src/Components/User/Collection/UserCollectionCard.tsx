@@ -2,29 +2,35 @@ import React from 'react';
 import useAuth from '@/hooks/useAuth';
 import BadgeLink from '@@/Misc/BadgeLink';
 import { DefProps } from '@/@types/Global';
+import MDEditor from '@uiw/react-md-editor';
 import { Collection } from '@/@types/Models';
+import CollectionAction from './CollectionAction';
 import { PH_THUMBNAIL } from '@/common/constants';
-import EditButtonLink from '@@/Form/Action/EditButtonLink';
 import ViewButtonLink from '@@/Form/Action/ViewButtonLink';
-import DeleteButtonLink from '@@/Form/Action/DeleteButtonLink';
 
 interface Props extends DefProps {
   collection: Collection;
 }
 
 const UserCollectionCard = ({ collection, className = '' }: Props) => {
-  const { self } = useAuth();
-
   return (
     <div
-      className={`card card-compact lg:card-normal min-w-[250px] w-[400px] bg-base-100 h-[600px] shadow-xl ${className}`}
+      className={`card card-compact lg:card-normal bg-base-100 shadow-xl min-w-[350px] max-w-[40ch] relative self-stretch  ${className}`}
     >
       <figure>
         <img src={collection.thumbnail ?? PH_THUMBNAIL} alt={collection.name} />
       </figure>
-      <div className="px-8 pt-4 flex justify-between text-xs italic">
-        <span>{`${__('model.created_at')} ${collection.createdAt}`}</span>
-        <span>{`${__('model.updated_at')} ${collection.updatedAt}`}</span>
+      <div className="flex justify-between items-center w-full mt-4 px-4">
+        <div className="px-8 flex justify-between text-xs italic w-full gap-2">
+          <span>{`${__('model.created_at')} ${collection.createdAt}`}</span>
+          <span>{`${__('model.updated_at')} ${collection.updatedAt}`}</span>
+        </div>
+        <CollectionAction
+          params={{
+            uname: collection.user.username,
+            collection: collection.id,
+          }}
+        />
       </div>
       <div className="card-body !py-4">
         <div className="flex w-full items-center text-xs capitalize">
@@ -41,24 +47,8 @@ const UserCollectionCard = ({ collection, className = '' }: Props) => {
             query={collection.category.name}
           />
         </div>
-        <p>{collection.description}</p>
-        <div className="card-actions mt-4 justify-end">
-          <DeleteButtonLink
-            routeName="u.collections.destroy"
-            params={{
-              uname: collection.user.username,
-              collection: collection.id,
-            }}
-            hideWhen={!self}
-          />
-          <EditButtonLink
-            routeName="u.collections.edit"
-            params={{
-              uname: collection.user.username,
-              collection: collection.id,
-            }}
-            hideWhen={!self}
-          />
+        <MDEditor.Markdown source={collection.description} className="mb-8" />
+        <div className="card-actions mt-auto mb-4 justify-end">
           <ViewButtonLink
             routeName="u.collections.show"
             params={{

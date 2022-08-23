@@ -34,7 +34,7 @@ const Edit = ({ user }: Props) => {
         <Input
           type="text"
           label={__('form.username')}
-          name="name"
+          name="username"
           value={data.username}
           className="block mt-1 w-full"
           onChange={(e) => setData('username', e.target.value)}
@@ -69,6 +69,14 @@ const Edit = ({ user }: Props) => {
         />
         <div className="divider"></div>
         <Link
+          href={route('u.edit.password', {
+            uname: user.username,
+          })}
+          className={`w-full btn btn-natural mt-6 ml-auto text-lg`}
+        >
+          {__('form.change_password')}
+        </Link>
+        <Link
           href={route('u.destroy', {
             uname: user.username,
           })}
@@ -89,7 +97,7 @@ export default UserPageContainer({
   header: {
     component: UserHeaderCompact,
     props: {
-      title: 'user.edit_profile',
+      title: 'main.edit_profile',
       backRoute: {
         label: __('back_profile'),
         name: 'u.update',

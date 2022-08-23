@@ -35,7 +35,7 @@ export default PageContainer({
   header: {
     component: MainHeader,
     props: {
-      title: 'Users',
+      title: 'main.view_users',
       optionRoute: {
         sortOptions: MAIN_USERS_SP(),
         name: 'u.index',

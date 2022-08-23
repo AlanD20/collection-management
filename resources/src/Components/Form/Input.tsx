@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { DefProps } from '@/@types/Global';
 import { InputHTMLAttributes } from 'react';
+import MDEditor from '@uiw/react-md-editor';
 import ErrorStatus from '@@/Misc/ErrorStatus';
 
 type InputTypes =
@@ -19,41 +20,50 @@ interface Props extends DefProps, InputHTMLAttributes<HTMLInputElement> {
   label?: string;
 }
 
-const Input = ({
+const Input = memo(
+  ({ type, name, label, progress, className = '', ...attr }: Props) => {
+    const input = getInputElement({
+      type,
+      name,
+      attr,
+      progress,
+      className,
+    });
+
+    return (
+      <div
+        className={`flex flex-col justify-center items-start min-w-[10ch] input-container mb-2 [&+.input-container]:mb-4 ${className}`}
+      >
+        <label htmlFor={name} className="label capitalize flex w-full gap-2">
+          {label}
+          {attr.required && (
+            <span className="text-red-500 text-xl mt-2 mr-auto">*</span>
+          )}
+        </label>
+
+        {input}
+
+        <ErrorStatus name={name} />
+      </div>
+    );
+  }
+);
+
+interface InputElement {
+  type: InputTypes;
+  name: string;
+  attr: any;
+  progress?: any;
+  className: string;
+}
+
+function getInputElement({
   type,
   name,
-  label,
+  attr,
   progress,
   className = '',
-  ...attr
-}: Props) => {
-  const input = getInputTag(type, name, attr, progress, className);
-
-  return (
-    <div
-      className={`flex flex-col justify-center items-start min-w-[10ch] input-container mb-2 [&+.input-container]:mb-4 ${className}`}
-    >
-      <label htmlFor={name} className="label capitalize flex w-full gap-2">
-        {label}
-        {attr.required && (
-          <span className="text-red-500 text-xl mt-2 mr-auto">*</span>
-        )}
-      </label>
-
-      {input}
-
-      <ErrorStatus name={name} />
-    </div>
-  );
-};
-
-function getInputTag(
-  type: InputTypes,
-  name: string,
-  attr: any,
-  progress?: any,
-  className = ''
-) {
+}: InputElement) {
   if (type === 'file') {
     return (
       <>
@@ -75,6 +85,7 @@ function getInputTag(
     return (
       <textarea
         name={name}
+        id={name}
         className={`textarea textarea-bordered h-24 border-2 border-solid input-md w-full text-base focus:outline-none
           focus:border-gray-500 ${className}`}
         {...attr}

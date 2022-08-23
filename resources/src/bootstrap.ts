@@ -21,6 +21,9 @@ window._has = (obj, key) => (_has(obj, 'hidden') ? obj[key] : null);
 // Set default theme
 const theme = localStorage.getItem(THEME_STORAGE_KEY) ?? 'emerald';
 document.querySelector('html')?.setAttribute('data-theme', theme);
+let mode = 'light';
+if (theme === 'dracula') mode = 'dark';
+document.querySelector('html')?.setAttribute('data-color-mode', mode);
 
 // Translate with givne key
 window.__ = (key, replace) => {

@@ -11,6 +11,8 @@ const useCommentsListener = ({ itemId, comments: currentComments }: Params) => {
 
   const [deletedComments, setDeletedComments] = useState<number[]>([]);
 
+  useEffect(() => setComments([...currentComments]), [currentComments]);
+
   _Echo
     .channel('u.collections.items.comments')
     .listen('.comments.posted', (comment: Comment) => {

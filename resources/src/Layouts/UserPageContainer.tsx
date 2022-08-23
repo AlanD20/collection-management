@@ -18,7 +18,7 @@ const UserPageContainer = ({
           // @ts-ignore
           React.createElement(header?.component, header?.props)}
 
-        <div className={`${small ? 'lg:w-[45ch]' : 'w-full'} ${className}`}>
+        <div className={`${small ? 'lg:w-[65ch]' : 'w-full'} ${className}`}>
           {body &&
             React.createElement(body.component, {
               ...page.props,

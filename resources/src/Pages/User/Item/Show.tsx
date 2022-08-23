@@ -35,10 +35,6 @@ export default UserPageContainer({
   header: {
     component: UserHeaderCompact,
     props: {
-      title: {
-        text: 'Item #:item',
-        param: 'item',
-      },
       backRoute: {
         label: 'form.back_item',
         name: 'u.collections.items.index',

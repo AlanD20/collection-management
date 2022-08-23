@@ -2,7 +2,7 @@ import Input from '@@/Form/Input';
 import Button from '@@/Form/Button';
 import { User } from '@/@types/Models';
 import React, { ChangeEvent } from 'react';
-import { useForm } from '@inertiajs/inertia-react';
+import { Link, useForm } from '@inertiajs/inertia-react';
 import UserPageContainer from '@/Layouts/UserPageContainer';
 import UserHeaderCompact from '@@/Headers/User/UserHeaderCompact';
 
@@ -67,6 +67,15 @@ const EditPassword = ({ user }: Props) => {
           disabled={processing}
           className={`mt-6 ml-auto text-lg ${processing ? 'loading' : ''}`}
         />
+        <div className="divider"></div>
+        <Link
+          href={route('u.edit', {
+            uname: user.username,
+          })}
+          className={`w-full btn btn-natural mt-6 ml-auto text-lg`}
+        >
+          {__('form.edit_profile')}
+        </Link>
       </form>
     </div>
   );
@@ -78,7 +87,7 @@ export default UserPageContainer({
   header: {
     component: UserHeaderCompact,
     props: {
-      title: 'user.edit_profile',
+      title: 'main.change_password',
       backRoute: {
         label: __('back_profile'),
         name: 'u.update',

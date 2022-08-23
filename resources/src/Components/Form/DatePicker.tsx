@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
-import { DayPicker, DayPickerSingleProps } from 'react-day-picker';
 import { Children, DefProps } from '@/@types/Global';
+import { DayPicker, DayPickerSingleProps } from 'react-day-picker';
 
 interface Props extends DefProps, Children, Omit<DayPickerSingleProps, 'mode'> {
   label?: string;
@@ -19,6 +19,7 @@ const DatePicker = ({ label, children, className = '', ...attr }: Props) => {
       <DayPicker
         fromYear={1000}
         toYear={3000}
+        defaultMonth={attr.selected}
         captionLayout="dropdown"
         {...attr}
         mode="single"

@@ -6,7 +6,7 @@ const UserHead = () => {
 
   return (
     <thead>
-      <tr className="[&>*]:text-sm">
+      <tr className="[&>*]:text-sm [&>*]:text-left">
         <th>
           <SortButton label="#" name="id" routeName={routeName} />
         </th>

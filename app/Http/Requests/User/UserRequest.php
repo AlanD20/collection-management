@@ -24,16 +24,26 @@ class UserRequest extends FormRequest
    */
   public function rules()
   {
+    $user = $this->route('uname');
     return [
       'name' => ['required', 'string', 'max:35'],
-      'username' => ['required', 'string', 'max:15', 'unique:users', 'alpha_num'],
+      'username' => [
+        'required',
+        'string',
+        'max:15',
+        'alpha_num',
+        // * Ignores incoming username from uniqueness..
+        Rule::unique('users')
+          ->ignore($user->username, 'username')
+      ],
       'email' => [
         'required',
         'string',
         'email',
         'max:255',
         // * Ignores incoming email from uniqueness..
-        Rule::unique('users')->ignore($this->email, 'email')
+        Rule::unique('users')
+          ->ignore($user->email, 'email')
       ],
     ];
   }

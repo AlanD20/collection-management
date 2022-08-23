@@ -19,10 +19,12 @@ const Dashboard = ({ collections }: Props) => {
     <div className="w-full flex justify-center items-start gap-8 flex-wrap p-8">
       {!condition && <EmptyResource model={__('model.collection')} />}
 
-      {condition &&
-        collections.data.map((col) => (
-          <UserCollectionCard key={col.id} collection={col} />
-        ))}
+      <div className="flex flex-wrap w-full justify-center items-center gap-8">
+        {condition &&
+          collections.data.map((col) => (
+            <UserCollectionCard key={col.id} collection={col} />
+          ))}
+      </div>
 
       {condition && (
         <PaginationLinks meta={collections.meta} className="mt-8" />
@@ -39,10 +41,7 @@ export default UserPageContainer({
   header: {
     component: UserHeader,
     props: {
-      title: {
-        text: ":uname's Collection",
-        param: 'uname',
-      },
+      title: 'main.view_collections',
       backRoute: {
         label: 'form.profile',
         name: 'u.show',

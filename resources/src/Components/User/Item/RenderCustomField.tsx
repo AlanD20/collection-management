@@ -1,6 +1,8 @@
 import React from 'react';
 import Input from '@@/Form/Input';
+import format from 'date-fns/format';
 import Checkbox from '@@/Form/Checkbox';
+import DateField from '@@/Form/DateField';
 import { DefProps } from '@/@types/Global';
 import DatePicker from '@@/Form/DatePicker';
 import { CustomField } from '@/@types/Models';
@@ -24,7 +26,9 @@ const RenderCustomField = ({
 }: Props) => {
   const getDate = (): Date | undefined => {
     const fields = data[keyName];
-    return fields.find((f: any) => f.id === field.id).value;
+    const value = fields.find((f: any) => f.id === field.id).value;
+    if (!value) return value;
+    return new Date(format(new Date(value), 'y-MM-dd'));
   };
 
   const updateData = (value: any) => {
@@ -32,6 +36,7 @@ const RenderCustomField = ({
     let update = prev.map((f: any) =>
       f.id !== field.id ? f : { ...f, value }
     );
+
     setData(keyName, update);
   };
 
@@ -42,22 +47,24 @@ const RenderCustomField = ({
       required: field.required,
       name: field.name,
       label: field.label,
+      checked: field.value,
       onChange: (e) => updateData(e.target.checked),
     });
   } else if (field.type === 'datetime') {
-    component = React.createElement(DatePicker, {
+    component = React.createElement(DateField, {
       required: field.required,
       label: field.label,
-      selected: getDate(),
-      onSelect: updateData,
+      name: field.name,
+      value: getDate(),
+      onChange: updateData,
     });
   } else {
     component = React.createElement(Input, {
       type: field.type,
       required: field.required,
       name: field.name,
-      label: field.label,
       value: field.value,
+      label: field.label,
       onChange: (e) => updateData(e.target.value),
     });
   }

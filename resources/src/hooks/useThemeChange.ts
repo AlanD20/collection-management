@@ -11,7 +11,13 @@ const useThemeChange = () => {
 
   const changeTheme = (name: ThemeType) => {
     localStorage.setItem(THEME_STORAGE_KEY, name);
+
     document.querySelector('html')?.setAttribute('data-theme', name);
+
+    let mode = 'light';
+    if (name === 'dracula') mode = 'dark';
+    document.querySelector('html')?.setAttribute('data-color-mode', mode);
+
     Inertia.post(route('set.theme'), { theme: name });
   };
 

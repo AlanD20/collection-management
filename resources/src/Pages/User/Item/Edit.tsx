@@ -89,9 +89,9 @@ const Edit = ({ collection, item, tags }: Props) => {
         {__('form.item_field_title')}
       </div>
 
-      {collection &&
-        collection.fields.length > 0 &&
-        collection.fields.map((field, index) => (
+      {item &&
+        item.fields.length > 0 &&
+        item.fields.map((field, index) => (
           <RenderCustomField
             key={field.id}
             index={index}
@@ -118,10 +118,7 @@ export default UserPageContainer({
   header: {
     component: UserHeaderCompact,
     props: {
-      title: {
-        text: 'Edit Item #:item',
-        param: 'item',
-      },
+      title: 'main.edit_item',
       backRoute: {
         name: 'u.collections.items.show',
         params: ['uname', 'collection', 'item'],

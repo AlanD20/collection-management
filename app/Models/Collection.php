@@ -61,10 +61,10 @@ class Collection extends Model
     );
   }
 
-  public function description(): Attribute
-  {
-    return new Attribute(
-      set: fn ($value) => \strtolower($value)
-    );
-  }
+  // public function description(): Attribute
+  // {
+  //   return new Attribute(
+  //     set: fn ($value) => \strtolower($value)
+  //   );
+  // }
 }

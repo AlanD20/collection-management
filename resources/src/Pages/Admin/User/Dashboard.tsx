@@ -7,8 +7,8 @@ import UserTableRow from '@@/Admin/User/UserTableRow';
 import UserGridCard from '@@/Admin/User/UserGridCard';
 import AdminHeader from '@@/Headers/Admin/AdminHeader';
 import PaginationLinks from '@@/Table/PaginationLinks';
-import AdminPageContainer from '@/Layouts/AdminPageContainer';
 import { ADMIN_USERS_SP } from '@/common/select-options';
+import AdminPageContainer from '@/Layouts/AdminPageContainer';
 
 interface Props {
   users: Paginator<User[]>;

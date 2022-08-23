@@ -46,10 +46,7 @@ export default UserPageContainer({
     component: UserHeader,
     props: {
       itemsHeader: true,
-      title: {
-        text: ":uname's Collection Items",
-        param: 'uname',
-      },
+      title: 'main.view_items',
       backRoute: {
         label: 'form.back_items',
         name: 'u.collections.index',

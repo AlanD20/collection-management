@@ -20,14 +20,15 @@ const UserItemCard = ({
   const condition = item && item.fields.length > 0;
   return (
     <div
-      className={`card card-compact lg:card-normal min-w-[350px] w-[500px] bg-base-100 shadow-xl ${className}`}
+      className={`card card-compact lg:card-normal min-w-[350px] w-[500px] self-stretch bg-base-100 shadow-xl ${className}`}
     >
       <div className="card-body !py-4">
         <UserItemCardHeader item={item} />
-        <div className="flex flex-col">
+        <div className="flex flex-col mb-4">
           {condition &&
             item.fields.map((field) => {
               if (field.type === 'textarea') return null;
+              if (field.type === 'text') return null;
               return (
                 <RenderCustomFieldValue
                   key={field.id}

@@ -6,9 +6,9 @@ import AdminHeader from '@@/Headers/Admin/AdminHeader';
 import PaginationLinks from '@@/Table/PaginationLinks';
 import CategoryHead from '@@/Admin/Category/CategoryHead';
 import AdminPageContainer from '@/Layouts/AdminPageContainer';
+import { ADMIN_CATEGORIES_SP } from '@/common/select-options';
 import CategoryTableRow from '@@/Admin/Category/CategoryTableRow';
 import CategoryGridCard from '@@/Admin/Category/CategoryGridCard';
-import { ADMIN_CATEGORIES_SP } from '@/common/select-options';
 
 interface Props {
   categories: Paginator<Category[]>;

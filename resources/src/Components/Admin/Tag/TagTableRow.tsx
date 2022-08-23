@@ -9,8 +9,8 @@ interface Props {
 
 const TagTableRow = ({ tag }: Props) => {
   return (
-    <tr>
-      <th className="w-[10ch]">{tag.id}</th>
+    <tr className="text-center">
+      <td className="w-[10ch] font-bold">{tag.id}</td>
       <td>{tag.name}</td>
       <td className="flex gap-6 px-12">
         <EditButtonLink routeName="admin.tags.edit" params={{ tag: tag.id }} />

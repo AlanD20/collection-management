@@ -35,7 +35,7 @@ export default PageContainer({
   header: {
     component: MainHeader,
     props: {
-      title: 'Collections',
+      title: 'main.view_collections',
       optionRoute: {
         sortOptions: U_COLLECTIONS_SP(),
         name: 'collections.index',

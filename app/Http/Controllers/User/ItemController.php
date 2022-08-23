@@ -104,9 +104,14 @@ class ItemController extends Controller
 
     $item->tags()->attach($request->safe()->tags);
 
-    return back()->with('success', __('model.create', [
-      'model' => 'Item'
-    ]));
+    return redirect()
+      ->route('u.collections.items.index', [
+        'uname' => $uname,
+        'collection' => $collection->id
+      ])
+      ->with('success', __('model.create', [
+        'model' => 'Item'
+      ]));
   }
 
   /**

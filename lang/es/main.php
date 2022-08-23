@@ -26,4 +26,21 @@ return [
   'search_result' => 'Total :model encontrado es :count',
   'empty_result' => 'No hay :model encontrados',
   'view_result' => 'Ver :model',
+
+  // Page titles
+  'edit_profile' => 'Editar perfil',
+  'change_password' => 'Cambiar contraseña',
+  'view_items' => "Elementos de la colección",
+  'view_users' => "Usuarios",
+  'view_collections' => "Colecciones",
+
+  'create_item' => 'Crear elemento',
+  'create_col' => 'Crear Colección',
+  'create_tag' => 'Crear Etiqueta',
+  'create_category' => 'Crear Categoría',
+
+  'edit_item' => 'Editar Elemento',
+  'edit_col' => 'Editar Colección',
+  'edit_tag' => 'Editar Etiqueta',
+  'edit_category' => 'Editar Categoría',
 ];

@@ -16,7 +16,7 @@ class FilterCommentSearch extends Filter
 
     return $builder->where(function ($query) use ($value) {
       $query->whereHas('comments', function ($query) use ($value) {
-        $query->where('body', 'like', "%$value%");
+        $query->whereRaw('LOWER("body"):: text  LIKE ? ', ["%$value%"]);
       });
     });
   }

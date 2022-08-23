@@ -23,27 +23,27 @@ class DatabaseSeeder extends Seeder
       'admin' => true
     ]);
 
-    $categories = \App\Models\Category::factory(100)->create()->pluck('id');
+    $categories = \App\Models\Category::factory(250)->create()->pluck('id');
 
-    $tags = \App\Models\Tag::factory(100)->create()->pluck('id');
+    $tags = \App\Models\Tag::factory(250)->create()->pluck('id');
 
     $items = [];
-    $users = \App\Models\User::factory(50)->create()
+    $users = \App\Models\User::factory(25)->create()
       ->each(function ($user) use ($categories, $tags, &$items) {
 
-        $cols = \App\Models\Collection::factory(5)->create([
+        $cols = \App\Models\Collection::factory(10)->create([
           'user_id' => $user->id,
           'category_id' => fake()->randomElement($categories)
         ]);
 
-        for ($i = 0; $i < 7; $i++) {
+        for ($i = 0; $i < 15; $i++) {
           $id = collect($cols->pluck('id')->all())->random();
 
           $item = \App\Models\Item::factory()->create([
             'collection_id' => $id,
           ]);
           $item->tags()
-            ->attach(collect($tags)->random(7)->all());
+            ->attach(collect($tags)->random(12)->all());
 
           \array_push($items, [
             'item' => $item->id,

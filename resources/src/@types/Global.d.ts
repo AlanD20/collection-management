@@ -11,13 +11,6 @@ export type AnyKey = { [key: string]: any };
 type ThemeType = 'dracula' | 'emerald';
 type LocalType = 'en' | 'es';
 
-export type PageTitle =
-  | string
-  | {
-      text: string;
-      param: KeyParamsProps;
-    };
-
 export type QueryParams = {
   sort?: 'asc' | 'desc';
   order_by?: string;

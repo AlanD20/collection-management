@@ -43,10 +43,10 @@ class Comment extends Model
     return $this->belongsTo(Item::class, 'item_id', 'id');
   }
 
-  public function body(): Attribute
-  {
-    return new Attribute(
-      set: fn ($value) => \strtolower($value)
-    );
-  }
+  // public function body(): Attribute
+  // {
+  //   return new Attribute(
+  //     set: fn ($value) => \strtolower($value)
+  //   );
+  // }
 }

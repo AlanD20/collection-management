@@ -2,10 +2,11 @@ import Input from '@@/Form/Input';
 import Button from '@@/Form/Button';
 import { Category } from '@/@types/Models';
 import { UsePage } from '@/@types/Response';
+import MarkdownEditor from '@@/Form/MarkdownEditor';
 import SelectDropDown from '@@/Form/SelectDropDown';
+import React, { ChangeEvent, useMemo, useRef } from 'react';
 import UserPageContainer from '@/Layouts/UserPageContainer';
 import { usePage, useForm } from '@inertiajs/inertia-react';
-import React, { ChangeEvent, useMemo, useState } from 'react';
 import UserHeaderCompact from '@@/Headers/User/UserHeaderCompact';
 import CreateCustomField from '@@/User/Collection/CreateCustomField';
 
@@ -16,7 +17,8 @@ interface Props {
 const Create = ({ categories }: Props) => {
   const { params, ts } = usePage<UsePage>().props;
 
-  const [selectValue, setSelectValue] = useState<string>('');
+  const descRef = useRef(null);
+
   const { post, data, setData, processing, reset, progress } = useForm<{
     [key: string]: any;
   }>({
@@ -57,13 +59,12 @@ const Create = ({ categories }: Props) => {
         required
         autoFocus
       />
-      <Input
-        type="textarea"
+
+      <MarkdownEditor
         label={__('form.col_description')}
         name="description"
         value={data.description}
-        className="block mt-1 w-full"
-        onChange={(e) => setData('description', e.target.value)}
+        onChange={(value) => setData('description', value)}
         required
       />
 
@@ -107,7 +108,7 @@ export default UserPageContainer({
   header: {
     component: UserHeaderCompact,
     props: {
-      title: 'Create Collection',
+      title: 'main.create_col',
       backRoute: {
         name: 'u.collections.index',
         params: ['uname'],

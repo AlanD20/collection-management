@@ -1,8 +1,9 @@
 import Input from '@@/Form/Input';
 import Button from '@@/Form/Button';
 import { UsePage } from '@/@types/Response';
-import SelectDropDown from '@@/Form/SelectDropDown';
 import React, { ChangeEvent, useMemo } from 'react';
+import SelectDropDown from '@@/Form/SelectDropDown';
+import MarkdownEditor from '@@/Form/MarkdownEditor';
 import { Category, Collection } from '@/@types/Models';
 import UserPageContainer from '@/Layouts/UserPageContainer';
 import { usePage, useForm } from '@inertiajs/inertia-react';
@@ -17,7 +18,7 @@ interface Props {
 const Edit = ({ collection, categories }: Props) => {
   const { params } = usePage<UsePage>().props;
 
-  const { patch, data, setData, processing, reset, progress } = useForm<{
+  const { patch, data, setData, processing, progress } = useForm<{
     [key: string]: any;
   }>({
     name: collection.name,
@@ -60,13 +61,12 @@ const Edit = ({ collection, categories }: Props) => {
         required
         autoFocus
       />
-      <Input
-        type="textarea"
+
+      <MarkdownEditor
         label={__('form.col_description')}
         name="description"
         value={data.description}
-        className="block mt-1 w-full"
-        onChange={(e) => setData('description', e.target.value)}
+        onChange={(value) => setData('description', value)}
         required
       />
 
@@ -111,10 +111,7 @@ export default UserPageContainer({
   header: {
     component: UserHeaderCompact,
     props: {
-      title: {
-        text: "Edit :uname's Collection",
-        param: 'uname',
-      },
+      title: 'main.edit_col',
       backRoute: {
         name: 'u.collections.index',
         params: ['uname'],

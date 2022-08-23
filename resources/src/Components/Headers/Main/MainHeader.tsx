@@ -5,23 +5,21 @@ import { UsePage } from '@/@types/Response';
 import SortSelectHeader from '../SortSelectHeader';
 import { usePage } from '@inertiajs/inertia-react';
 import { getParamsWithKey } from '@/common/helpers';
-import useReplaceParamsKey from '@/hooks/useParseParams';
-import { DefProps, PageTitle, RouteType, SelectOption } from '@/@types/Global';
+import { DefProps, RouteType, SelectOption } from '@/@types/Global';
 
 export interface MainHeaderProps extends DefProps {
-  title: PageTitle;
+  title: string;
   optionRoute: RouteType & {
     sortOptions: SelectOption[];
   };
 }
 
 const MainHeader = ({ optionRoute, title }: MainHeaderProps) => {
-  const parsedTitle = useReplaceParamsKey(title);
   const { params } = usePage<UsePage>().props;
 
   return (
     <>
-      <TitleText label={parsedTitle} />
+      <TitleText label={__(title)} />
 
       <HeaderBar>
         <SortSelectHeader

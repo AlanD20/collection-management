@@ -14,7 +14,7 @@
 - [x] Must be responsive.
 - [x] Each Collection has
 	- [x] Name.
-	- [ ] Description with markdown supported.
+	- [s] Description with markdown supported.
 	- [x] Topic is a one value from the predefined list, like "Books", "Signs" (Categories managed by admins).
 	- [x] Thumbnail to the collection which is an optional field.
 - [x] A Collection allows custom fields that each item in the collection must have:
@@ -61,9 +61,21 @@
 - [ ] Exporting a collection to a CSV File.
 
 
-### Packages:
+### Commands:
+- Export Laravel's language file to a single json file.
+```bash
+php artisan lang:export [language directory]
+php artisan lang:export en # Example
+```
+- Clear caches
+```bash
+yarn cache:clear
+- Format
+```bash
+yarn format
+```
 
-- [Laravel-Markdown](https://github.com/GrahamCampbell/Laravel-Markdown)
+
 
 ## License
 

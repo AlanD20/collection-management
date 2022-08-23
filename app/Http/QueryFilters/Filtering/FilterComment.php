@@ -12,7 +12,7 @@ class FilterComment extends Filter
   {
     $value = $this->getQueryValue();
     return $builder->whereHas('comments', function ($query) use ($value) {
-      $query->where('body', 'like', "%{$value}%");
+      $query->whereRaw('LOWER("body"):: text  LIKE ? ', ["%$value%"]);
     });
   }
 }

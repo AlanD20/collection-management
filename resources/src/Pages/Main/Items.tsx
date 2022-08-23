@@ -33,7 +33,7 @@ export default PageContainer({
   header: {
     component: MainHeader,
     props: {
-      title: 'Items',
+      title: 'main.view_items',
       optionRoute: {
         sortOptions: U_ITEMS_SP(),
         name: 'items.index',

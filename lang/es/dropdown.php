@@ -32,8 +32,8 @@ return [
   'asc_category' => 'Categoría por Ascendente',
   'desc_category' => 'Categoría por Descendente',
 
-  'asc_item_count' => 'Recuento de elementos por ascendente',
-  'desc_item_count' => 'Recuento de elementos por descendente',
+  'asc_item_count' => 'Colecciones más pequeñas',
+  'desc_item_count' => 'Colecciones más grandes',
 
   'asc_name' => 'Nombre por Ascendente',
   'desc_name' => 'Nombre por Descendente',

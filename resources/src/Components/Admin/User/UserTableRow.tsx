@@ -11,8 +11,8 @@ interface Props {
 
 const UserTableRow = ({ user }: Props) => {
   return (
-    <tr>
-      <th>{user.id}</th>
+    <tr className="text-center">
+      <td className="w-[10ch] font-bold">{user.id}</td>
       <td>{user.name}</td>
       <td>
         <Link

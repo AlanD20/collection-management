@@ -7,8 +7,8 @@ import TagTableRow from '@@/Admin/Tag/TagTableRow';
 import TagGridCard from '@@/Admin/Tag/TagGridCard';
 import AdminHeader from '@@/Headers/Admin/AdminHeader';
 import PaginationLinks from '@@/Table/PaginationLinks';
-import AdminPageContainer from '@/Layouts/AdminPageContainer';
 import { ADMIN_TAGS_SP } from '@/common/select-options';
+import AdminPageContainer from '@/Layouts/AdminPageContainer';
 
 interface Props {
   tags: Paginator<Tag[]>;
