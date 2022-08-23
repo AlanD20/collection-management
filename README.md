@@ -70,9 +70,11 @@ php artisan lang:export en # Example
 - Clear caches
 ```bash
 yarn cache:clear
-- Format
+```
+- Formatting Syntax
 ```bash
-yarn format
+yarn format:js
+yarn format:php
 ```
 
 

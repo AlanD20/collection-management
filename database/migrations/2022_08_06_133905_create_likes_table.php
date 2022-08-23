@@ -6,29 +6,29 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-  /**
-   * Run the migrations.
-   *
-   * @return void
-   */
-  public function up()
-  {
-    Schema::create('likes', function (Blueprint $table) {
-      $table->id();
-      $table->foreignId('item_id')->constrained('items', 'id')
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('likes', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('item_id')->constrained('items', 'id')
         ->onDelete('cascade');
-      $table->foreignId('user_id')->constrained('users', 'id')
+            $table->foreignId('user_id')->constrained('users', 'id')
         ->onDelete('cascade');
-    });
-  }
+        });
+    }
 
-  /**
-   * Reverse the migrations.
-   *
-   * @return void
-   */
-  public function down()
-  {
-    Schema::dropIfExists('likes');
-  }
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('likes');
+    }
 };

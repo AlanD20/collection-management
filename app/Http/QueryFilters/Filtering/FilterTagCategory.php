@@ -6,13 +6,14 @@ use App\Http\QueryFilters\Base\Filter;
 
 class FilterTagCategory extends Filter
 {
-  public string $filterName = 'query';
+    public string $filterName = 'query';
 
-  public function applyFilter($builder)
-  {
-    $value = $this->getQueryValue();
-    return $builder->where(function ($query) use ($value) {
-      $query->where('name', 'like', "%{$value}%");
-    });
-  }
+    public function applyFilter($builder)
+    {
+        $value = $this->getQueryValue();
+
+        return $builder->where(function ($query) use ($value) {
+            $query->where('name', 'like', "%{$value}%");
+        });
+    }
 }

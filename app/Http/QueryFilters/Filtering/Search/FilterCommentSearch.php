@@ -6,18 +6,19 @@ use App\Http\QueryFilters\Base\Filter;
 
 class FilterCommentSearch extends Filter
 {
+    public string $filterName = 'query';
 
-  public string $filterName = 'query';
+    public function applyFilter($builder)
+    {
+        $value = $this->getQueryValue();
+        if (! $value) {
+            return $builder;
+        }
 
-  public function applyFilter($builder)
-  {
-    $value = $this->getQueryValue();
-    if (!$value) return $builder;
-
-    return $builder->where(function ($query) use ($value) {
-      $query->whereHas('comments', function ($query) use ($value) {
-        $query->whereRaw('LOWER("body"):: text  LIKE ? ', ["%$value%"]);
-      });
-    });
-  }
+        return $builder->where(function ($query) use ($value) {
+            $query->whereHas('comments', function ($query) use ($value) {
+                $query->whereRaw('LOWER("body"):: text  LIKE ? ', ["%$value%"]);
+            });
+        });
+    }
 }

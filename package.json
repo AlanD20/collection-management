@@ -7,7 +7,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "format": "prettier --write resources/src",
+    "format:js": "prettier --write resources/src",
+    "format:php": "./vendor/bin/pint",
     "serve": "php artisan serve",
     "lang": "php artisan lang:export en && php artisan lang:export es",
     "cache:clear": "php artisan clear && php artisan clear-compiled && php artisan config:clear && php artisan cache:clear && php artisan view:clear && php artisan route:clear && php artisan optimize && composer dump-autoload -o"

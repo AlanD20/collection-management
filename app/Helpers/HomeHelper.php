@@ -1,84 +1,76 @@
 <?php
 
-
 namespace App\Helpers;
 
-
-use App\Models\{Item, User, Collection};
-use App\Http\Resources\{
-  UserResource,
-  ItemResource,
-  CollectionResource,
-};
+use App\Http\Resources\CollectionResource;
+use App\Http\Resources\ItemResource;
+use App\Http\Resources\UserResource;
+use App\Models\Collection;
+use App\Models\Item;
+use App\Models\User;
 
 class HomeHelper
 {
-
-  /**
-   * Query latest collections.
-   *
-   */
-  public function getLatestCollections()
-  {
-    $query = Collection::query()
+    /**
+     * Query latest collections.
+     */
+    public function getLatestCollections()
+    {
+        $query = Collection::query()
       ->with('category', 'user')
       ->latest('created_at')
       ->take(5)
       ->get()
       ->each(
-        fn (Collection $collection) => (new CollectionHelper())->truncDesc($collection, 65)
+          fn (Collection $collection) => (new CollectionHelper)->truncDesc($collection, 65)
       );
 
-    return CollectionResource::collection($query);
-  }
+        return CollectionResource::collection($query);
+    }
 
-  /**
-   * Query largest collections.
-   *
-   */
-  public function getLargestCollections()
-  {
-    $query = Collection::query()
+    /**
+     * Query largest collections.
+     */
+    public function getLargestCollections()
+    {
+        $query = Collection::query()
       ->with('category', 'user')
       ->withCount('items')
       ->orderBy('items_count', 'desc')
       ->take(5)
       ->get()
       ->each(
-        fn (Collection $collection) => (new CollectionHelper())->truncDesc($collection, 65)
+          fn (Collection $collection) => (new CollectionHelper)->truncDesc($collection, 65)
       );
 
+        return CollectionResource::collection($query);
+    }
 
-    return CollectionResource::collection($query);
-  }
-
-  /**
-   * Query latest items.
-   *
-   */
-  public function getLatestItems()
-  {
-    $query = Item::query()
+    /**
+     * Query latest items.
+     */
+    public function getLatestItems()
+    {
+        $query = Item::query()
       ->with('tags', 'collection', 'collection.user')
       ->latest('created_at')
-      ->take(4)
+      ->take(5)
       ->get()
       ->each(fn (Item $item) => $item->tags = $item->tags->take(4));
 
-    return ItemResource::collection($query);
-  }
+        return ItemResource::collection($query);
+    }
 
-  /**
-   * Query latest users
-   *
-   */
-  public function getLatestUsers()
-  {
-    $query = User::query()
+    /**
+     * Query latest users
+     */
+    public function getLatestUsers()
+    {
+        $query = User::query()
       ->latest('created_at')
       ->take(5)
       ->get();
 
-    return UserResource::collection($query);
-  }
+        return UserResource::collection($query);
+    }
 }

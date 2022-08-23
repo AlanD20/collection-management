@@ -3,53 +3,56 @@
 namespace App\Models;
 
 use App\Traits\DateDefaultFormat;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
 class Detail extends Model
 {
-  use HasFactory, DateDefaultFormat;
+    use HasFactory;
+    use DateDefaultFormat;
 
-  protected $table = 'details';
-  protected $primaryKey = 'id';
-  protected $with = [];
+    protected $table = 'details';
 
-  protected $fillable = [
-    'block',
-    'admin',
-    'theme',
-    'locale',
-  ];
+    protected $primaryKey = 'id';
 
-  // Date conversion
-  protected $dates = [
-    'created_at',
-    'updated_at',
-  ];
+    protected $with = [];
 
-  // Hidden from query
-  protected $hidden = [];
+    protected $fillable = [
+        'block',
+        'admin',
+        'theme',
+        'locale',
+    ];
 
-  // Default values
-  protected $attributes = [];
+    // Date conversion
+    protected $dates = [
+        'created_at',
+        'updated_at',
+    ];
 
-  public function user()
-  {
-    return $this->belongsTo(User::class, 'user_id', 'id');
-  }
+    // Hidden from query
+    protected $hidden = [];
 
-  public function locale(): Attribute
-  {
-    return new Attribute(
-      set: fn ($value) => \strtolower($value)
-    );
-  }
+    // Default values
+    protected $attributes = [];
 
-  public function theme(): Attribute
-  {
-    return new Attribute(
-      set: fn ($value) => \strtolower($value)
-    );
-  }
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+
+    public function locale(): Attribute
+    {
+        return new Attribute(
+            set: fn ($value) => \strtolower($value)
+        );
+    }
+
+    public function theme(): Attribute
+    {
+        return new Attribute(
+            set: fn ($value) => \strtolower($value)
+        );
+    }
 }

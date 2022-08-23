@@ -1,0 +1,17 @@
+{
+  "preset": "laravel",
+  "rules": {
+    "@PSR12": true,
+    "simplified_null_return": true,
+    "single_quote": true,
+    "braces": {
+      "allow_single_line_closure": true
+    },
+    "function_typehint_space": true,
+    "trim_array_spaces": true,
+    "new_with_braces": {
+      "anonymous_class": false,
+      "named_class": false
+    }
+  }
+}

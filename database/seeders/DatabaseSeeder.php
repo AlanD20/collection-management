@@ -7,71 +7,69 @@ use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
-  /**
-   * Seed the application's database.
-   *
-   * @return void
-   */
-  public function run()
-  {
-    // Admin
-    \App\Models\User::factory()->create([
-      'name' => 'aland',
-      'username' => 'a20',
-      'email' => 'aland20@pm.me',
-    ])->detail()->update([
-      'admin' => true
-    ]);
-
-    $categories = \App\Models\Category::factory(250)->create()->pluck('id');
-
-    $tags = \App\Models\Tag::factory(250)->create()->pluck('id');
-
-    $items = [];
-    $users = \App\Models\User::factory(25)->create()
-      ->each(function ($user) use ($categories, $tags, &$items) {
-
-        $cols = \App\Models\Collection::factory(10)->create([
-          'user_id' => $user->id,
-          'category_id' => fake()->randomElement($categories)
+    /**
+     * Seed the application's database.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        // Admin
+        \App\Models\User::factory()->create([
+            'name' => 'aland',
+            'username' => 'a20',
+            'email' => 'aland20@pm.me',
+        ])->detail()->update([
+            'admin' => true,
         ]);
 
-        for ($i = 0; $i < 15; $i++) {
-          $id = collect($cols->pluck('id')->all())->random();
+        $categories = \App\Models\Category::factory(250)->create()->pluck('id');
 
-          $item = \App\Models\Item::factory()->create([
-            'collection_id' => $id,
+        $tags = \App\Models\Tag::factory(250)->create()->pluck('id');
+
+        $items = [];
+        $users = \App\Models\User::factory(25)->create()
+      ->each(function ($user) use ($categories, $tags, &$items) {
+          $cols = \App\Models\Collection::factory(10)->create([
+              'user_id' => $user->id,
+              'category_id' => fake()->randomElement($categories),
           ]);
-          $item->tags()
+
+          for ($i = 0; $i < 15; $i++) {
+              $id = collect($cols->pluck('id')->all())->random();
+
+              $item = \App\Models\Item::factory()->create([
+                  'collection_id' => $id,
+              ]);
+              $item->tags()
             ->attach(collect($tags)->random(12)->all());
 
-          \array_push($items, [
-            'item' => $item->id,
-            'user' => $user->id
-          ]);
-        }
+              \array_push($items, [
+                  'item' => $item->id,
+                  'user' => $user->id,
+              ]);
+          }
       });
 
-    $userIds = $users->pluck('id')->all();
-    $comments = [];
-    for ($i = 0; $i < 500; $i++) {
-      $itemId = collect($items)->random(1)->all();
-      $comments[] = [
-        'user_id' => collect($userIds)->random(),
-        'item_id' => $itemId[0]['item'],
-        'item_user_id' => $itemId[0]['user'],
-        'body' => fake()->paragraph(20)
-      ];
-    }
+        $userIds = $users->pluck('id')->all();
+        $comments = [];
+        for ($i = 0; $i < 500; $i++) {
+            $itemId = collect($items)->random(1)->all();
+            $comments[] = [
+                'user_id' => collect($userIds)->random(),
+                'item_id' => $itemId[0]['item'],
+                'item_user_id' => $itemId[0]['user'],
+                'body' => fake()->paragraph(20),
+            ];
+        }
 
-    foreach (array_chunk($comments, 100) as $chunk_comments) {
-      \App\Models\Comment::insert($chunk_comments);
-    }
+        foreach (array_chunk($comments, 100) as $chunk_comments) {
+            \App\Models\Comment::insert($chunk_comments);
+        }
 
-
-    // \App\Models\User::factory()->create([
+        // \App\Models\User::factory()->create([
     //     'name' => 'Test User',
     //     'email' => 'test@example.com',
-    // ]);
-  }
+        // ]);
+    }
 }

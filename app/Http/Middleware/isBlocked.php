@@ -8,22 +8,23 @@ use Illuminate\Support\Facades\Auth;
 
 class isBlocked
 {
-  /**
-   * Handle an incoming request.
-   *
-   * @param  \Illuminate\Http\Request  $request
-   * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
-   * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
-   */
-  public function handle(Request $request, Closure $next)
-  {
-    if ($request->user()->detail->block) {
-      Auth::guard('web')->logout();
-      $request->session()->invalidate();
-      $request->session()->regenerateToken();
-      return redirect()->route('login');
-    }
+    /**
+     * Handle an incoming request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
+     * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
+     */
+    public function handle(Request $request, Closure $next)
+    {
+        if ($request->user()->detail->block) {
+            Auth::guard('web')->logout();
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
 
-    return $next($request);
-  }
+            return redirect()->route('login');
+        }
+
+        return $next($request);
+    }
 }

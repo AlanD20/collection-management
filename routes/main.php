@@ -1,10 +1,10 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Main\HomeController;
-use App\Http\Controllers\Main\UserController;
 use App\Http\Controllers\Main\CollectionController;
+use App\Http\Controllers\Main\HomeController;
 use App\Http\Controllers\Main\ItemController;
+use App\Http\Controllers\Main\UserController;
+use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])
   ->name('main.index');

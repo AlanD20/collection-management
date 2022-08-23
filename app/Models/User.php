@@ -13,78 +13,89 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-  use HasApiTokens, HasFactory, Notifiable, DateDefaultFormat;
+    use HasApiTokens;
+    use HasFactory;
+    use Notifiable;
+    use DateDefaultFormat;
 
-  protected $table = 'users';
-  protected $primaryKey = 'id';
-  protected $with = ['detail'];
+    protected $table = 'users';
 
-  /**
-   * The attributes that are mass assignable.
-   *
-   * @var array<int, string>
-   */
-  protected $fillable = [
-    'name',
-    'username',
-    'email',
-    'password',
-  ];
+    protected $primaryKey = 'id';
 
-  /**
-   * The attributes that should be hidden for serialization.
-   *
-   * @var array<int, string>
-   */
-  protected $hidden = [
-    'password',
-    'remember_token',
-  ];
+    protected $with = ['detail'];
 
-  /**
-   * The attributes that should be cast.
-   *
-   * @var array<string, string>
-   */
-  protected $casts = [];
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'name',
+        'username',
+        'email',
+        'password',
+    ];
 
-  public function detail()
-  {
-    return $this->hasOne(Detail::class, 'user_id', 'id');
-  }
-  public function collections()
-  {
-    return $this->hasMany(Collection::class, 'user_id', 'id');
-  }
-  public function likes()
-  {
-    return $this->belongsToMany(Item::class, 'likes', 'user_id', 'item_id');
-  }
-  public function comments()
-  {
-    return $this->hasMany(Comment::class, 'user_id', 'id');
-  }
-  public function getRouteKeyName()
-  {
-    return 'username';
-  }
+    /**
+     * The attributes that should be hidden for serialization.
+     *
+     * @var array<int, string>
+     */
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
 
-  public function name(): Attribute
-  {
-    return new Attribute(
-      set: fn ($value) => \strtolower($value)
-    );
-  }
-  public function username(): Attribute
-  {
-    return new Attribute(
-      set: fn ($value) => \strtolower($value)
-    );
-  }
-  public function email(): Attribute
-  {
-    return new Attribute(
-      set: fn ($value) => \strtolower($value)
-    );
-  }
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array<string, string>
+     */
+    protected $casts = [];
+
+    public function detail()
+    {
+        return $this->hasOne(Detail::class, 'user_id', 'id');
+    }
+
+    public function collections()
+    {
+        return $this->hasMany(Collection::class, 'user_id', 'id');
+    }
+
+    public function likes()
+    {
+        return $this->belongsToMany(Item::class, 'likes', 'user_id', 'item_id');
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class, 'user_id', 'id');
+    }
+
+    public function getRouteKeyName()
+    {
+        return 'username';
+    }
+
+    public function name(): Attribute
+    {
+        return new Attribute(
+            set: fn ($value) => \strtolower($value)
+        );
+    }
+
+    public function username(): Attribute
+    {
+        return new Attribute(
+            set: fn ($value) => \strtolower($value)
+        );
+    }
+
+    public function email(): Attribute
+    {
+        return new Attribute(
+            set: fn ($value) => \strtolower($value)
+        );
+    }
 }

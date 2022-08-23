@@ -2,43 +2,45 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model
 {
-  use HasFactory;
+    use HasFactory;
 
-  protected $table = 'categories';
-  protected $primaryKey = 'id';
-  protected $with = [];
+    protected $table = 'categories';
 
-  protected $fillable = [
-    'name'
-  ];
+    protected $primaryKey = 'id';
 
-  // Date conversion
-  protected $dates = [
-    'created_at',
-    'updated_at',
-  ];
+    protected $with = [];
 
-  // Hidden from query
-  protected $hidden = [];
+    protected $fillable = [
+        'name',
+    ];
 
-  // Default values
-  protected $attributes = [];
+    // Date conversion
+    protected $dates = [
+        'created_at',
+        'updated_at',
+    ];
 
-  public function collections()
-  {
-    return $this->belongsTo(Collection::class, 'id', 'category_id');
-  }
+    // Hidden from query
+    protected $hidden = [];
 
-  public function name(): Attribute
-  {
-    return new Attribute(
-      set: fn ($value) => \strtolower($value)
-    );
-  }
+    // Default values
+    protected $attributes = [];
+
+    public function collections()
+    {
+        return $this->belongsTo(Collection::class, 'id', 'category_id');
+    }
+
+    public function name(): Attribute
+    {
+        return new Attribute(
+            set: fn ($value) => \strtolower($value)
+        );
+    }
 }

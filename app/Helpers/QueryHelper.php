@@ -2,130 +2,121 @@
 
 namespace App\Helpers;
 
-use Illuminate\Support\Str;
-use App\Models\{User, Item, Collection,};
-use App\Http\QueryFilters\Filtering\Search\{
-  FilterTagSearch,
-  FilterUserSearch,
-  FilterItemSearch,
-  FilterCommentSearch,
-  FilterCategorySearch,
-  FilterCollectionSearch,
-};
-use App\Http\Resources\{
-  UserResource,
-  ItemResource,
-  CollectionResource,
-};
+use App\Http\QueryFilters\Filtering\Search\FilterCategorySearch;
+use App\Http\QueryFilters\Filtering\Search\FilterCollectionSearch;
+use App\Http\QueryFilters\Filtering\Search\FilterCommentSearch;
+use App\Http\QueryFilters\Filtering\Search\FilterItemSearch;
+use App\Http\QueryFilters\Filtering\Search\FilterTagSearch;
+use App\Http\QueryFilters\Filtering\Search\FilterUserSearch;
+use App\Http\Resources\CollectionResource;
+use App\Http\Resources\ItemResource;
+use App\Http\Resources\UserResource;
+use App\Models\Collection;
+use App\Models\Item;
+use App\Models\User;
 
 class QueryHelper
 {
-  public function items()
-  {
-
-    $query = Item::query()
+    public function items()
+    {
+        $query = Item::query()
       ->with([
-        'tags',
-        'collection',
-        'collection.user',
+          'tags',
+          'collection',
+          'collection.user',
       ]);
 
-    $pipe = ThroughPipeline::getPaginatePipe(
-      query: $query,
-      filters: [FilterItemSearch::class],
-      paginate: 12,
-      name: 'items'
-    );
+        $pipe = ThroughPipeline::getPaginatePipe(
+            query: $query,
+            filters: [FilterItemSearch::class],
+            paginate: 12,
+            name: 'items'
+        );
 
-    return ItemResource::collection($pipe);
-  }
+        return ItemResource::collection($pipe);
+    }
 
-  public function categories()
-  {
-
-    $query = Collection::query()
+    public function categories()
+    {
+        $query = Collection::query()
       ->with('user', 'category');
 
-    $pipe = ThroughPipeline::getPaginatePipe(
-      query: $query,
-      filters: [FilterCategorySearch::class],
-      name: 'categories'
-    );
+        $pipe = ThroughPipeline::getPaginatePipe(
+            query: $query,
+            filters: [FilterCategorySearch::class],
+            name: 'categories'
+        );
 
-    return CollectionResource::collection($pipe);
-  }
+        return CollectionResource::collection($pipe);
+    }
 
-  public function collections()
-  {
+    public function collections()
+    {
+        $query = Collection::query()->with(['user', 'category']);
 
-    $query = Collection::query()->with(['user', 'category']);
+        $pipe = ThroughPipeline::getPaginatePipe(
+            query: $query,
+            filters: [FilterCollectionSearch::class],
+            name: 'collections'
+        );
 
-    $pipe = ThroughPipeline::getPaginatePipe(
-      query: $query,
-      filters: [FilterCollectionSearch::class],
-      name: 'collections'
-    );
+        return CollectionResource::collection($pipe);
+    }
 
-    return CollectionResource::collection($pipe);
-  }
-
-  public function comments()
-  {
-
-    $query = Item::query()
+    public function comments()
+    {
+        $query = Item::query()
       ->with([
-        'comments',
-        'collection',
-        'comments.user',
-        'collection.user',
+          'comments',
+          'collection',
+          'comments.user',
+          'collection.user',
       ]);
 
-    $pipe = ThroughPipeline::getPaginatePipe(
-      query: $query,
-      filters: [FilterCommentSearch::class],
-      name: 'comments'
-    );
+        $pipe = ThroughPipeline::getPaginatePipe(
+            query: $query,
+            filters: [FilterCommentSearch::class],
+            name: 'comments'
+        );
 
-    $pipe->getCollection()
+        $pipe->getCollection()
       ->each(
-        fn ($item) => $item->comments = $item->comments->filter(
-          fn ($comment) => str_contains($comment->body, request()->query('query'))
-        )
+          fn ($item) => $item->comments = $item->comments->filter(
+              fn ($comment) => str_contains($comment->body, request()->query('query'))
+          )
       );
 
-    return ItemResource::collection($pipe);
-  }
+        return ItemResource::collection($pipe);
+    }
 
-  public function tags()
-  {
-
-    $query = Item::query()
+    public function tags()
+    {
+        $query = Item::query()
       ->with([
-        'tags',
-        'collection',
-        'collection.user',
+          'tags',
+          'collection',
+          'collection.user',
       ]);
-    $pipe = ThroughPipeline::getPaginatePipe(
-      query: $query,
-      filters: [FilterTagSearch::class],
-      name: 'tags'
-    );
+        $pipe = ThroughPipeline::getPaginatePipe(
+            query: $query,
+            filters: [FilterTagSearch::class],
+            name: 'tags'
+        );
 
-    return ItemResource::collection($pipe);
-  }
+        return ItemResource::collection($pipe);
+    }
 
-  public function users()
-  {
+    public function users()
+    {
+        $query = User::query();
 
-    $query = User::query();
+        $pipe = ThroughPipeline::getPaginatePipe(
+            query: $query,
+            filters: [FilterUserSearch::class],
+            paginate: 12,
+            name: 'users'
+        );
 
-    $pipe = ThroughPipeline::getPaginatePipe(
-      query: $query,
-      filters: [FilterUserSearch::class],
-      paginate: 12,
-      name: 'users'
-    );
-
-    return UserResource::collection($pipe);
-  }
+        return UserResource::collection($pipe);
+    }
 }

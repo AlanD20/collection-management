@@ -2,159 +2,150 @@
 
 namespace App\Http\Controllers\User;
 
-use App\Helpers\CollectionHelper;
-use Inertia\Inertia;
-use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Controller;
-use App\Models\{User, Comment, Collection};
-use App\Http\Requests\User\{
-  UserRequest,
-  UserPasswordRequest
-};
-use App\Http\Resources\{
-  UserResource,
-  CommentResource,
-  CollectionResource,
-};
+use App\Http\Requests\User\UserPasswordRequest;
+use App\Http\Requests\User\UserRequest;
+use App\Http\Resources\UserResource;
+use App\Models\Collection;
+use App\Models\Comment;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+use Inertia\Inertia;
 
 class UserController extends Controller
 {
-
-  /**
-   * Instantiate a new controller instance.
-   *
-   * @return void
-   */
-  public function __construct()
-  {
-    $this->middleware(['auth', 'isBlocked'])
+    /**
+     * Instantiate a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware(['auth', 'isBlocked'])
       ->except('show');
-  }
+    }
 
-  /**
-   * Display the specified resource.
-   *
-   * @param  \App\Models\User  $uname
-   * @return \Illuminate\Http\Response
-   */
-  public function show(User $uname)
-  {
-    $user = new UserResource($uname);
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\User  $uname
+     * @return \Illuminate\Http\Response
+     */
+    public function show(User $uname)
+    {
+        $user = new UserResource($uname);
 
-    $collectionCount = $this->getUserCollections($uname->id);
-    $commentCount = $this->getUserComments($uname->id);
+        $collectionCount = $this->getUserCollections($uname->id);
+        $commentCount = $this->getUserComments($uname->id);
 
-    return Inertia::render('User/Dashboard', compact('user', 'collectionCount', 'commentCount'));
-  }
+        return Inertia::render('User/Dashboard', compact('user', 'collectionCount', 'commentCount'));
+    }
 
-  /**
-   * Show the form for editing the specified resource.
-   *
-   * @param  \App\Models\User  $uname
-   * @return \Illuminate\Http\Response
-   */
-  public function edit(User $uname)
-  {
-    $this->authorize('view', $uname);
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\User  $uname
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(User $uname)
+    {
+        $this->authorize('view', $uname);
 
-    $user = new UserResource($uname);
+        $user = new UserResource($uname);
 
-    return Inertia::render('User/Edit', compact('user'));
-  }
+        return Inertia::render('User/Edit', compact('user'));
+    }
 
-  /**
-   * Show the form for editing the specified resource.
-   *
-   * @param  \App\Models\User  $uname
-   * @return \Illuminate\Http\Response
-   */
-  public function edit_password(User $uname)
-  {
-    $this->authorize('view', $uname);
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\User  $uname
+     * @return \Illuminate\Http\Response
+     */
+    public function edit_password(User $uname)
+    {
+        $this->authorize('view', $uname);
 
-    $user = new UserResource($uname);
+        $user = new UserResource($uname);
 
-    return Inertia::render('User/EditPassword', compact('user'));
-  }
+        return Inertia::render('User/EditPassword', compact('user'));
+    }
 
-  /**
-   * Update the specified resource in storage.
-   *
-   * @param  \Illuminate\Http\Request  $request
-   * @param  \App\Models\User  $uname
-   * @return \Illuminate\Http\RedirectResponse
-   */
-  public function update(UserRequest $request, User $uname)
-  {
-    $this->authorize('update', $uname);
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\User  $uname
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function update(UserRequest $request, User $uname)
+    {
+        $this->authorize('update', $uname);
 
-    $uname->update($request->validated());
-    $uname->fresh();
+        $uname->update($request->validated());
+        $uname->fresh();
 
-    return redirect()
+        return redirect()
       ->route('u.show', ['uname' => $uname->username])
       ->with('success', __('model.update', [
-        'model' => 'user'
+          'model' => 'user',
       ]));
-  }
+    }
 
-  /**
-   * Update the specified resource in storage.
-   *
-   * @param  \Illuminate\Http\Request  $request
-   * @param  \App\Models\User  $uname
-   * @return \Illuminate\Http\RedirectResponse
-   */
-  public function update_password(UserPasswordRequest $request, User $uname)
-  {
-    $this->authorize('update', $uname);
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\User  $uname
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function update_password(UserPasswordRequest $request, User $uname)
+    {
+        $this->authorize('update', $uname);
 
-    $uname->update([
-      'password' => Hash::make($request->safe()->password)
-    ]);
+        $uname->update([
+            'password' => Hash::make($request->safe()->password),
+        ]);
 
-    return redirect()
+        return redirect()
       ->route('u.show', ['uname' => $uname->username])
       ->with('success', __('model.update', [
-        'model' => 'user'
+          'model' => 'user',
       ]));
-  }
+    }
 
-  /**
-   * Remove the specified resource from storage.
-   *
-   * @param  \App\Models\User  $uname
-   * @return \Illuminate\Http\RedirectResponse
-   */
-  public function destroy(User $uname)
-  {
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\User  $uname
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function destroy(User $uname)
+    {
+        $this->authorize('view', $uname);
 
-    $this->authorize('view', $uname);
+        $uname->delete();
 
-    $uname->delete();
-
-    return redirect()
+        return redirect()
       ->route('main.index')
       ->with('success', __('model.delete', [
-        'model' => 'user'
+          'model' => 'user',
       ]));
-  }
+    }
 
-  function getUserCollections(int $id)
-  {
-
-    $query = Collection::query()
+    public function getUserCollections(int $id)
+    {
+        $query = Collection::query()
       ->where('user_id', $id);
 
-    return $query->count();
-  }
+        return $query->count();
+    }
 
-  function getUserComments(int $id)
-  {
-
-    $query = Comment::query()
+    public function getUserComments(int $id)
+    {
+        $query = Comment::query()
       ->where('user_id', $id);
 
-    return $query->count();;
-  }
+        return $query->count();
+    }
 }

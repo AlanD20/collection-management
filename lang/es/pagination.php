@@ -2,7 +2,7 @@
 
 return [
 
-  /*
+    /*
     |--------------------------------------------------------------------------
     | Pagination Language Lines
     |--------------------------------------------------------------------------
@@ -13,7 +13,7 @@ return [
     |
     */
 
-  'previous' => '&laquo; Previo',
-  'next' => 'Próximo &raquo;',
-  'result' => 'Mostrando :from a :to de :total resultados'
+    'previous' => '&laquo; Previo',
+    'next' => 'Próximo &raquo;',
+    'result' => 'Mostrando :from a :to de :total resultados',
 ];

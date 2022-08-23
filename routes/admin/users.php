@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminUserController;
+use Illuminate\Support\Facades\Route;
 
 Route::get('/users', [AdminUserController::class, 'index'])
   ->name('users.index');

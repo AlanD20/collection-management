@@ -6,37 +6,37 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class RegisterRequest extends FormRequest
 {
-  /**
-   * Determine if the user is authorized to make this request.
-   *
-   * @return bool
-   */
-  public function authorize()
-  {
-    return true;
-  }
+    /**
+     * Determine if the user is authorized to make this request.
+     *
+     * @return bool
+     */
+    public function authorize()
+    {
+        return true;
+    }
 
-  /**
-   * Get the validation rules that apply to the request.
-   *
-   * @return array<string, mixed>
-   */
-  public function rules()
-  {
-    return [
-      'name' => ['required', 'string', 'max:35'],
-      'username' => ['required', 'string', 'max:15', 'unique:users', 'alpha_num'],
-      'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-      'password' => ['required', 'confirmed'],
-      'tos' => ['required', 'accepted']
-    ];
-  }
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array<string, mixed>
+     */
+    public function rules()
+    {
+        return [
+            'name' => ['required', 'string', 'max:35'],
+            'username' => ['required', 'string', 'max:15', 'unique:users', 'alpha_num'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'confirmed'],
+            'tos' => ['required', 'accepted'],
+        ];
+    }
 
-  public function attributes()
-  {
-    return [
-      'email' => 'email address',
-      'tos' => 'terms of service'
-    ];
-  }
+    public function attributes()
+    {
+        return [
+            'email' => 'email address',
+            'tos' => 'terms of service',
+        ];
+    }
 }
