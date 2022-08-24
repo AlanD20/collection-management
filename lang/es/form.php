@@ -33,6 +33,7 @@ return [
     // Buttons
     'profile' => 'Perfil',
     'login' => 'Login',
+    'login_with' => 'Iniciar Sesión Con :provider',
     'back' => 'Volver',
     'back_item' => 'Volver a los elementos',
     'back_profile' => 'Volver al perfil',

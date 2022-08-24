@@ -15,8 +15,6 @@ class Like extends Model
 
     protected $primaryKey = 'id';
 
-    protected $with = [];
-
     protected $fillable = [
         'user_id',
         'item_id',
@@ -27,12 +25,6 @@ class Like extends Model
         'created_at',
         'updated_at',
     ];
-
-    // Hidden from query
-    protected $hidden = [];
-
-    // Default values
-    protected $attributes = [];
 
     public function user()
     {

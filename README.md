@@ -55,7 +55,7 @@
 - [x] When adding tags to the item, it must auto-complete it.			
 
 #### Optionals:
-- [ ] Auth via social media.
+- [x] Auth via social media.
 - [x] Custom fields with types chosen by the user.
 - [x] Adding more than 3 custom fields.
 - [ ] Exporting a collection to a CSV File.
@@ -67,11 +67,15 @@
 php artisan lang:export [language directory]
 php artisan lang:export en # Example
 ```
-- Clear caches
+- Clear Caches.
 ```bash
 yarn cache:clear
 ```
-- Formatting Syntax
+- Drop all tables and seed the database.
+```bash
+yarn db:fresh
+```
+- Formatting Syntax.
 ```bash
 yarn format:js
 yarn format:php

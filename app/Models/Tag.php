@@ -16,8 +16,6 @@ class Tag extends Model
 
     protected $primaryKey = 'id';
 
-    protected $with = [];
-
     protected $fillable = [
         'name',
     ];
@@ -27,12 +25,6 @@ class Tag extends Model
         'created_at',
         'updated_at',
     ];
-
-    // Hidden from query
-    protected $hidden = [];
-
-    // Default values
-    protected $attributes = [];
 
     public function items()
     {

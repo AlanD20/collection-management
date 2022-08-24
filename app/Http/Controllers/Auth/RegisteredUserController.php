@@ -39,8 +39,6 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->safe()->password),
         ]);
 
-        $user->detail()->create([]);
-
         Auth::login($user);
 
         return redirect(RouteServiceProvider::HOME);

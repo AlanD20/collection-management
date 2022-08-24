@@ -16,8 +16,6 @@ class Item extends Model
 
     protected $primaryKey = 'id';
 
-    protected $with = [];
-
     protected $fillable = [
         'name',
         'fields',
@@ -29,16 +27,10 @@ class Item extends Model
         'updated_at',
     ];
 
-    // Hidden from query
-    protected $hidden = [];
-
     // Casts
     protected $casts = [
         'fields' => 'array',
     ];
-
-    // Default values
-    protected $attributes = [];
 
     public function collection()
     {
@@ -71,14 +63,14 @@ class Item extends Model
     {
         return new Attribute(
             get: fn ($fields) => collect(\json_decode($fields, true))
-              ->transform(
-                  fn ($field) => $field['type'] === 'datetime' ?
-                    [
-                        ...$field,
-                        'value' => \Carbon\Carbon::parse($field['value'])
-                          ->format('m-d-Y'),
-                    ] : $field
-              )->all()
+                ->transform(
+                    fn ($field) => $field['type'] === 'datetime' ?
+                        [
+                            ...$field,
+                            'value' => \Carbon\Carbon::parse($field['value'])
+                                ->format('m-d-Y'),
+                        ] : $field
+                )->all()
         );
     }
 }

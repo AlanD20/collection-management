@@ -16,8 +16,6 @@ class Collection extends Model
 
     protected $primaryKey = 'id';
 
-    protected $with = [];
-
     protected $fillable = [
         'name',
         'description',
@@ -32,16 +30,10 @@ class Collection extends Model
         'updated_at',
     ];
 
-    // Hidden from query
-    protected $hidden = [];
-
     // Casts
     protected $casts = [
         'fields' => 'array',
     ];
-
-    // Default values
-    protected $attributes = [];
 
     public function user()
     {
@@ -64,11 +56,4 @@ class Collection extends Model
             set: fn ($value) => \strtolower($value)
         );
     }
-
-    // public function description(): Attribute
-  // {
-  //   return new Attribute(
-  //     set: fn ($value) => \strtolower($value)
-  //   );
-  // }
 }

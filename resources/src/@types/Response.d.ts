@@ -16,6 +16,7 @@ export interface ParamsProp extends SortProps, QueryProps {
   collection?: number | null;
   item?: number | null;
   comment?: number | null;
+  provider?: string | null;
 }
 
 export interface SortProps {

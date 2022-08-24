@@ -72,6 +72,7 @@
     "comment_post": "Enviar comentario",
     "profile": "Perfil",
     "login": "Login",
+    "login_with": "Iniciar Sesi\u00f3n Con :provider",
     "back": "Volver",
     "back_item": "Volver a los elementos",
     "back_profile": "Volver al perfil",

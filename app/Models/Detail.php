@@ -16,8 +16,6 @@ class Detail extends Model
 
     protected $primaryKey = 'id';
 
-    protected $with = [];
-
     protected $fillable = [
         'block',
         'admin',
@@ -30,12 +28,6 @@ class Detail extends Model
         'created_at',
         'updated_at',
     ];
-
-    // Hidden from query
-    protected $hidden = [];
-
-    // Default values
-    protected $attributes = [];
 
     public function user()
     {

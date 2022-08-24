@@ -32,16 +32,17 @@ Route::get('/getadmin', function () {
 
 require __DIR__.'/main.php';
 require __DIR__.'/auth.php';
+require __DIR__.'/socials.php';
 require __DIR__.'/admin/index.php';
 require __DIR__.'/users.php';
 
 Route::prefix('/set')
-  ->name('set.')
-  ->group(function () {
-      Route::post('/locale', [PreferenceController::class, 'locale'])
-      ->name('locale');
-      Route::post('/theme', [PreferenceController::class, 'theme'])
-      ->name('theme');
-  });
+    ->name('set.')
+    ->group(function () {
+        Route::post('/locale', [PreferenceController::class, 'locale'])
+            ->name('locale');
+        Route::post('/theme', [PreferenceController::class, 'theme'])
+            ->name('theme');
+    });
 
 Route::fallback(fn () => redirect()->route('main.index'));

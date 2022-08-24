@@ -33,6 +33,7 @@ return [
     // Buttons
     'profile' => 'Profile',
     'login' => 'Login',
+    'login_with' => 'Login With :provider',
     'back' => 'Go Back',
     'back_item' => 'Back to items',
     'back_profile' => 'Back to Profile',
