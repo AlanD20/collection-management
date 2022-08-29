@@ -80,6 +80,36 @@ yarn format:js
 yarn format:php
 ```
 
+### Deployment
+
+- Clone the repository.
+- Copy [nginx configuration](/.nginx/pcm.conf) from **.nginx** direcotry folder.
+- Copy `.env` file from `.env.example`
+- Change permissions
+```bash
+sudo chown -R $USER:www-data storage
+sudo chown -R $USER:www-data bootstrap/cache
+
+sudo chmod 775 -R storage
+sudo chmod 775 -R bootstrap/cache
+```
+
+- Install composer packages.
+```bash
+composer install --optimize-autoloader --no-dev
+```
+- Build Frontend components by installing depndencies, then Export languages to json file.
+```bash
+yarn install && yarn lang
+```
+- Clear Cache & Build the components.
+```bash
+yarn cache:clear && yarn build
+```
+- Migrate to the database.
+```bash
+yarn db:fresh
+```
 
 
 ## License
