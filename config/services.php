@@ -35,5 +35,6 @@ return [
         'client_secret' => env('GITHUB_CLIENT_SECRET'),
         'redirect' => '/auth/github/callback',
     ],
+    'config_auth' => env('CONFIG_AUTH_KEY'),
 
 ];

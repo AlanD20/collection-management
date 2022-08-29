@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
         // Admin
         \App\Models\User::factory()->create([
             'name' => 'aland',
-            'username' => 'a20',
+            'username' => 'aland20',
             'email' => 'aland20@pm.me',
         ])->detail()->update([
             'admin' => true,
@@ -29,27 +29,27 @@ class DatabaseSeeder extends Seeder
 
         $items = [];
         $users = \App\Models\User::factory(25)->create()
-      ->each(function ($user) use ($categories, $tags, &$items) {
-          $cols = \App\Models\Collection::factory(10)->create([
-              'user_id' => $user->id,
-              'category_id' => fake()->randomElement($categories),
-          ]);
+            ->each(function ($user) use ($categories, $tags, &$items) {
+                $cols = \App\Models\Collection::factory(10)->create([
+                    'user_id' => $user->id,
+                    'category_id' => fake()->randomElement($categories),
+                ]);
 
-          for ($i = 0; $i < 15; $i++) {
-              $id = collect($cols->pluck('id')->all())->random();
+                for ($i = 0; $i < 15; $i++) {
+                    $id = collect($cols->pluck('id')->all())->random();
 
-              $item = \App\Models\Item::factory()->create([
-                  'collection_id' => $id,
-              ]);
-              $item->tags()
-            ->attach(collect($tags)->random(12)->all());
+                    $item = \App\Models\Item::factory()->create([
+                        'collection_id' => $id,
+                    ]);
+                    $item->tags()
+                        ->attach(collect($tags)->random(12)->all());
 
-              \array_push($items, [
-                  'item' => $item->id,
-                  'user' => $user->id,
-              ]);
-          }
-      });
+                    \array_push($items, [
+                        'item' => $item->id,
+                        'user' => $user->id,
+                    ]);
+                }
+            });
 
         $userIds = $users->pluck('id')->all();
         $comments = [];
@@ -68,8 +68,8 @@ class DatabaseSeeder extends Seeder
         }
 
         // \App\Models\User::factory()->create([
-    //     'name' => 'Test User',
-    //     'email' => 'test@example.com',
+        //     'name' => 'Test User',
+        //     'email' => 'test@example.com',
         // ]);
     }
 }

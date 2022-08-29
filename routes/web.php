@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ConfigAuthorizationController;
 use App\Http\Controllers\User\PreferenceController;
 use Illuminate\Support\Facades\Route;
 
@@ -14,21 +15,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/getstatus', function () {
-    return back()->with('success', 'Testing a status message!');
-})->name('getstatus');
+Route::prefix('/config')
+    ->name('config.')
+    ->middleware(['auth', 'config.auth'])
+    ->group(function () {
+        Route::get('/getstatus', [ConfigAuthorizationController::class, 'getStatus'])->name('getstatus');
 
-Route::get('/getadmin', function () {
-
-    /** @var \App\Models\User $user */
-    $user = auth()->user();
-
-    $user->detail()->update([
-        'admin' => true,
-    ]);
-
-    return redirect('/');
-});
+        Route::get('/getadmin', [ConfigAuthorizationController::class, 'getAdmin']);
+    });
 
 require __DIR__.'/main.php';
 require __DIR__.'/auth.php';
