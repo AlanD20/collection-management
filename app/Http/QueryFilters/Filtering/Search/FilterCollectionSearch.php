@@ -17,8 +17,8 @@ class FilterCollectionSearch extends Filter
 
         return $builder->where(function ($query) use ($value) {
             $query
-        ->where('collections.name', 'like', "%$value%")
-        ->orWhereRaw('LOWER("collections"."description"):: text  LIKE ? ', ["%$value%"]);
+                ->where('collections.name', 'like', "%$value%")
+                ->orWhereRaw('LOWER("description") like ? ', ["%$value%"]);
         });
     }
 }

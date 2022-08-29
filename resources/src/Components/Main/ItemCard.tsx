@@ -15,10 +15,6 @@ const ItemCard = ({ item, className = '' }: Props) => {
     <div
       className={`card card-compact lg:card-normal min-w-[300px] bg-base-100 shadow-xl h-[450px] ${className}`}
     >
-      <div className="px-8 pt-4 flex justify-between text-xs italic">
-        <span>{`${__('model.created_at')} ${item.createdAt}`}</span>
-        <span>{`${__('model.updated_at')} ${item.updatedAt}`}</span>
-      </div>
       <div className="card-body !py-4">
         <div className="flex flex-col mb-4">
           <h2 className="card-title capitalize font-bold">
@@ -44,7 +40,12 @@ const ItemCard = ({ item, className = '' }: Props) => {
               );
             })}
         </div>
-        <div className="card-actions justify-end mt-auto mb-4">
+
+        <div className="card-actions justify-between items-center mt-auto mb-4 gap-2">
+          <div className="flex flex-col gap-2 text-xs italic">
+            <span>{`${__('model.created_at')} ${item.createdAt}`}</span>
+            <span>{`${__('model.updated_at')} ${item.updatedAt}`}</span>
+          </div>
           <ViewButtonLink
             routeName="u.collections.items.show"
             params={{

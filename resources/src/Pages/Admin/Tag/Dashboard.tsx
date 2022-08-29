@@ -22,8 +22,7 @@ const Dashboard = ({ tags }: Props) => {
       <table className="hidden lg:table table-auto table-zebra">
         <TagHead />
         <tbody>
-          {tags &&
-            tags.data.length > 0 &&
+          {condition &&
             tags.data.map((tag) => <TagTableRow key={tag.id} tag={tag} />)}
         </tbody>
       </table>

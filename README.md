@@ -1,6 +1,6 @@
 ## Personal Collection Management
 
-### [LIVE Demo](https://a20-collection-management.herokuapp.com)
+### [LIVE Demo](https://pcm.aland20.tech/)
 
 
 ## Main Goals:

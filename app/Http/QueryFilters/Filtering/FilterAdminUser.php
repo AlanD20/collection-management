@@ -14,8 +14,8 @@ class FilterAdminUser extends Filter
 
         return $builder->where(function ($query) use ($value) {
             $query->where('users.name', 'like', "%{$value}%")
-        ->orWhere('users.username', 'like', "%{$value}%")
-        ->orWhere('users.email', 'like', "%{$value}%");
+                ->orWhere('users.username', 'like', "%{$value}%")
+                ->orWhere('users.email', 'like', "%{$value}%");
         });
     }
 }

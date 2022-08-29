@@ -22,8 +22,7 @@ const Dashboard = ({ categories }: Props) => {
       <table className="hidden lg:table table-auto table-zebra">
         <CategoryHead />
         <tbody>
-          {categories &&
-            categories.data.length > 0 &&
+          {condition &&
             categories.data.map((category) => (
               <CategoryTableRow key={category.id} category={category} />
             ))}

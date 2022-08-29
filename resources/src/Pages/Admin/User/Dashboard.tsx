@@ -22,8 +22,7 @@ const Dashboard = ({ users }: Props) => {
       <table className="hidden lg:table table-auto table-zebra">
         <UserHead />
         <tbody>
-          {users &&
-            users.data.length > 0 &&
+          {condition &&
             users.data.map((user) => (
               <UserTableRow key={user.id} user={user} />
             ))}

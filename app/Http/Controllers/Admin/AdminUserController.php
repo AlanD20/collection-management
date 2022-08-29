@@ -20,11 +20,11 @@ class AdminUserController extends Controller
     public function index()
     {
         $query = User::query()
-      ->select([
-          'users.*',
-          'details.*',
-      ])->join('details', 'details.user_id', '=', 'users.id')
-      ->with('detail');
+            ->select([
+                'users.*',
+                'details.*',
+            ])->join('details', 'details.user_id', '=', 'users.id')
+            ->with('detail');
 
         $pipe = ThroughPipeline::getPaginatePipe(
             $query,

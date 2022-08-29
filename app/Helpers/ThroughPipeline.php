@@ -82,10 +82,10 @@ class ThroughPipeline
     public static function getPaginatePipe(Builder $query, array $filters, int $paginate = 5, string $name = 'page')
     {
         return self::new()
-      ->query($query)
-      ->through($filters)
-      ->paginate($paginate, $name)
-      ->withQueryString();
+            ->query($query)
+            ->through($filters)
+            ->paginate($paginate, $name)
+            ->withQueryString();
     }
 
     /**
@@ -96,8 +96,8 @@ class ThroughPipeline
     public function buildQuery(): Builder
     {
         return app(Pipeline::class)
-      ->send($this->query)
-      ->through($this->filters)
-      ->thenReturn();
+            ->send($this->query)
+            ->through($this->filters)
+            ->thenReturn();
     }
 }

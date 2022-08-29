@@ -521,13 +521,6 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react-table@^7.7.12":
-  version "7.7.12"
-  resolved "https://registry.yarnpkg.com/@types/react-table/-/react-table-7.7.12.tgz#628011d3cb695b07c678704a61f2f1d5b8e567fd"
-  integrity sha512-bRUent+NR/WwtDGwI/BqhZ8XnHghwHw0HUKeohzB5xN3K2qKWYE5w19e7GCuOkL1CXD9Gi1HFy7TIm2AvgWUHg==
-  dependencies:
-    "@types/react" "*"
-
 "@types/react-transition-group@^4.4.0":
   version "4.4.5"
   resolved "https://registry.yarnpkg.com/@types/react-transition-group/-/react-transition-group-4.4.5.tgz#aae20dcf773c5aa275d5b9f7cdbca638abc5e416"
@@ -2638,11 +2631,6 @@ react-date-picker@^8.4.0:
     react-fit "^1.4.0"
     update-input-width "^1.2.2"
 
-react-day-picker@^8.1.0:
-  version "8.1.0"
-  resolved "https://registry.yarnpkg.com/react-day-picker/-/react-day-picker-8.1.0.tgz#600a39380326efa1f9d470497fe0918da31068a1"
-  integrity sha512-K9HNvnu6dgLFPXTexKab7SsiC9mRTRRob39cQriUUrpWNEj888YuiI+3ZVZ0+Th9P/zd4O1aFNXmz7pk4VJtGQ==
-
 react-dom@^18.2.0:
   version "18.2.0"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-18.2.0.tgz#22aaf38708db2674ed9ada224ca4aa708d821e3d"
@@ -2713,11 +2701,6 @@ react-select@^5.4.0:
     memoize-one "^5.0.0"
     prop-types "^15.6.0"
     react-transition-group "^4.3.0"
-
-react-table@^7.8.0:
-  version "7.8.0"
-  resolved "https://registry.yarnpkg.com/react-table/-/react-table-7.8.0.tgz#07858c01c1718c09f7f1aed7034fcfd7bda907d2"
-  integrity sha512-hNaz4ygkZO4bESeFfnfOft73iBUj8K5oKi1EcSHPAibEydfsX2MyU6Z8KCr3mv3C9Kqqh71U+DhZkFvibbnPbA==
 
 react-transition-group@^4.3.0:
   version "4.4.5"
