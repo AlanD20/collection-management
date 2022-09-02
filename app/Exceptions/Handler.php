@@ -52,18 +52,21 @@ class Handler extends ExceptionHandler
     /**
      * Prepare exception for rendering.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @param  \Throwable  $e
-     * @return \Throwable
+     * @return \Symfony\Component\HttpFoundation\Response
+     *
+     * @throws \Throwable
      */
     public function render($request, Throwable $e)
     {
+        /** @var \Illuminate\Http\Response */
         $response = parent::render($request, $e);
 
         if (! app()->environment(['local', 'testing']) && in_array($response->status(), [500, 503, 404, 403])) {
-            // if (in_array($response->status(), [500, 503, 404, 403])) {
             return Inertia::render('Error', ['status' => $response->status()])
-        ->toResponse($request)
-        ->setStatusCode($response->status());
+                ->toResponse($request)
+                ->setStatusCode($response->status());
         } elseif ($response->status() === 419) {
             return back()->with([
                 'message' => 'The page expired, please try again.',

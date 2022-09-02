@@ -39,7 +39,7 @@ class CommentController extends Controller
         ]);
 
         \broadcast(new CommentPosted($comment->id))
-      ->toOthers();
+            ->toOthers();
 
         return back()->with('success', __('model.post', [
             'model' => 'Comment',
@@ -60,7 +60,7 @@ class CommentController extends Controller
         $this->authorize('delete', $comment);
 
         \broadcast(new CommentDeleted($comment->id))
-      ->toOthers();
+            ->toOthers();
 
         $comment->delete();
 

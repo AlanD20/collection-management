@@ -65,6 +65,7 @@
 ```bash
 php artisan lang:export [language directory]
 php artisan lang:export en # Example
+yarn lang # Exports both en, es
 ```
 - Clear Caches.
 ```bash

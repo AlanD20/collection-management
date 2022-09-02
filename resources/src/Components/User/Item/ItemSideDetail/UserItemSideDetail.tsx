@@ -14,7 +14,10 @@ interface Props extends DefProps {
 const UserItemSideDetail = ({ user, liked, item, className = '' }: Props) => {
   return (
     <div
-      className={`card card-bordered bg-base-100 shadow-md rounded-md p-4 px-8 w-[64ch] md:sticky top-32 ${className}`}
+      className={`card card-bordered bg-base-100 shadow-md rounded-md p-4 px-8 w-full lg:w-[64ch] lg:sticky top-32 ${className}`}
+      style={{
+        position: 'initial',
+      }}
     >
       <ItemSideDetailHeader />
 

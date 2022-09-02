@@ -40,7 +40,7 @@ const ItemSideDetailFooter = ({
           />
         </div>
       </div>
-      <div className="flex gap-12 text-xs italic w-full flex-col md:flex-row items-center md:justify-between">
+      <div className="flex gap-4 md:gap-12 text-xs italic w-full flex-col md:flex-row items-center md:justify-between">
         <span>{`${__('model.created_at')} ${item.createdAt}`}</span>
         <span>{`${__('model.updated_at')} ${item.updatedAt}`}</span>
       </div>

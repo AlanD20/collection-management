@@ -59,8 +59,6 @@ const Create = ({ collection, tags }: Props) => {
     [ts]
   );
 
-  console.log(data);
-
   return (
     <form onSubmit={handleSubmit} className="form-control gap-4 w-full">
       <Input

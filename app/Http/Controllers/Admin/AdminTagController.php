@@ -64,11 +64,12 @@ class AdminTagController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Tag  $tag
+     * @param  int  $tag
      * @return \Inertia\Response
      */
-    public function edit(Tag $tag)
+    public function edit(int $tag)
     {
+        $tag = Tag::findOrFail($tag);
         $tag = new TagResource($tag);
 
         return Inertia::render('Admin/Tag/Edit', \compact('tag'));

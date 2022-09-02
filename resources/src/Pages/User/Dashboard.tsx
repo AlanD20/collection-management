@@ -8,15 +8,22 @@ interface Props {
   user: User;
   collectionCount: number;
   commentCount: number;
+  likeCount: number;
 }
 
-const Dashboard = ({ user, collectionCount, commentCount }: Props) => {
+const Dashboard = ({
+  user,
+  collectionCount,
+  commentCount,
+  likeCount,
+}: Props) => {
   return (
     <div className="card card-bordered bg-base-100 shadow-md rounded-md p-4 px-8 max-w-max mx-auto">
       <UserProfile
         user={user}
         collectionCount={collectionCount}
         commentCount={commentCount}
+        likeCount={likeCount}
       />
 
       <UserProfileActions user={user} />

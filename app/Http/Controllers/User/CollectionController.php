@@ -26,21 +26,23 @@ class CollectionController extends Controller
     public function __construct()
     {
         $this->middleware(['auth', 'isBlocked'])
-      ->except(['index', 'show']);
+            ->except(['index', 'show']);
     }
 
     /**
      * Display a listing of the resource.
      *
-     * @param  \App\Models\User  $user
+     * @param  string  $user
      * @return \Inertia\Response
      */
-    public function index(User $uname)
+    public function index(string $uname)
     {
+        $uname = User::where('username', $uname)->firstOrFail();
+
         $query = Collection::query()
-      ->with('category', 'user')
-      ->withCount('items')
-      ->where('user_id', $uname->id);
+            ->with('category', 'user')
+            ->withCount('items')
+            ->where('user_id', $uname->id);
 
         $pipe = ThroughPipeline::getPaginatePipe(
             $query,
@@ -52,9 +54,9 @@ class CollectionController extends Controller
         );
 
         $pipe->getCollection()
-      ->each(
-          fn (Collection $collection) => (new CollectionHelper)->truncDesc($collection)
-      );
+            ->each(
+                fn (Collection $collection) => (new CollectionHelper)->truncDesc($collection)
+            );
 
         $collections = CollectionResource::collection($pipe);
 
@@ -76,8 +78,10 @@ class CollectionController extends Controller
         ]);
     }
 
-    public function create(User $uname)
+    public function create(string $uname)
     {
+        $uname = User::where('username', $uname)->firstOrFail();
+
         $this->authorize('view', $uname);
 
         $categories = CategoryResource::collection(Category::all());
@@ -99,7 +103,7 @@ class CollectionController extends Controller
         $fields = [];
         if ($request->has('fields')) {
             $fields = (new CollectionHelper)
-        ->slugifyFieldNames($request->safe()->fields);
+                ->slugifyFieldNames($request->safe()->fields);
         }
 
         $file = null;
@@ -122,11 +126,15 @@ class CollectionController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  string  $uname
-     * @param  \App\Models\Collection  $collection
+     * @param  int  $collection
      * @return \Inertia\Response
      */
-    public function edit(string $uname, Collection $collection)
+    public function edit(string $uname, int $collection)
     {
+        $collection = Collection::query()
+            ->whereHas('user', fn ($q) => $q->where('username', $uname))
+            ->findOrFail($collection);
+
         $this->authorize('view', $collection);
 
         $collection->load('category');
@@ -151,7 +159,7 @@ class CollectionController extends Controller
         $fields = [];
         if ($request->has('fields')) {
             $fields = (new CollectionHelper)
-        ->slugifyFieldNames($request->safe()->fields);
+                ->slugifyFieldNames($request->safe()->fields);
         }
 
         $file = null;

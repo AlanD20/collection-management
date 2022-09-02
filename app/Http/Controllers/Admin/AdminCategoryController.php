@@ -64,11 +64,12 @@ class AdminCategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Category  $category
+     * @param  int  $category
      * @return \Inertia\Response
      */
-    public function edit(Category $category)
+    public function edit(int $category)
     {
+        $category = Category::findOrFail($category);
         $category = new CategoryResource($category);
 
         return Inertia::render('Admin/Category/Edit', \compact('category'));

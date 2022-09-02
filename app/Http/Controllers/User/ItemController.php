@@ -28,27 +28,29 @@ class ItemController extends Controller
     public function __construct()
     {
         $this->middleware(['auth', 'isBlocked'])
-      ->except(['index', 'show']);
+            ->except(['index', 'show']);
     }
 
     /**
      * Display a listing of the resource.
      *
-     * @param  \App\Models\User  $uname
+     * @param  string  $uname
      * @param  int  $collection
      * @return \Inertia\Response
      */
-    public function index(User $uname, int $collection)
+    public function index(string $uname, int $collection)
     {
+        $uname = User::where('username', $uname)->firstOrFail();
+
         $queryCollection = Collection::query()
-      ->with('category')
-      ->where('user_id', $uname->id)
-      ->findOrFail($collection);
+            ->with('category')
+            ->where('user_id', $uname->id)
+            ->findOrFail($collection);
 
         $queryItems = Item::query()
-      ->with('tags')
-      ->withCount('likes', 'comments')
-      ->where('collection_id', $collection);
+            ->with('tags')
+            ->withCount('likes', 'comments')
+            ->where('collection_id', $collection);
 
         $pipeItems = ThroughPipeline::getPaginatePipe(
             $queryItems,
@@ -71,11 +73,15 @@ class ItemController extends Controller
      * Show the form for creating a new resource.
      *
      * @param  string  $uname
-     * @param  \App\Models\Collection  $collection
+     * @param  int  $collection
      * @return \Inertia\Response
      */
-    public function create(string $uname, Collection $collection)
+    public function create(string $uname, int $collection)
     {
+        $collection = Collection::query()
+            ->whereHas('user', fn ($q) => $q->where('username', $uname))
+            ->findOrFail($collection);
+
         $tags = TagResource::collection(Tag::all());
 
         return Inertia::render('User/Item/Create', compact('collection', 'tags'));
@@ -103,35 +109,37 @@ class ItemController extends Controller
         $item->tags()->attach($request->safe()->tags);
 
         return redirect()
-      ->route('u.collections.items.index', [
-          'uname' => $uname,
-          'collection' => $collection->id,
-      ])
-      ->with('success', __('model.create', [
-          'model' => 'Item',
-      ]));
+            ->route('u.collections.items.index', [
+                'uname' => $uname,
+                'collection' => $collection->id,
+            ])
+            ->with('success', __('model.create', [
+                'model' => 'Item',
+            ]));
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\User  $uname
+     * @param  string  $uname
      * @param  int  $collection
      * @param  int  $item
      * @return \Inertia\Response
      */
-    public function show(User $uname, int $collection, int $item)
+    public function show(string $uname, int $collection, int $item)
     {
+        $uname = User::where('username', $uname)->firstOrFail();
+
         $queryCollection = Collection::query()
-      ->with('category')
-      ->where('user_id', $uname->id)
-      ->findOrFail($collection);
+            ->with('category')
+            ->where('user_id', $uname->id)
+            ->findOrFail($collection);
 
         $queryItem = Item::query()
-      ->with('tags', 'comments', 'comments.user')
-      ->withCount('likes', 'comments')
-      ->where('collection_id', $collection)
-      ->findOrFail($item);
+            ->with('tags', 'comments', 'comments.user')
+            ->withCount('likes', 'comments')
+            ->where('collection_id', $collection)
+            ->findOrFail($item);
 
         $likes = (new ItemHelper)->getUserLikes($queryItem);
         $liked = collect($likes)->contains($queryItem->id);
@@ -147,18 +155,22 @@ class ItemController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  string  $uname
-     * @param  \App\Models\Collection  $collection
+     * @param  int  $collection
      * @param  int  $item
      * @return \Inertia\Response
      */
-    public function edit(string $uname, Collection $collection, int $item)
+    public function edit(string $uname, int $collection, int $item)
     {
+        $collection = Collection::query()
+            ->whereHas('user', fn ($q) => $q->where('username', $uname))
+            ->findOrFail($collection);
+
         $this->authorize('view', $collection);
 
         $item = Item::query()
-      ->with('tags')
-      ->where('collection_id', $collection->id)
-      ->firstOrFail();
+            ->with('tags')
+            ->where('collection_id', $collection->id)
+            ->firstOrFail();
 
         $tags = TagResource::collection(Tag::all());
 

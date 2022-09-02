@@ -16,6 +16,7 @@ return [
 
     'total_collections' => 'Total Collections',
     'total_comments' => 'Total Comments',
+    'total_likes' => 'Total Likes',
 
     // Pref
     'locale' => 'Language updated successfully',

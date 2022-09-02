@@ -5,9 +5,15 @@ interface Props {
   user: User;
   collectionCount: number;
   commentCount: number;
+  likeCount: number;
 }
 
-const UserProfile = ({ user, collectionCount, commentCount }: Props) => {
+const UserProfile = ({
+  user,
+  collectionCount,
+  commentCount,
+  likeCount,
+}: Props) => {
   return (
     <div className="flex gap-4">
       <div className="flex flex-col gap-4 py-4 px-8">
@@ -31,8 +37,12 @@ const UserProfile = ({ user, collectionCount, commentCount }: Props) => {
           <span>{__('user.total_comments')}</span>
           <span className="font-bold">{commentCount}</span>
         </div>
+        <div className="flex flex-col">
+          <span>{__('user.total_likes')}</span>
+          <span className="font-bold">{likeCount}</span>
+        </div>
 
-        <div className="flex gap-12 text-xs italic w-full flex-col md:flex-row items-center md:justify-between">
+        <div className="flex gap-4 md:gap-12 text-xs italic w-full flex-col md:flex-row items-center md:justify-between">
           <span>{`${__('model.created_at')} ${user.createdAt}`}</span>
           <span>{`${__('model.updated_at')} ${user.updatedAt}`}</span>
         </div>

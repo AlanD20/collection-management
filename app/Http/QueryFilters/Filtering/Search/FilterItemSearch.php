@@ -17,8 +17,8 @@ class FilterItemSearch extends Filter
 
         return $builder->where(function ($query) use ($value) {
             $query
-        ->where('items.name', 'like', "%$value%")
-        ->orWhere('items.fields', 'like', "%$value%");
+                ->where('name', 'like', "%$value%")
+                ->orWhere('fields', 'like', "%$value%");
         });
     }
 }

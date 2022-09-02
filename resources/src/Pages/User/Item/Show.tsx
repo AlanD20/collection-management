@@ -15,13 +15,16 @@ interface Props {
 
 const Dashboard = ({ user, item, liked, collection }: Props) => {
   return (
-    <div className="w-full flex flex-col md:flex-row gap-4 p-4 md:justify-center md:items-start md:gap-8 md:p-8 relative">
-      <UserItemSideDetail user={user} item={item} liked={liked} />
-      <div className="flex flex-col justify-center gap-4 w-full items-start px-4">
-        <UserItemDetail item={item} liked={liked} collection={collection} />
+    <div className="w-full flex flex-col lg:flex-row gap-4">
+      <div className="w-full flex flex-col lg:flex-row gap-4 p-4 lg:justify-center lg:items-start lg:gap-8 lg:p-8 relative">
+        <UserItemSideDetail user={user} item={item} liked={liked} />
 
-        <div className="divider mt-12"></div>
-        <CommentSection itemId={item.id} comments={item.comments} />
+        <div className="flex flex-col justify-center gap-4 w-full items-start lg:px-4">
+          <UserItemDetail item={item} liked={liked} collection={collection} />
+
+          <div className="divider mt-12"></div>
+          <CommentSection itemId={item.id} comments={item.comments} />
+        </div>
       </div>
     </div>
   );

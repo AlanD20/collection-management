@@ -4,19 +4,16 @@ import { UsePage } from '@/@types/Response';
 import ChangeTheme from '@@/Misc/ChangeTheme';
 import ChangeLocale from '@@/Misc/ChangeLocale';
 import { IoIosArrowDown } from 'react-icons/io';
-import useLocalChange from '@/hooks/useLocalChange';
 import { Link, usePage } from '@inertiajs/inertia-react';
 
 const NavLeft = () => {
   const { appName } = usePage<UsePage>().props;
   const { url } = usePage();
 
-  const { currentLocale } = useLocalChange();
-
   const home = url === '/';
-  const collections = url === '/collections';
-  const users = url === '/users';
-  const items = url === '/items';
+  const collections = url.startsWith('/collections');
+  const users = url.startsWith('/users');
+  const items = url.startsWith('/items');
 
   const activeItem = (route: boolean) => (route ? 'btn-ghost btn-active' : '');
 

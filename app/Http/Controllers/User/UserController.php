@@ -8,6 +8,7 @@ use App\Http\Requests\User\UserRequest;
 use App\Http\Resources\UserResource;
 use App\Models\Collection;
 use App\Models\Comment;
+use App\Models\Like;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Inertia\Inertia;
@@ -22,33 +23,37 @@ class UserController extends Controller
     public function __construct()
     {
         $this->middleware(['auth', 'isBlocked'])
-      ->except('show');
+            ->except('show');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\User  $uname
+     * @param  string  $uname
      * @return \Illuminate\Http\Response
      */
-    public function show(User $uname)
+    public function show(string $uname)
     {
+        $uname = User::where('username', $uname)->firstOrFail();
         $user = new UserResource($uname);
 
-        $collectionCount = $this->getUserCollections($uname->id);
-        $commentCount = $this->getUserComments($uname->id);
+        $collectionCount = $this->getUserCollectionsCount($uname->id);
+        $commentCount = $this->getUserCommentsCount($uname->id);
+        $likeCount = $this->getUserLikesCount($uname->id);
 
-        return Inertia::render('User/Dashboard', compact('user', 'collectionCount', 'commentCount'));
+        return Inertia::render('User/Dashboard', compact('user', 'collectionCount', 'commentCount', 'likeCount'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\User  $uname
+     * @param  string  $uname
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $uname)
+    public function edit(string $uname)
     {
+        $uname = User::where('username', $uname)->firstOrFail();
+
         $this->authorize('view', $uname);
 
         $user = new UserResource($uname);
@@ -59,11 +64,13 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\User  $uname
+     * @param  string  $uname
      * @return \Illuminate\Http\Response
      */
-    public function edit_password(User $uname)
+    public function edit_password(string $uname)
     {
+        $uname = User::where('username', $uname)->firstOrFail();
+
         $this->authorize('view', $uname);
 
         $user = new UserResource($uname);
@@ -86,10 +93,10 @@ class UserController extends Controller
         $uname->fresh();
 
         return redirect()
-      ->route('u.show', ['uname' => $uname->username])
-      ->with('success', __('model.update', [
-          'model' => 'user',
-      ]));
+            ->route('u.show', ['uname' => $uname->username])
+            ->with('success', __('model.update', [
+                'model' => 'user',
+            ]));
     }
 
     /**
@@ -108,10 +115,10 @@ class UserController extends Controller
         ]);
 
         return redirect()
-      ->route('u.show', ['uname' => $uname->username])
-      ->with('success', __('model.update', [
-          'model' => 'user',
-      ]));
+            ->route('u.show', ['uname' => $uname->username])
+            ->with('success', __('model.update', [
+                'model' => 'user',
+            ]));
     }
 
     /**
@@ -127,24 +134,32 @@ class UserController extends Controller
         $uname->delete();
 
         return redirect()
-      ->route('main.index')
-      ->with('success', __('model.delete', [
-          'model' => 'user',
-      ]));
+            ->route('main.index')
+            ->with('success', __('model.delete', [
+                'model' => 'user',
+            ]));
     }
 
-    public function getUserCollections(int $id)
+    public function getUserCollectionsCount(int $id): int
     {
         $query = Collection::query()
-      ->where('user_id', $id);
+            ->where('user_id', $id);
 
         return $query->count();
     }
 
-    public function getUserComments(int $id)
+    public function getUserCommentsCount(int $id): int
     {
         $query = Comment::query()
-      ->where('user_id', $id);
+            ->where('user_id', $id);
+
+        return $query->count();
+    }
+
+    public function getUserLikesCount(int $id): int
+    {
+        $query = Like::query()
+            ->where('user_id', $id);
 
         return $query->count();
     }

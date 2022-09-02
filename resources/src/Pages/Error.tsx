@@ -6,6 +6,7 @@ interface Props {
 }
 
 const ErrorPage = ({ status }: Props) => {
+
   const title = {
     503: '503 Service Unavailable',
     500: '500 Server Error',

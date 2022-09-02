@@ -21,11 +21,11 @@ const ItemDetailHeader = ({ item }: Props) => {
   return (
     <div className="flex justify-between items-center w-full gap-4">
       <div className="flex justify-between gap-4 text-xs w-full">
-        <div className="flex gap-1">
+        <div className="flex gap-1 flex-col lg:flex-row items-center">
           <span>{__('model.created_at')}</span>
           <span>{item.updatedAt}</span>
         </div>
-        <div className="flex gap-1">
+        <div className="flex gap-1 flex-col lg:flex-row items-center">
           <span>{__('model.updated_at')}</span>
           <span>{item.updatedAt}</span>
         </div>

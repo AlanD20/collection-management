@@ -17,8 +17,8 @@ class FilterUserSearch extends Filter
 
         return $builder->where(function ($query) use ($value) {
             $query
-        ->where('users.name', 'like', "%$value%")
-        ->orWhere('users.username', 'like', "%$value%");
+                ->where('name', 'like', "%$value%")
+                ->orWhere('username', 'like', "%$value%");
         });
     }
 }

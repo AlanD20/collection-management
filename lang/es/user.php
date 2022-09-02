@@ -16,6 +16,7 @@ return [
 
     'total_collections' => 'Recaudaciones totales',
     'total_comments' => 'Comentarios totales',
+    'total_likes' => 'Ne gusta totales',
 
     // Pref
     'locale' => 'Idioma actualizado con éxito',
