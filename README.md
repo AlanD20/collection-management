@@ -1,6 +1,6 @@
 ## Personal Collection Management
 
-### [LIVE Demo](https://pcm.aland20.tech/)
+### [LIVE Demo](https://pcm.aland20.com/)
 
 
 ## Main Goals:
